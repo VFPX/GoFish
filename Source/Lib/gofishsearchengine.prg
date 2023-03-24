@@ -1128,7 +1128,9 @@ Define Class GoFishSearchEngine As Custom
 		lnProcStart	 = &tcCursor..ProcStart
 		lnMatchStart = &tcCursor..MatchStart
 
-		If lcExt # 'PRG' And (Empty(m.lcMethod) Or 0 # Atc('<Property', m.lcMatchType))
+		*If lcExt # 'PRG' And (Empty(m.lcMethod) Or 0 # Atc('<Property', m.lcMatchType))
+		* here any file that is a text file should be accepted to position the cursor when it is opened
+		If !Inlist(lcExt, 'PRG', 'SPR', 'MPR', 'QPR', 'H', 'INI', 'TXT', 'XML', 'HTM') And (Empty(m.lcMethod) Or 0 # Atc('<Property', m.lcMatchType))
 			lcMethodString = ''
 			lnStart		   = 1
 		Else
@@ -1201,6 +1203,14 @@ Define Class GoFishSearchEngine As Custom
 		Endif
 
 		m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass, m.lnStart, m.lnStart, m.lcMethodString, m.lnRecNo)
+		
+		lcMatchType = ALLTRIM(&tcCursor..MatchType)
+		*	Try to select searched text if found in normal windows only - exclude internal for VFP places
+		IF !INLIST(m.lcMatchType, MATCHTYPE_FILENAME, MATCHTYPE_CLASS_DEF, MATCHTYPE_CLASS_DESC, MATCHTYPE_METHOD_DEF, MATCHTYPE_PROPERTY_DEF, ;
+				MATCHTYPE_CONTAINING_CLASS, MATCHTYPE_PARENTCLASS, MATCHTYPE_BASECLASS, MATCHTYPE_METHOD_DESC, MATCHTYPE_PROPERTY, ;
+				MATCHTYPE_PROPERTY_DESC, MATCHTYPE_PROPERTY_NAME, MATCHTYPE_PROPERTY_VALUE)
+			This.SelectSearchedText(&tcCursor..MatchStart,&tcCursor..MatchLen, TRIM(&tcCursor..Search), This.oSearchOptions.lMatchCase)
+		ENDIF
 
 		If m.tlMoveToTopleft And (m.lcExt = 'PRG' Or Not Empty(m.lcMethodString))
 			This.ThorMoveWindow()
@@ -1208,6 +1218,67 @@ Define Class GoFishSearchEngine As Custom
 
 	Endproc
 
+	*----------------------------------------------------------------------------------
+	*	Highlight searched text in opened window
+	*		tnRangeStart - start of the line where the search is found
+	*		tnRangelen - length of the line where the search is found - optional, can reduce the length of the text to be searched
+	*		tcSearch - searched text
+	*
+	PROCEDURE SelectSearchedText(tnRangeStart, tnRangelen, tcSearch, tlMatchCase)
+		LOCAL lcFoxtoolsFll, lLibrRelease
+		IF ATCC("foxtools.fll", SET("LIBRARY")) = 0
+			lcFoxtoolsFll = SYS(2004) + "foxtools.fll"
+			IF FILE(m.lcFoxtoolsFll)
+				lLibrRelease = .t.
+				SET LIBRARY TO (m.lcFoxtoolsFll) ADDITIVE
+			ENDIF
+		ENDIF
+
+		IF ATCC("foxtools.fll", SET("LIBRARY")) > 0
+			LOCAL lnWhandle, aEdEnv[25], lnRetCode, lnRangeStart, lnRangeEnd, lcLine, lnSelStart, lnSelEnd
+			lnWhandle = _WOnTop()
+			lnRetCode = _EdGetEnv(m.lnWhandle, @aEdEnv) && aEdEnv: 1 - filename, 2 - size, 12 - readonly?, 17 - selected start, 18 selected  end
+			IF m.lnRetCode = 1 AND aEdEnv[2] > 0 && content size is > 0
+				* determine the range in which to be searched
+				IF aEdEnv[17] > 0 OR EMPTY(m.tnRangeStart) OR m.tnRangeStart >= aEdEnv[2]
+					* defaults to current cursor position, if is set, otherwise the given as parameter
+					*tnRangeStart = _EdGetPos(m.lnWhandle) && this value is allready available in aEdEnv
+					tnRangeStart = aEdEnv[17]
+				ENDIF
+				lnRangeStart = m.tnRangeStart
+				IF EMPTY(m.tnRangelen)
+					tnRangelen = aEdEnv[2] - m.lnRangeStart + 1
+				ENDIF
+				lnRangeEnd = m.lnRangeStart + m.tnRangelen && determine where the search to be searched :-)
+				IF m.lnRangeEnd > aEdEnv[2] && check we are not beyond the end, will throw error
+					lnRangeEnd = aEdEnv[2]
+				ENDIF
+				lcLine = _EdGetStr(m.lnWhandle, m.lnRangeStart, m.lnRangeEnd)
+				* search what to be selected in the range
+				IF m.tlMatchCase
+					lnPos = AT(m.tcSearch, m.lcLine)
+				ELSE
+					lnPos = ATCC(m.tcSearch, m.lcLine)
+				ENDIF
+				IF m.lnPos > 0
+					lnSelStart = m.lnRangeStart + m.lnPos - 1
+					lnSelEnd = m.lnSelStart + LEN(m.tcSearch)
+				ELSE
+					* In case the search fails (match word or regular expressions), select whole the line
+					lnSelStart = m.tnRangeStart
+					lnSelEnd = m.tnRangeStart + m.tnRangelen
+				ENDIF
+				* select at the end
+				IF m.lnSelEnd > m.lnSelStart
+					_EdSelect(m.lnWhandle, m.lnSelStart, m.lnSelEnd)
+				ENDIF
+			ENDIF
+		ENDIF
+
+		IF m.lLibrRelease AND ATCC(m.lcFoxtoolsFll, SET("LIBRARY")) > 0
+			RELEASE LIBRARY (m.lcFoxtoolsFll)
+		ENDIF
+	ENDPROC
 
 *----------------------------------------------------------------------------------
 	Procedure EditMenuFromCurrentRow(tcCursor)
@@ -2358,7 +2429,7 @@ Define Class GoFishSearchEngine As Custom
 			Return .T.
 		Endif
 
-*** No matching filetype found => so don´t include in this search!
+*** No matching filetype found => so don't include in this search!
 		Return .F.
 	Endproc
 
@@ -4625,3 +4696,9 @@ Define Class GoFishSearchEngine As Custom
 
 	Endproc
 Enddefine
+
+FUNCTION _WONTOP
+FUNCTION _EDGETENV
+FUNCTION _EDGETSTR
+FUNCTION _EDSELECT
+FUNCTION _EDGETPOS
