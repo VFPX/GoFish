@@ -1209,7 +1209,7 @@ Define Class GoFishSearchEngine As Custom
 		IF !INLIST(m.lcMatchType, MATCHTYPE_FILENAME, MATCHTYPE_CLASS_DEF, MATCHTYPE_CLASS_DESC, MATCHTYPE_METHOD_DEF, MATCHTYPE_PROPERTY_DEF, ;
 				MATCHTYPE_CONTAINING_CLASS, MATCHTYPE_PARENTCLASS, MATCHTYPE_BASECLASS, MATCHTYPE_METHOD_DESC, MATCHTYPE_PROPERTY, ;
 				MATCHTYPE_PROPERTY_DESC, MATCHTYPE_PROPERTY_NAME, MATCHTYPE_PROPERTY_VALUE)
-			This.SelectSearchedText(&tcCursor..MatchStart,&tcCursor..MatchLen, TRIM(&tcCursor..Search), This.oSearchOptions.lMatchCase)
+			This.SelectSearchedText(&tcCursor..MatchStart,&tcCursor..MatchLen, TRIM(&tcCursor..Search))
 		ENDIF
 
 		If m.tlMoveToTopleft And (m.lcExt = 'PRG' Or Not Empty(m.lcMethodString))
@@ -1224,9 +1224,9 @@ Define Class GoFishSearchEngine As Custom
 	*		tnRangelen - length of the line where the search is found - optional, can reduce the length of the text to be searched
 	*		tcSearch - searched text
 	*
-	PROCEDURE SelectSearchedText(tnRangeStart, tnRangelen, tcSearch, tlMatchCase)
+	PROCEDURE SelectSearchedText(tnRangeStart, tnRangelen, tcSearch)
 		LOCAL lcFoxtoolsFll, lLibrRelease
-		IF ATCC("foxtools.fll", SET("LIBRARY")) = 0
+		IF ATC("foxtools.fll", SET("LIBRARY")) = 0
 			lcFoxtoolsFll = SYS(2004) + "foxtools.fll"
 			IF FILE(m.lcFoxtoolsFll)
 				lLibrRelease = .t.
@@ -1234,8 +1234,8 @@ Define Class GoFishSearchEngine As Custom
 			ENDIF
 		ENDIF
 
-		IF ATCC("foxtools.fll", SET("LIBRARY")) > 0
-			LOCAL lnWhandle, aEdEnv[25], lnRetCode, lnRangeStart, lnRangeEnd, lcLine, lnSelStart, lnSelEnd
+		IF ATC("foxtools.fll", SET("LIBRARY")) > 0
+			LOCAL lnWhandle, aEdEnv[25], lnRetCode, lnRangeStart, lnRangeEnd, lcLine, lnSelStart, lnSelEnd, llMatchCase
 			lnWhandle = _WOnTop()
 			lnRetCode = _EdGetEnv(m.lnWhandle, @aEdEnv) && aEdEnv: 1 - filename, 2 - size, 12 - readonly?, 17 - selected start, 18 selected  end
 			IF m.lnRetCode = 1 AND aEdEnv[2] > 0 && content size is > 0
@@ -1254,11 +1254,24 @@ Define Class GoFishSearchEngine As Custom
 					lnRangeEnd = aEdEnv[2]
 				ENDIF
 				lcLine = _EdGetStr(m.lnWhandle, m.lnRangeStart, m.lnRangeEnd)
+				* determine real string to search in case pattern or Regex
+				llMatchCase = This.oSearchOptions.lMatchCase
+				IF This.oSearchOptions.nSearchMode > 1
+					This.PrepareRegExForSearch()
+					This.PrepareRegExForReplace()
+					LOCAL loMatches, loMatch
+					loMatches = This.oRegExForSearch.Execute(m.lcLine)
+					IF loMatches.Count > 0
+						loMatch = loMatches.Item(0)
+						tcSearch = loMatch.Value
+						llMatchCase = .t.
+					ENDIF
+				ENDIF
 				* search what to be selected in the range
-				IF m.tlMatchCase
+				IF m.llMatchCase
 					lnPos = AT(m.tcSearch, m.lcLine)
 				ELSE
-					lnPos = ATCC(m.tcSearch, m.lcLine)
+					lnPos = ATC(m.tcSearch, m.lcLine)
 				ENDIF
 				IF m.lnPos > 0
 					lnSelStart = m.lnRangeStart + m.lnPos - 1
@@ -1275,7 +1288,7 @@ Define Class GoFishSearchEngine As Custom
 			ENDIF
 		ENDIF
 
-		IF m.lLibrRelease AND ATCC(m.lcFoxtoolsFll, SET("LIBRARY")) > 0
+		IF m.lLibrRelease AND ATC(m.lcFoxtoolsFll, SET("LIBRARY")) > 0
 			RELEASE LIBRARY (m.lcFoxtoolsFll)
 		ENDIF
 	ENDPROC
