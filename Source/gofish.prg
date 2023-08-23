@@ -110,7 +110,7 @@ Endif &&loSettings.EXISTS("lCR_Allow") And m.loSettings.lCR_Allow
 */ SF 20221017
 
 lnSys16 = 1
-DO WHILE !LOWER(JUSTFNAME(SYS(16,m.lnSys16)))=="gofish5.app"
+DO WHILE !(LOWER(JUSTFNAME(SYS(16,m.lnSys16)))=="gofish5.app" OR LOWER(JUSTFNAME(SYS(16,m.lnSys16)))=="gofish.fxp")
    lnSys16 = m.lnSys16+1
 ENDDO
 
@@ -206,7 +206,7 @@ Procedure SetPathsForDevelopmentMode(tcAppPath)
 	Set Path To (m.tcAppPath + "Lib\VFP\My") Additive
 	Set Path To (m.tcAppPath + "Lib\VFP\FFC") Additive
 	Set Path To (m.tcAppPath + "Images") Additive
-	Set Path To (m.tcAppPath + "Menus") Additive
+	Set Path To (m.tcAppPath + "SF_RegExp") Additive
 
 Endproc
 

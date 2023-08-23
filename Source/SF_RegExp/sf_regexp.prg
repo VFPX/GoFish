@@ -51,31 +51,25 @@ DEFINE CLASS SF_RegExp AS SESSION
   lcPath = RIGHT(m.lcPath,LEN(m.lcPath)-AT(" ",m.lcPath,2))
   lcPath = JUSTPATH(m.lcPath)
 
-
-  IF VARTYPE(m.__SF_REGEXPATH)="C" THEN
-   IF EMPTY(m.tcPathTo_SF_RegExp) THEN
-    tcPathTo_SF_RegExp = m.__SF_REGEXPATH
-   ELSE  &&Vartype(__SF_REGEXPATH)="C"
-    __SF_REGEXPATH = m.tcPathTo_SF_RegExp
-   ENDIF &&Vartype(__SF_REGEXPATH)="C"
-
-  ELSE  &&Vartype(__SF_REGEXPATH)="C"
-   IF EMPTY(m.tcPathTo_SF_RegExp) THEN
-    tcPathTo_SF_RegExp = m.lcPath
-   ENDIF &&EMPTY(m.tcPathTo_SF_RegExp)
-   PUBLIC __SF_REGEXPATH
-   __SF_REGEXPATH = m.tcPathTo_SF_RegExp
-
-  ENDIF &&Vartype(__SF_REGEXPATH)="C"
-
-  CD (m.tcPathTo_SF_RegExp)
+*!*	  IF VARTYPE(m.__SF_REGEXPATH)="C" THEN
+*!*	   IF EMPTY(m.tcPathTo_SF_RegExp) THEN
+*!*	    tcPathTo_SF_RegExp = m.__SF_REGEXPATH
+*!*	   ENDIF &&Vartype(__SF_REGEXPATH)="C"
+*!*	  ELSE  &&Vartype(__SF_REGEXPATH)="C"
+*!*	   IF EMPTY(m.tcPathTo_SF_RegExp) THEN
+*!*	    tcPathTo_SF_RegExp = m.lcPath
+*!*	   ENDIF &&EMPTY(m.tcPathTo_SF_RegExp)
+*!*	   PUBLIC __SF_REGEXPATH
+*!*	  ENDIF &&Vartype(__SF_REGEXPATH)="C"
+*!*	   __SF_REGEXPATH = m.tcPathTo_SF_RegExp
+*!*	
+*!*	  CD (m.tcPathTo_SF_RegExp)
 
   TRY
     DO wwDotnetBridge
 
    CATCH
     TRY
-      SET PATH TO ('"'+m.tcPathTo_SF_RegExp+'"') ADDITIVE
       DO wwDotnetBridge
 
      CATCH

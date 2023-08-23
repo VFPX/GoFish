@@ -9,6 +9,11 @@ Replaces the lists in
 - ChangeLog_Ver_5.txt
 
 ----
+## Ver 6.2.003
+**Released 2023-08-23**
+### Changes
+- Fixed: Error "invalid path or file name" on startup #120  
+
 ## Ver 6.2.002
 **Released 2023-06-09**
 ### Changes
@@ -521,4 +526,4 @@ For more details check [Changes on V6](./New_6.md).
 - Park Ave Marketing firm suggests rename - "Go Fish"
 
 ----
-Last changed: _2023/06/09_  ![Picture](./pictures/vfpxpoweredby_alternative.gif)
+Last changed: _2023/08/23_  ![Picture](./pictures/vfpxpoweredby_alternative.gif)

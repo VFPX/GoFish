@@ -1,3 +1,9 @@
+## Ver 6.2.003 **Released 2023-08-23**
+- Fixed: Error "invalid path or file name" on startup #120
+
+## Ver 6.2.002 **Released 2023-06-09**
+- Fixed: problem withg spaces in app path #99
+
 ## Ver 6.2.001 **Released 2023-05-09**
 - Fixed: Code - window shows info for files without hit in filter #94  
 - Fixed: If search is restored via "History", restore search settings; fixed #92
