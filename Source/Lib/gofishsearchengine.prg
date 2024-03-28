@@ -1386,15 +1386,19 @@ statementstart
 		*-- 2011-12-28 (As requested by JRN) -------------
 		*-- The following code will automatically select the actual Object on the form or class, or select the Property name.
 		*-- This will also select it in the PEM Editor main form.
+		
 		If Type('_Screen.cThorDispatcher') = 'C'
 	
 			loTools = Execscript(_Screen.cThorDispatcher, 'Class= tools from pemeditor')
 	
 			If Vartype(m.loTools) = 'O'
 	
-				If m.lcExt = 'SCX' And &tcCursor..BaseClass = 'form' && Must trim off form name from front of object name
-					lcName = ''
-				Endif
+				Do Case
+					Case m.lcExt = 'SCX' And '.' $ m.lcName  && Must trim off form name from front of object name
+						lcName = Substr(lcName, 1 + At('.', m.lcName)) 
+					Case m.lcExt = 'SCX'  && Must trim off form name from front of object name
+						lcName = ''
+				Endcase
 	
 				Do Case
 					Case m.lcMatchType = MatchType_Name
@@ -1412,6 +1416,11 @@ statementstart
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
 						m.loTools.SelectObject(m.lcName, m.lcProperty)
 						Return
+
+					Case InList(m.lcExt, 'SCX', 'VCX') and not Empty(m.lcName) 
+						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
+						m.loTools.SelectObject(m.lcName)
+
 				Endcase
 			Endif
 	

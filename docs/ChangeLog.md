@@ -1,3 +1,9 @@
+## Version 7.0.20 - 2024-03-28
+
+The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced as follows (#194):
+1.  If the row corresponds to an object in the form or class being edited and the object is at least partially visible, the object will be selected as if you had clicked on the object yourself. Objects that are hidden behind others, are in a page other than the visible page in a pageframe, as well as headers and columns in a grid, will not be selected.
+2. If PEM Editor is open, the object will be selected there, even if the attempted selection in the actual form or class (as described above) does not work.
+
 ## Version 7.0.19 - 2024-03-27
 
 * Double-clicking on a file or class name in the TreeView will open that file or class for editing.  This restores a feature available in GF 5.
