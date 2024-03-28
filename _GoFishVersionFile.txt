@@ -1,6 +1,12 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.20 - 2024-03-28
+
+The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced as follows (#194):
+1.  If the row corresponds to an object in the form or class being edited and the object is at least partially visible, the object will be selected as if you had clicked on the object yourself. Objects that are hidden behind others, are in a page other than the visible page in a pageframe, as well as headers and columns in a grid, will not be selected.
+2. If PEM Editor is open, the object will be selected there, even if the attempted selection in the actual form or class (as described above) does not work.
+
 ## Version 7.0.19 - 2024-03-27
 
 * Double-clicking on a file or class name in the TreeView will open that file or class for editing.  This restores a feature available in GF 5.
@@ -119,31 +125,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 
 ----
 ## Ver 6.2.007
-**Released 2023-11-11**
- Changes
-- Installing GoFish now provides an option to remove GoFish5.
-
-----
-## Ver 6.2.006
-**Released 2023-10-24**
- Changes
-- fixed issue with missing property declaration.
-
-----
-## Ver 6.2.005
-**Released 2023-09-07**
- Changes
-- Added file .FoxBin2Prg_Ignore in local storage directory, to stop FoxBin2Prg after version [1.20.07](https://github.com/lscheffler/foxbin2prg/releases/tag/1.20.07) from processing this directories.
-
-## Ver 6.2.004
-**Released 2023-09-04**
- Changes
-- fixed problem with replace backup folder missing
-- fixed an issue where whole history was populated in tree, while only that of the recent session was turned on
-- fixed an issue
+**R
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.19 - March 27, 2024 - 20240327')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.19 - March 28, 2024 - 20240328')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

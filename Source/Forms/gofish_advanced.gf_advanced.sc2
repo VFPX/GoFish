@@ -37,20 +37,20 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="containerFileTypes.Check2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJava" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJSP" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="txtTimeStampFrom" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="editFileTemplate" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label7" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="editFileTemplate" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Command1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdHelp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="CmdGoFish" UniqueID="" Timestamp="" />
 
@@ -71,7 +71,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*<PropValue>
 		BindControls = .F.
 		cactiveproject = 
-		Caption = "GoFish - Advanced Search"
+		Caption = "GoFish - Advanced Search Settings"
 		ccurrentdir = 
 		cuisettingsfile = GF_Advanced_Form_Settings.xml
 		DataSession = 2
@@ -645,9 +645,6 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	ADD OBJECT 'containerFileTypes.txtyourchoice' AS textbox WITH ;
 		Anchor = 0, ;
 		ControlSource = "Thisform.oSearchOptions.cOtherIncludes", ;
-		FontBold = .T., ;
-		FontName = "Courier New", ;
-		FontSize = 9, ;
 		Height = 24, ;
 		Left = 74, ;
 		Name = "txtyourchoice", ;
