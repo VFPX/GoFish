@@ -1,3 +1,8 @@
+## Version 7.0.21 - 2024-04-02
+
+* Bug fix:
+    * In some cases, Code View shows only matching line and no context at all (#202).
+
 ## Version 7.0.20 - 2024-03-28
 
 The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced as follows (#194):

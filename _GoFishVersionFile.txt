@@ -1,6 +1,11 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.21 - 2024-04-02
+
+* Bug fix:
+    * In some cases, Code View shows only matching line and no context at all (#202).
+
 ## Version 7.0.20 - 2024-03-28
 
 The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced as follows (#194):
@@ -119,16 +124,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * Janitor not working properly, was improperly related to scope; setting is actually a global setting independent of scope.
 
 # Under consideration for future
-* If Project Explorer is open, uses it to open files for editing so that Project Explorer can handle things like calling FoxBin2PRG after closing an edited file.   (#154)
-* Simplifying the "Advanced" form by removing from it any option already visible on the main screen.
-
-
-----
-## Ver 6.2.007
-**R
+* If Project Explorer is open, uses it to open files for editing so that Project Explorer can handle things like calling FoxBin2PRG after closing an edited file.   (#15
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.19 - March 28, 2024 - 20240328')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.21 - April 02, 2024 - 20240402')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
