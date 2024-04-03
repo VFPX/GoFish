@@ -1,3 +1,9 @@
+## Version 7.0.22 - 2024-04-03
+
+If you double-click on a match in a SCX/VCX and then close the SCX/VCX without changing anything, you no longer get the 'Save changes" dialog.
+
+(Enhancement to feature released in Version 7.0.20, #194)
+
 ## Version 7.0.21 - 2024-04-02
 
 * Bug fix:

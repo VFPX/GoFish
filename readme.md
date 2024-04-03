@@ -1,6 +1,6 @@
 # ![](content/home.png "Home") GoFish!
 ![Go!Fish](./docs/Screenshots/GoFish_image_8.png)   
-**Version 7.0.21 Released 2024-04-02** 
+**Version 7.0.22 Released 2024-04-03** 
 
 GoFish is an advanced code search tool for fast searching and replacing of Visual FoxPro source code.
 

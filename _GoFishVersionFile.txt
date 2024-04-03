@@ -1,6 +1,12 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.22 - 2024-04-03
+
+If you double-click on a match in a SCX/VCX and then close the SCX/VCX without changing anything, you no longer get the 'Save changes" dialog.
+
+(Enhancement to feature released in Version 7.0.20, #194)
+
 ## Version 7.0.21 - 2024-04-02
 
 * Bug fix:
@@ -121,13 +127,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * Bug reported when changing Desktop checkbox (#162)
 * Settings on Options/Colours page were not taking effect (#163)
 * Restoring latest search (from "History button context menu) was not always selecting the *latest* search.
-* Janitor not working properly, was improperly related to scope; setting is actually a global setting independent of scope.
-
-# Under consideration for future
-* If Project Explorer is open, uses it to open files for editing so that Project Explorer can handle things like calling FoxBin2PRG after closing an edited file.   (#15
+* Janitor not working properly, was improperly related to scope; setting is actually a glob
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.21 - April 02, 2024 - 20240402')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.22 - April 03, 2024 - 20240403')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
