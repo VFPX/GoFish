@@ -1403,7 +1403,7 @@ statementstart
 				Do Case
 					Case m.lcMatchType = MatchType_Name
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						m.loTools.SelectObject(m.lcName)
+						m.loTools.SelectObject(m.lcName, , .T.)
 						Return
 	
 					Case m.lcMatchType $ (MATCHTYPE_PROPERTY_NAME + MATCHTYPE_PROPERTY_VALUE + MATCHTYPE_PROPERTY_DEF )
@@ -1414,12 +1414,12 @@ statementstart
 						lcProperty = This.FixPropertyName(m.lcProperty)
 	
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						m.loTools.SelectObject(m.lcName, m.lcProperty)
+						m.loTools.SelectObject(m.lcName, m.lcProperty, .T.)
 						Return
 
 					Case InList(m.lcExt, 'SCX', 'VCX') and not Empty(m.lcName) 
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						m.loTools.SelectObject(m.lcName)
+						m.loTools.SelectObject(m.lcName, , .T.)
 
 				Endcase
 			Endif
