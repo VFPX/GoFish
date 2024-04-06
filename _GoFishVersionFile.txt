@@ -1,6 +1,14 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.23 - 2024-04-06
+
+The right-click context menu in the grid (for both headers and cells) has a new entry:
+
+    Filter values in this column
+
+that opens the Filter form to the page matching the selected column.
+
 ## Version 7.0.22 - 2024-04-03
 
 If you double-click on a match in a SCX/VCX and then close the SCX/VCX without changing anything, you no longer get the 'Save changes" dialog.
@@ -125,12 +133,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * With Version 6 options enabled, it had not been possible to type or paste anything into the Scope combobox. (#122, #123)
 * Crash on Replace (#148)
 * Bug reported when changing Desktop checkbox (#162)
-* Settings on Options/Colours page were not taking effect (#163)
-* Restoring latest search (from "History button context menu) was not always selecting the *latest* search.
-* Janitor not working properly, was improperly related to scope; setting is actually a glob
+* Settings on Options/Colours page
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.22 - April 03, 2024 - 20240403')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.23 - April 06, 2024 - 20240406')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

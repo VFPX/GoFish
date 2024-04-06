@@ -637,7 +637,7 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 		Top = 14, ;
 		Visible = .T., ;
 		Width = 473, ;
-		Label1.Caption = "Object/Property Name", ;
+		Label1.Caption = "Object Name", ;
 		Label1.Name = "Label1", ;
 		Label1.Tag = "Name", ;
 		Label1.Width = 462, ;
@@ -664,8 +664,9 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 		Top = 104, ;
 		Visible = .T., ;
 		Width = 473, ;
-		Label1.Caption = "Method Name", ;
+		Label1.Caption = "Method / Property Name", ;
 		Label1.Name = "Label1", ;
+		Label1.Tag = "MethodName", ;
 		Label1.Width = 462, ;
 		Command1.Name = "Command1", ;
 		Command1.Top = 53, ;
@@ -1877,9 +1878,9 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE Init
-		Lparameters toForm, toFilter
+		Lparameters toForm, toFilter, tnStartPage
 		
-		Local loControl, loPage
+		Local lnResponse
 		
 		This.MaxHeight = This.Height
 		This.MinHeight = This.Height
@@ -1911,10 +1912,19 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 			Endif
 		Endwith
 		
-		ThisForm.BindEachPage()
+		Thisform.BindEachPage()
 		Thisform.RefreshPageCaptions()
 		
-		Thisform.Buildfilterstring() && Call this to handle disabling of checkboxes
+		Thisform.BuildFilterString() && Call this to handle disabling of checkboxes
+		
+		If Not Empty(This.cFilter)
+			lnResponse = Messagebox('Remove current filters?', 4 + 32)
+			If m.lnResponse = 6
+				Thisform.ClearAllFilters()
+			Endif
+		Endif
+		
+		Thisform.PageFrame.ActivePage = Evl(m.tnStartPage, 1)
 		
 		Thisform.Refresh()
 		
