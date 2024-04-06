@@ -118,7 +118,7 @@ DEFINE CLASS gf_combosearchexpressionhistory AS combobox
 			Endfor
 		
 			If !lItemExists
-				This.AddItem(lcItem)
+				This.AddItem(Iif(Left(m.lcItem, 1) = '\', '\', '') + m.lcItem)
 				lnCounter = lnCounter + 1
 				If lnCounter = This.nMaxMRU
 					Exit
@@ -259,9 +259,8 @@ DEFINE CLASS gf_combosearchexpressionhistory AS combobox
 		Endfor
 		
 		If !lItemExists
-			This.AddItem(Lower(This.Text))
+			This.AddItem(Iif(Left(This.Text, 1) = '\', '\', '') + Lower(This.Text))
 		Endif
-		
 		
 		This.Value = This.Text
 		

@@ -1,3 +1,11 @@
+## Version 7.0.23 - 2024-04-06
+
+The right-click context menu in the grid (for both headers and cells) has a new entry:
+
+    Filter values in this column
+
+that opens the Filter form to the page matching the selected column.
+
 ## Version 7.0.22 - 2024-04-03
 
 If you double-click on a match in a SCX/VCX and then close the SCX/VCX without changing anything, you no longer get the 'Save changes" dialog.
