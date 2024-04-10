@@ -1,3 +1,8 @@
+## Version 7.0.24 - 2024-04-10
+
+- Progress bar now shows number of files being processing
+- Clicking on the label that shows elapsed search time provides more detail.
+
 ## Version 7.0.23 - 2024-04-06
 
 The right-click context menu in the grid (for both headers and cells) has a new entry:

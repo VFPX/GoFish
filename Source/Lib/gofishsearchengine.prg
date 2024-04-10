@@ -59,6 +59,7 @@ Define Class GoFishSearchEngine As Custom
 
 * This values indicates the total number of files processed that matched the file filter, whether they had matches or not.
 	nFilesProcessed                  = 0
+	nFilesSearched					 = 0
 
 * How many matched lines found in the last search. Note: this counts lines that had a match, note each match.
 * It's possible that one line could have multiple matches.
@@ -74,9 +75,10 @@ Define Class GoFishSearchEngine As Custom
 * 1 = Regular replace, 2 = Advanced Replace (UDF Replace)
 	nReplaceMode                     = 1
 
-* Tells how long the last search took. It is only reset by SearchInPath() or SerachInProject() took,
+* Tells how long the last search took. It is only reset by SearchInPath() or SearchInProject() took,
 * and not by the lower level search like SearchInFile, or SearchInTextFile, or SearchInTable.
 	nSearchTime                      = 0
+	nADirTime		 				 = 0
 
 	nWildCardFilesToSkip             = 0
 
@@ -684,6 +686,7 @@ Define Class GoFishSearchEngine As Custom
 			Return 0
 		Endif
 
+		lnSeconds = Seconds()
 		* ================================================================================
 
 		*!*  Apparently this bothers to skip the .git folder, if any, but causes
@@ -759,8 +762,8 @@ Or "GF_SAVED_SEARCH_RESULTS" $ Upper(m.tcDir) THEN
 					This.BuildDirectoriesCollection(m.lcCurrentDirectory, m.tlWithRepo, m.tcRepo)
 				Endif
 			Endif
-		Endfor
-
+		EndFor
+		
 		Cd ..
 
 	Endproc
@@ -2214,11 +2217,13 @@ Result
 	Procedure GetDirectories(tcPath, tlIncludeSubDirectories)
 
 		Local;
-			lnFiles As Number
+			lnFiles As Number,;
+			lnSeconds  
 
 		Local Array;
 			laFiles(1)
 
+		lnSeconds = Seconds() 
 		This.oDirectories = Createobject('Collection')
 
 		If m.tlIncludeSubDirectories
@@ -2230,6 +2235,8 @@ Result
 				This.oProgressBar.nMaxValue = m.lnFiles
 			Endif
 		Endif
+
+		This.nADirTime = Seconds() - lnSeconds
 
 		Return This.oDirectories
 
@@ -4684,7 +4691,9 @@ x
 		Local lnSelect As Number
 		Local lnX As Number
 		Local laProjectFiles[1], lcProject, lnI
+		Local lnSeconds
 	
+		lnSeconds = Seconds()
 		lnSelect	  = Select()
 		This.tRunTime = Evl(m.ttTime, Datetime())
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
@@ -4715,6 +4724,8 @@ x
 		Endfor
 	
 		Select Distinct * From ProjectFiles Order By Type Into Array laProjectFiles
+		
+		This.nADirTime = Seconds() - lnSeconds
 	
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
@@ -4883,11 +4894,13 @@ j
 			lcProjectPath As String,;
 			lnReturn    As Number,;
 			lnSelect    As Number,;
-			lnX         As Number
+			lnX         As Number,;
+			lnSeconds
 
 		Local Array;
 			laProjectFiles(1)
 
+		lnSeconds = Seconds() 
 		lnSelect = Select()
 
 		lcProjectPath  = Addbs(Justpath(Alltrim(m.tcProject)))
@@ -4929,6 +4942,8 @@ j
 			And !(Upper(Justext(Name)) $ This.cGraphicsExtensions) ;
 			Order By Type ;
 			Into Array laProjectFiles
+
+		This.nADirTime = Seconds() - lnSeconds
 
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
@@ -5687,13 +5702,15 @@ loRegExp.Escape_Like(JUSTSTEM(laPattern(m.lnPattern))) + "\." + loRegExp.Escape_
 
 *----------------------------------------------------------------------------------
 	Procedure StartProgressBar(tnMaxValue)
-
+	
+		This.nFilesSearched = m.tnMaxValue
+	
 		If Vartype(This.oProgressBar) = 'O'
 			This.oProgressBar.Start(m.tnMaxValue)
 		Endif
-
+	
 	Endproc
-
+		
 
 *----------------------------------------------------------------------------------
 	Procedure StartTimer

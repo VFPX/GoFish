@@ -1,6 +1,11 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.24 - 2024-04-10
+
+- Progress bar now shows number of files being processing
+- Clicking on the label that shows elapsed search time provides more detail.
+
 ## Version 7.0.23 - 2024-04-06
 
 The right-click context menu in the grid (for both headers and cells) has a new entry:
@@ -130,13 +135,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * In Filter Builder, misleading "Match Anywhere" checkbox has been removed.  (#9)
 * Line/column numbers in status bar now update properly when the code window is opened from GoFish or after GoFish closes (#77, #157)
 * When the match is to a file name of a text file (such as a PRG), the Code View pane shows the text correctly.  Previously the beginning text was lost. (#90)
-* With Version 6 options enabled, it had not been possible to type or paste anything into the Scope combobox. (#122, #123)
-* Crash on Replace (#148)
-* Bug reported when changing Desktop checkbox (#162)
-* Settings on Options/Colours page
+* With Version 6 options enabled, it had not been possible to type
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.23 - April 06, 2024 - 20240406')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.24 - April 10, 2024 - 20240410')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
