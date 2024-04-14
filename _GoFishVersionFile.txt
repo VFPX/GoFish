@@ -1,6 +1,31 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+## Version 7.0.25 - 2024-04-14
+
+- New option added in Options screen: "When editing, select the control in which text is found"
+- Right-clicking on a node in the TreeView includes any of these options (as appropriate):
+    - Modify this file
+    - File name to clipboard
+    - Full file name (with Path) to clipboard
+    - --
+    - Browse as table
+    - SuperBrowse as table
+    - HackCX
+- Right-clicking on a row in the grid includes any of these options (as appropriate):
+    - Filter values in this column
+    - Filter by this file
+    - Filter by this class
+    - --
+    - Modify this file
+    - File name to clipboard
+    - Full file name (with Path) to clipboard
+    - --
+    - Browse as table
+    - SuperBrowse as table
+    - HackCX
+- Right-clicking on the 'Go Fish' button on the main form opens [Object Explorer](https://github.com/VFPX/ObjectExplorer).
+
 ## Version 7.0.24 - 2024-04-10
 
 - Progress bar now shows number of files being processing
@@ -127,18 +152,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * If Project Explorer is open, uses it to open files for editing so that Project Explorer can handle things like calling FoxBin2PRG after closing an edited file.   (#154)
 * 'All Open Projects' added to the new Scope Mode combobox. Useful when using Project Explorer, which opens and hides all projects in a solution.  (#156)
 
-# Restored Features
-* Restored the previous setting (GF v5 and earlier) such that selecting 'Active Project' from the scope dropdown is a permanent setting, so that if GF is next opened with a different active project, that project becomes the scope. #137
-* Restored feature from  (GF v5 and earlier) that kept the controls at top right from moving all the way to far right (visible only when form is sufficiently wide.) - (#105, #155)
-
-# Bug fixes
-* In Filter Builder, misleading "Match Anywhere" checkbox has been removed.  (#9)
-* Line/column numbers in status bar now update properly when the code window is opened from GoFish or after GoFish closes (#77, #157)
-* When the match is to a file name of a text file (such as a PRG), the Code View pane shows the text correctly.  Previously the beginning text was lost. (#90)
-* With Version 6 options enabled, it had not been possible to type
+# Restored F
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.24 - April 10, 2024 - 20240410')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.25 - April 14, 2024 - 20240414')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

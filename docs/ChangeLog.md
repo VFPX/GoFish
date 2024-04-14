@@ -1,3 +1,28 @@
+## Version 7.0.25 - 2024-04-14
+
+- New option added in Options screen: "When editing, select the control in which text is found"
+- Right-clicking on a node in the TreeView includes any of these options (as appropriate):
+    - Modify this file
+    - File name to clipboard
+    - Full file name (with Path) to clipboard
+    - --
+    - Browse as table
+    - SuperBrowse as table
+    - HackCX
+- Right-clicking on a row in the grid includes any of these options (as appropriate):
+    - Filter values in this column
+    - Filter by this file
+    - Filter by this class
+    - --
+    - Modify this file
+    - File name to clipboard
+    - Full file name (with Path) to clipboard
+    - --
+    - Browse as table
+    - SuperBrowse as table
+    - HackCX
+- Right-clicking on the 'Go Fish' button on the main form opens [Object Explorer](https://github.com/VFPX/ObjectExplorer).
+
 ## Version 7.0.24 - 2024-04-10
 
 - Progress bar now shows number of files being processing

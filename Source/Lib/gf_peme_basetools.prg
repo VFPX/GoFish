@@ -87,67 +87,64 @@ Define Class gf_peme_basetools As Custom
 
 
 	*----------------------------------------------------------------------------------
-	Procedure BrowseTable(tcFileName, tnRecno)
-
-		Local lcCursor, lnShiftX, lnShiftY, loForm, loTempForm, luSBReturn, lnDataSession
-
-		lcCursor = 'GoFishTableBrowse'
+	Procedure BrowseTable(tcFileName, tnRecno, tlOnlyNormalBrowse)
+	
+		Local lcCursor, llSuperBrowsed, lnDataSession, lnShiftX, lnShiftY, loException, loForm, loTempForm
+	
 		*-- Create a temp form so we can control the Browse window size and location. 
 		*-- Don't want it to fit hte same size and location as the GoFish Window, becuase
 		*-- it looks weird when that happens.
-		loTempForm = .null.
-
-		If Vartype(_Screen.ActiveForm) = 'O'
-			lnShiftX = 50
-			lnShiftY = 125
-			loTempForm = Createobject('Form')
-			loForm = _Screen.ActiveForm
-			loTempForm.Left = loForm.Left + lnShiftX
-			loTempForm.Width = loForm.Width - lnShiftX
-			loTempForm.Top = loForm.Top + lnShiftY
-			loTempForm.Height = loForm.Height - lnShiftY
-			loTempForm.Show()
-		Endif
-
-		If Used(lcCursor)
-			Select (lcCursor)
-		Else
-			Select 0
-		Endif
-
-		luSBReturn = .null.
-
-		*-- Call SuperBrowse, if Thor is present
-		If Type('_Screen.cThorDispatcher') = 'C'
-			lnDataSession = Set('DataSession')
-			Set DataSession To 1
-			Use (tcFileName) Again Alias &lcCursor
-
-			If !Empty(tnRecno)
-				Goto tnRecno
+		loTempForm = .Null.
+	
+		llSuperBrowsed = .F.
+	
+		lnDataSession = Set('DataSession')
+		Set DataSession To 1
+		Select 0
+	
+		lcCursor = JustStem(m.tcFileName) + Sys(2015)
+		Try
+			Use (m.tcFileName) Again Alias &lcCursor
+		Catch To m.loException
+		Endtry
+	
+		If Used(m.lcCursor)
+	
+			If Not Empty(m.tnRecno)
+				Goto m.tnRecno
 			Endif
-
-			luSBReturn = Execscript(_Screen.cThorDispatcher, 'Thor_Proc_SuperBrowse', lcCursor) != .null.
-			Set DataSession To &lnDataSession
-		EndIf
-
-		*-- Regular brows is Thor not present, or SuperBrowse call failed
-		If luSBReturn = .null.
-			Use (tcFileName) Again Alias &lcCursor
-
-			If !Empty(tnRecno)
-				Goto tnRecno
+	
+			*-- Call SuperBrowse, if Thor is present
+			If Type('_Screen.cThorDispatcher') = 'C' And m.tlOnlyNormalBrowse = .F.
+				llSuperBrowsed = Not Isnull(Execscript(_Screen.cThorDispatcher, 'Thor_Proc_SuperBrowse', m.lcCursor))
 			Endif
-
-			Browse Last Nowait Title (tcFileName) Normal
-		Endif
-
-		If Vartype(loTempForm) = 'O'
-			loTempForm.Release()
-		Endif
-
-	EndProc
-
+	
+			*-- Regular browse is Thor not present, or SuperBrowse call failed
+			If Not m.llSuperBrowsed
+				If Vartype(_Screen.ActiveForm) = 'O'
+					lnShiftX		  = 50
+					lnShiftY		  = 125
+					loTempForm		  = Createobject('Form')
+					loForm			  = _Screen.ActiveForm
+					loTempForm.Left	  = m.loForm.Left + m.lnShiftX
+					loTempForm.Width  = m.loForm.Width - m.lnShiftX
+					loTempForm.Top	  = m.loForm.Top + m.lnShiftY
+					loTempForm.Height = m.loForm.Height - m.lnShiftY
+					m.loTempForm.Show()
+				Endif
+	
+				Browse Last Nowait Title (m.tcFileName) Normal
+			Endif
+	
+			If Vartype(m.loTempForm) = 'O'
+				m.loTempForm.Release()
+			Endif
+		Endif && Used(m.lcCursor)
+	
+		Set DataSession To &lnDataSession
+	
+	Endproc
+		
 
 	*----------------------------------------------------------------------------------
 	Procedure CheckOutSCC(lcFileName)

@@ -290,6 +290,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*p: lsavesearchresults
 		*p: lsearchformvisible
 		*p: lsearching
+		*p: lselectcontrol
 		*p: lshowrelativepath
 		*p: lsortscopedropdown
 		*p: lwarnwholeword
@@ -374,7 +375,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Dockable = 0
 		DoCreate = .T.
 		FontName = "Tahoma"
-		Height = 613
+		Height = 612
 		KeyPreview = .T.
 		lapplyfilter = .F.
 		lautoyield = .F.
@@ -1029,7 +1030,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDWnX1Yi9oBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAOilvQAGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBB6v32jdoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAPBnPBAGAAAAAAAAAAUAAIDw5RkAAQAAAFwAH97svQEABQA45hkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -3410,7 +3411,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE editfile
 		ThisForm.ShowCodeForCurrentRow()
 		
-		Thisform.oSearchEngine.EditFromCurrentRow(thisform.cSearchResultsAlias,,Thisform.lMoveNewCodeToTopLeft)
+		Thisform.oSearchEngine.EditFromCurrentRow(thisform.cSearchResultsAlias, Thisform.lSelectControl,Thisform.lMoveNewCodeToTopLeft)
 		
 		
 	ENDPROC
@@ -4776,25 +4777,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE gridcolumnrightclick
-		Local lcChoice As String
-		Local lcChoice1 As String
-		Local lcChoice2 As String
-		Local lcChoice3 As String
-		Local lcClass As String
-		Local lcFileName As String
-		Local lcPath As String
-		Local lcScope As String
-		Local lcSearch As String
-		Local lcUni As String
-		Local lnBar As Number
-		Local lnI As Number
-		Local lnSelect As Number
-		Local lnStart As Integer
-		Local loNode As Object
-		Local loNodeRoot As Object
-		Local loTag As Object
-		Local loTree As Object
-		Local lcChoice4, lcPrompt1, lnPage
+		Local loPBT As 'GF_PEME_BaseTools'
+		Local lcChoice, lcChoice1, lcChoice2, lcChoice3, lcClass, lcFileName, lcHackCX4, lcMenuName, lcPath
+		Local lcPrompt1, lcPrompt2, lcPrompt3, lcPrompt3X, lcPrompt4, lcPrompt5, lcPrompt6, lcScope
+		Local lcSearch, lcUni, lnBar, lnI, lnPage, lnSelect, lnStart, loNode, loNodeRoot, loTag, loTree
 		
 		lcUni	   = cUni
 		lcSearch   = Search
@@ -4863,48 +4849,87 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Endif &&!EOF() AND iReplaceFolder>0
 		Select(m.lnSelect)
 		
-		GF_CreateContextMenu('GridColumnMenu')
+		lcMenuName = 'GridColumnMenu'
+		GF_CreateContextMenu(m.lcMenuName)
 		
 		lnPage = This.GetFilterPageForThisColumn()
 		If m.lnPage > 0
 			lnBar	  = m.lnBar + 1
 			lcPrompt1 = 'Filter values in this column'
-			Define Bar (m.lnBar) Of GridColumnMenu Prompt (m.lcPrompt1)
-			On Selection Bar (m.lnBar) Of GridColumnMenu m.lcChoice = m.lcPrompt1
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcPrompt1)
+			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
 		Endif
 		
 		If Not Empty(m.lcChoice1) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of GridColumnMenu Prompt (m.lcChoice1)
-			On Selection Bar (m.lnBar) Of GridColumnMenu m.lcChoice = [&lcChoice1]
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice1)
+			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice1]
 		Endif &&!EMPTY(m.lcChoice1)
 		
 		If Not Empty(m.lcChoice2) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of GridColumnMenu Prompt (m.lcChoice2)
-			On Selection Bar (m.lnBar) Of GridColumnMenu m.lcChoice = [&lcChoice2]
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice2)
+			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice2]
 		Endif &&!EMPTY(m.lcChoice2)
 		
 		If Not Empty(m.lcChoice3) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of GridColumnMenu Prompt (m.lcChoice3)
-			On Selection Bar (m.lnBar) Of GridColumnMenu m.lcChoice = [&lcChoice3]
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice3)
+			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice3]
 		Endif &&!EMPTY(m.lcChoice3)
 		
-		lcChoice4 = 'Copy file name to clipboard'
-		lnBar	  = m.lnBar + 1
-		Define Bar (m.lnBar) Of GridColumnMenu Prompt (m.lcChoice4)
-		On Selection Bar (m.lnBar) Of GridColumnMenu m.lcChoice = [&lcChoice4]
+		If m.lnBar > 0
+			lnBar	   = m.lnBar + 1
+			lcPrompt3X = '\-'
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3X
+		Endif
 		
-		Activate Popup GridColumnMenu
-		Release Popups GridColumnMenu
+		lnBar	  = m.lnBar + 1
+		lcPrompt2 = 'File name to clipboard'
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2
+		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2
+		
+		lnBar	  = m.lnBar + 1
+		lcPrompt3 = 'Full file name (with \<Path) to clipboard'
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3
+		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt3
+		
+		If Right(Upper(Justext(m.lcFileName)), 1) = 'X'
+			lnBar	   = m.lnBar + 1
+			lcPrompt3X = '\-'
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3X
+		
+			lnBar	  = m.lnBar + 1
+			lcPrompt4 = 'Browse as table'
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4
+			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt4
+		
+			If GF_IsThorThere() And Not Empty(Execscript(_Screen.cThorDispatcher, 'Full Path=Thor_Proc_SuperBrowse'))
+				lnBar	  = m.lnBar + 1
+				lcPrompt5 = 'Super Browse as table'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt5
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt5
+			Endif
+		
+			lcHackCX4 = GF_GetHackCX() 
+			If Not Empty(m.lcHackCX4)
+				lnBar	  = m.lnBar + 1
+				lcPrompt6 = 'HackCX'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt6
+			Endif
+		
+		Endif
+		
+		Activate Popup (m.lcMenuName)
+		Release Popups (m.lcMenuName)
 		
 		Do Case
 		
 			Case m.lcChoice == ''
 		
 			Case m.lcChoice = m.lcPrompt1
-				Thisform.showfilterform(m.lnPage)
+				Thisform.ShowFilterForm(m.lnPage)
 		
 			Case m.lcChoice == m.lcChoice1
 				For lnI = m.lnStart To m.loTree.Nodes.Count
@@ -4938,8 +4963,23 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 				GF_OpenExplorerWindow(m.lcPath)
 		
-			Case m.lcChoice == m.lcChoice4
-				GF_FileNameToClipboard(Trim(FilePath))
+			Case m.lcChoice = m.lcPrompt2
+				GF_FileNameToClipboard(m.lcFileName, .F.)
+		
+			Case m.lcChoice = m.lcPrompt3
+				GF_FileNameToClipboard(m.lcFileName, .T.)
+		
+			Case m.lcChoice = m.lcPrompt4
+				loPBT = Createobject('GF_PEME_BaseTools')
+				m.loPBT.BrowseTable(m.lcFileName, 0, .T.)
+		
+			Case m.lcChoice = m.lcPrompt5
+				loPBT = Createobject('GF_PEME_BaseTools')
+				m.loPBT.BrowseTable(m.lcFileName, 0, .F.)
+		
+			Case m.lcChoice = m.lcPrompt6
+				Do (m.lcHackCX4) With m.lcFileName
+		
 		
 		Endcase
 		
@@ -5670,7 +5710,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			
 			.lShowRelativePath			   = GF_PropNvl(m.loSettings,'lShowRelativePath', .F., .T.)
 			.lSortScopeDropdown			   = GF_PropNvl(m.loSettings,'lSortScopeDropdown', .F., .T.)
-			.lCodeViewSingleLine	   = GF_PropNvl(m.loSettings,'lCodeViewSingleLine', .F., .T.)
+			.lCodeViewSingleLine	       = GF_PropNvl(m.loSettings,'lCodeViewSingleLine', .F., .T.)
+			.lSelectControl	     	       = GF_PropNvl(m.loSettings,'lSelectControl', .T., .T.)
 			.lIDEColorsInCodeView		   = GF_PropNvl(m.loSettings,'lIDEColorsInCodeView', .T., .T.)
 			.nCodeViewLinesBefore		   = GF_PropNvl(m.loSettings,'nCodeViewLinesBefore', 1000, .T.)
 			.lOldSearchHistoryStructure	   = GF_PropNvl(m.loSettings,'lOldSearchHistoryStructure', .F., .T.)
@@ -8170,7 +8211,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 				.Add("lShowRelativePath", 			Thisform.lShowRelativePath)
 				.Add("lSortScopeDropdown", 			Thisform.lSortScopeDropdown)
-				.Add("lCodeViewSingleLine", 	Thisform.lCodeViewSingleLine)
+				.Add("lCodeViewSingleLine", 		Thisform.lCodeViewSingleLine)
+				.Add("lSelectControl", 		        Thisform.lSelectControl)
 				.Add("lIDEColorsInCodeView", 		Thisform.lIDEColorsInCodeView)
 				.Add("nCodeViewLinesBefore", 		Thisform.nCodeViewLinesBefore)
 				.Add("lOldSearchHistoryStructure",	Thisform.lOldSearchHistoryStructure)
@@ -9939,7 +9981,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE treeview_rightclicksimple
 		Lparameters toNode
 		
-		Local laFilePath[1], lnID
+		Local loPBT As 'GF_PEME_BaseTools'
+		Local laFilePath[1], lcChoice, lcFullFileNamePath, lcHackCX4, lcMenuName, lcPrompt1, lcPrompt2
+		Local lcPrompt3, lcPrompt3X, lcPrompt4, lcPrompt5, lcPrompt6, lnBar, lnID
 		
 		Do Case
 			Case m.toNode.Index = 1 && Master top tonode
@@ -9954,12 +9998,97 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					From (Thisform.oSearchEngine.cSearchResultsAlias)		;
 					Where Id = m.lnID										;
 					Into Array laFilePath
-				If _Tally > 0
-					GF_FileNameToClipboard(Trim(m.laFilePath))
-				Else
+				If _Tally = 0
 					Messagebox('Error determining file name', 16)
+					Return
 				Endif
+		
+				lcFullFileNamePath = Trim(m.laFilePath)
+				lcChoice		   = ''
+				lnBar			   = 0
+				lcMenuName		   = 'AdvancedContextMenu'
+				GF_CreateContextMenu(m.lcMenuName)
+		
+				* ================================================================================ 
+				lnBar	  = m.lnBar + 1
+				lcPrompt1 = 'Modify this file'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt1
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
+		
+				lnBar	  = m.lnBar + 1
+				lcPrompt2 = 'File name to clipboard'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2
+		
+				lnBar	  = m.lnBar + 1
+				lcPrompt3 = 'Full file name (with \<Path) to clipboard'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt3
+		
+				If Right(Upper(Justext(m.lcFullFileNamePath)), 1) = 'X'
+					lnBar	   = m.lnBar + 1
+					lcPrompt3X = '\-'
+					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3X
+		
+					lnBar	  = m.lnBar + 1
+					lcPrompt4 = 'Browse as table'
+					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4
+					On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt4
+		
+					If GF_IsThorThere() And Not Empty(Execscript(_Screen.cThorDispatcher, 'Full Path=Thor_Proc_SuperBrowse'))
+						lnBar	  = m.lnBar + 1
+						lcPrompt5 = 'Super Browse as table'
+						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt5
+						On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt5
+					Endif
+		
+					lcHackCX4 = GF_GetHackCX() 
+					If Not Empty(m.lcHackCX4)
+						lnBar	  = m.lnBar + 1
+						lcPrompt6 = 'HackCX'
+						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6
+						On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt6
+					Endif
+		
+				Endif
+		
+		
+				* --------------------------------------------------------------------------------
+				Activate Popup (m.lcMenuName)
+				Release Popups (m.lcMenuName)
+				* --------------------------------------------------------------------------------
+		
+				Do Case
+					Case Empty(m.lcChoice)
+		
+					Case m.lcChoice = m.lcPrompt1
+						loPBT = Createobject('GF_PEME_BaseTools')
+						m.loPBT.EditSourceX(m.lcFullFileNamePath, '', 0, 0, '')
+		
+					Case m.lcChoice = m.lcPrompt2
+						GF_FileNameToClipboard(m.lcFullFileNamePath, .F.)
+		
+					Case m.lcChoice = m.lcPrompt3
+						GF_FileNameToClipboard(m.lcFullFileNamePath, .T.)
+		
+					Case m.lcChoice = m.lcPrompt4
+						loPBT = Createobject('GF_PEME_BaseTools')
+						m.loPBT.BrowseTable(m.lcFullFileNamePath, 0, .T.)
+		
+					Case m.lcChoice = m.lcPrompt5
+						loPBT = Createobject('GF_PEME_BaseTools')
+						m.loPBT.BrowseTable(m.lcFullFileNamePath, 0, .F.)
+		
+					Case m.lcChoice = m.lcPrompt6
+						Do (m.lcHackCX4) With m.lcFullFileNamePath
+		
+				Endcase
+		
+				* ================================================================================ 
 		Endcase
+		
+		Thisform.Refresh()
+		
 		
 	ENDPROC
 
@@ -10717,7 +10846,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE ButtonContainer.cmdSearch.RightClick
-		Do Form "GF_Collection_Explorer" with This
+		Do Form "GF_ObjectExplorer" with This
 		
 	ENDPROC
 
@@ -11115,7 +11244,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				lcFile = ''
 			
 			Case not Eof(Thisform.cSearchResultsAlias)
-				Thisform.oSearchEngine.EditFromCurrentRow(thisform.cSearchResultsAlias,,Thisform.lMoveNewCodeToTopLeft)
+				Thisform.oSearchEngine.EditFromCurrentRow(thisform.cSearchResultsAlias, Thisform.lSelectControl, Thisform.lMoveNewCodeToTopLeft)
 			
 			Case 'O' = Vartype(loNode.Tag)
 				lcFile = loNode.Tag.Filename
