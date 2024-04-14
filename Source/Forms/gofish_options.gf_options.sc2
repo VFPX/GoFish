@@ -46,6 +46,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check5" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check12" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check13" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Shape1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.List1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label1" UniqueID="" Timestamp="" />
@@ -170,6 +171,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check10" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check11" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check13" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Check5" UniqueID="" Timestamp="" />
@@ -589,10 +591,10 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "Default 14", ;
 		FontSize = 8, ;
 		Height = 22, ;
-		Left = 265, ;
+		Left = 448, ;
 		Name = "cmdZoomDefault", ;
 		TabIndex = 22, ;
-		Top = 152, ;
+		Top = 155, ;
 		Width = 71
 		*< END OBJECT: BaseClass="commandbutton" />
 
@@ -664,10 +666,10 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		BackStyle = 0, ;
 		Caption = "Code View pane font size (px)", ;
 		Height = 17, ;
-		Left = 93, ;
+		Left = 184, ;
 		Name = "Label7", ;
 		TabIndex = 23, ;
-		Top = 155, ;
+		Top = 158, ;
 		Width = 163
 		*< END OBJECT: BaseClass="label" />
 
@@ -677,12 +679,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		InputMask = "99", ;
 		KeyboardHighValue = 24, ;
 		KeyboardLowValue = 8, ;
-		Left = 28, ;
+		Left = 360, ;
 		Name = "Spinner4", ;
 		SpinnerHighValue =  24.00, ;
 		SpinnerLowValue =   8.00, ;
 		TabIndex = 20, ;
-		Top = 150, ;
+		Top = 153, ;
 		Value = 14, ;
 		Width = 59
 		*< END OBJECT: BaseClass="spinner" />
@@ -701,7 +703,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	ADD OBJECT 'pfSettings.Page3.contMiscellaneous' AS container WITH ;
 		Anchor = 10, ;
 		BackStyle = 0, ;
-		Height = 86, ;
+		Height = 114, ;
 		Left = 16, ;
 		Name = "contMiscellaneous", ;
 		Top = 271, ;
@@ -718,7 +720,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 66, ;
 		Name = "Check10", ;
 		TabIndex = 14, ;
-		Top = 48, ;
+		Top = 45, ;
 		Width = 319
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -734,6 +736,22 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 14, ;
 		Top = 20, ;
 		Width = 271
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check13' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .F., ;
+		BackStyle = 0, ;
+		Caption = "When editing, select the control in which text is found (v7)", ;
+		ControlSource = "Thisform.oForm.lSelectControl", ;
+		Height = 30, ;
+		Left = 66, ;
+		Name = "Check13", ;
+		TabIndex = 14, ;
+		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
+		Top = 70, ;
+		Width = 340, ;
+		WordWrap = .T.
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.Page3.Label1' AS label WITH ;
@@ -2005,6 +2023,22 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 14, ;
 		Top = 193, ;
 		Width = 230
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.pagePreferences.Check13' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .F., ;
+		BackStyle = 0, ;
+		Caption = "When editing, select the control in which text is found (v7)", ;
+		ControlSource = "Thisform.oForm.lSelectControl", ;
+		Height = 30, ;
+		Left = 303, ;
+		Name = "Check13", ;
+		TabIndex = 14, ;
+		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
+		Top = 277, ;
+		Width = 268, ;
+		WordWrap = .T.
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check2' AS checkbox WITH ;

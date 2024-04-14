@@ -1302,7 +1302,7 @@ statementstart
 
 
 *----------------------------------------------------------------------------------
-	Procedure EditFromCurrentRow(tcCursor, tlSelectObjectOnly, tlMoveToTopleft)
+	Procedure EditFromCurrentRow(tcCursor, tlSelectControl, tlMoveToTopleft)
 	
 		Local lcClass As String
 		Local lcCodeBlock As String
@@ -1417,12 +1417,16 @@ statementstart
 						lcProperty = This.FixPropertyName(m.lcProperty)
 	
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						m.loTools.SelectObject(m.lcName, m.lcProperty, .T.)
+						If m.tlSelectControl 
+							m.loTools.SelectObject(m.lcName, m.lcProperty, .T.)
+						EndIf 
 						Return
 
 					Case InList(m.lcExt, 'SCX', 'VCX') and not Empty(m.lcName) 
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						m.loTools.SelectObject(m.lcName, , .T.)
+						If m.tlSelectControl 
+							m.loTools.SelectObject(m.lcName, , .T.)
+						EndIf 
 
 				Endcase
 			Endif
@@ -5056,7 +5060,8 @@ ii
 				Use (m.tcFile) Again Shared Alias 'GF_TableSearch' In Select('GF_TableSearch')
 			Catch To m.loException
 
-		Endtry
+		EndTry
+
 
 		If Not Used('GF_TableSearch')
 			This.SetSearchError('Cannot open file: ' + Alltrim(m.tcFile) + CR + Space(5) + m.loException.Message, 16, 'File Error')

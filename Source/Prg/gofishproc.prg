@@ -1797,11 +1797,21 @@ EndProc
 	
 	
 * ================================================================================ 
-    Procedure GF_FileNameToClipboard(tcFileName)
-    	_Cliptext = Trim(m.tcFileName)
-    	Messagebox('File name (full path) copied to clipboard', 64, JustFname(m.tcFileName)) 
-    Endproc
+    Procedure GF_FileNameToClipboard(tcFileName, tlFullPath)
+    	Local lcPrompt
     
+    	If m.tlFullPath
+    		_Cliptext = Trim(m.tcFileName)
+    		lcPrompt  = 'File name (full path) copied to clipboard'
+    	Else
+    		_Cliptext = Justfname(Trim(m.tcFileName))
+    		lcPrompt  = 'File name copied to clipboard'
+    	Endif
+    	Wait (m.lcPrompt)					;
+    		Window At Mrow(), Mcol()		;
+    		Nowait Timeout 2
+    Endproc
+                
 	
 * ================================================================================ 
     Procedure GF_InternalTimeStamp
@@ -1816,3 +1826,19 @@ EndProc
     	Set Hours to (_Screen._GoFish.cSetHours)
     Endproc
     
+* ================================================================================ 
+Procedure GF_GetHackCX
+
+	#Define		ccThorKey			'File name'
+	#Define		ccThorTool			'HackCX'
+
+	Local lcExecutable
+
+	lcExecutable = Execscript(_Screen.cThorDispatcher, 'Get Option=', ccThorKey, ccThorTool)
+	If File(Nvl(m.lcExecutable, ''))
+		Return m.lcExecutable
+	Else
+		Return ''
+	Endif
+Endproc
+	
