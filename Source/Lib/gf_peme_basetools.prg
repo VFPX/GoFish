@@ -102,7 +102,7 @@ Define Class gf_peme_basetools As Custom
 		Set DataSession To 1
 		Select 0
 	
-		lcCursor = JustStem(m.tcFileName) + Sys(2015)
+		lcCursor = Chrtran(Juststem(m.tcFileName), ' ', '_') + Sys(2015)
 		Try
 			Use (m.tcFileName) Again Alias &lcCursor
 		Catch To m.loException
@@ -119,20 +119,31 @@ Define Class gf_peme_basetools As Custom
 				llSuperBrowsed = Not Isnull(Execscript(_Screen.cThorDispatcher, 'Thor_Proc_SuperBrowse', m.lcCursor))
 			Endif
 	
-			*-- Regular browse is Thor not present, or SuperBrowse call failed
+			*-- Regular browse if Thor not present, or SuperBrowse call failed
 			If Not m.llSuperBrowsed
-				If Vartype(_Screen.ActiveForm) = 'O'
-					lnShiftX		  = 50
-					lnShiftY		  = 125
-					loTempForm		  = Createobject('Form')
-					loForm			  = _Screen.ActiveForm
-					loTempForm.Left	  = m.loForm.Left + m.lnShiftX
-					loTempForm.Width  = m.loForm.Width - m.lnShiftX
-					loTempForm.Top	  = m.loForm.Top + m.lnShiftY
-					loTempForm.Height = m.loForm.Height - m.lnShiftY
-					m.loTempForm.Show()
-				Endif
-	
+				*!* ******** JRN Removed 2024-04-14 ********
+				*!* If Vartype(_Screen.ActiveForm) = 'O'
+				*!* 	lnShiftX   = 50
+				*!* 	lnShiftY   = 125
+				*!* 	If Type('_Screen._GoFish.oResultsForm') = 'O' And Not Isnull(_Screen._GoFish.oResultsForm)
+				*!* 		loForm			  = _Screen._GoFish.oResultsForm
+				*!* 	Else
+				*!* 		loForm			  = _Screen.ActiveForm
+				*!* 	Endif
+
+				*!* 	loTempForm = Createobject('Form')
+				*!* 	Try
+				*!* 		loTempForm.Left	  = m.loForm.Left   + m.lnShiftX
+				*!* 		loTempForm.Width  = m.loForm.Width  - m.lnShiftX
+				*!* 		loTempForm.Top	  = m.loForm.Top    + m.lnShiftY
+				*!* 		loTempForm.Height = m.loForm.Height - m.lnShiftY
+				*!* 	Catch To m.loException
+
+				*!* 	EndTry
+
+				*!* 	m.loTempForm.Show()
+				*!* Endif
+
 				Browse Last Nowait Title (m.tcFileName) Normal
 			Endif
 	
@@ -144,7 +155,7 @@ Define Class gf_peme_basetools As Custom
 		Set DataSession To &lnDataSession
 	
 	Endproc
-		
+			
 
 	*----------------------------------------------------------------------------------
 	Procedure CheckOutSCC(lcFileName)

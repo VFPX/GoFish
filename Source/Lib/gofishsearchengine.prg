@@ -190,6 +190,15 @@ Define Class GoFishSearchEngine As Custom
 	Endproc
 
 
+* ================================================================================
+	Procedure AnyRegExMatches
+		Lparameters tcCode
+		Local loMatches
+	
+		loMatches = This.oRegExForSearchInCode.Execute(m.tcCode)
+		Return m.loMatches.Count > 0
+	Endproc
+	
 *----------------------------------------------------------------------------------
 	Procedure AssignMatchType(toObject)
 
@@ -1320,7 +1329,7 @@ statementstart
 		Local lnWords As Number
 		Local loPBT As 'GF_PEME_BaseTools'
 		Local loTools As Object
-		Local lcKeystrokes, lnProcedureLineOffset, lnSelect, loResults
+		Local lcKeystrokes, lnProcedureLineOffset, lnSelect, loResults, loDefaultButton
 	
 		lnSelect = Select()
 	
@@ -1423,11 +1432,21 @@ statementstart
 						Return
 
 					Case InList(m.lcExt, 'SCX', 'VCX') and not Empty(m.lcName) 
+						Local loDefaultButton, loThisObject, loTopMostParent
+						
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
-						If m.tlSelectControl 
-							m.loTools.SelectObject(m.lcName, , .T.)
-						EndIf 
+						If m.tlSelectControl
+							loTopMostParent	= m.loTools.oUtils.FindTopMostParent()
+							loDefaultButton = This.GetDefaultButton(m.loTopMostParent) && is there a button with Default = .T.
 
+							m.loTools.SelectObject(m.lcName, , .T.)
+
+							* did the Default button get changed?  .. if so, change it back
+							If Vartype(m.loDefaultButton) = 'O' and loDefaultButton.Default = .F.
+								loDefaultButton.Default = .T.
+							Endif
+						Endif
+												
 				Endcase
 			Endif
 	
@@ -2217,6 +2236,25 @@ Result
 	Endproc
 
 
+* Returns the child object, a command button, with Default = .T.
+* ================================================================================
+	Procedure GetDefaultButton(loParent)
+		Local laObjects[1], loDefault, loObject
+	
+		For Each m.loObject In m.loParent.Objects FoxObject
+			If Pemstatus(m.loObject, 'Default', 5) And m.loObject.Default
+				Return m.loObject
+			Endif
+			If Pemstatus(m.loObject, 'Objects', 5)
+				loDefault = This.GetDefaultButton(m.loObject)
+				If Not Isnull(m.loDefault)
+					Return m.loDefault
+				Endif
+			Endif
+		Endfor
+		Return Null
+	Endproc
+					
 *----------------------------------------------------------------------------------
 	Procedure GetDirectories(tcPath, tlIncludeSubDirectories)
 
@@ -3387,7 +3425,7 @@ x
 *!*			Endif
 
 *!*		Endproc
-
+				
 
 *----------------------------------------------------------------------------------
 	Procedure OpenTableForReplace(tcFileToOpen, tcCursor, tnResultId)
@@ -5161,7 +5199,10 @@ ii
 *-- match at all.
 *-- If we find a match, we process it futher and then call Continue to look for the next partial and repeat.
 *-- This logic is not used if we are doing a Reg Ex search.
-			If Not This.oSearchOptions.lRegularExpression
+			If This.oSearchOptions.lRegularExpression
+				Locate For This.AnyRegexMatches(Evaluate(m.lcField)) Nooptimize
+			
+			else
 				If This.oSearchOptions.lTimeStamp
 					ldFromDate = Evl(This.oSearchOptions.dTimeStampFrom, {^1900-01-01})
 					ldToDate   = Evl(This.oSearchOptions.dTimeStampTo, {^9999-01-01})
@@ -5188,8 +5229,8 @@ ii
 
 				If Not Found() Or m.llLocateError
 					Loop && Loop to next column
-				Endif
-
+				EndIf
+				
 			Endif
 
 			Do While Not Eof()
@@ -5361,7 +5402,6 @@ ii
 				Endif
 
 
-				If Not This.oSearchOptions.lRegularExpression
 					Try
 							Continue
 						Catch
@@ -5373,11 +5413,6 @@ ii
 					If m.llContinueError
 						Exit
 					Endif
-
-
-				Else
-					Skip 1
-				Endif
 
 			Enddo
 
@@ -5963,7 +5998,8 @@ loRegExp.Escape_Like(JUSTSTEM(laPattern(m.lnPattern))) + "\." + loRegExp.Escape_
 			This.oProgressBar.nValue = m.tnValue
 		Endif
 
-	Endproc
+	EndProc
+		
 Enddefine
 
 *!*	Changed by: nmpetkov 27.3.2023
@@ -5979,3 +6015,5 @@ Function _EdSelect
 Function _EDGETPOS
 Function _EdStoPos
 *!*	/Changed by: nmpetkov 27.3.2023
+
+
