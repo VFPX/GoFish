@@ -58,7 +58,7 @@
 #DEFINE LF Chr(10)
 #DEFINE Tab Chr[9]
 
-#DEFINE MEMOFIELDMINSIZE	8192 && Minimum size to be saved in separate folder as a text file
+#DEFINE MEMOFIELDMINSIZE	16384 && Minimum size to be saved in separate folder as a text file
 
 #DEFINE	SCOPEACTIVEPROJECT 		'<< Active Project >>'
 #DEFINE	SCOPEALLOPENPROJECTS 	'<< All Open Projects >>'

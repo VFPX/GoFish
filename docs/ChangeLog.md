@@ -1,3 +1,12 @@
+## Version 7.0.26 - 2024-04-15
+
+- Dramatic optimization of RegEx searching -- as much as seven times faster.
+- Bug fixes:
+    - Problem when editing (double-clicking a row) could cause the Default property on a commandbutton to be changed to FALSE.
+    - When browsing binary file (VCX/SCX) as a table
+    - When right-clicking on column header.
+    - Search history was not being saved if no matches found.
+
 ## Version 7.0.25 - 2024-04-14
 
 - New option added in Options screen: "When editing, select the control in which text is found"
