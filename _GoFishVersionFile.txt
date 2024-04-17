@@ -1,6 +1,16 @@
 Lparameters toUpdateInfo
 
 Text to lcNote NoShow
+# GoFish Change Log
+
+[Report Issues / Ask Questions / Make Suggestions](https://github.com/VFPX/GoFish/issues)
+
+[FAQ](docs/FAQ.md)
+
+## Version 7.0.27 - 2024-04-xx
+
+- Added link to new FAQ page (at bottom left of main form).
+
 ## Version 7.0.26 - 2024-04-15
 
 - Dramatic optimization of RegEx searching -- as much as seven times faster.
@@ -152,13 +162,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
     * Change Log page in GitHub for Gofish
 * New options (See Options form >= Preferences)
     * Use IDE colors in Code View pane
-    * Projects and folders in the scope dropdown may be alphabetized
-    * Column 'File Name with Path' may show a relative path
-    * Code view pane highlights only the match line (not the entire statement)
-* Right-clicking on node in TreeView copies the file name (
+    * Projects and folders in the s
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.26 - April 15, 2024 - 20240415')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.26B - April 17, 2024 - 20240417')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

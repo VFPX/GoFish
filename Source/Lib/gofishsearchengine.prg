@@ -1427,7 +1427,7 @@ statementstart
 	
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
 						If m.tlSelectControl 
-							m.loTools.SelectObject(m.lcName, m.lcProperty, .T.)
+							This.SelectControl(loTools, lcName, lcProperty)	
 						EndIf 
 						Return
 
@@ -1436,15 +1436,7 @@ statementstart
 						
 						m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass)
 						If m.tlSelectControl
-							loTopMostParent	= m.loTools.oUtils.FindTopMostParent()
-							loDefaultButton = This.GetDefaultButton(m.loTopMostParent) && is there a button with Default = .T.
-
-							m.loTools.SelectObject(m.lcName, , .T.)
-
-							* did the Default button get changed?  .. if so, change it back
-							If Vartype(m.loDefaultButton) = 'O' and loDefaultButton.Default = .F.
-								loDefaultButton.Default = .T.
-							Endif
+							This.SelectControl(loTools, lcName)	
 						Endif
 												
 				Endcase
@@ -2239,14 +2231,18 @@ Result
 * Returns the child object, a command button, with Default = .T.
 * ================================================================================
 	Procedure GetDefaultButton(loParent)
-		Local laObjects[1], loDefault, loObject
+		Local laObjects[1], loDefault, loException, loObject
 	
 		For Each m.loObject In m.loParent.Objects FoxObject
 			If Pemstatus(m.loObject, 'Default', 5) And m.loObject.Default
 				Return m.loObject
 			Endif
 			If Pemstatus(m.loObject, 'Objects', 5)
-				loDefault = This.GetDefaultButton(m.loObject)
+				Try
+					loDefault = This.GetDefaultButton(m.loObject)
+				Catch To m.loException
+					loDefault = Null
+				Endtry
 				If Not Isnull(m.loDefault)
 					Return m.loDefault
 				Endif
@@ -2254,10 +2250,10 @@ Result
 		Endfor
 		Return Null
 	Endproc
-					
+						
 *----------------------------------------------------------------------------------
-	Procedure GetDirectories(tcPath, tlIncludeSubDirectories)
-
+	Procedure GetDirectories(tcPath, tlIncludeSubdirectories)
+	
 		Local;
 			lnFiles As Number,;
 			lnSeconds  
@@ -5511,6 +5507,28 @@ ii
 		Return m.lnMatchCount
 
 	Endproc
+
+
+* ================================================================================
+	Procedure SelectControl(loTools, lcName, lcProperty)
+		Local loDefaultButton, loException, loTopMostParent
+	
+		Try
+			loTopMostParent	= m.loTools.oUtils.FindTopMostParent()
+			loDefaultButton	= This.GetDefaultButton(m.loTopMostParent) && is there a button with Default = .T.
+	
+			m.loTools.SelectObject(m.lcName, m.lcProperty, .T.)
+	
+			* did the Default button get changed?  .. if so, change it back
+			If Vartype(m.loDefaultButton) = 'O' And m.loDefaultButton.Default = .F.
+				loDefaultButton.Default = .T.
+			Endif
+		Catch To m.loException
+	
+		Endtry
+	
+	Endproc
+				
 
 *----------------------------------------------------------------------------------
 *-- Read file patterns to include in the search
