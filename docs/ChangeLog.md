@@ -4,8 +4,9 @@
 
 [FAQ](docs/FAQ.md)
 
-## Version 7.0.27 - 2024-04-xx
+## Version 7.0.27 - 2024-04-18
 
+- Created new FAQ page
 - Added link to new FAQ page (at bottom left of main form).
 
 ## Version 7.0.26 - 2024-04-15
