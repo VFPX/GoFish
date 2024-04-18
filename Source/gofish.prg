@@ -45,8 +45,8 @@ If Type("_Screen._GoFish.oResultsForm") = "O" And !Isnull(_Screen._GoFish.oResul
 	Return
 Endif
 
-Set Procedure To "GoFishProc" Additive
-Set Procedure To "mhHtmlCode" Additive
+Set Procedure To "GoFishProc.prg" Additive
+Set Procedure To "mhHtmlCode.prg" Additive
 Set Procedure To "GoFishSearchEngine.prg" Additive
 Set Procedure To "GoFishSearchOptions.prg" Additive
 Set Procedure To "GF_PEME_BaseTools.prg" Additive

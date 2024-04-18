@@ -166,6 +166,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*m: populatetreeview		&& Fill the Treeview.
 		*m: populatetreeviewsimple
 		*m: refreshresults		&& Refresh (re-search) a result
+		*m: releaseprocs
 		*m: replace
 		*m: replaceline
 		*m: resizecodepage
@@ -831,6 +832,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "chkApplyFilter", ;
 		Picture = ..\images\, ;
 		TabIndex = 7, ;
+		ToolTipText = 'This checkbox is kept around for backward compatibility.  The current suggested use is to leave this permanently turned on and use the "Code Only" checkbox below to filter matches in comments from the grid.', ;
 		Top = 4, ;
 		Width = 68
 		*< END OBJECT: BaseClass="checkbox" />
@@ -863,6 +865,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Left = 436, ;
 		Name = "lblSearchTime", ;
 		TabIndex = 21, ;
+		ToolTipText = "Click on this label to see more detail", ;
 		Top = 12, ;
 		Width = 83, ;
 		WordWrap = .T.
@@ -970,7 +973,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "ConRedBorder", ;
 		Picture = ..\images\, ;
 		Top = 0, ;
-		Visible = .F., ;
 		Width = 186
 		*< END OBJECT: BaseClass="container" />
 
@@ -1038,7 +1040,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		TabIndex = 13, ;
 		ToolTipText = "", ;
 		Top = 22, ;
-		Visible = .F., ;
 		Width = 25
 		*< END OBJECT: ClassLib="gofishui.vcx" BaseClass="label" />
 
@@ -1049,7 +1050,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFDjhj7HkNoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFALDRAAMGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHDiAhSckdoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAPBABgMGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -1942,6 +1943,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Left = 5, ;
 		Name = "lblSearch", ;
 		TabIndex = 1, ;
+		ToolTipText = "Right click to use Ojbect Explorer on the GF form", ;
 		Top = 9, ;
 		Width = 37
 		*< END OBJECT: BaseClass="label" />
@@ -3195,6 +3197,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		This.oTree = .Null.
 		This.oWebControl = .Null.
 		this.oFilter = .Null.
+		
+		This.ReleaseProcs()
 		
 		Release _Screen._GoFish
 		_Screen._GoFish = .Null.
@@ -7736,6 +7740,24 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 	ENDPROC
 
+	PROCEDURE releaseprocs
+		Local lcProc, lcProcs, lnI, loException
+		
+		lcProcs = [GoFishProc, mhHtmlCode, GoFishSearchEngine, GoFishSearchOptions, GF_PEME_BaseTools]
+		
+		For lnI = 1 To Getwordcount(m.lcProcs, [, ])
+			lcProc = Getwordnum(m.lcProcs, m.lnI, [, ])
+			Try
+				Release Procedure &lcProc
+			Catch To m.loException
+		
+			Endtry
+		Endfor
+		
+		
+		
+	ENDPROC
+
 	PROCEDURE replace
 		*--- Make sure at least one record is selected before calling Replace() method
 		Local laSelectedCount[1]
@@ -10045,7 +10067,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 				* ================================================================================ 
 				lnBar	  = m.lnBar + 1
-				lcPrompt1 = 'Modify this file'
+				lcPrompt1 = 'Modify this File (Dbl-Click)'
 				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt1
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
 		
@@ -10559,54 +10581,55 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		lnBar	 = 0
 		GF_CreateContextMenu("AdvancedContextMenu")
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Plain Search"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Plain Search"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 1
+		*!* ******** JRN Removed 2024-04-18 ********
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Plain Search"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Plain Search"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 1
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Wildcards (* and ?)"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Wildcards (* and ?)"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 2
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Wildcards (* and ?)"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Wildcards (* and ?)"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 2
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<RegEx Search"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "RegEx Search"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 3
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<RegEx Search"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "RegEx Search"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 3
 		
-		lnBar = m.lnBar + 1
+		*!* lnBar = m.lnBar + 1
 		
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
 		
-		If (".PJX" $ Upper(Thisform.comboSearchScopeHistory.Text))
-			lnBar = m.lnBar + 1
-			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Limit search to project home directory and sub-folders"
-			On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "\<Limit search to project home directory and sub-folders"
-			Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lLimitToProjectFolder
-		Else
-			lnBar = m.lnBar + 1
-			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Include Subdirectories"
-			On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
-			Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lIncludeSubdirectories
-		Endif
+		*!* If (".PJX" $ Upper(Thisform.comboSearchScopeHistory.Text))
+		*!* 	lnBar = m.lnBar + 1
+		*!* 	Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Limit search to project home directory and sub-folders"
+		*!* 	On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "\<Limit search to project home directory and sub-folders"
+		*!* 	Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lLimitToProjectFolder
+		*!* Else
+		*!* 	lnBar = m.lnBar + 1
+		*!* 	Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Include Subdirectories"
+		*!* 	On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
+		*!* 	Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lIncludeSubdirectories
+		*!* Endif
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Whole Word"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Whole Word"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchWholeWord
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Whole Word"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Whole Word"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchWholeWord
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Case"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchCase
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Case"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchCase
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Search \<Comments"
-		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Search \<Comments"
-		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lSearchInComments
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Search \<Comments"
+		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Search \<Comments"
+		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lSearchInComments
 		
-		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
+		*!* lnBar = m.lnBar + 1
+		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
 		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Ignore field RESERVED3 in SCXs / VCXs"
@@ -10648,7 +10671,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Endcase
 		
 		Thisform.Refresh()
-		
 		
 		
 	ENDPROC
@@ -10877,11 +10899,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 
 	PROCEDURE ButtonContainer.cmdSearch.Refresh
 		This.Enabled = !Thisform.lSearching &&and !Thisform.lReplaceViewMode
-	ENDPROC
-
-	PROCEDURE ButtonContainer.cmdSearch.RightClick
-		Do Form "GF_ObjectExplorer" with This
-		
 	ENDPROC
 
 	PROCEDURE ButtonContainer.comboViewPosition.Init
@@ -12431,6 +12448,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE lblSearch.Refresh
 		This.Enabled = !Thisform.lSearching;
 		 AND (!Thisform.lReplaceViewMode OR (Thisform.lReplaceViewMode AND !Thisform.nReplaceMode=5))
+	ENDPROC
+
+	PROCEDURE lblSearch.RightClick
+		Do Form "GF_ObjectExplorer" with ThisForm
 	ENDPROC
 
 	PROCEDURE ProgressBar.Init

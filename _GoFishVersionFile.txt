@@ -165,7 +165,7 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
     * Projects and folders in the s
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.26B - April 17, 2024 - 20240417')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.27 - April 18, 2024 - 20240418')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
