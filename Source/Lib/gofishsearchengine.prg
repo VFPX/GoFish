@@ -1456,7 +1456,7 @@ statementstart
 			m.loPBT.EditSourceX(m.lcFileToEdit, m.lcClass, m.lnStart, m.lnStart, m.lcMethodString, m.lnRecNo)
 		Endif
 	
-	
+
 		*!*	Changed by: nmpetkov 27.3.2023
 		*!*	<pdm>
 		*!*	<change date="{^2023-03-27,15:45:00}">Changed by: nmpetkov<br />
@@ -1515,7 +1515,7 @@ statementstart
 		Local loMatches As Object
 		Local lcSearch, lcText
 		Local aEdEnv[25]
-	
+			
 		If Atc('foxtools.fll', Set('LIBRARY')) = 0
 			lcFoxtoolsFll = Sys(2004) + 'foxtools.fll'
 			If File(m.lcFoxtoolsFll)
@@ -1533,9 +1533,11 @@ statementstart
 			*  12 - readonly?
 			*  17 - selected start
 			*  18 - selected end
+			
 			If m.lnRetCode = 1 And m.aEdEnv[2] > 0 && content size is > 0
-	
-				lcText = _EdGetStr(m.lnWHandle, m.tnRangeStart, m.tnRangeStart + m.tnRangelen)
+					
+				*** JRN 2024-04-19 : Per issue #221, problem if last line does not have following CR
+				lcText = _EdGetStr(m.lnWHandle, m.tnRangeStart, Min(aEdEnv[2], m.tnRangeStart + m.tnRangelen))
 	
 				If Atc(m.tcMatchLine, m.lcText) > 0 And This.oSearchOptions.nSearchMode # 3
 					If This.oSearchOptions.nSearchMode = 2 And '*' $ m.tcSearch
