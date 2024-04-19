@@ -7,8 +7,9 @@ Text to lcNote NoShow
 
 [FAQ](docs/FAQ.md)
 
-## Version 7.0.27 - 2024-04-xx
+## Version 7.0.27 - 2024-04-19
 
+- Created new FAQ page
 - Added link to new FAQ page (at bottom left of main form).
 
 ## Version 7.0.26 - 2024-04-15
@@ -162,10 +163,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
     * Change Log page in GitHub for Gofish
 * New options (See Options form >= Preferences)
     * Use IDE colors in Code View pane
-    * Projects and folders in the s
+    * Proje
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.27 - April 18, 2024 - 20240418')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.27B - April 19, 2024 - 20240419')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
