@@ -4,6 +4,10 @@
 
 [FAQ](docs/FAQ.md)
 
+## Version 7.0.28 - 2024-04-21
+
+- Added new option on "Options" form, "Janitor" page to indicate how often the janitor runs (default = 7 days)
+
 ## Version 7.0.27 - 2024-04-19
 
 - Created new FAQ page
