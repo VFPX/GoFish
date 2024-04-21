@@ -97,6 +97,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Spinner2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page2.Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page2.Spinner3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Container17" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Container16" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Container15" UniqueID="" Timestamp="" />
@@ -232,6 +234,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*p: nfilescxdynamicforecolour		&& Grid, dynamic fore colour file type SCX
 		*p: nfilevcxdynamicforecolour		&& Grid, dynamic fore colour file type VCX
 		*p: njanitorreplacehistorydays
+		*p: njanitorrundays
 		*p: njanitorsearchhistorydays
 		*p: nreplaceddynamicbackcolour		&& Grid, dynamic back colour replaced
 		*p: nreplacerisk
@@ -278,6 +281,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		nfilescxdynamicforecolour = 0
 		nfilevcxdynamicforecolour = 0
 		njanitorreplacehistorydays = 0
+		njanitorrundays = 0
 		njanitorsearchhistorydays = 0
 		nreplaceddynamicbackcolour = 0
 		nreplacerisk = 0
@@ -330,6 +334,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			<memberdata name="lsortscopedropdown" display="lSortScopeDropdown"/>
 			<memberdata name="ncodeviewlinesbefore" display="nCodeViewLinesBefore"/>
 			<memberdata name="nbrowserfontsize" display="nBrowserFontSize"/>
+			<memberdata name="njanitorrundays" display="nJanitorRunDays"/>
 		</VFPData>
 	*</PropValue>
 
@@ -492,7 +497,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 105, ;
 		Name = "Label1", ;
 		TabIndex = 19, ;
-		Top = 97, ;
+		Top = 131, ;
 		Width = 195
 		*< END OBJECT: BaseClass="label" />
 
@@ -504,21 +509,33 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 105, ;
 		Name = "Label2", ;
 		TabIndex = 19, ;
-		Top = 55, ;
+		Top = 93, ;
 		Width = 188
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page2.Label3' AS label WITH ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "The janitor shows up once a day to clean up leftover files.", ;
+		Caption = "The janitor shows up regularly to clean up leftover files.", ;
 		FontSize = 10, ;
 		Height = 18, ;
 		Left = 28, ;
 		Name = "Label3", ;
 		TabIndex = 19, ;
 		Top = 20, ;
-		Width = 332
+		Width = 317
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page2.Label4' AS label WITH ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "# of days between visits by the janitor", ;
+		Height = 17, ;
+		Left = 105, ;
+		Name = "Label4", ;
+		TabIndex = 19, ;
+		Top = 55, ;
+		Width = 204
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page2.Spinner1' AS spinner WITH ;
@@ -531,7 +548,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		SpinnerHighValue = 999999.00, ;
 		SpinnerLowValue =   0.00, ;
 		TabIndex = 10, ;
-		Top = 50, ;
+		Top = 88, ;
 		Width = 69
 		*< END OBJECT: BaseClass="spinner" />
 
@@ -545,7 +562,21 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		SpinnerHighValue = 999999.00, ;
 		SpinnerLowValue =   0.00, ;
 		TabIndex = 10, ;
-		Top = 92, ;
+		Top = 126, ;
+		Width = 69
+		*< END OBJECT: BaseClass="spinner" />
+
+	ADD OBJECT 'pfSettings.Page2.Spinner3' AS spinner WITH ;
+		ControlSource = "Thisform.nJanitorRunDays", ;
+		Height = 27, ;
+		KeyboardHighValue = 999999, ;
+		KeyboardLowValue = 0, ;
+		Left = 27, ;
+		Name = "Spinner3", ;
+		SpinnerHighValue = 999999.00, ;
+		SpinnerLowValue =   0.00, ;
+		TabIndex = 10, ;
+		Top = 50, ;
 		Width = 69
 		*< END OBJECT: BaseClass="spinner" />
 
@@ -3009,6 +3040,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			*!* .lShowRelativePath									 = Thisform.lShowRelativePath
 			*!* .lSortScopeDropdown									 = Thisform.lSortScopeDropdown
 		
+			.nJanitorRunDays			= Thisform.nJanitorRunDays
 			.nJanitorSearchHistoryDays	= Thisform.nJanitorSearchHistoryDays
 			.nJanitorReplaceHistoryDays	= Thisform.nJanitorReplaceHistoryDays
 			.dLastJanitorRunDate		= Thisform.dLastJanitorRunDate
