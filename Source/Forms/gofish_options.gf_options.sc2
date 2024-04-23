@@ -194,6 +194,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	*<DefinedPropArrayMethod>
 		*m: applycolumnsettings
+		*m: askifsavechanges
 		*m: buildcolumncheckboxes
 		*m: loadoptions
 		*m: loadresultsformproperties
@@ -335,11 +336,13 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			<memberdata name="ncodeviewlinesbefore" display="nCodeViewLinesBefore"/>
 			<memberdata name="nbrowserfontsize" display="nBrowserFontSize"/>
 			<memberdata name="njanitorrundays" display="nJanitorRunDays"/>
+			<memberdata name="askifsavechanges" display="AskIfSaveChanges"/>
 		</VFPData>
 	*</PropValue>
 
 	ADD OBJECT 'cmdCancel' AS commandbutton WITH ;
 		Anchor = 12, ;
+		Cancel = .T., ;
 		Caption = "Cancel", ;
 		Height = 21, ;
 		Left = 573, ;
@@ -351,13 +354,13 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	ADD OBJECT 'cmdOK' AS commandbutton WITH ;
 		Anchor = 12, ;
-		Caption = "OK", ;
+		Caption = "Save Changes", ;
 		Height = 21, ;
-		Left = 496, ;
+		Left = 460, ;
 		Name = "cmdOK", ;
 		TabIndex = 2, ;
 		Top = 576, ;
-		Width = 70
+		Width = 105
 		*< END OBJECT: BaseClass="commandbutton" />
 
 	ADD OBJECT 'Gf_versionlabel1' AS gf_versionlabel WITH ;
@@ -2719,6 +2722,22 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		EndFor 
 	ENDPROC
 
+	PROCEDURE askifsavechanges
+		Local lnResponse
+		
+		lnResponse = Messagebox('Save your changes, if any?', 3, 'Save changes?')
+		Do Case
+			Case m.lnResponse = 6
+				Thisform.lReturn = .T.
+				Return .T.
+			Case m.lnResponse = 7
+				Thisform.lReturn = .F.
+				Return .T.
+			Otherwise
+				Return .F.
+		Endcase
+	ENDPROC
+
 	PROCEDURE buildcolumncheckboxes
 		Local lcName, llAlreadyAdded, lnContainerHeight, lnCount, lnRow, lnRow1, lnTop, lnMaxWidth, lnCol, lnCount2,  lcName2
 		Local lnVerticalSpacing, lnX, lnY, loCheckBox, loColumn, loContainerCheckBoxes, loPageframe
@@ -2904,15 +2923,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE KeyPress
-		LPARAMETERS nKeyCode, nShiftAltCtrl
-		
-		If nKeyCOde = 27
-			Thisform.Release
-		Endif
-		
-	ENDPROC
-
 	PROCEDURE loadformsettings
 		This.MinHeight = This.Height
 		This.MinWidth = This.Width
@@ -3008,6 +3018,22 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Thisform.pfSettings.pageReferences.Container.Check8.Enabled = Thisform.lCR_HistoryTree
 		
 		*/SF 20221017
+		
+	ENDPROC
+
+	PROCEDURE QueryUnload
+		Local lnResponse
+		
+		If Thisform.lReturn
+			Return
+		Endif
+		
+		Assert Date() > Date(2024, 4, 23) + 2 Message 'JRN - 08:13:59' 
+		
+		If ThisForm.AskIfSaveChanges() = .F.
+			NoDefault
+		EndIf 
+		
 		
 	ENDPROC
 
@@ -3192,9 +3218,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE cmdCancel.Click
-		Thisform.lReturn = .f.
+		Thisform.lReturn = .F.
 		
-		thisform.Release()
+		If Thisform.AskIfSaveChanges()
+			Thisform.Release()
+		Endif
+		
 	ENDPROC
 
 	PROCEDURE cmdOK.Click
