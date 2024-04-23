@@ -4,6 +4,14 @@
 
 [FAQ](docs/FAQ.md)
 
+## Version 7.0.29 - 2024-04-23
+
+- Added checkbox on the History form to provide for filtering search history to the current scope.
+- On the Options form, added confirmation prompt if cancelling without changing anything.
+- Bug fixes -
+    - Right-clicking on nodes in treeview sometimes did nothing (#224)
+    - Right-clicking on nodes of treeview or rows of  grid failed with bug if Thor was not active (#224). 
+
 ## Version 7.0.28 - 2024-04-21
 
 - Added new option on "Options" form, "Janitor" page to indicate how often the janitor runs (default = 7 days)

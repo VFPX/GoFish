@@ -157,7 +157,7 @@ DEFINE CLASS gf_filtercheckboxcontainer AS container
 		If m.tlDecorated
 			This.Label1.FontBold = .T.
 			This.BorderWidth	 = 2
-			This.BorderColor	 = Rgb(255, 0, 0)
+			This.BorderColor	 = Thisform.oForm.nContainerFrameColour   
 		Else
 			This.Label1.FontBold = .F.
 			This.BorderWidth	 = 1
