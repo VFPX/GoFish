@@ -3026,9 +3026,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 		If Thisform.lReturn
 			Return
-		Endif
-		
-		Assert Date() > Date(2024, 4, 23) + 2 Message 'JRN - 08:13:59' 
+		EndIf
 		
 		If ThisForm.AskIfSaveChanges() = .F.
 			NoDefault

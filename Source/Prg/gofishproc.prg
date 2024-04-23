@@ -453,20 +453,21 @@ Endproc
 * --------------------------------------------------------------------------------
 *** JRN 10/14/2015 : Added to process context menus
 Procedure GF_CreateContextMenu(lcMenuName)
-	Local;
-		loPosition As Object
+	Local loPosition As Object
 
 	loPosition = GF_CalculateShortcutMenuPosition()
 
-*** JRN 2010-11-10 : Following is an attempt to solve the problem
-* when there is another form already open; apparently, if the
-* focus is on the screen, the positioning of the popup still works OK
-	_Screen.Show()
+	*** JRN 2010-11-10 : Following is an attempt to solve the problem
+	* when there is another form already open; apparently, if the
+	* focus is on the screen, the positioning of the popup still works OK
 
-	Define Popup (m.lcMenuName)			;
-		shortcut						;
-		Relative						;
-		From m.loPosition.Row, m.loPosition.Column
+	* _Screen.Show()
+
+	Define Popup (m.lcMenuName)							;
+		shortcut										;
+		Relative										;
+		From m.loPosition.Row, m.loPosition.Column		;
+		In Screen
 
 Endproc
 
@@ -1834,11 +1835,12 @@ Procedure GF_GetHackCX
 
 	Local lcExecutable
 
-	lcExecutable = Execscript(_Screen.cThorDispatcher, 'Get Option=', ccThorKey, ccThorTool)
-	If File(Nvl(m.lcExecutable, ''))
-		Return m.lcExecutable
-	Else
-		Return ''
+	If GF_IsThorThere()
+		lcExecutable = Execscript(_Screen.cThorDispatcher, 'Get Option=', ccThorKey, ccThorTool)
+		If File(Nvl(m.lcExecutable, ''))
+			Return m.lcExecutable
+		Endif
 	Endif
+	Return ''
 Endproc
 	

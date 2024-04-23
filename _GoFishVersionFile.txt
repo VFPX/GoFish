@@ -7,6 +7,14 @@ Text to lcNote NoShow
 
 [FAQ](docs/FAQ.md)
 
+## Version 7.0.29 - 2024-04-23
+
+- Added checkbox on the History form to provide for filtering search history to the current scope.
+- On the Options form, added confirmation prompt if cancelling without changing anything.
+- Bug fixes -
+    - Right-clicking on nodes in treeview sometimes did nothing (#224)
+    - Right-clicking on nodes of treeview or rows of  grid failed with bug if Thor was not active (#224).
+
 ## Version 7.0.28 - 2024-04-21
 
 - Added new option on "Options" form, "Janitor" page to indicate how often the janitor runs (default = 7 days)
@@ -152,21 +160,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * When upgrading from version 5 to version 7 (#151):
     * the search and history files for version 5 are no longer removed, so version 5 and GF Classic will still work.
     * however, the search and history files are not imported into version 7.
-* If regular expression search is chosen and the search expression doesn't contains special characters for regular expressions, use plain search instead (#152).
-
-# New UI elements
-* New combobox for Scope Mode (top left of main screen)
-   1. Active Project
-   2. Browse Project
-   3. Current Directory
-   4. Browse Project
-   5. All Open Projects (With only one project open, this is the same as "Active Project")
-* New checkbox filter "Comments Only". (#150)
-* Two new links at bottom left:
-    * Issues page in GitHub for GoFi
+* If regular expression search is chosen and the search expression doesn't contains special characters for regular expre
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.28 - April 21, 2024 - 20240421')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.29 - April 23, 2024 - 20240423')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

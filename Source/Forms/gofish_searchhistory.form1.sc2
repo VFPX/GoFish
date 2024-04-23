@@ -18,11 +18,13 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="Grid1.Column4.Header1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Grid1.Column4.Text1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdLoadResults" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Command1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdDelete" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Check1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label2" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
+		*m: setfilter
 		*m: sorton
 		*p: cuni
 	*</DefinedPropArrayMethod>
@@ -42,8 +44,22 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 		_memberdata = <VFPData>
 			<memberdata name="cuni" display="cUni"/>
 			<memberdata name="sorton" display="SortOn"/>
+			<memberdata name="setfilter" display="SetFilter"/>
 		</VFPData>
 	*</PropValue>
+
+	ADD OBJECT 'Check1' AS checkbox WITH ;
+		Alignment = 1, ;
+		AutoSize = .T., ;
+		Caption = "Filter by current scope:", ;
+		ControlSource = "Thisform.oForm.oSearchOptions.lFilterHistoryByScope", ;
+		FontBold = .T., ;
+		Height = 17, ;
+		Left = 35, ;
+		Name = "Check1", ;
+		Top = 4, ;
+		Width = 148
+		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'cmdDelete' AS commandbutton WITH ;
 		Anchor = 132, ;
@@ -178,15 +194,17 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 		ReadOnly = .T.
 		*< END OBJECT: BaseClass="textbox" />
 
-	ADD OBJECT 'Label1' AS label WITH ;
-		Caption = "Choose historical search to restore", ;
-		FontBold = .T., ;
+	ADD OBJECT 'Label2' AS label WITH ;
+		Anchor = 10, ;
+		Caption = "--- filled with current scope ---", ;
+		FontBold = .F., ;
+		FontItalic = .T., ;
 		Height = 17, ;
-		Left = 8, ;
-		Name = "Label1", ;
-		TabIndex = 1, ;
+		Left = 202, ;
+		Name = "Label2", ;
+		TabIndex = 4, ;
 		Top = 5, ;
-		Width = 524
+		Width = 539
 		*< END OBJECT: BaseClass="label" />
 	
 	PROCEDURE Init
@@ -203,6 +221,9 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 		If !Empty(m.tcScope) Then
 			This.Caption = This.Caption + '  (' + m.tcScope + ')'
 		Endif &&!Empty(m.tcScope)
+		
+		Thisform.SetFilter()
+		Thisform.Grid1.SetFocus()
 		
 	ENDPROC
 
@@ -224,6 +245,21 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 		Set Filter To ! Deleted() In gf_SearchHistory
 		
 		Return DoDefault()
+		
+	ENDPROC
+
+	PROCEDURE setfilter
+		Select gf_SearchHistory
+		If Thisform.oForm.oSearchOptions.lFilterHistoryByScope
+			Set Filter to Trim(Lower(Thisform.oForm.oSearchOptions.cRecentScope)) == Trim(Lower(Scope)) 
+			*!* ******** JRN Removed 2024-02-08 ********
+			*!* Set Asserts on
+			*!* Assert .f. Message( Trim(Lower(Thisform.oForm.oSearchOptions.cRecentScope))) 
+			*!* Assert .f. Message(Trim(Lower(SearchHistoryFolder)) )
+		Else
+			Set Filter to
+		EndIf 
+		Goto top
 		
 	ENDPROC
 
@@ -252,6 +288,12 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	PROCEDURE Unload
 		Return Alltrim(Thisform.cUni)
+		
+	ENDPROC
+
+	PROCEDURE Check1.Valid
+		Thisform.SetFilter()
+		Thisform.Grid1.SetFocus()
 		
 	ENDPROC
 
@@ -329,6 +371,10 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 			Thisform.cmdLoadResults.Click()
 		Endif &&m.tnKeyCode=13
 		
+	ENDPROC
+
+	PROCEDURE Label2.Refresh
+		This.Caption = '(' + Thisform.oForm.oSearchOptions.cRecentScope + ')'
 	ENDPROC
 
 ENDDEFINE
