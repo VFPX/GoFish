@@ -252,10 +252,6 @@ DEFINE CLASS form1 AS gf_baseform OF "..\lib\gofishui.vcx"
 		Select gf_SearchHistory
 		If Thisform.oForm.oSearchOptions.lFilterHistoryByScope
 			Set Filter to Trim(Lower(Thisform.oForm.oSearchOptions.cRecentScope)) == Trim(Lower(Scope)) 
-			*!* ******** JRN Removed 2024-02-08 ********
-			*!* Set Asserts on
-			*!* Assert .f. Message( Trim(Lower(Thisform.oForm.oSearchOptions.cRecentScope))) 
-			*!* Assert .f. Message(Trim(Lower(SearchHistoryFolder)) )
 		Else
 			Set Filter to
 		EndIf 

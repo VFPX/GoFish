@@ -91,7 +91,7 @@ DEFINE CLASS gf_combosearchexpressionhistory AS combobox
 		
 		lcScope    = ''
 		llNoFilter = .T.
-		If Thisform.lCR_Allowed And Thisform.lCR_SearchComboPerScope Then
+		If Thisform.lCR_SearchComboPerScope Then
 			lcScope    = Lower(Thisform.GetCurrentScope())
 			llNoFilter = .F.
 		Endif &&Thisform.lCR_Allowed And Thisform.lCR_StorePerScope

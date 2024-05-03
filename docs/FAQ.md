@@ -8,6 +8,8 @@
 <!-- <a id="linkname">linkprompt</a>-->
 ---
 
+- <a href="#newinversion7">What's new in version 7?</a>
+- <a href="#newinversion6">What's new in version 6?</a>
 - <a href="#nodebugger">Why is GoFish so sloooow at times?</a>
 - <a href="#columnsorting">How do I sort the columns in the grid?</a>
 - <a href="#hiddenfeatures">Are there any "hidden" features?</a>
@@ -107,6 +109,54 @@ The lower one (new in version 7) is used to filter the grid after the search. Se
 ![](Screenshots/Comments2.png)
 
 The suggestion is to leave the top one always checked and use the lower one to filter out comments if desired.
+
+---
+
+### <a ID="newinversion6">What's new in version 6?</a>
+
+The goal of version 6 was to introduce some aspects of the UI for Code References into GF.
+
+First, instead of having a single folder to house all of the settings and search history, it is possible to have a distinct such folder for each resource (FoxUser) file.
+
+Second, the TreeView can have nodes for all the search history (mimicking Code References behavior) and this can be filtered to history just for the current search scope.
+
+The full list of new options for version 6 can be seen in the page "New in V6" in the options form.
+
+![](NewInV6.png)
+
+---
+
+### <a ID="newinversion7">What's new in version 7?</a>
+
+#### Major Enhancements 
+* Wildcard searching now finds matches across continuation lines.
+* "Whole Word" searching now applies to each word in the search phrase in wildcard searching.
+* Dramatic optimization of RegEx searching -- as much as seven times faster.
+
+#### Code View pane enhancements
+* The Code View pane emphasizes the entire statement (that is, including continuation lines) instead of just the line where the match occurred:
+    * The entire statement is enclosed in a red box.
+    * All matches in the statement are highlighted.
+* Colors in the Code View pane match the user's own colors in IDE code windows.
+* The Code View pane for matches in MNX files has been enhanced to be more descriptive, showing the `Prompt`, `Command`, `Procedure`, and `SkipFor` fields for the match.
+
+#### Other enhancements
+
+There are numerous other enhancements, most of which do not need to be described other than to say that some behaviors have been improved.
+
+Some, however, need to be noted, as they would not be obvious.
+
+* The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced so that, if possible, the the object will be selected as if you had clicked on the object yourself.
+* New right-click context menus:
+    * on nodes in the treeview
+    * on column headers in the grid
+    * on cells in the grid
+        * including option to filter on the values in the column 
+
+
+The full list of new options for version 7 can be seen in the page "New in V7" in the options form.
+
+![](NewinV7.png)
 
 ---
 
