@@ -38,7 +38,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Label9" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Spinner6" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.chkDesktop" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check8" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check9" UniqueID="" Timestamp="" />
@@ -47,7 +46,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check5" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check13" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Shape1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Label10" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.List1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label2" UniqueID="" Timestamp="" />
@@ -59,19 +59,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.cmdDeleteConfigFiles" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label8" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.chk_CRMode" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label9" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.chk_CRLocal_Default" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.chk_CRLocal" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.cmdSetFolder" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Text1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label10" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Check1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageThor.Label4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageThor.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageThor.lblNoTHor" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageThor.Label2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageReplace.optiongroupReplaceSafetyLevel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageReplace.Image1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageReplace.Label1" UniqueID="" Timestamp="" />
@@ -86,12 +75,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pageBackups.Label4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageBackups.Label5" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageBackups.Command2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Label4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Label5" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Label2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Image1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page1.Label3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Label2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Spinner1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page2.Label1" UniqueID="" Timestamp="" />
@@ -161,15 +144,27 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Label15" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Label16" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageColours.Label17" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check3" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check5" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check6" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check7" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container.Check8" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Check2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Check4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Check7" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Check8" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Optiongroup1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.cmdSetFolder" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.txtParentFolder" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Label2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Container1.Label5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Container1.Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.chk_CRMode" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Label9" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Check1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Check3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Optiongroup1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check10" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check11" UniqueID="" Timestamp="" />
@@ -296,6 +291,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		ntreeviewfontsize = 8
 		oform = .NULL.
 		ooptions = .NULL.
+		ShowTips = .T.
 		Top = 0
 		Visible = .T.
 		Width = 652
@@ -374,10 +370,10 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		ActivePage = 1, ;
 		Anchor = 15, ;
 		ErasePage = .T., ;
-		Height = 555, ;
+		Height = 528, ;
 		Left = 10, ;
 		Name = "pfSettings", ;
-		PageCount = 11, ;
+		PageCount = 9, ;
 		TabIndex = 1, ;
 		TabStretch = 0, ;
 		TabStyle = 1, ;
@@ -391,106 +387,26 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Page2.PageOrder = 1, ;
 		Page3.Caption = "Advanced", ;
 		Page3.Name = "pageAdvanced", ;
-		Page3.PageOrder = 3, ;
-		Page4.Caption = "Thor", ;
-		Page4.Name = "pageThor", ;
-		Page4.PageOrder = 6, ;
-		Page5.Caption = "Replace", ;
-		Page5.Name = "pageReplace", ;
+		Page3.PageOrder = 6, ;
+		Page4.Caption = "Replace", ;
+		Page4.Name = "pageReplace", ;
+		Page4.PageOrder = 3, ;
+		Page5.Caption = "Backups", ;
+		Page5.Name = "pageBackups", ;
 		Page5.PageOrder = 4, ;
-		Page6.Caption = "Backups", ;
-		Page6.Name = "pageBackups", ;
-		Page6.PageOrder = 5, ;
-		Page7.Caption = "Update", ;
-		Page7.Name = "Page1", ;
-		Page7.PageOrder = 7, ;
-		Page8.Caption = "Janitor", ;
-		Page8.Name = "Page2", ;
+		Page6.Caption = "Janitor", ;
+		Page6.Name = "Page2", ;
+		Page6.PageOrder = 7, ;
+		Page7.Caption = "Colors", ;
+		Page7.Name = "pageColours", ;
+		Page7.PageOrder = 5, ;
+		Page8.Caption = "New in V6", ;
+		Page8.Name = "pageReferences", ;
 		Page8.PageOrder = 8, ;
-		Page9.Caption = "Colors", ;
-		Page9.Name = "pageColours", ;
-		Page9.PageOrder = 9, ;
-		Page10.Caption = "Code References", ;
-		Page10.Enabled = .F., ;
-		Page10.Name = "pageReferences", ;
-		Page10.PageOrder = 10, ;
-		Page11.Caption = "New in Version 7", ;
-		Page11.Name = "Page3", ;
-		Page11.PageOrder = 11
+		Page9.Caption = "New in V7", ;
+		Page9.Name = "Page3", ;
+		Page9.PageOrder = 9
 		*< END OBJECT: BaseClass="pageframe" />
-
-	ADD OBJECT 'pfSettings.Page1.Image1' AS image WITH ;
-		Height = 230, ;
-		Left = 207, ;
-		Name = "Image1", ;
-		Picture = ..\images\checkforupdates.jpg, ;
-		Top = 120, ;
-		Width = 232
-		*< END OBJECT: BaseClass="image" />
-
-	ADD OBJECT 'pfSettings.Page1.Label1' AS label WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "If you are running the Thor Tool Management Framework, you can download and install the latest development builds of GoFish at any time, right from the Thor menu. (Requires Thor 1.10 or higher).", ;
-		Height = 57, ;
-		Left = 17, ;
-		Name = "Label1", ;
-		Top = 28, ;
-		Width = 591, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page1.Label2' AS label WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "The latest development build may be a pre-release version, allowing you to use and test the latest version.", ;
-		Height = 57, ;
-		Left = 17, ;
-		Name = "Label2", ;
-		Top = 76, ;
-		Width = 591, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page1.Label3' AS label WITH ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Learn more about Thor", ;
-		FontUnderline = .T., ;
-		ForeColor = 0,0,255, ;
-		Height = 17, ;
-		Left = 17, ;
-		MousePointer = 15, ;
-		Name = "Label3", ;
-		Top = 93, ;
-		Width = 128
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page1.Label4' AS label WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "Note: Public releases of GoFish are available at the VFPx site. However, the release cycle is generally slower on VFPx. If you want the absolute latest build, use the Thor update mechanism shown above.", ;
-		Height = 56, ;
-		Left = 20, ;
-		Name = "Label4", ;
-		Top = 385, ;
-		Width = 555, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page1.Label5' AS label WITH ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Visit the GoFish project on VFPx", ;
-		FontUnderline = .T., ;
-		ForeColor = 0,0,255, ;
-		Height = 17, ;
-		Left = 20, ;
-		MousePointer = 15, ;
-		Name = "Label5", ;
-		Top = 422, ;
-		Width = 175
-		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page2.Label1' AS label WITH ;
 		AutoSize = .T., ;
@@ -821,50 +737,9 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 23, ;
 		Name = "Check1", ;
 		TabIndex = 19, ;
-		Top = 466, ;
+		Top = 400, ;
 		Value = .F., ;
 		Width = 100, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.chk_CRLocal' AS checkbox WITH ;
-		Alignment = 0, ;
-		BackStyle = 0, ;
-		Caption = ("Local settings / storage"+0h0D0A+"All settings not in this box are local to resource file rather then in %App%, if activated."), ;
-		ControlSource = "Thisform.lCR_Local", ;
-		Height = 30, ;
-		Left = 18, ;
-		Name = "chk_CRLocal", ;
-		TabIndex = 10, ;
-		Top = 279, ;
-		Width = 534, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.chk_CRLocal_Default' AS checkbox WITH ;
-		Alignment = 0, ;
-		BackStyle = 0, ;
-		Caption = [Use Set("Resource",1)+'\GoFish_" as default for new local folder], ;
-		ControlSource = "Thisform.lCR_Local_Default", ;
-		Height = 17, ;
-		Left = 18, ;
-		Name = "chk_CRLocal_Default", ;
-		TabIndex = 9, ;
-		Top = 263, ;
-		Width = 466, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.chk_CRMode' AS checkbox WITH ;
-		Alignment = 0, ;
-		BackStyle = 0, ;
-		Caption = "Allow Code References-like work.", ;
-		ControlSource = "Thisform.lCR_Allow", ;
-		Left = 19, ;
-		Name = "chk_CRMode", ;
-		TabIndex = 8, ;
-		Top = 243, ;
-		Width = 466, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -874,7 +749,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 23, ;
 		Name = "cmdDeleteConfigFiles", ;
 		TabIndex = 17, ;
-		Top = 436, ;
+		Top = 364, ;
 		Width = 114
 		*< END OBJECT: BaseClass="commandbutton" />
 
@@ -884,19 +759,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 25, ;
 		Name = "cmdOpenFolder", ;
 		TabIndex = 16, ;
-		Top = 407, ;
-		Width = 80
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.cmdSetFolder' AS commandbutton WITH ;
-		Caption = "Set Folder", ;
-		Height = 21, ;
-		Left = 20, ;
-		Name = "cmdSetFolder", ;
-		TabIndex = 11, ;
-		ToolTipText = "Pick a storage for lacal settings. Available after restart.", ;
-		Top = 314, ;
-		Visible = .F., ;
+		Top = 309, ;
 		Width = 80
 		*< END OBJECT: BaseClass="commandbutton" />
 
@@ -913,18 +776,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.pageAdvanced.Label10' AS label WITH ;
-		Anchor = 10, ;
-		AutoSize = .T., ;
-		Caption = "   Global Settings:   ", ;
-		Height = 17, ;
-		Left = 45, ;
-		Name = "Label10", ;
-		TabIndex = 7, ;
-		Top = 223, ;
-		Width = 107
-		*< END OBJECT: BaseClass="label" />
-
 	ADD OBJECT 'pfSettings.pageAdvanced.Label11' AS label WITH ;
 		Anchor = 10, ;
 		BackStyle = 0, ;
@@ -934,7 +785,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 142, ;
 		Name = "Label11", ;
 		TabIndex = 20, ;
-		Top = 467, ;
+		Top = 401, ;
 		Width = 596, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
@@ -947,7 +798,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 12, ;
 		Name = "Label2", ;
 		TabIndex = 14, ;
-		Top = 366, ;
+		Top = 271, ;
 		Width = 318, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
@@ -960,7 +811,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 23, ;
 		Name = "Label3", ;
 		TabIndex = 15, ;
-		Top = 387, ;
+		Top = 289, ;
 		Width = 596, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
@@ -1026,24 +877,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 142, ;
 		Name = "Label8", ;
 		TabIndex = 18, ;
-		Top = 432, ;
+		Top = 360, ;
 		Width = 450, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.Label9' AS label WITH ;
-		Alignment = 2, ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "********** Available after Restart of GoFish! Check or additional options after restart **********", ;
-		FontBold = .T., ;
-		ForeColor = 255,0,0, ;
-		Left = 12, ;
-		Name = "Label9", ;
-		TabIndex = 13, ;
-		Top = 340, ;
-		Visible = .F., ;
-		Width = 596, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
 
@@ -1056,28 +891,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Top = 17, ;
 		Width = 236
 		*< END OBJECT: BaseClass="listbox" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.Shape1' AS shape WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Height = 131, ;
-		Left = 11, ;
-		Name = "Shape1", ;
-		Top = 230, ;
-		Width = 611
-		*< END OBJECT: BaseClass="shape" />
-
-	ADD OBJECT 'pfSettings.pageAdvanced.Text1' AS textbox WITH ;
-		BackStyle = 0, ;
-		BorderStyle = 0, ;
-		ControlSource = "Thisform.cCR_StoreLocal_Option", ;
-		Left = 111, ;
-		Name = "Text1", ;
-		ReadOnly = .T., ;
-		TabIndex = 12, ;
-		Top = 314, ;
-		Width = 394
-		*< END OBJECT: BaseClass="textbox" />
 
 	ADD OBJECT 'pfSettings.pageBackups.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
@@ -2021,42 +1834,42 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = 'Show relative path in column "File Name with Path" (v7)', ;
+		Caption = 'Show relative path in column "File Name with Path"', ;
 		ControlSource = "Thisform.oForm.lShowRelativePath", ;
 		Height = 17, ;
-		Left = 303, ;
+		Left = 320, ;
 		Name = "Check10", ;
 		TabIndex = 14, ;
 		Top = 235, ;
-		Width = 319
+		Width = 296
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check11' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Sort projects & folders in Scope dropdown (v7)", ;
+		Caption = "Sort projects & folders in Scope dropdown", ;
 		ControlSource = "Thisform.oForm.lSortScopeDropdown", ;
 		Height = 17, ;
-		Left = 303, ;
+		Left = 320, ;
 		Name = "Check11", ;
 		TabIndex = 14, ;
 		Top = 214, ;
-		Width = 271
+		Width = 248
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check12' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Use IDE colors in Code View pane (v7)", ;
+		Caption = "Use IDE colors in Code View pane", ;
 		ControlSource = "Thisform.oForm.lIDEColorsInCodeView", ;
 		Height = 17, ;
-		Left = 303, ;
+		Left = 320, ;
 		Name = "Check12", ;
 		TabIndex = 14, ;
 		Top = 193, ;
-		Width = 230
+		Width = 207
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check13' AS checkbox WITH ;
@@ -2066,7 +1879,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "When editing, select the control in which text is found (v7)", ;
 		ControlSource = "Thisform.oForm.lSelectControl", ;
 		Height = 30, ;
-		Left = 303, ;
+		Left = 320, ;
 		Name = "Check13", ;
 		TabIndex = 14, ;
 		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
@@ -2107,28 +1920,29 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Show Advanced Search form on startup", ;
-		ControlSource = "Thisform.oSearchOptions.lShowAdvancedFormOnStartup", ;
+		Caption = "Set scope to Active Project / Current Directory", ;
+		ControlSource = "Thisform.lCR_OpenMode", ;
 		Height = 17, ;
-		Left = 18, ;
+		Left = 34, ;
 		Name = "Check4", ;
-		TabIndex = 9, ;
-		Top = 193, ;
-		Width = 233
+		TabIndex = 1, ;
+		ToolTipText = "", ;
+		Top = 214, ;
+		Width = 262
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check5' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Code View pane highlights single line (v7)", ;
+		Caption = "Code View pane highlights single line", ;
 		ControlSource = "Thisform.oForm.lCodeViewSingleLine", ;
 		Height = 17, ;
-		Left = 303, ;
+		Left = 320, ;
 		Name = "Check5", ;
 		TabIndex = 14, ;
 		Top = 256, ;
-		Width = 248
+		Width = 225
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check6' AS checkbox WITH ;
@@ -2149,14 +1963,14 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Restore previous search results on startup", ;
+		Caption = "Restore previous search results", ;
 		ControlSource = "Thisform.lRestorePreviousSearchResultsOnStartup", ;
 		Height = 17, ;
-		Left = 18, ;
+		Left = 34, ;
 		Name = "Check7", ;
 		TabIndex = 13, ;
-		Top = 214, ;
-		Width = 252
+		Top = 235, ;
+		Width = 194
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Check8' AS checkbox WITH ;
@@ -2169,7 +1983,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 18, ;
 		Name = "Check8", ;
 		TabIndex = 11, ;
-		Top = 235, ;
+		Top = 256, ;
 		Width = 273
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -2183,7 +1997,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 18, ;
 		Name = "Check9", ;
 		TabIndex = 14, ;
-		Top = 256, ;
+		Top = 277, ;
 		Width = 220
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -2222,6 +2036,17 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 1, ;
 		Top = 33, ;
 		Width = 54
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pagePreferences.Label10' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "At startup:", ;
+		Height = 18, ;
+		Left = 19, ;
+		Name = "Label10", ;
+		TabIndex = 18, ;
+		Top = 195, ;
+		Width = 103
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Label2' AS label WITH ;
@@ -2424,126 +2249,314 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 59
 		*< END OBJECT: BaseClass="textbox" />
 
-	ADD OBJECT 'pfSettings.pageReferences.Container' AS container WITH ;
-		BackStyle = 0, ;
-		Height = 281, ;
-		Left = 51, ;
-		Name = "Container", ;
-		Top = 61, ;
-		Width = 470
-		*< END OBJECT: BaseClass="container" />
-
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check1' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.pageReferences.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Open GoFish like Code References: Active project / Recent folder", ;
+		Caption = "At startup, set scope to Active Project / Current Directory.", ;
 		ControlSource = "Thisform.lCR_OpenMode", ;
 		Height = 17, ;
-		Left = 29, ;
+		Left = 36, ;
 		Name = "Check1", ;
 		TabIndex = 1, ;
-		Top = 38, ;
-		Width = 372
+		ToolTipText = "", ;
+		Top = 10, ;
+		Width = 321
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check2' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.pageReferences.Check3' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Show search history (button) per scope.", ;
-		ControlSource = "Thisform.lCR_HistoryPerScope", ;
-		Height = 17, ;
-		Left = 29, ;
-		Name = "Check2", ;
-		TabIndex = 2, ;
-		Top = 61, ;
-		Width = 235
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check3' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Show history in search combo per scope.", ;
+		Caption = "Filter the search expression dropdown to only show searches from the current scope.", ;
 		ControlSource = "Thisform.lCR_SearchComboPerScope", ;
 		Height = 17, ;
-		Left = 29, ;
+		Left = 36, ;
 		Name = "Check3", ;
 		TabIndex = 3, ;
-		Top = 84, ;
-		Width = 244
+		Top = 33, ;
+		Width = 483
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check4' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.pageReferences.chk_CRMode' AS checkbox WITH ;
+		Alignment = 0, ;
+		BackStyle = 0, ;
+		Caption = "Enable some UI features similar to those in Code References (CR)", ;
+		ControlSource = "Thisform.lCR_Allow", ;
+		FontBold = .T., ;
+		Height = 17, ;
+		Left = 36, ;
+		Name = "chk_CRMode", ;
+		TabIndex = 8, ;
+		Top = 153, ;
+		Width = 466, ;
+		WordWrap = .T.
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1' AS container WITH ;
+		BackStyle = 0, ;
+		Height = 295, ;
+		Left = 13, ;
+		Name = "Container1", ;
+		Top = 174, ;
+		Width = 606
+		*< END OBJECT: BaseClass="container" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Check2' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Show history in tree (Follows Search History button switch)", ;
+		Caption = "Filter search history in Treeview to current scope.", ;
+		ControlSource = "Thisform.lCR_HistoryPerScope", ;
+		Height = 17, ;
+		Left = 52, ;
+		Name = "Check2", ;
+		TabIndex = 2, ;
+		Top = 219, ;
+		Width = 284
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Check4' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Show search history in TreeView", ;
 		ControlSource = "Thisform.lCR_HistoryTree", ;
 		Height = 17, ;
-		Left = 29, ;
+		Left = 36, ;
 		Name = "Check4", ;
 		TabIndex = 4, ;
-		Top = 107, ;
-		Width = 337
+		Top = 196, ;
+		Width = 196
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check5' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Simple tree, no subnodes for classes, just plain filenames", ;
-		ControlSource = "Thisform.lCR_SimpleTree", ;
-		Height = 17, ;
-		Left = 29, ;
-		Name = "Check5", ;
-		TabIndex = 7, ;
-		Top = 176, ;
-		Width = 338
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check6' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Sort tree by extension first", ;
-		ControlSource = "Thisform.lCR_SortTreeByExt", ;
-		Height = 17, ;
-		Left = 45, ;
-		Name = "Check6", ;
-		TabIndex = 8, ;
-		Top = 199, ;
-		Width = 158
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check7' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Check7' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Fill all searches with data on startup. (sloow)", ;
 		ControlSource = "Thisform.lCR_HistoryTreeAuto", ;
 		Height = 17, ;
-		Left = 45, ;
+		Left = 52, ;
 		Name = "Check7", ;
 		TabIndex = 5, ;
-		Top = 130, ;
+		Top = 265, ;
 		Width = 262
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.pageReferences.Container.Check8' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Check8' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Sort alphanumerical", ;
+		Caption = "Sort search history in TreeView alphabetically", ;
 		ControlSource = "Thisform.lCR_SortTreeAlpha", ;
 		Height = 17, ;
-		Left = 45, ;
+		Left = 52, ;
 		Name = "Check8", ;
 		TabIndex = 6, ;
-		Top = 153, ;
-		Width = 129
+		Top = 242, ;
+		Width = 265
 		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1' AS container WITH ;
+		BackStyle = 0, ;
+		Height = 154, ;
+		Left = 7, ;
+		Name = "Container1", ;
+		Top = 27, ;
+		Width = 589
+		*< END OBJECT: BaseClass="container" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.cmdSetFolder' AS commandbutton WITH ;
+		Caption = "Set Folder", ;
+		Height = 21, ;
+		Left = 498, ;
+		Name = "cmdSetFolder", ;
+		TabIndex = 11, ;
+		ToolTipText = "Pick a storage for lacal settings. Available after restart.", ;
+		Top = 96, ;
+		Visible = .F., ;
+		Width = 80
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Label1' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "The default folder for GF settings is found in Home(7).", ;
+		FontSize = 10, ;
+		Left = 24, ;
+		Name = "Label1", ;
+		Top = 15, ;
+		Width = 551
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Label2' AS label WITH ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Settings Folder:", ;
+		FontSize = 10, ;
+		Left = 12, ;
+		Name = "Label2", ;
+		Top = 126, ;
+		Width = 94
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Label3' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "You can select an alternative folder by using the options below.  The name ", ;
+		FontSize = 10, ;
+		Left = 24, ;
+		Name = "Label3", ;
+		Top = 37, ;
+		Width = 551
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Label4' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "of the alternative folder is saved in your resource (FoxUser) file.  Thus, you", ;
+		FontSize = 10, ;
+		Left = 24, ;
+		Name = "Label4", ;
+		Top = 55, ;
+		Width = 551
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Label5' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "may have a distinct settings folder for each resource file.", ;
+		FontSize = 10, ;
+		Left = 24, ;
+		Name = "Label5", ;
+		Top = 72, ;
+		Width = 551
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.Optiongroup1' AS optiongroup WITH ;
+		BackStyle = 0, ;
+		ButtonCount = 3, ;
+		Height = 27, ;
+		Left = 12, ;
+		Name = "Optiongroup1", ;
+		Top = 93, ;
+		Value = 1, ;
+		Width = 569, ;
+		Option1.AutoSize = .F., ;
+		Option1.BackStyle = 0, ;
+		Option1.Caption = "GoFish Default = Home(7)", ;
+		Option1.Height = 17, ;
+		Option1.Left = 5, ;
+		Option1.Name = "Option1", ;
+		Option1.Style = 0, ;
+		Option1.Top = 5, ;
+		Option1.Value = 1, ;
+		Option1.Width = 162, ;
+		Option2.AutoSize = .F., ;
+		Option2.BackStyle = 0, ;
+		Option2.Caption = "Same folder as FoxUser", ;
+		Option2.Height = 17, ;
+		Option2.Left = 183, ;
+		Option2.Name = "Option2", ;
+		Option2.Style = 0, ;
+		Option2.Top = 5, ;
+		Option2.Width = 162, ;
+		Option3.AutoSize = .F., ;
+		Option3.BackStyle = 0, ;
+		Option3.Caption = "User Selection", ;
+		Option3.Height = 17, ;
+		Option3.Left = 361, ;
+		Option3.Name = "Option3", ;
+		Option3.Style = 0, ;
+		Option3.Top = 5, ;
+		Option3.Width = 162
+		*< END OBJECT: BaseClass="optiongroup" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Container1.txtParentFolder' AS textbox WITH ;
+		BackStyle = 1, ;
+		BorderStyle = 0, ;
+		ControlSource = "", ;
+		Height = 21, ;
+		Left = 112, ;
+		Name = "txtParentFolder", ;
+		ReadOnly = .T., ;
+		TabIndex = 12, ;
+		Top = 125, ;
+		Width = 466
+		*< END OBJECT: BaseClass="textbox" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Container1.Label1' AS label WITH ;
+		AutoSize = .T., ;
+		BackStyle = 1, ;
+		Caption = "   Location for the settings folder (which includes search history)   ", ;
+		Left = 26, ;
+		Name = "Label1", ;
+		TabIndex = 13, ;
+		Top = 20, ;
+		Visible = .T.
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Label1' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "TreeView options:", ;
+		FontSize = 10, ;
+		Height = 17, ;
+		Left = 51, ;
+		Name = "Label1", ;
+		Top = 58, ;
+		Width = 107
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Label9' AS label WITH ;
+		Alignment = 2, ;
+		Anchor = 0, ;
+		BackStyle = 0, ;
+		Caption = "***** NOTE: These changes willl take effect after restarting GoFish. ******", ;
+		FontBold = .T., ;
+		ForeColor = 255,0,0, ;
+		Left = 12, ;
+		Name = "Label9", ;
+		TabIndex = 13, ;
+		Top = 477, ;
+		Visible = .F., ;
+		Width = 434
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.pageReferences.Optiongroup1' AS optiongroup WITH ;
+		BackStyle = 0, ;
+		ButtonCount = 3, ;
+		Height = 85, ;
+		Left = 163, ;
+		Name = "Optiongroup1", ;
+		Top = 55, ;
+		Value = 1, ;
+		Width = 270, ;
+		Option1.AutoSize = .F., ;
+		Option1.BackStyle = 0, ;
+		Option1.Caption = "Simple list, alphabetical by file name", ;
+		Option1.Height = 17, ;
+		Option1.Left = 5, ;
+		Option1.Name = "Option1", ;
+		Option1.Style = 0, ;
+		Option1.Top = 5, ;
+		Option1.Value = 1, ;
+		Option1.Width = 218, ;
+		Option2.AutoSize = .F., ;
+		Option2.BackStyle = 0, ;
+		Option2.Caption = "Simple list, alphabetical by extension", ;
+		Option2.Height = 17, ;
+		Option2.Left = 5, ;
+		Option2.Name = "Option2", ;
+		Option2.Style = 0, ;
+		Option2.Top = 30, ;
+		Option2.Width = 218, ;
+		Option3.AutoSize = .T., ;
+		Option3.BackStyle = 0, ;
+		Option3.Caption = "Categorized list (Classes, Forms, etc)", ;
+		Option3.Height = 17, ;
+		Option3.Left = 5, ;
+		Option3.Name = "Option3", ;
+		Option3.Style = 0, ;
+		Option3.Top = 55, ;
+		Option3.Width = 225
+		*< END OBJECT: BaseClass="optiongroup" />
 
 	ADD OBJECT 'pfSettings.pageReplace.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
@@ -2653,59 +2666,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Option3.Top = 4, ;
 		Option3.Width = 100
 		*< END OBJECT: BaseClass="optiongroup" />
-
-	ADD OBJECT 'pfSettings.pageThor.Label1' AS label WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "GoFish will be automatically registered with Thor if it is present. This will provide a way to assign a hotkey to launch Gofish, as well as expose classes for advanced uses of GoFish.", ;
-		Height = 32, ;
-		Left = 38, ;
-		Name = "Label1", ;
-		Top = 25, ;
-		Width = 555, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.pageThor.Label2' AS label WITH ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Learn more about Thor", ;
-		FontUnderline = .T., ;
-		ForeColor = 0,0,255, ;
-		Height = 17, ;
-		Left = 412, ;
-		MousePointer = 15, ;
-		Name = "Label2", ;
-		Top = 68, ;
-		Width = 128
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.pageThor.Label4' AS label WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Caption = "You can learn more about Thor at the VFPX.CodePlex.com website.", ;
-		Height = 32, ;
-		Left = 38, ;
-		Name = "Label4", ;
-		Top = 68, ;
-		Width = 398, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.pageThor.lblNoTHor' AS label WITH ;
-		Alignment = 2, ;
-		Anchor = 256, ;
-		BackStyle = 0, ;
-		Caption = "Thor is not presently running on your system.", ;
-		ForeColor = 255,0,0, ;
-		Height = 17, ;
-		Left = 38, ;
-		Name = "lblNoTHor", ;
-		Top = 105, ;
-		Visible = .F., ;
-		Width = 245, ;
-		WordWrap = .T.
-		*< END OBJECT: BaseClass="label" />
 	
 	PROCEDURE Activate
 		Thisform.Refresh()
@@ -3001,21 +2961,9 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*/SF 20221015
 		
 		*SF 20221017
-		Thisform.pfSettings.pageAdvanced.chk_CRLocal_Default.Visible = Thisform.oForm.nFirstLoad=2
-		Thisform.pfSettings.pageAdvanced.chk_CRLocal.Visible         = Thisform.oForm.nFirstLoad=2
-		Thisform.pfSettings.pageAdvanced.cmdSetFolder.Visible        = Thisform.oForm.nFirstLoad=2 And Thisform.lCR_Local
-		Thisform.pfSettings.pageAdvanced.Text1.Visible               = Thisform.oForm.nFirstLoad=2 And Thisform.lCR_Local
-		
-		Thisform.pfSettings.pageAdvanced.Label9.Visible = Thisform.oForm.lCR_Store_Restart
-		
 		Thisform.cCR_StoreLocal_Option = Evl(Thisform.cCR_StoreLocal_Option,;
 			Iif(Thisform.lCR_Local,Thisform.cCR_StoreLocal,''))
 		Thisform.cCR_StoreLocal_Set    = Thisform.cCR_StoreLocal_Option
-		
-		Thisform.pfSettings.pageReferences.Enabled        = Thisform.oForm.nFirstLoad=2
-		Thisform.pfSettings.pageReferences.Container.Check6.Enabled = Thisform.lCR_SimpleTree
-		Thisform.pfSettings.pageReferences.Container.Check7.Enabled = Thisform.lCR_HistoryTree
-		Thisform.pfSettings.pageReferences.Container.Check8.Enabled = Thisform.lCR_HistoryTree
 		
 		*/SF 20221017
 		
@@ -3130,8 +3078,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			Thisform.Set_LocalFolder(Thisform.cCR_StoreLocal_Option)
 		Endif &&!EMPTY(Thisform.cCR_StoreLocal_Option) AND Thisform.cCR_StoreLocal_Option=Thisform.cCR_StoreLocal_Set
 		
-		If Thisform.pfSettings.pageAdvanced.Label9.Visible Then
-			Thisform.oForm.lCR_Store_Restart = .T.
+		If Thisform.oForm.lCR_Store_Restart
 			Messagebox('You will have to restart GoFish for this change to take effect.', 0, 'Notice:')
 		
 		Endif &&Thisform.pfSettings.pageAdvanced.Label9.Visible
@@ -3189,8 +3136,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 				Endif &&Directory(m.tcFolder)
 		Endcase
 		
-		Thisform.pfSettings.pageAdvanced.Text1.Refresh
-		
 		Return m.llSet
 		
 	ENDPROC
@@ -3233,16 +3178,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 		
 		
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page1.Label3.Click
-		GF_Shell('https://github.com/VFPX/Thor')
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page1.Label5.Click
-		GF_Shell('https://github.com/VFPX/GoFish')
 		
 	ENDPROC
 
@@ -3338,36 +3273,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			
 	ENDPROC
 
-	PROCEDURE pfSettings.pageAdvanced.chk_CRLocal.InteractiveChange
-		This.SetFocus
-		
-		This.Parent.Label9.Visible = .T.
-		
-		If This.Value Then
-			This.Value = Thisform.Set_LocalFolder()
-		
-		Endif &&This.Value
-		
-		This.Parent.cmdSetFolder.Visible = Thisform.oForm.nFirstLoad=2 And Thisform.lCR_Local
-		This.Parent.Text1.Visible        = Thisform.oForm.nFirstLoad=2 And Thisform.lCR_Local
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.pageAdvanced.chk_CRMode.InteractiveChange
-		This.SetFocus
-		
-		This.Parent.Label9.Visible              = .T.
-		This.Parent.chk_CRLocal_Default.Visible = This.Value
-		This.Parent.chk_CRLocal.Visible         = This.Value
-		This.Parent.Text1.Visible               = This.Value
-		This.Parent.cmdSetFolder.Visible        = This.Value And Thisform.lCR_Local
-		
-		If This.Value Then
-			Thisform.Set_LocalFolder()
-		Endif &&This.Value
-		
-	ENDPROC
-
 	PROCEDURE pfSettings.pageAdvanced.cmdDeleteConfigFiles.Click
 		Local lcFilesToDelete, lcPath, lnResponse
 		
@@ -3399,19 +3304,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*/SF 20221018 -> local storage
 		
 		GF_OpenExplorerWindow(lcPath)
-	ENDPROC
-
-	PROCEDURE pfSettings.pageAdvanced.cmdSetFolder.Click
-		Local;
-			lcFolder As String
-		
-		lcFolder = Thisform.cCR_StoreLocal_Option
-		lcFolder = Getdir(m.lcFolder,'Local GoFish config folder. Please pick one.','',64+1+32+2+8)
-		If !Empty(m.lcFolder) Then
-			Thisform.cCR_StoreLocal_Option = m.lcFolder
-			This.Parent.Label9.Visible = .T.
-		Endif &&!EMPTY(m.lcFolder)
-		
 	ENDPROC
 
 	PROCEDURE pfSettings.pageAdvanced.List1.Click
@@ -3448,10 +3340,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		This.RowSource = Thisform.cCR_StoreLocal + 'GF_*.xml'
 		*/SF 20221018 -> local storage
 		
-	ENDPROC
-
-	PROCEDURE pfSettings.pageAdvanced.Text1.When
-		RETURN .F.
 	ENDPROC
 
 	PROCEDURE pfSettings.pageBackups.Check1.Click
@@ -3854,6 +3742,15 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
+	PROCEDURE pfSettings.pagePreferences.Check4.Init
+		Text To this.ToolTipText Noshow Textmerge
+		At startup, set scope to the Active Project, if any, else the current directory.
+		
+		If not selected, the most recently used scope remains active.
+		Endtext
+		
+	ENDPROC
+
 	PROCEDURE pfSettings.pagePreferences.chkDesktop.InteractiveChange
 		Local lcSettingsFile, loMy, loSettings
 		
@@ -3917,17 +3814,164 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			
 	ENDPROC
 
-	PROCEDURE pfSettings.pageReferences.Container.Check4.InteractiveChange
-		This.SetFocus
+	PROCEDURE pfSettings.pageReferences.Activate
+		This.Refresh()
 		
-		This.Parent.Check7.Enabled = This.Value
-		This.Parent.Check8.Enabled = This.Value
 	ENDPROC
 
-	PROCEDURE pfSettings.pageReferences.Container.Check5.InteractiveChange
-		This.SetFocus
+	PROCEDURE pfSettings.pageReferences.Check1.Init
+		Text To this.ToolTipText Noshow Textmerge
+		At startup, set scope to the Active Project, if any, else the current directory.
 		
-		This.Parent.Check6.Enabled = This.Value
+		If not selected, the most recently used scope remains active.
+		Endtext
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.chk_CRMode.Valid
+		Thisform.oForm.lCR_Store_Restart = .T.
+		
+		With This.Parent
+			.Container1.Refresh()
+			.Label9.Refresh()
+		Endwith
+		
+		
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Check2.Refresh
+		This.Enabled = Thisform.lCR_HistoryTree
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Check4.Valid
+		This.Parent.Check2.Refresh()
+		This.Parent.Check7.Refresh()
+		This.Parent.Check8.Refresh()
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Check7.Refresh
+		This.Enabled = Thisform.lCR_HistoryTree
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Check8.Refresh
+		This.Enabled = Thisform.lCR_HistoryTree
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.cmdSetFolder.Click
+		Local lcFolder As String
+		
+		lcFolder = Thisform.cCR_StoreLocal_Option
+		lcFolder = Getdir(m.lcFolder, 'Local GoFish config folder. Please pick one.', '', 64 + 1 + 32 + 2 + 8)
+		If Not Empty(m.lcFolder) Then
+			Thisform.cCR_StoreLocal_Option = m.lcFolder
+			This.Parent.txtParentFolder.Refresh()
+		Endif &&!EMPTY(m.lcFolder)
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.cmdSetFolder.Refresh
+		This.Visible = Thisform.lCR_Local And Not Thisform.lCR_Local_Default
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.Optiongroup1.Refresh
+		Do Case
+			Case Thisform.lCR_Local_Default
+				This.Value = 2
+			Case Thisform.lCR_Local
+				This.Value = 3
+			Otherwise
+				This.Value = 1
+		Endcase
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.Optiongroup1.Valid
+		Do Case
+			Case This.Value = 1
+				Thisform.lCR_Local		   = .F.
+				Thisform.lCR_Local_Default = .F.
+			Case This.Value = 2
+				Thisform.lCR_Local		   = .T.
+				Thisform.lCR_Local_Default = .T.
+			Case This.Value = 3
+				Thisform.lCR_Local		   = .T.
+				Thisform.lCR_Local_Default = .F.
+		Endcase
+		
+		This.Parent.txtParentFolder.Refresh()
+		This.Parent.cmdSetFolder.Refresh()
+		
+		Thisform.oForm.lCR_Store_Restart = .T.
+		This.Parent.Parent.Parent.Label9.Refresh()
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.Refresh
+		This.Visible   = Thisform.lCR_Allow
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Container1.txtParentFolder.Refresh
+		Local lcFolder, loException
+		
+		lcFolder = '*** Error ***'
+		
+		Try
+			Do Case
+				Case Thisform.lCR_Local_Default
+					lcFolder = Addbs(Justpath(Set('Resource', 1)))  + 'GoFish_'
+				Case Thisform.lCR_Local
+					lcFolder = Addbs(Thisform.cCR_StoreLocal_Option)
+				Otherwise
+					lcFolder = Addbs( Home(7)) + 'GoFish_'
+			Endcase
+		Catch To m.loException
+		
+		Endtry
+		
+		lcFolder = Lower(Addbs(m.lcFolder)) 
+		
+		Thisform.cCR_StoreLocal_Option = lcFolder
+		
+		This.Value = m.lcFolder
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Container1.Refresh
+		This.Visible   = Thisform.lCR_Allow
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Label9.Refresh
+		This.Visible = Thisform.oForm.lCR_Store_Restart
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Optiongroup1.Refresh
+		Do Case
+			Case Thisform.lCR_SimpleTree and Thisform.lCR_SortTreeByExt
+				This.Value = 2
+			Case Thisform.lCR_SimpleTree
+				This.Value = 1
+			Otherwise
+				This.Value = 3
+		Endcase
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.pageReferences.Optiongroup1.Valid
+		Do Case
+			Case This.Value = 1
+				Thisform.lCR_SimpleTree	   = .T.
+				Thisform.lCR_SortTreeByExt = .F.
+			Case This.Value = 2
+				Thisform.lCR_SimpleTree	   = .T.
+				Thisform.lCR_SortTreeByExt = .T.
+			Case This.Value = 3
+				Thisform.lCR_SimpleTree	   = .F.
+				Thisform.lCR_SortTreeByExt = .F.
+		Endcase
+		
 		
 	ENDPROC
 
@@ -4013,25 +4057,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		this.Parent.pageBackups.Enabled = Thisform.oSearchOptions.lEnableReplaceMode
 		
 		DoDefault()
-	ENDPROC
-
-	PROCEDURE pfSettings.pageThor.Activate
-		Local llThorRunning
-		
-		Try
-		    ExecScript(_Screen.cThorDispatcher, '?')
-		    llThorRunning = .T.
-		Catch
-		    llThorRunning = .F.
-		EndTry
-		
-		This.lblNoThor.Visible = !llThorRunning
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.pageThor.Label2.Click
-		GF_Shell('https://github.com/VFPX/Thor')
-		
 	ENDPROC
 
 ENDDEFINE

@@ -4,6 +4,10 @@
 
 [FAQ](docs/FAQ.md)
 
+## Version 7.0.30 - 2024-05-04
+
+- Consolidated all the settings introduced in version 6 into a single page ("New in V6") on the Options form.  Many of the captions were edited for clarity and some tooltips were added.
+
 ## Version 7.0.29 - 2024-04-23
 
 - Added checkbox on the History form to provide for filtering search history to the current scope.

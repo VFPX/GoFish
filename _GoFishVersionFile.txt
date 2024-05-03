@@ -7,6 +7,10 @@ Text to lcNote NoShow
 
 [FAQ](docs/FAQ.md)
 
+## Version 7.0.30 - 2024-05-04
+
+- Consolidated all the settings introduced in version 6 into a single page ("New in V6") on the Options form.  Many of the captions were edited for clarity and some tooltips were added.
+
 ## Version 7.0.29 - 2024-04-23
 
 - Added checkbox on the History form to provide for filtering search history to the current scope.
@@ -158,12 +162,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
     * In FRX files in `Field` records (`ObjType = 8`)
 * In the History form, sort on columns by clicking column headings.
 * When upgrading from version 5 to version 7 (#151):
-    * the search and history files for version 5 are no longer removed, so version 5 and GF Classic will still work.
-    * however, the search and history files are not imported into version 7.
-* If regular expression search is chosen and the search expression doesn't contains special characters for regular expre
+    * the search and history files for version 5 are no longer removed, so version 5 and GF C
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.29 - April 23, 2024 - 20240423')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.30 - May 03, 2024 - 20240503')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
