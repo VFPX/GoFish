@@ -9,6 +9,8 @@
 ---
 
 - <a href="#newinversion7">What's new in version 7?</a>
+- <a href="#ResultsScope">What does "Results" mean in the combobox choices for Scope?</a>
+- <a href="#CustomUDFScope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
 - <a href="#newinversion6">What's new in version 6?</a>
 - <a href="#nodebugger">Why is GoFish so sloooow at times?</a>
 - <a href="#columnsorting">How do I sort the columns in the grid?</a>
@@ -39,6 +41,36 @@ However, there's a little more to it.  GF provides multi-level (or cascading) so
 There are also sort-related options in the right-click context menu of column headers.
 
 ![](Screenshots/HeaderContextMenu.png)
+
+---
+
+### <a id="ResultsScope">What does "Results" mean in the combobox choices for Scope?</a>
+
+The "Results" option allows you to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in a folder or project. This provides a fast and progressive sub-search of the current result set.
+
+![](SearchResults.png)
+
+Note that after using this new option you will need to reset the scope to its original value.
+
+---
+
+### <a id="CustomUDFScope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
+
+This option provides for the use of a custom UDF to generate the list of files to be searched (instead of files in the scope folder or project). 
+
+This allows for considerable flexibility in defining the scope; for instance. the UDF could use a Windows command like FindStr to pre-filter the files in a very large folder, greatly reducing the number of files GF would need to search.
+
+The UDF has full access to all settings used in GF and updates a cursor which is to contain the list of files.
+
+The sample PRG below shows the parameters supplied to the UDF, how to access some of the more commonly used settings, and how to update the cursor of file names.
+
+![](SampleCustomUDF.png)
+
+You notify GF of the UDF file name in the Options form:
+
+![](CustomUDFOptions.png)
+
+
 
 ---
 

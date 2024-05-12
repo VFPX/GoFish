@@ -125,6 +125,8 @@ Define Class GoFishSearchOptions As Custom
 
 	* 1 = Active Project, 2=Browse Project, 3 = Current Dir, 4= Browse Directory, 5 = All Open Projects
 	nSearchScope                           = 3
+	nPreviousSearchScope				   = 3
+	
 *!* - rk - 2023-10-22 - added property to stop problem in 
 *!* - gofishSearchEngine.prg|SetIncludePattern 
 	oRegExpFileTemplate              = .Null.
@@ -143,6 +145,9 @@ Define Class GoFishSearchOptions As Custom
 
 	*** JRN 2024-02-14 : Used if wild cards use whole word search
 	cWholeWordSearch = ''
+
+	*** JRN 2024-05-04 : File extensions searched in current search
+	cSearchExtensions = ''
 
 	*---------------------------------------------------------------------
 
