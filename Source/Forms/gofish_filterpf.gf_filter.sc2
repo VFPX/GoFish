@@ -471,7 +471,7 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 		Command2.Visible = .T., ;
 		Line1.Left = 6, ;
 		Line1.Name = "Line1", ;
-		Line1.Top = 22, ;
+		Line1.Top = 33, ;
 		Line1.Width = 351, ;
 		Line2.Left = 5, ;
 		Line2.Name = "Line2", ;
@@ -488,21 +488,21 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 		chkTimeStamp.Width = 71, ;
 		Label11.Left = 6, ;
 		Label11.Name = "Label11", ;
-		Label11.Top = 41, ;
+		Label11.Top = 48, ;
 		Label12.Left = 132, ;
 		Label12.Name = "Label12", ;
-		Label12.Top = 40, ;
+		Label12.Top = 47, ;
 		txtTimeStampFrom.ControlSource = "Timestamp_FilterFrom", ;
 		txtTimeStampFrom.Height = 23, ;
 		txtTimeStampFrom.Left = 31, ;
 		txtTimeStampFrom.Name = "txtTimeStampFrom", ;
-		txtTimeStampFrom.Top = 36, ;
+		txtTimeStampFrom.Top = 43, ;
 		txtTimeStampFrom.Width = 88, ;
 		txtTimeStampTo.ControlSource = "Timestamp_FilterTo", ;
 		txtTimeStampTo.Height = 23, ;
 		txtTimeStampTo.Left = 156, ;
 		txtTimeStampTo.Name = "txtTimeStampTo", ;
-		txtTimeStampTo.Top = 36, ;
+		txtTimeStampTo.Top = 43, ;
 		txtTimeStampTo.Width = 88
 		*< END OBJECT: ClassLib="..\lib\gofishui.vcx" BaseClass="container" />
 

@@ -5,7 +5,13 @@ Text to lcNote NoShow
 
 [Report Issues / Ask Questions / Make Suggestions](https://github.com/VFPX/GoFish/issues)
 
-[FAQ](docs/FAQ.md)
+[FAQ](FAQ.md)
+
+## Version 7.0.31 - 2024-05-12
+
+- Added new Scope option "Results" to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in the scope folder or project.
+- Added new Scope option "Custom UDF" to provide for the use of a custom UDF to generate the list of files to be searched (instead of files in the scope folder or project).  See [this FAQ Item](FAQ.md#CustomUDFScope).
+- Fixed bug in wildcard search when search expressions began with '*'
 
 ## Version 7.0.30 - 2024-05-04
 
@@ -155,17 +161,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * The Code View pane for matches in MNX files has been enhanced to be more descriptive, showing the `Prompt`, `Command`, `Procedure`, and `SkipFor` fields for the match. (#87)
 
 # Other enhancements
-* New feature for editing MNXs: Double-clicking on a match in an MNX (`Prompt`, `Command`, or `Procedure`) now opens the MNX to that exact row for editing. (Experimental)
-* The "Code Only" checkbox filter has been enhanced to find matches in some places previously ignored. It now also includes code matches found:
-    * In #Define statements
-    * In MNX files in `Command`, `Procedure`, or `SkipFor` fields
-    * In FRX files in `Field` records (`ObjType = 8`)
-* In the History form, sort on columns by clicking column headings.
-* When upgrading from version 5 to version 7 (#151):
-    * the search and history files for version 5 are no longer removed, so version 5 and GF C
+* New feature for editing MNXs: Double-clicking on a match in an MNX (`Prompt`, `Command`, or `Procedure`) now opens the MNX to that exac
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.30 - May 03, 2024 - 20240503')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.31 - May 12, 2024 - 20240512')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

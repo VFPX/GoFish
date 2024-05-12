@@ -183,6 +183,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Spinner4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.cmdZoomDefault" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.cmdBrowse" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.cmdEdit" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.txtCustomUDF" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.cmdGotoFAQ" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdOK" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Gf_versionlabel1" UniqueID="" Timestamp="" />
@@ -499,6 +505,45 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 69
 		*< END OBJECT: BaseClass="spinner" />
 
+	ADD OBJECT 'pfSettings.Page3.cmdBrowse' AS commandbutton WITH ;
+		Anchor = 0, ;
+		Caption = "Select UDF", ;
+		FontBold = .F., ;
+		FontSize = 8, ;
+		Height = 20, ;
+		Left = 19, ;
+		Name = "cmdBrowse", ;
+		Picture = ..\images\, ;
+		ToolTipText = 'If "Custom UDF" is selected for Scope ...', ;
+		Top = 426, ;
+		Width = 65
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.cmdEdit' AS commandbutton WITH ;
+		Caption = "Edit UDF", ;
+		FontSize = 8, ;
+		Height = 19, ;
+		Left = 86, ;
+		Name = "cmdEdit", ;
+		Picture = ..\images\, ;
+		Top = 426, ;
+		Width = 54
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.cmdGotoFAQ' AS commandbutton WITH ;
+		Anchor = 0, ;
+		Caption = "Go to FAQ", ;
+		FontBold = .F., ;
+		FontSize = 8, ;
+		Height = 20, ;
+		Left = 433, ;
+		Name = "cmdGotoFAQ", ;
+		Picture = ..\images\, ;
+		ToolTipText = "", ;
+		Top = 395, ;
+		Width = 65
+		*< END OBJECT: BaseClass="commandbutton" />
+
 	ADD OBJECT 'pfSettings.Page3.contCodeView' AS container WITH ;
 		Anchor = 10, ;
 		BackStyle = 0, ;
@@ -690,17 +735,17 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check13' AS checkbox WITH ;
 		Alignment = 0, ;
-		AutoSize = .F., ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "When editing, select the control in which text is found (v7)", ;
 		ControlSource = "Thisform.oForm.lSelectControl", ;
-		Height = 30, ;
+		Height = 17, ;
 		Left = 66, ;
 		Name = "Check13", ;
 		TabIndex = 14, ;
 		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
 		Top = 70, ;
-		Width = 340, ;
+		Width = 328, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -727,6 +772,48 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Top = 28, ;
 		Width = 113
 		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.Label3' AS label WITH ;
+		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "Custom Scope UDF:", ;
+		FontBold = .T., ;
+		Height = 17, ;
+		Left = 17, ;
+		Name = "Label3", ;
+		TabIndex = 4, ;
+		Top = 397, ;
+		Width = 113
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.Label4' AS label WITH ;
+		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "For generating scope cursor (of files to be searched):", ;
+		Height = 17, ;
+		Left = 134, ;
+		Name = "Label4", ;
+		TabIndex = 4, ;
+		Top = 397, ;
+		Width = 292
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.txtCustomUDF' AS textbox WITH ;
+		Anchor = 10, ;
+		ControlSource = "Thisform.oForm.cCustomScopeUDFFileName", ;
+		Enabled = .F., ;
+		FontBold = .F., ;
+		FontItalic = .F., ;
+		FontName = "Courier New", ;
+		FontSize = 9, ;
+		Height = 23, ;
+		Left = 144, ;
+		Name = "txtCustomUDF", ;
+		Top = 424, ;
+		Width = 484
+		*< END OBJECT: BaseClass="textbox" />
 
 	ADD OBJECT 'pfSettings.pageAdvanced.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
@@ -3194,6 +3281,56 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
+	PROCEDURE pfSettings.Page3.cmdBrowse.Click
+		lcFile = GetFile("PRG", "", "Select", 0, "Choose UDF File for Custom Scope:")
+		
+		If Empty(lcFile)
+			Thisform.oForm.cCustomScopeUDFFileName = ""
+		Else
+			Thisform.oForm.cCustomScopeUDFFileName = lcFile
+		Endif
+		
+		This.Parent.cmdEdit.Refresh()
+		This.Parent.txtCustomUDF.Refresh()
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.cmdBrowse.Refresh
+		Text To this.ToolTipText Noshow Textmerge
+		If "Custom UDF" is selected for Scope, then this UDF is called 
+		to populate a cursor with the list of all files to be searched.  
+		
+		This UDF takes two parameters:
+		   [1] The search options object 
+		   [2] The name of the cursor (which will exist).    
+		Endtext
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.cmdEdit.Click
+		Local lcFile
+		
+		lcFile = Thisform.oForm.cCustomScopeUDFFileName
+		Modify Command (lcFile)
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.cmdEdit.Refresh
+		This.Enabled = !Empty(Thisform.oForm.cCustomScopeUDFFileName)
+		
+		Text To this.ToolTipText Noshow Textmerge
+		If "Custom UDF" is selected for Scope, then this UDF is called 
+		to populate a cursor with the list of all files to be searched.  
+		
+		This UDF takes two parameters:
+		   [1] The search options object 
+		   [2] The name of the cursor (which will exist).    
+		Endtext
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.cmdGotoFAQ.Click
+		GF_Shell('https://github.com/VFPX/GoFish/blob/master/docs/FAQ.md#CustomUDFScope')
+	ENDPROC
+
 	PROCEDURE pfSettings.Page3.contCodeView.Check12.Refresh
 		If Empty(Thisform.oForm.GetCustomcss())
 			This.Value	 = .F.
@@ -3271,6 +3408,13 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Endif
 		
 			
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.txtCustomUDF.MouseEnter
+		LPARAMETERS nButton, nShift, nXCoord, nYCoord
+		
+		This.ToolTipText = This.Value
+		
 	ENDPROC
 
 	PROCEDURE pfSettings.pageAdvanced.cmdDeleteConfigFiles.Click

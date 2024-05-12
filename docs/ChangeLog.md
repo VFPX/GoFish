@@ -2,7 +2,13 @@
 
 [Report Issues / Ask Questions / Make Suggestions](https://github.com/VFPX/GoFish/issues)
 
-[FAQ](docs/FAQ.md)
+[FAQ](FAQ.md)
+
+## Version 7.0.31 - 2024-05-12
+
+- Added new Scope option "Results" to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in the scope folder or project. 
+- Added new Scope option "Custom UDF" to provide for the use of a custom UDF to generate the list of files to be searched (instead of files in the scope folder or project).  See [this FAQ Item](FAQ.md#CustomUDFScope).
+- Fixed bug in wildcard search when search expressions began with '*'
 
 ## Version 7.0.30 - 2024-05-04
 

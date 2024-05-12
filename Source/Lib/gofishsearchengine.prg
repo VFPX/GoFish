@@ -133,6 +133,9 @@ Define Class GoFishSearchEngine As Custom
 	*** JRN 2024-03-10 : In Code View pane, # lines to precede the match
 	* provided for those where the code view does not auto-align
 	nCodeViewLinesBefore = 1000
+	
+	dSearchFromDate 	= {}
+	dSearchToDate	 	= {}
 
 *----------------------------------------------------------------------------------
 	Procedure AddColumn(tcTable, tcColumnName, tcColumnDetails)
@@ -2944,6 +2947,16 @@ Result
 
 
 *----------------------------------------------------------------------------------
+	Procedure IncludeExtension(tcSelected, tcExtension)
+	
+		If m.tcSelected
+			This.oSearchOptions.cSearchExtensions = This.oSearchOptions.cSearchExtensions + m.tcExtension + ' '
+		Endif
+	
+	Endproc
+		
+	
+*----------------------------------------------------------------------------------
 	Procedure IncrementProgressBar(tnAmount)
 
 		If Vartype(This.oProgressBar) = 'O'
@@ -3317,7 +3330,11 @@ x
 				This.oSearchOptions.dTimeStampTo = Ttod(This.oSearchOptions.dTimeStampTo)
 			Catch
 				This.oSearchOptions.dTimeStampTo = {}
-		Endtry
+		EndTry
+		
+		If This.oSearchOptions.nSearchScope = 6 && Results
+			This.oSearchOptions.nSearchScope = This.oSearchOptions.nPreviousSearchScope
+		EndIf 
 
 		Return .T.
 
@@ -3457,6 +3474,8 @@ x
 *----------------------------------------------------------------------------------
 	Procedure PrepareForSearch
 
+		Local ldToDate
+	
 		Clear Typeahead
 
 		This.lEscPress            = .F.
@@ -3482,6 +3501,12 @@ x
 
 		This.SetFilesToSkip()
 
+		This.SetSearchedExtensions()
+	
+		This.dSearchFromDate = Evl(This.oSearchOptions.dTimeStampFrom, {^1900-01-01})
+		ldToDate			 = Evl(This.oSearchOptions.dTimeStampTo, {^9999-01-01})
+		This.dSearchToDate	 = m.ldToDate + 1 &&86400 && Must bump into to next day, since TimeStamp from table has time on it
+	
 	Endproc
 
 
@@ -3546,23 +3571,29 @@ x
 
 	*----------------------------------------------------------------------------------
 	Procedure PrepareRegExForSearch
-		Local lcSearchExpression
+		Local lcSearchExpression, lcWord, lnI
 	
 		lcSearchExpression = This.oSearchOptions.cSearchExpression
 		*** JRN 2024-02-14 : "Normal" regex for non wild-card searches
 		This.PrepareRegExForSearchV2(This.oRegExForSearch, m.lcSearchExpression, .T.)
 	
 		If This.IsWildCardStatementSearch()
-			*** JRN 2024-02-14 : for wild card searches, only search for up to the first *
+			*** JRN 2024-02-14 : for wild card searches, only search for the longest text between *s
 			If This.oSearchOptions.lMatchWholeWord
 				This.oSearchOptions.cWholeWordSearch = This.PrepareForWholeWordSearch(m.lcSearchExpression)
 			Endif
-			lcSearchExpression		= Left(m.lcSearchExpression, Atc('*', m.lcSearchExpression) - 1)
+			lcSearchExpression = ''
+			For lnI = 1 To Getwordcount(This.oSearchOptions.cSearchExpression, '*')
+				lcWord = Getwordnum(This.oSearchOptions.cSearchExpression, m.lnI, '*')
+				If Len(m.lcWord) > Len(m.lcSearchExpression)
+					lcSearchExpression = m.lcWord
+				Endif
+			Endfor
 		Endif
 		This.PrepareRegExForSearchV2(This.oRegExForSearchInCode, m.lcSearchExpression, .F.)
 	
 	Endproc
-			
+				
 	
 	Procedure PrepareRegExForSearchV2(loRegEx, lcSearchExpression, llMain)
 	
@@ -4544,6 +4575,60 @@ x
 
 
 *----------------------------------------------------------------------------------
+	Procedure SearchInCustomUDFCursor(tcCustomScopeUDFFileName, m.ttTime, m.tcUni)
+	
+		Local lcCustomAlias, lnReturn, lnSeconds, lnSelect
+	
+		lnSeconds = Seconds()
+		lnSelect  = Select()
+	
+		This.tRunTime				 = Evl(m.ttTime, Datetime())
+		This.cUni					 = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		If Empty(m.tcCustomScopeUDFFileName) or Not File(m.tcCustomScopeUDFFileName)
+			This.SetSearchError('Custom Scope UDF not defined' + CRLF + CRLF + [See "New in V7" page in the Options form], 16)
+			Return 0
+		Endif
+	
+		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
+		Create Cursor (m.lcCustomAlias) (FileName C(240))
+	
+		Do (m.tcCustomScopeUDFFileName) With This.oSearchOptions, m.lcCustomAlias
+	
+		This.nADirTime = Seconds() - m.lnSeconds
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+	
+		Select (m.lcCustomAlias)
+		This.StartProgressBar(Reccount())
+	
+		Scan
+	
+			lnReturn = This.SearchInFile(Alltrim(FileName))
+	
+			This.UpdateProgressBar(This.nFilesProcessed)
+	
+			If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+				Exit
+			Endif
+	
+		Endscan
+	
+		This.SearchFinished(m.lnSelect)
+	
+		Use In (m.lcCustomAlias)
+	
+		If Evl(m.lnReturn, 0) >= 0
+			Return 1
+		Else
+			Return m.lnReturn
+		Endif
+	
+	Endproc
+		
+
+*----------------------------------------------------------------------------------
 	Procedure SearchInFile(tcFile, tlForce)
 
 *-- Only searches passed file if its file ext is marked for inclusion (i.e. lIncludeSCX)
@@ -4739,7 +4824,7 @@ x
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
 		Create Cursor ProjectFiles (FileName C(200), Type C(1))
-	
+		
 		For lnI = 1 To _vfp.Projects.Count
 			lcProject = _vfp.Projects[m.lnI].Name
 	
@@ -5035,6 +5120,50 @@ j
 
 	Endproc
 
+
+*----------------------------------------------------------------------------------
+	Procedure SearchInResults(tcResultsCursor, m.ttTime, m.tcUni)
+	
+		Local lcCustomAlias, lcFilter, lnReturn, lnSeconds, lnSelect
+	
+		lnSeconds = Seconds()
+		lnSelect  = Select()
+	
+		This.tRunTime = Evl(m.ttTime, Datetime())
+		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		This.nADirTime = Seconds() - m.lnSeconds
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+	
+		Select (m.tcResultsCursor)
+		This.StartProgressBar(Reccount())
+	
+		Scan
+	
+			lnReturn = This.SearchInFile(Alltrim(FileName))
+	
+			This.UpdateProgressBar(This.nFilesProcessed)
+	
+			If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+				Exit
+			Endif
+	
+		Endscan
+	
+		This.SearchFinished(m.lnSelect)
+	
+		Use In (m.tcResultsCursor)
+	
+		If m.lnReturn >= 0
+			Return 1
+		Else
+			Return m.lnReturn
+		Endif
+	
+	Endproc
+	
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInTable(tcFile)
@@ -5733,6 +5862,33 @@ loRegExp.Escape_Like(JUSTSTEM(laPattern(m.lnPattern))) + "\." + loRegExp.Escape_
 	Endproc
 
 
+*----------------------------------------------------------------------------------
+
+	Proc SetSearchedExtensions
+		This.oSearchOptions.cSearchExtensions = ''
+	
+		This.IncludeExtension(This.oSearchOptions.lIncludeSCX, 'SCX')
+		This.IncludeExtension(This.oSearchOptions.lIncludeVCX, 'VCX' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeFRX, 'FRX' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeDBC, 'DBC' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeMNX, 'MNX' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeLBX, 'LBX' )
+		This.IncludeExtension(This.oSearchOptions.lIncludePJX, 'PJX' )
+		This.IncludeExtension(This.oSearchOptions.lIncludePRG, 'PRG' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeMPR, 'MPR' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeTXT, 'TXT' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeINI, 'INI' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeH,   'H'   )
+		This.IncludeExtension(This.oSearchOptions.lIncludeXML, 'XML' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeSPR, 'SPR' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeASP, 'ASP' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeJSP, 'JSP' )
+		This.IncludeExtension(This.oSearchOptions.lIncludeJAVA, 'JAVA')
+		This.IncludeExtension(This.oSearchOptions.lIncludeHTML, 'HTM HTML')
+		This.IncludeExtension(.T., Upper(Chrtran(This.oSearchOptions.cOtherIncludes, ',;', '  ')))
+	
+	Endproc
+		
 *----------------------------------------------------------------------------------
 	Procedure ShowError(tcErrorMessage, tnDialogBoxType, tcTitle)
 
