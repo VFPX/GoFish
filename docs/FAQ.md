@@ -9,8 +9,8 @@
 ---
 
 - <a href="#newinversion7">What's new in version 7?</a>
-- <a href="#ResultsScope">What does "Results" mean in the combobox choices for Scope?</a>
-- <a href="#CustomUDFScope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
+- <a href="#resultsscope">What does "Results" mean in the combobox choices for Scope?</a>
+- <a href="#customudfScope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
 - <a href="#newinversion6">What's new in version 6?</a>
 - <a href="#nodebugger">Why is GoFish so sloooow at times?</a>
 - <a href="#columnsorting">How do I sort the columns in the grid?</a>
@@ -44,17 +44,17 @@ There are also sort-related options in the right-click context menu of column he
 
 ---
 
-### <a id="ResultsScope">What does "Results" mean in the combobox choices for Scope?</a>
+### <a id="resultsscope">What does "Results" mean in the combobox choices for Scope?</a>
 
 The "Results" option allows you to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in a folder or project. This provides a fast and progressive sub-search of the current result set.
 
-![](SearchResults.png)
+![](Screenshots/SearchResults.png)
 
 Note that after using this new option you will need to reset the scope to its original value.
 
 ---
 
-### <a id="CustomUDFScope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
+### <a id="customudfscope">What does "Custom UDF" mean in the combobox choices for Scope?</a>
 
 This option provides for the use of a custom UDF to generate the list of files to be searched (instead of files in the scope folder or project). 
 
@@ -64,11 +64,11 @@ The UDF has full access to all settings used in GF and updates a cursor which is
 
 The sample PRG below shows the parameters supplied to the UDF, how to access some of the more commonly used settings, and how to update the cursor of file names.
 
-![](SampleCustomUDF.png)
+![](Screenshots/SampleCustomUDF.png)
 
 You notify GF of the UDF file name in the Options form:
 
-![](CustomUDFOptions.png)
+![](Screenshots/CustomUDFOptions.png)
 
 
 
@@ -154,7 +154,7 @@ Second, the TreeView can have nodes for all the search history (mimicking Code R
 
 The full list of new options for version 6 can be seen in the page "New in V6" in the options form.
 
-![](NewInV6.png)
+![](Screenshots/NewInV6.png)
 
 ---
 
@@ -188,7 +188,7 @@ Some, however, need to be noted, as they would not be obvious.
 
 The full list of new options for version 7 can be seen in the page "New in V7" in the options form.
 
-![](NewinV7.png)
+![](Screenshots/NewinV7.png)
 
 ---
 
