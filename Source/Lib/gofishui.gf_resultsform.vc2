@@ -910,6 +910,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 
 	ADD OBJECT 'comboSearchScope' AS combobox WITH ;
 		ControlSource = "Thisform.oSearchOptions.nSearchScope", ;
+		DisplayCount = 10, ;
 		FontSize = 8, ;
 		Height = 25, ;
 		Left = 47, ;
@@ -919,7 +920,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		TabStop = .F., ;
 		ToolTipText = "", ;
 		Top = 31, ;
-		Width = 110, ;
+		Width = 120, ;
 		ZOrderSet = 9
 		*< END OBJECT: BaseClass="combobox" />
 
@@ -928,13 +929,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		BoundTo = .T., ;
 		ControlSource = "Thisform.oSearchEngine.oSearchOptions.cRecentScope", ;
 		Height = 25, ;
-		Left = 185, ;
+		Left = 195, ;
 		Name = "comboSearchScopeHistory", ;
 		nexpressionstostore = 200, ;
 		SelectOnEntry = .T., ;
 		TabIndex = 5, ;
 		Top = 31, ;
-		Width = 239, ;
+		Width = 229, ;
 		ZOrderSet = 4
 		*< END OBJECT: ClassLib="gofishui.vcx" BaseClass="combobox" />
 
@@ -1064,7 +1065,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCPIduio9oBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAADTwQAGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAkWzDgrdoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAIgB5QIGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -1910,7 +1911,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 
 	ADD OBJECT 'imgScopeIcon' AS image WITH ;
 		Height = 16, ;
-		Left = 163, ;
+		Left = 173, ;
 		Name = "imgScopeIcon", ;
 		Picture = ..\images\gf_project_icon_16.bmp, ;
 		Top = 36, ;
@@ -2057,13 +2058,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Anchor = 10, ;
 		Enabled = .F., ;
 		Height = 25, ;
-		Left = 185, ;
+		Left = 195, ;
 		Name = "txtSearchResults", ;
 		SelectOnEntry = .T., ;
 		TabIndex = 5, ;
 		Top = 31, ;
 		Value = Search files in results grid, ;
-		Width = 239, ;
+		Width = 229, ;
 		ZOrderSet = 0
 		*< END OBJECT: BaseClass="textbox" />
 	
@@ -3444,7 +3445,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 					* Active project, if any
 				Case Thisform.oSearchOptions.nSearchScope = 1 And _vfp.Projects.Count >= 1
-					lnReturn = m.loSearchEngine.SearchInProject(_vfp.ActiveProject.Name, m.ttTime, m.tcUni)
+					lnReturn = m.loSearchEngine.SearchInSingleProject(_vfp.ActiveProject, m.ttTime, m.tcUni)
 		
 					* Current directory
 				Case Thisform.oSearchOptions.nSearchScope = 3
@@ -3461,7 +3462,16 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 					* named project
 				Case '.PJX' $ Upper(m.lcScope)
-					lnReturn = m.loSearchEngine.SearchInProject(m.lcScope, m.ttTime, m.tcUni)
+					llMatched = .F.
+					For each loProject in _vfp.Projects FoxObject
+						If Upper(loProject.Name) == Upper(m.lcScope)
+							lnReturn = m.loSearchEngine.SearchInSingleProject(loProject, m.ttTime, m.tcUni)
+							llMatched = .t.
+						EndIf
+					EndFor
+					If not m.llMatched
+						lnReturn = m.loSearchEngine.SearchInProject(m.lcScope, m.ttTime, m.tcUni)
+					EndIf 
 		
 					* named folder 
 				Otherwise
@@ -11072,7 +11082,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE ButtonContainer.lblSearchTime.Click
-		Local lcFiles, lcMatchLines, lcPrompt, lnADirTime, lnFilesSearched, lnPerCent, lnSeconds
+		Local lcFiles, lcMatchLines, lcPrompt, lcSavetime, lnADirTime, lnFilesSearched, lnPerCent
+		Local lnPerCent2, lnPerCent3, lnSaveTime, lnSearchTime, lnSeconds
 		
 		With Thisform.oSearchEngine
 			lnSeconds	 = .nSearchTime
@@ -11081,20 +11092,35 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 			lnFilesSearched	= .nFilesSearched
 			lnADirTime		= .nADirTime
-		EndWith
+		Endwith
 		
-		lnSaveTime = Thisform.nSaveTime
+		If m.lnSeconds = 0
+			Return
+		EndIf
 		
-		lnPerCent = Round(100 * m.lnADirTime / m.lnSeconds, 1)
+		lnSaveTime	 = Thisform.nSaveTime
+		lnSearchTime = m.lnSeconds - m.lnADirTime - m.lnSaveTime
+		
+		lnPerCent  = Round(100 * m.lnADirTime / m.lnSeconds, 1)
+		lnPerCent2 = Round(100 * m.lnSearchTime  / m.lnSeconds, 1)
+		
+		If m.lnSaveTime > 0
+			lnPerCent3 = Round(100 * m.lnSaveTime  / m.lnSeconds, 1)
+			lcSavetime = Textmerge('<<Transform(lnSaveTime)>> seconds saving history (<<m.lnPercent3>>%)')
+		Else
+			lcSavetime = ''
+		Endif
 		
 		Text To m.lcPrompt Noshow Textmerge
 		<<Int(lnFilesSearched)>> files processed
 		<<lcFiles>> file(s) with matches
 		<<lcMatchLines>> total matches
 		--------------------------------
-		in <<lnSeconds>> seconds
 		<<lnADirTime>> seconds creating file list (<<m.lnPercent>>%)
-		<<Iif(lnSaveTime> 0, Transform(lnSaveTime) + ' seconds saving history', '')>>
+		<<lnSearchTime>> seconds searching in file list (<<m.lnPercent2>>%)
+		<<m.lcSavetime>>
+		--------------------------------
+		<<lnSeconds>> seconds total
 		Endtext
 		
 		Messagebox(m.lcPrompt)
@@ -11177,15 +11203,65 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE comboSearchScope.Init
+		Local lnRow
+		
 		With This
-			.AddItem("Active Project")		&& 1
-			.AddItem("Browse Project")		&& 2
-			.AddItem("Current Dir")			&& 3
-			.AddItem("Browse Dir")			&& 4
-			.AddItem("All Open Projects")	&& 5
-			.AddItem("Results")				&& 6
-			.AddItem("Custom UDF")			&& 7
-		EndWith
+			.AddProperty('aRowSource[9, 2]')
+			lnRow = 0
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Active Project'
+			.aRowSource[m.lnrow, 2]	= 1
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Browse Project'
+			.aRowSource[m.lnrow, 2]	= 2
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'All Open Projects'
+			.aRowSource[m.lnrow, 2]	= 5
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= '\-----------------'
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Current Directory'
+			.aRowSource[m.lnrow, 2]	= 3
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Browse Directory'
+			.aRowSource[m.lnrow, 2]	= 4
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= '\-----------------'
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Results'
+			.aRowSource[m.lnrow, 2]	= 6
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Custom UDF'
+			.aRowSource[m.lnrow, 2]	= 7
+		
+			.RowSource	   = 'This.aRowSource'
+			.RowSourceType = 5
+			.BoundColumn   = 2
+			.BoundTo	   = .T.
+		
+		Endwith
+		Return
+		* ================================================================================
+		*!* ******** JRN Removed 2024-05-23 ********
+		
+		*!* With This
+		*!* 	.AddItem('Active Project')		&& 1
+		*!* 	.AddItem('Browse Project')		&& 2
+		*!* 	.AddItem('Current Dir')			&& 3
+		*!* 	.AddItem('Browse Dir')			&& 4
+		*!* 	.AddItem('All Open Projects')	&& 5
+		*!* 	.AddItem('Results')				&& 6
+		*!* 	.AddItem('Custom UDF')			&& 7
+		*!* Endwith
 		
 	ENDPROC
 
@@ -11198,12 +11274,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE comboSearchScope.Valid
-		Local lcNewScope, loException
+		Local lcNewScope
 		
 		lcNewScope = Thisform.oSearchOptions.cRecentScope
 		
 		Do Case
 			Case This.Value = 1
+				Thisform.comboSearchScopeHistory.LoadRows()
 				If _vfp.Projects.Count # 0
 					lcNewScope = _vfp.ActiveProject.Name
 				Else
@@ -11211,23 +11288,19 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Endif
 		
 			Case This.Value = 2
-				Try
-					This.Parent.comboSearchScopeHistory.SetFocus()
-				Catch To m.loException
-		
-				Endtry
+				Thisform.comboSearchScopeHistory.LoadRows()
+				Thisform.comboSearchScopeHistory.SetFocus()
 		
 			Case This.Value = 3
+				Thisform.comboSearchScopeHistory.LoadRows()
 				lcNewScope = Alltrim(Lower(Thisform.oSearchEngine.GetCurrentDirectory()), '\')
 		
 			Case This.Value = 4
-				Try
-					This.Parent.comboSearchScopeHistory.SetFocus()
-				Catch To m.loException
-		
-				Endtry
+				Thisform.comboSearchScopeHistory.LoadRows()
+				Thisform.comboSearchScopeHistory.SetFocus()
 		
 			Case This.Value = 5
+				Thisform.comboSearchScopeHistory.LoadRows()
 				If _vfp.Projects.Count # 0
 					lcNewScope = _vfp.ActiveProject.Name
 				Else
@@ -11235,7 +11308,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Endif
 		
 			Case This.Value = 6
-				If not Used(thisform.cSearchResultsAlias) or Reccount(thisform.cSearchResultsAlias) = 0
+				If Not Used(Thisform.cSearchResultsAlias) Or Reccount(Thisform.cSearchResultsAlias) = 0
 					Messagebox('This option only available when you have Search Results', 16)
 				Endif
 		
@@ -11248,7 +11321,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Thisform.oSearchOptions.cRecentScope = Lower(m.lcNewScope)
 		
 		Thisform.comboSearchScopeHistory.Refresh()
-		thisform.txtSearchResults.Refresh()
+		Thisform.txtSearchResults.Refresh()
 		Thisform.ButtonContainer.Refresh()
 		
 	ENDPROC
@@ -11336,6 +11409,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			Endif &&Thisform.lCR_Allow AND Thisform.lCR_HistoryPerScope
 			
 		Endif &&Thisform.lCR_Allowed
+		
+		DoDefault()
 		
 	ENDPROC
 

@@ -9,6 +9,8 @@ DEFINE CLASS gf_combosearchscope AS combobox
 
 	#INCLUDE "gofish.h"
 	*<DefinedPropArrayMethod>
+		*m: adddirectories
+		*m: addprojects
 		*m: addrow
 		*m: loadprojects		&& Adds a list item for each project in the passed collection of Projects.
 		*m: loadrows
@@ -43,9 +45,74 @@ DEFINE CLASS gf_combosearchscope AS combobox
 			<memberdata name="nmaxmru" display="nMaxMRU"/>
 			<memberdata name="text" display="Text"/>
 			<memberdata name="lhasfocus" display="lHasFocus"/>
+			<memberdata name="addprojects" display="AddProjects"/>
+			<memberdata name="adddirectories" display="AddDirectories"/>
 		</VFPData>
 	*</PropValue>
 	
+	PROCEDURE adddirectories
+		Lparameters llSortScopeDropdown
+		
+		Local laFolders[1], lcScope, lnCounter, lnI, lnNext
+		
+		Scan For Upper(Justext(Scope)) # 'PJX'
+			lcScope = Scope
+			If Directory(m.lcScope)
+				If Left(m.lcScope, 2) = '\\'
+					lcScope = '\' + '\' + m.lcScope
+				Endif
+		
+				lnNext = Alen(m.laFolders) + 1
+				Dimension m.laFolders[m.lnNext]
+		
+				laFolders[m.lnNext]	= Scope
+				If m.lnNext > This.nMaxMRU
+					Exit
+				Endif
+			Endif
+		Endscan
+		
+		If Alen(m.laFolders) > 1
+			If m.llSortScopeDropdown
+				Asort(m.laFolders, 2, -1, 0, 1)
+			Endif
+			For lnI = 2 To Alen(m.laFolders)
+				This.AddRow(m.laFolders[m.lnI])
+			Endfor
+		Endif
+		
+		
+	ENDPROC
+
+	PROCEDURE addprojects
+		Lparameters llSortScopeDropdown
+		
+		Local laProjects[1], lnCounter, lnI, lnNext
+		
+		Scan For Upper(Justext(Scope)) == 'PJX'
+			If File(Scope)
+				lnNext = Alen(m.laProjects) + 1
+				Dimension m.laProjects[m.lnNext]
+		
+				laProjects[m.lnNext] = Scope
+				If m.lnNext > This.nMaxMRU
+					Exit
+				Endif
+			Endif
+		Endscan
+		
+		If Alen(m.laProjects) > 1
+			If m.llSortScopeDropdown
+				Asort(m.laProjects, 2, -1, 0, 1)
+			Endif
+			For lnI = 2 To Alen(m.laProjects)
+				This.AddRow(m.laProjects[m.lnI])
+			Endfor
+		Endif
+		
+		
+	ENDPROC
+
 	PROCEDURE addrow
 		Lparameters tcScope
 		
@@ -116,7 +183,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 	ENDPROC
 
 	PROCEDURE loadrows
-		Local laFolders[1], laProjects[1], lcScope, llSortScopeDropdown, lnCounter, lnI, lnNext, lnSelect
+		Local laFolders[1], laProjects[1], llSortScopeDropdown, lnSelect
 		
 		*** JRN 2024-02-17 : Conditionally sorts the projects/folder alphabetically
 		*	based on Thisform.lSortScopeDropdown
@@ -128,9 +195,6 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		Do Case
 			Case Pemstatus(Thisform, 'lSortScopeDropdown', 5)
 				llSortScopeDropdown = Thisform.lSortScopeDropdown
-			*!* ******** JRN Removed 2024-02-22 ********
-			*!* Case Pemstatus(Thisform.oForm, 'lSortScopeDropdown', 5)
-			*!* 	llSortScopeDropdown = Thisform.oForm.lSortScopeDropdown
 			Otherwise
 				llSortScopeDropdown = .F.
 		Endcase
@@ -138,74 +202,16 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		*-- Rebuild the combobox values -------------------------------
 		This.RowSource = '' && Clear out rows
 		
-		This.AddRow('\ -- Projects -------------------------')
-		*!* ******** JRN Removed 2024-03-01 ********
-		*!* If Type('_vfp.ActiveProject') = 'O'
-		*!* 	This.AddRow(SCOPEACTIVEPROJECT)
-		*!* 	This.AddRow(SCOPEALLOPENPROJECTS)
-		*!* Endif
+		Do Case
+			Case InList(Thisform.oSearchOptions.nSearchScope, 1, 2, 5)
+				This.AddProjects(llSortScopeDropdown)
 		
-		*-- Add Projects --------------------------
-		lnCounter = 0
-		Dimension m.laProjects[1]
-		Scan For Upper(Justext(Scope)) == 'PJX'
-			If File(Scope)
-				lnNext = Alen(m.laProjects) + 1
-				Dimension m.laProjects[m.lnNext]
+			Case InList(Thisform.oSearchOptions.nSearchScope, 3, 4)
+				This.AddDirectories(llSortScopeDropdown)
 		
-				laProjects[m.lnNext] = Scope
-				lnCounter			 = m.lnCounter + 1
-				If m.lnCounter >= This.nMaxMRU
-					Exit
-				Endif
-			Endif
-		Endscan
-		
-		If Alen(m.laProjects) > 1
-			If m.llSortScopeDropdown
-				Asort(m.laProjects, 2, -1, 0, 1)
-			Endif
-			For lnI = 2 To Alen(m.laProjects)
-				This.AddRow(m.laProjects[m.lnI])
-			Endfor
-		Endif
+		Endcase
 		
 		* ================================================================================ 
-		
-		This.AddRow('')
-		This.AddRow('\ -- Folders ----------------------------')
-		*!* ******** JRN Removed 2024-03-01 ********
-		*!* This.AddRow(SCOPECURRENTDIR)
-		
-		*-- Add Folders
-		lnCounter = 0
-		Dimension m.laFolders[1]
-		Scan For Upper(Justext(Scope)) # 'PJX'
-			lcScope = Scope
-			If Directory(m.lcScope)
-				If Left(m.lcScope, 2) = '\\'
-					lcScope = '\' + '\' + m.lcScope
-				Endif
-		
-				lnNext = Alen(m.laFolders) + 1
-				Dimension m.laFolders[m.lnNext]
-		
-				laFolders[m.lnNext]	= Scope
-				lnCounter			= m.lnCounter + 1
-				If m.lnCounter >= This.nMaxMRU
-					Exit
-				Endif
-			Endif
-		Endscan
-		
-		If Alen(m.laFolders) > 1
-			If m.llSortScopeDropdown
-				Asort(m.laFolders, 2, -1, 0, 1)
-			Endif
-			For lnI = 2 To Alen(m.laFolders)
-				This.AddRow(m.laFolders[m.lnI])
-			Endfor
-		Endif
 		
 		Use
 		

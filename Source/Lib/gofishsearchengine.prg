@@ -4450,6 +4450,89 @@ x
 
 
 *----------------------------------------------------------------------------------
+	Procedure SearchInSingleProject(toProject, ttTime, tcUni)
+	
+		Local lcFile As String
+		Local lnReturn As Number
+		Local lnSelect As Number
+		Local lnX As Number
+		Local laProjectFiles[1], lnSeconds, loFile, loProject
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+		This.StartProgressBar(_vfp.Projects.Count)
+	
+		lnSeconds	  = Seconds()
+		lnSelect	  = Select()
+		This.tRunTime = Evl(m.ttTime, Datetime())
+		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		Create Cursor ProjectFiles (FileName C(200))
+	
+		loProject					 = toProject
+		This.oSearchOptions.cProject = m.loProject.Name
+		Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name))
+	
+		For Each m.loFile In m.loProject.Files FoxObject
+			If m.loFile.Type $ 'EHKMPRVBdTxD'
+				Insert Into ProjectFiles (FileName) Values (m.loFile.Name)
+			Endif
+		Endfor
+		loFile	  = Null
+	
+		Select  Distinct *															;
+			From ProjectFiles														;
+			Where Not (Upper(Justext(FileName)) $ This.cGraphicsExtensions)			;
+			Into Array laProjectFiles
+	
+		This.nADirTime = Seconds() - m.lnSeconds
+	
+		If Type('laProjectFiles') = 'L'
+			This.SearchFinished(m.lnSelect)
+			Return 1
+		Endif
+	
+		This.StartProgressBar(Alen(m.laProjectFiles))
+	
+		*** Uncomment this code to track the execution time for the result
+		*!*			LOCAL nSeconds
+		*!*			nSeconds = SECONDS()
+	
+		For lnX = 1 To Alen(m.laProjectFiles)
+	
+			lcFile = m.laProjectFiles(m.lnX)
+	
+			If This.oSearchOptions.lLimitToProjectFolder
+				If Not (Upper(m.lcProjectPath) $ Upper(Addbs(Justpath(m.lcFile))))
+					Loop
+				Endif
+			Endif
+	
+			lnReturn = This.SearchInFile(m.lcFile)
+	
+			This.UpdateProgressBar(This.nFilesProcessed)
+	
+			If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+				Exit
+			Endif
+	
+		Endfor
+	
+		*** Uncomment this code to show used execution time for the result
+		*!*			MESSAGEBOX(ALLTRIM(STR((SECONDS()-nSeconds)*1000)) + " ms")
+	
+		This.SearchFinished(m.lnSelect)
+	
+		If m.lnReturn >= 0
+			Return 1
+		Else
+			Return m.lnReturn
+		Endif
+	
+	Endproc
+					
+
+*----------------------------------------------------------------------------------
 	Procedure SearchInCode(tcCode, tuUserField, tlHasProcedures, lnMaxMatchStart)
 
 		Local;
@@ -4579,16 +4662,20 @@ x
 	
 		Local lcCustomAlias, lnReturn, lnSeconds, lnSelect
 	
-		lnSeconds = Seconds()
-		lnSelect  = Select()
-	
-		This.tRunTime				 = Evl(m.ttTime, Datetime())
-		This.cUni					 = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
-	
-		If Empty(m.tcCustomScopeUDFFileName) or Not File(m.tcCustomScopeUDFFileName)
+		If Empty(m.tcCustomScopeUDFFileName) Or Not File(m.tcCustomScopeUDFFileName)
 			This.SetSearchError('Custom Scope UDF not defined' + CRLF + CRLF + [See "New in V7" page in the Options form], 16)
 			Return 0
 		Endif
+	
+		lnSeconds = Seconds()
+		lnSelect  = Select()
+	
+		This.tRunTime = Evl(m.ttTime, Datetime())
+		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+		This.oProgressBar.Start(100, 'Creating list of files')
 	
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
 		Create Cursor (m.lcCustomAlias) (FileName C(240))
@@ -4597,10 +4684,7 @@ x
 	
 		This.nADirTime = Seconds() - m.lnSeconds
 	
-		This.PrepareForSearch()
-		This.StartTimer()
-	
-		Select (m.lcCustomAlias)
+		Select Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
 		This.StartProgressBar(Reccount())
 	
 		Scan
@@ -4626,7 +4710,7 @@ x
 		Endif
 	
 	Endproc
-		
+			
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInFile(tcFile, tlForce)
@@ -4810,65 +4894,58 @@ x
 	Procedure SearchInOpenProjects(tcProject, ttTime, tcUni)
 	
 		Local lcFile As String
-		Local lcProjectAlias As String
-		Local lcProjectPath As String
 		Local lnReturn As Number
 		Local lnSelect As Number
 		Local lnX As Number
-		Local laProjectFiles[1], lcProject, lnI
-		Local lnSeconds
+		Local laProjectFiles[1], lnI, lnSeconds, loFile, loProject
 	
-		lnSeconds = Seconds()
+		This.PrepareForSearch()
+		This.StartTimer()
+		This.StartProgressBar(_vfp.Projects.Count)
+	
+		lnSeconds	  = Seconds()
 		lnSelect	  = Select()
 		This.tRunTime = Evl(m.ttTime, Datetime())
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
-		Create Cursor ProjectFiles (FileName C(200), Type C(1))
-		
+		Create Cursor ProjectFiles (FileName C(200))
+	
 		For lnI = 1 To _vfp.Projects.Count
-			lcProject = _vfp.Projects[m.lnI].Name
+			loProject					 = _vfp.Projects[m.lnI]
+			This.oSearchOptions.cProject = m.loProject.Name
+			Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name)) 
 	
-			lcProjectPath  = Addbs(Justpath(Alltrim(m.lcProject)))
-			lcProjectAlias = 'GF_ProjectSearch'
-	
-			This.oSearchOptions.cProject = m.lcProject
-	
-			Use (m.lcProject) Again Shared Alias (m.lcProjectAlias) In 0
-	
-			Insert Into ProjectFiles													;
-				Select  Padr(Fullpath(Name, m.lcProjectPath), 200) as Filename,			;
-						Type															;
-					From (m.lcProjectAlias)												;
-					Where Type $ 'EHKMPRVBdTxD' And										;
-						Not Deleted()													;
-						And Not (Upper(Justext(Name)) $ This.cGraphicsExtensions)		;
-					Order By Type
-	
-			Use In Alias (m.lcProjectAlias)
+			For Each m.loFile In m.loProject.Files FoxObject
+				If m.loFile.Type $ 'EHKMPRVBdTxD'
+					Insert Into ProjectFiles (FileName) Values (m.loFile.Name)
+				Endif
+			Endfor
+			loFile	  = Null
+			loProject = Null
 	
 		Endfor
 	
-		Select Distinct * From ProjectFiles Order By Type Into Array laProjectFiles
-		
-		This.nADirTime = Seconds() - lnSeconds
+		Select  Distinct *															;
+			From ProjectFiles														;
+			Where Not (Upper(Justext(FileName)) $ This.cGraphicsExtensions)			;
+			Into Array laProjectFiles
+	
+		This.nADirTime = Seconds() - m.lnSeconds
 	
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
 			Return 1
 		Endif
 	
-		This.PrepareForSearch()
-		This.StartTimer()
-		This.StartProgressBar(Alen(m.laProjectFiles) / 2.0)
-	
+		This.StartProgressBar(Alen(m.laProjectFiles))
+		
 		*** Uncomment this code to track the execution time for the result
 		*!*			LOCAL nSeconds
 		*!*			nSeconds = SECONDS()
 	
-		For lnX = 1 To Alen(m.laProjectFiles) Step 2
+		For lnX = 1 To Alen(m.laProjectFiles) 
 	
 			lcFile = m.laProjectFiles(m.lnX)
-			lcFile = Strtran(m.lcFile, Chr(0), '') && Strip out junk char from the end
 	
 			If This.oSearchOptions.lLimitToProjectFolder
 				If Not (Upper(m.lcProjectPath) $ Upper(Addbs(Justpath(m.lcFile))))
@@ -4898,7 +4975,7 @@ x
 		Endif
 	
 	Endproc
-		
+				
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInPath(tcPath, ttTime, tcUni)
@@ -5088,7 +5165,7 @@ j
 		For lnX = 1 To Alen(m.laProjectFiles) Step 2
 
 			lcFile = laProjectFiles(m.lnX)
-			lcFile = Fullpath(m.lcFile, m.lcProjectPath)
+			lcFile = GF_Fullpath(m.lcFile, m.lcProjectPath)
 			lcFile = Strtran(m.lcFile, Chr(0), '') && Strip out junk char from the end
 
 			If This.oSearchOptions.lLimitToProjectFolder
