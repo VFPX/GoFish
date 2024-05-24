@@ -7,6 +7,14 @@ Text to lcNote NoShow
 
 [FAQ](FAQ.md)
 
+## Version 7.0.32 - 2024-05-20
+
+- Speed improvement when searching open projects.
+- Reordered items in scope type dropdown.
+- Bugs fixed:
+    - Typing a folder or project into the scope that was not already in the dropdown did not work.
+    - Elapsed time for Custom UDF execution was not being captured correctly.
+
 ## Version 7.0.31 - 2024-05-12
 
 - Added new Scope option "Results" to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in the scope folder or project.
@@ -158,13 +166,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
     * The entire statement is enclosed in a red box.
     * All matches in the statement are highlighted.
 * Colors in the Code View pane match the user's own colors in IDE code windows. (Experimental) - (#89)
-* The Code View pane for matches in MNX files has been enhanced to be more descriptive, showing the `Prompt`, `Command`, `Procedure`, and `SkipFor` fields for the match. (#87)
-
-# Other enhancements
-* New feature for editing MNXs: Double-clicking on a match in an MNX (`Prompt`, `Command`, or `Procedure`) now opens the MNX to that exac
+* The Code View p
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.31 - May 12, 2024 - 20240512')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.32 - May 24, 2024 - 20240524')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

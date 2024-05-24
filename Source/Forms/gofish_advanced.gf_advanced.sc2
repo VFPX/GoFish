@@ -12,6 +12,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="Check1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkXML" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkTXT" UniqueID="" Timestamp="" />
@@ -37,14 +38,13 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="containerFileTypes.Check2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJava" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJSP" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="txtTimeStampFrom" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
@@ -912,7 +912,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 			Case lnScope = 4
 				lcScope = Lower(Thisform.oSearchOptions.cPath)
 		
-			Case lnScope = 5
+			Otherwise
 				lcScope = Lower(Thisform.oSearchOptions.cRecentScope)
 		
 		Endcase

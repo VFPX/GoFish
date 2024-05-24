@@ -1755,78 +1755,79 @@ Procedure GF_RelativePath
 		Return m.tcFileName
 	Endif && toOptions.lRelativePath
 
-EndProc
+Endproc
 
 
 *----------------------------------------------------------------------------------
-	Procedure GF_GetRegExp
-	
-		Local loRegEx As 'VBScript.RegExp'
-		Local loException
-	
-		Try
-			loRegEx = Createobject ('VBScript.RegExp')
-		Catch To m.loException
-	
-		Endtry
-	
-		If Vartype(m.loRegEx) # 'O'
-			loRegEx = SF_RegExp()
-		Endif
-	
-		Return m.loRegEx
-	
-	Endproc
+Procedure GF_GetRegExp
+
+	Local loRegEx As 'VBScript.RegExp'
+	Local loException
+
+	Try
+		loRegEx = Createobject ('VBScript.RegExp')
+	Catch To m.loException
+
+	Endtry
+
+	If Vartype(m.loRegEx) # 'O'
+		loRegEx = SF_RegExp()
+	Endif
+
+	Return m.loRegEx
+
+Endproc
 
 
 *----------------------------------------------------------------------------------
-	Procedure GF_toRGB
-		Lparameters tnColor
-	
-		Local lcResult, lnColor
-	
-		lnColor	 = m.tnColor
-		lcResult = 'rgb(' + Transform(m.lnColor % 256) + ','
-		lnColor	 = Int(m.lnColor / 256)
-		lcResult = m.lcResult + Transform(m.lnColor % 256) + ','
-		lnColor	 = Int(m.lnColor / 256)
-		lcResult = m.lcResult + Transform(m.lnColor % 256) + ')'
-	
-		Return m.lcResult
-	
-	EndProc
-	
-	
+Procedure GF_toRGB
+	Lparameters tnColor
+
+	Local lcResult, lnColor
+
+	lnColor	 = m.tnColor
+	lcResult = 'rgb(' + Transform(m.lnColor % 256) + ','
+	lnColor	 = Int(m.lnColor / 256)
+	lcResult = m.lcResult + Transform(m.lnColor % 256) + ','
+	lnColor	 = Int(m.lnColor / 256)
+	lcResult = m.lcResult + Transform(m.lnColor % 256) + ')'
+
+	Return m.lcResult
+
+Endproc
+
+
 * ================================================================================ 
-    Procedure GF_FileNameToClipboard(tcFileName, tlFullPath)
-    	Local lcPrompt
-    
-    	If m.tlFullPath
-    		_Cliptext = Trim(m.tcFileName)
-    		lcPrompt  = 'File name (full path) copied to clipboard'
-    	Else
-    		_Cliptext = Justfname(Trim(m.tcFileName))
-    		lcPrompt  = 'File name copied to clipboard'
-    	Endif
-    	Wait (m.lcPrompt)					;
-    		Window At Mrow(), Mcol()		;
-    		Nowait Timeout 2
-    Endproc
-                
-	
+Procedure GF_FileNameToClipboard(tcFileName, tlFullPath)
+	Local lcPrompt
+
+	If m.tlFullPath
+		_Cliptext = Trim(m.tcFileName)
+		lcPrompt  = 'File name (full path) copied to clipboard'
+	Else
+		_Cliptext = Justfname(Trim(m.tcFileName))
+		lcPrompt  = 'File name copied to clipboard'
+	Endif
+	Wait (m.lcPrompt)					;
+		Window At Mrow(), Mcol()		;
+		Nowait Timeout 2
+Endproc
+
+
 * ================================================================================ 
-    Procedure GF_InternalTimeStamp
-    	Set Date to AMERICAN
-    	Set Hours to 12
-    Endproc
-    
-	
+Procedure GF_InternalTimeStamp
+	Set Date To American
+	Set Hours To 12
+Endproc
+
+
 * ================================================================================ 
-    Procedure GF_ExternalTimeStamp
-    	Set Date to (_Screen._GoFish.cSetDate)
-    	Set Hours to (_Screen._GoFish.cSetHours)
-    Endproc
-    
+Procedure GF_ExternalTimeStamp
+	Set Date To (_Screen._GoFish.cSetDate)
+	Set Hours To (_Screen._GoFish.csethours)
+Endproc
+
+
 * ================================================================================ 
 Procedure GF_GetHackCX
 
@@ -1843,4 +1844,46 @@ Procedure GF_GetHackCX
 	Endif
 	Return ''
 Endproc
+
+
+* ================================================================================ 
+Procedure GF_FullPath(tcFileName, tcProjectPath)
+
+	Local lcFileName, lcProjectPath
+
+	lcFileName	  = Trim(m.tcFileName, 1, Chr[0])
+	lcProjectPath = Addbs(m.tcProjectPath)
+	Do Case
+		Case ':' $ m.lcFileName
+			Return m.lcFileName
+		Case Isalpha(m.lcFileName)
+			Return m.lcProjectPath + m.lcFileName
+		Case m.lcFileName = '..\'
+			Return GF_FullPath(Substr(m.lcFileName, 4), Justpath(Justpath(m.lcProjectPath)))
+		Otherwise
+			Return Fullpath(m.lcFileName, m.lcProjectPath)
+	Endcase
+Endproc
+
+
+* ================================================================================ 
+Function GF_GetMixedCaseCombination(m.tcString)
+	Local lcChar, lcResult, lcVal, lnI
+
+	lcResult = ''
+	For lnI = 1 To Len(m.tcString)
+		lcResult = m.lcResult + Chr[m.lnI]
+	EndFor
 	
+	For lnI = Len(m.tcString) To 1 Step - 1
+		lcVal  = Chr[m.lnI]
+		lcChar = Substr(m.tcString, m.lnI, 1)
+		If Isalpha(m.lcChar)
+			lcResult = Chrtran(m.lcResult, m.lcVal, Upper(m.lcChar)) + ',' + Chrtran(m.lcResult, m.lcVal, Lower(m.lcChar))
+		Else
+			lcResult = Chrtran(m.lcResult, m.lcVal, Upper(m.lcChar))
+		Endif
+	Endfor
+
+	Return m.lcResult
+Endfunc

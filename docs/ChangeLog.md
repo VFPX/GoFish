@@ -4,6 +4,14 @@
 
 [FAQ](FAQ.md)
 
+## Version 7.0.32 - 2024-05-20
+
+- Speed improvement when searching open projects.
+- Reordered items in scope type dropdown.
+- Bugs fixed:
+    - Typing a folder or project into the scope that was not already in the dropdown did not work.
+    - Elapsed time for Custom UDF execution was not being captured correctly.
+
 ## Version 7.0.31 - 2024-05-12
 
 - Added new Scope option "Results" to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in the scope folder or project. 
