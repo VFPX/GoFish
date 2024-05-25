@@ -1881,7 +1881,7 @@ Function GF_GetMixedCaseCombination(m.tcString)
 		If Isalpha(m.lcChar)
 			lcResult = Chrtran(m.lcResult, m.lcVal, Upper(m.lcChar)) + ',' + Chrtran(m.lcResult, m.lcVal, Lower(m.lcChar))
 		Else
-			lcResult = Chrtran(m.lcResult, m.lcVal, Upper(m.lcChar))
+			lcResult = Chrtran(m.lcResult, m.lcVal, m.lcChar)
 		Endif
 	Endfor
 

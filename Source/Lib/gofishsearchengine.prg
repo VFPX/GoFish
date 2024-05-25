@@ -2142,38 +2142,7 @@ Result
 
 			lcRight = This.HtmlEncode(m.lcRightCode)
 
-*!* ******************** Removed 12/02/2015 *****************
-*!* *** JRN 11/14/2015 : Highlight sub-search (filter within same procedure) if it is supplied
-*!* If 'C' = Vartype(tcProcFilter) and not Empty(tcProcFilter)
-*!* 	lcLeft = This.HighlightProcFilter(lcLeft, tcProcFilter, lcMatchWordPrefix, lcMatchWordSuffix)
-*!* 	lcRight = This.HighlightProcFilter(lcRight, tcProcFilter, lcMatchWordPrefix, lcMatchWordSuffix)
-*!* EndIf
-
 			lcHtmlBody = m.lcLeft + m.lcMatchLine + m.lcReplaceLine + m.lcRight &&Build the body
-
-*!* ******************** Removed 08/14/2022 *****************
-*!* Highlighting for the search results is already done in "RegExReplace()"
-*!* If 'C' = Vartype(tcSearch) And Not Empty(tcSearch)
-*!* 	lcHtmlBody = This.HighlightProcFilter(lcHtmlBody, tcSearch, lcMatchWordPrefix, lcMatchWordSuffix)
-*!* Endif
-
-			*!* ******** JRN Removed 2024-02-24 ******** Buggy, may be re-investigated at a later time
-			*!* If 'C' = Vartype(m.tcStatementFilter) And Not Empty(m.tcStatementFilter)
-*!* *for statement
-			*!* 	lcHtmlBody = This.HighlightStatementFilter(m.lcHtmlBody, m.tcStatementFilter, m.lcStateFilterPrefix, m.lcStateFilterSuffix,;
-			*!* 		M.lcMatchLinePrefix, m.lcMatchLineSuffix)
-*!* *for replace (if)
-*!* *				If !Empty(m.tcReplaceLine) THEN
-*!* *						lcHtmlBody = This.HighlightStatementFilter(lcHtmlBody, tcStatementFilter, lcStateFilterPrefix, lcStateFilterSuffix,;
-*!* m.lcReplaceLinePrefix, m.lcReplaceLineSuffix)
-*!* *				ENDIF &&!Empty(m.tcReplaceLine)
-			*!* Endif
-
-			*!* If 'C' = Vartype(m.tcProcFilter) And Not Empty(m.tcProcFilter)
-*!* *for proc
-			*!* 	lcHtmlBody = This.HighlightProcFilter(m.lcHtmlBody, m.tcProcFilter, m.lcProcFilterPrefix, m.lcProcFilterSuffix)
-			*!* Endif
-
 			If Not Empty(m.tnTabsToSpaces)
 				lcHtmlBody = Strtran(m.lcHtmlBody, Chr[9], Space(m.tnTabsToSpaces))
 			Endif
@@ -2776,156 +2745,6 @@ Result
 
 
 *----------------------------------------------------------------------------------
-	Procedure HighlightStatementFilter(tcCode, tcProcFilter, tcMatchWordPrefix, tcMatchWordSuffix, tcMatchLinePrefix, tcMatchLineSuffix)
-*just for now
-*to do
-*get statement snippet
-*run HighlightProcFilter for the value of the snippet
-*stuff into tcCode
-
-		Local;
-			lcReturn As String,;
-			loMatch As Object,;
-			loRegExp As Object
-
-		loRegExp = GF_GetRegExp()
-
-		loRegExp.IgnoreCase       = .T.
-		loRegExp.MultiLine        = .T.
-		loRegExp.ReturnFoxObjects = .T.
-*		loRegExp.AutoExpandGroups = .T.
-		loRegExp.Singleline       = .T.
-		loRegExp.Pattern          = loRegExp.Escape(m.tcMatchLinePrefix) + "(.*)" + loRegExp.Escape(m.tcMatchLineSuffix)
-		loMatch                   = loRegExp.Match(m.tcCode)
-
-		lcReturn = m.tcCode
-		If loMatch.Groups(2).Success Then
-			lcReturn = This.HighlightProcFilter(loMatch.Groups(2).Value, m.tcProcFilter, m.tcMatchWordPrefix, m.tcMatchWordSuffix)
-			lcReturn = Stuff(m.tcCode, loMatch.Groups(2).Index, loMatch.Groups(2).Length, m.lcReturn)
-		Endif &&loMatch.Groups(1).Success
-
-		Return m.lcReturn
-
-	Endproc &&HighlightStatementFilter(tcCode, tcProcFilter, tcMatchWordPrefix, tcMatchWordSuffix, tcMatchLinePrefix, ...
-
-	Procedure HighlightProcFilter(tcCode, tcProcFilter, tcMatchWordPrefix, tcMatchWordSuffix)
-
-		#Define VISIBLE_AND   '|and|'
-		#Define VISIBLE_OR    '|or|'
-
-		#Define AND_DELIMITER Chr[255]
-		#Define OR_DELIMITER  Chr[254]
-
-		Local;
-			lcCode     As String,;
-			lcMatch    As String,;
-			lcPattern  As String,;
-			lcProcFilter As String,;
-			lcValue    As String,;
-			lcxx       As String,;
-			lnATC      As Number,;
-			lnCount    As Number,;
-			lnFilterCount As Number,;
-			lnI        As Number,;
-			lnJ        As Number,;
-			lnMatch    As Number,;
-			loMatch    As Object,;
-			loMatches  As Object,;
-			loRegExp   As Object
-
-		Local Array;
-			laList(1),;
-			laValues(1)
-
-		lcValue = Strtran(m.tcProcFilter, '&', '&amp;')
-		lcValue = Strtran(m.lcValue, '<', '&lt;')
-		lcValue = Strtran(m.lcValue, '>', '&gt;')
-
-		If '|' $ m.lcValue
-			lcValue = Alltrim(Upper(m.lcValue))
-			lcValue = Strtran(m.lcValue, VISIBLE_AND, AND_DELIMITER, 1, 100, 1)
-			lcValue = Strtran(m.lcValue, VISIBLE_OR, OR_DELIMITER, 1, 100, 1)
-			lcValue = Strtran(m.lcValue, '|', OR_DELIMITER, 1, 100, 1)
-		Else
-			lcValue = m.lcValue
-		Endif
-
-		lnFilterCount = Alines(laValues, m.lcValue, 0, OR_DELIMITER, AND_DELIMITER)
-		lcCode        = m.tcCode
-
-		loRegExp = GF_GetRegExp()
-		If m.lnFilterCount = 1 Then
-			lcPattern = "|" + loRegExp.Escape(m.lcValue)
-
-		Else  &&m.lnFilterCount = 1
-			lcPattern  = ""
-
-			For lnJ = 1 To m.lnFilterCount
-*				lcIgnore  = m.lcIgnore  + "|(?:" + m.laValues[m.lnJ] + ")"
-*				lcIgnore  = m.lcIgnore  + "|" + m.laValues[m.lnJ]
-*				lcInclude = m.lcInclude + "|(" + m.laValues[m.lnJ] + ")"
-				lcPattern = m.lcPattern + "|" + loRegExp.Escape(laValues[m.lnJ])
-			Endfor &&lnJ
-		Endif &&m.lnFilterCount = 1
-
-*		lcIgnore = Substr(m.lcIgnore,2)
-*		lcInclude = "|(" + Substr(m.lcInclude,2) + ")"
-		lcPattern = Substr(m.lcPattern ,2)
-
-		loRegExp.IgnoreCase       = .T.
-		loRegExp.MultiLine        = .T.
-		loRegExp.ReturnFoxObjects = .T.
-*		loRegExp.AutoExpandGroups = .T.
-		loRegExp.Pattern          = "\<[^\>]*?(?:" + m.lcPattern + ")+?.*?\>|(" + m.lcPattern + ")"
-		loMatches                 = loRegExp.Matches(m.tcCode)
-*		_cliptext = loRegExp.Show_Unwind(m.loMatches)
-
-		lcxx = m.tcCode
-		For lnMatch =  m.loMatches.Count To 1 Step -1
-			loMatch = loMatches.Item(m.lnMatch)
-			If loMatch.Groups(2).Success Then
-				lcxx = Stuff(m.lcxx,loMatch.Groups(2).Index,loMatch.Groups(2).Length,m.tcMatchWordPrefix + loMatch.Groups(2).Value + m.tcMatchWordSuffix)
-			Endif &&loMatch.Groups(2).Success
-		Endfor &&lnMatch
-
-		Return m.lcxx
-
-*escape the pattern(s) (this means, we need to know if this pattern is meant as like or regexp?)
-*if there is more then one pattern we need the tag pattern with alternating patterns and many groups
-*matches (no lines, caseinsensitive)
-*trough all matches backwards
-* if a group exists
-* get index and lenght
-* stuff the place with tcMatchWordPrefix+ value+ tcMatchWordSuffix (so we keep case)
-
-
-		For lnJ = 1 To m.lnFilterCount
-			lcProcFilter = laValues[m.lnJ]
-			lnCount      = 0
-			For lnI = 1 To 10000
-				lnATC = Atc(m.lcProcFilter, m.tcCode, m.lnI)
-				If m.lnATC = 0
-					Exit
-				Endif
-				lcMatch = Substr(m.tcCode, m.lnATC, Len(m.lcProcFilter))
-* items in this array are all case-sensitive combinations found
-* so that the STRTRAN farther down keeps the original case
-				If m.lnCount = 0 Or Ascan(m.laList, m.lcMatch, 1) = 0
-					lnCount = m.lnCount + 1
-					Dimension laList[m.lnCount]
-					laList[m.lnCount] = m.lcMatch
-				Endif
-			Endfor
-
-			For lnI = 1 To m.lnCount
-				lcMatch = laList[m.lnI]
-				lcCode  = Strtran(m.lcCode, m.lcMatch, m.tcMatchWordPrefix + m.lcMatch + m.tcMatchWordSuffix, 1, 1000)
-			Endfor
-		Endfor
-
-		Return m.lcCode
-
-	Endproc
 
 
 *----------------------------------------------------------------------------------
@@ -5751,7 +5570,7 @@ ii
 				loRegExp = GF_GetRegExp()
 				loRegExp.IgnoreCase       = .T.
 				loRegExp.MultiLine        = .T.
-				loRegExp.ReturnFoxObjects = .T.
+*				loRegExp.ReturnFoxObjects = .T.
 *				loRegExp.AutoExpandGroups  = .T.
 				loRegExp.Singleline       = .T.
 				This.oSearchOptions.oRegExpFileTemplate = loRegExp

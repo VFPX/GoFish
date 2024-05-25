@@ -1065,7 +1065,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAkWzDgrdoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAIgB5QIGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACB0Hp3FrtoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAPCNtAAGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -2119,9 +2119,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			.SaveSearchScope(m.lcScope)
 			.Value = Lower(m.lcScope)
 		
-			*** JRN 2024-02-28 : Preserving "Active Project", "All Open Projects", "Current Dir"
+			*** JRN 2024-02-28 : Preserving "Active Project", "All Open Projects", "Current Dir", "Project in CurDir"
 			lnSearchScope = Thisform.oSearchOptions.nSearchScope
-			If Inlist(m.lnPrevSearchScope, 1, 3, 5)
+			If Inlist(m.lnPrevSearchScope, 1, 3, 5, 8)
 				Thisform.oSearchOptions.nSearchScope = m.lnPrevSearchScope
 			Endif
 		
@@ -4487,7 +4487,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE getcurrentscope		&& Will return the Active Project, Browsed Project, Current Dir, or Browsed Dir depending on current setting of nSearchScope (Values: 1 through 4)
-		Local lcScope, lnScope
+		Local laProjects[1], lcCurDir, lcScope, lnCount, lnScope
 		
 		*   0 = Not set
 		*	1 = Active Project
@@ -4497,6 +4497,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*	5 = All open projects
 		*	6 = Results
 		*	7 = Custom UDF
+		*   8 = Project in CurDir
 		
 		lnScope = Thisform.oSearchOptions.nSearchScope
 		
@@ -4517,7 +4518,16 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			Case m.lnScope = 4  && Browsed Directory
 				lcScope = This.oSearchOptions.cPath
 		
-			Otherwise 
+			Case m.lnScope = 8  && Project in CurDir
+				lcCurDir = Curdir()
+				lnCount	 = Adir(laProjects, m.lcCurDir + '*.pjx')
+				If m.lnCount = 1
+					lcScope = Lower(Fullpath(m.lcCurDir + m.laProjects[1, 1], ''))
+				Else
+					lcScope = ''
+				Endif
+		
+			Otherwise
 				lcScope = Alltrim(Thisform.comboSearchScopeHistory.Text)
 		
 				If Empty(m.lcScope)
@@ -11203,10 +11213,19 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE comboSearchScope.Init
+		* 	Active Project		&& 1
+		* 	Browse Project		&& 2
+		* 	Current Dir			&& 3
+		* 	Browse Dir			&& 4
+		* 	All Open Projects	&& 5
+		* 	Results				&& 6
+		* 	Custom UDF			&& 7
+		*   Project in CurDir   && 8
+		
 		Local lnRow
 		
 		With This
-			.AddProperty('aRowSource[9, 2]')
+			.AddProperty('aRowSource[10, 2]')
 			lnRow = 0
 		
 			lnRow					= m.lnRow + 1
@@ -11220,6 +11239,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			lnRow					= m.lnRow + 1
 			.aRowSource[m.lnrow, 1]	= 'All Open Projects'
 			.aRowSource[m.lnrow, 2]	= 5
+		
+			lnRow					= m.lnRow + 1
+			.aRowSource[m.lnrow, 1]	= 'Project in CurDir'
+			.aRowSource[m.lnrow, 2]	= 8
 		
 			lnRow					= m.lnRow + 1
 			.aRowSource[m.lnrow, 1]	= '\-----------------'
@@ -11274,17 +11297,19 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE comboSearchScope.Valid
-		Local lcNewScope
+		Local laProjects[1], lcCurDir, lcNewScope, lnCount
 		
 		lcNewScope = Thisform.oSearchOptions.cRecentScope
 		
 		Do Case
 			Case This.Value = 1
-				Thisform.comboSearchScopeHistory.LoadRows()
 				If _vfp.Projects.Count # 0
-					lcNewScope = _vfp.ActiveProject.Name
+					lcNewScope = Lower(_vfp.ActiveProject.Name)
+					Thisform.comboSearchScopeHistory.SaveSearchScope(m.lcNewScope)
+					Thisform.comboSearchScopeHistory.LoadRows()
 				Else
 					lcNewScope = ''
+					Return .F.
 				Endif
 		
 			Case This.Value = 2
@@ -11302,20 +11327,42 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			Case This.Value = 5
 				Thisform.comboSearchScopeHistory.LoadRows()
 				If _vfp.Projects.Count # 0
-					lcNewScope = _vfp.ActiveProject.Name
+					lcNewScope = Lower(_vfp.ActiveProject.Name)
+					Thisform.comboSearchScopeHistory.SaveSearchScope(m.lcNewScope)
+					Thisform.comboSearchScopeHistory.LoadRows()
 				Else
 					lcNewScope = ''
+					Return .F.
 				Endif
 		
 			Case This.Value = 6
 				If Not Used(Thisform.cSearchResultsAlias) Or Reccount(Thisform.cSearchResultsAlias) = 0
 					Messagebox('This option only available when you have Search Results', 16)
+					Return .F.
 				Endif
 		
 			Case This.Value = 7
 				If Empty(Thisform.cCustomScopeUDFFileName) Or Not File(Thisform.cCustomScopeUDFFileName)
 					Messagebox('Custom Scope UDF not defined' + CRLF + CRLF + [See "New in V7" page in the Options form], 16)
+					Return .F.
 				Endif
+		
+			Case This.Value = 8
+				lcCurDir = Curdir()
+				lnCount	 = Adir(laProjects, m.lcCurDir + '*.pjx')
+				Do Case
+					Case m.lnCount = 1
+						lcNewScope = Lower(FullPath(m.lcCurDir + m.laProjects[1, 1], ''))
+						Thisform.comboSearchScopeHistory.SaveSearchScope(m.lcNewScope)
+						Thisform.comboSearchScopeHistory.LoadRows()
+					Case m.lnCount = 0
+						Messagebox('No projects found in current directory', 16)
+						Return .F.
+					Otherwise
+						Messagebox(Transform(m.lnCount) + ' projects found in current directory', 16)
+						Return .F.
+				Endcase
+		
 		Endcase
 		
 		Thisform.oSearchOptions.cRecentScope = Lower(m.lcNewScope)
