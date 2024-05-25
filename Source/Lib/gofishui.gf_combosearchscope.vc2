@@ -203,7 +203,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		This.RowSource = '' && Clear out rows
 		
 		Do Case
-			Case InList(Thisform.oSearchOptions.nSearchScope, 1, 2, 5)
+			Case InList(Thisform.oSearchOptions.nSearchScope, 1, 2, 5, 8)
 				This.AddProjects(llSortScopeDropdown)
 		
 			Case InList(Thisform.oSearchOptions.nSearchScope, 3, 4)

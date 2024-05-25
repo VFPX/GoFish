@@ -4,7 +4,12 @@
 
 [FAQ](FAQ.md)
 
-## Version 7.0.32 - 2024-05-20
+## Version 7.0.33 - 2024-05-25
+
+- Add new item "Project in CurDir" to scope type dropdown (#232)
+- Fixed RegEx bug (#231)
+
+## Version 7.0.32 - 2024-05-24
 
 - Speed improvement when searching open projects.
 - Reordered items in scope type dropdown.

@@ -7,7 +7,12 @@ Text to lcNote NoShow
 
 [FAQ](FAQ.md)
 
-## Version 7.0.32 - 2024-05-20
+## Version 7.0.33 - 2024-05-25
+
+- Add new item "Project in CurDir" to scope type dropdown (#232)
+- Fixed RegEx bug (#231)
+
+## Version 7.0.32 - 2024-05-24
 
 - Speed improvement when searching open projects.
 - Reordered items in scope type dropdown.
@@ -164,12 +169,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 # Code View pane enhancements
 * The Code View pane emphasizes the entire statement (that is, including continuation lines) instead of just the line where the match occurred:
     * The entire statement is enclosed in a red box.
-    * All matches in the statement are highlighted.
-* Colors in the Code View pane match the user's own colors in IDE code windows. (Experimental) - (#89)
-* The Code View p
+    * All matches in the statement are highlig
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.32 - May 24, 2024 - 20240524')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.33 - May 25, 2024 - 20240525')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

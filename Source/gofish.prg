@@ -167,7 +167,8 @@ Procedure SetupEnvironment
 			Return .F.
 	Endcase
 
-	loRegexp = SF_RegExp(m.lcAppPath+'SF_RegExp')
+	*!* ******** JRN Removed 2024-05-24 ********
+	*!* loRegexp = SF_RegExp(m.lcAppPath+'SF_RegExp')
 
 	If Type("_Screen._GoFish.oResultsForm") = "O" And !Isnull(_Screen._GoFish.oResultsForm)
 		Return
