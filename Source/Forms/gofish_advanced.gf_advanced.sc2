@@ -10,9 +10,9 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
 	*< OBJECTDATA: ObjPath="Shape4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkXML" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkTXT" UniqueID="" Timestamp="" />
@@ -42,8 +42,8 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
@@ -609,17 +609,17 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	ADD OBJECT 'containerFileTypes.Label6' AS label WITH ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
-		Caption = "Other:", ;
+		Caption = "Additional:", ;
 		FontBold = .F., ;
 		FontItalic = .F., ;
 		FontSize = 8, ;
 		Height = 16, ;
-		Left = 41, ;
+		Left = 17, ;
 		Name = "Label6", ;
 		TabIndex = 39, ;
 		Top = 63, ;
 		Visible = .T., ;
-		Width = 30, ;
+		Width = 50, ;
 		WordWrap = .T., ;
 		ZOrderSet = 21
 		*< END OBJECT: BaseClass="label" />
@@ -645,11 +645,12 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	ADD OBJECT 'containerFileTypes.txtyourchoice' AS textbox WITH ;
 		Anchor = 0, ;
 		ControlSource = "Thisform.oSearchOptions.cOtherIncludes", ;
+		Format = "!", ;
 		Height = 24, ;
 		Left = 74, ;
 		Name = "txtyourchoice", ;
 		TabIndex = 23, ;
-		ToolTipText = "Enter custom file extensions, separated by a space.", ;
+		ToolTipText = "Enter custom file extensions, separated spaces.", ;
 		Top = 59, ;
 		Width = 386, ;
 		ZOrderSet = 20
@@ -662,7 +663,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 47, ;
 		Name = "editFileTemplate", ;
 		TabIndex = 4, ;
-		ToolTipText = "(Ex: cust*.*  or  *edit.prg  or  jobs.*)", ;
+		ToolTipText = "Enter one or more templates with wildcards, separated by commas. Example: cust*.*  or  *edit.prg  or  jobs.*.  If you do N", ;
 		Top = 69, ;
 		Width = 290, ;
 		ZOrderSet = 17
@@ -672,7 +673,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 1, ;
-		Caption = " File template", ;
+		Caption = " File template(s) - separated by commas", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
 		FontSize = 8, ;
@@ -682,7 +683,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Name = "Label1", ;
 		TabIndex = 18, ;
 		Top = 50, ;
-		Width = 66, ;
+		Width = 194, ;
 		ZOrderSet = 26
 		*< END OBJECT: BaseClass="label" />
 
@@ -1233,16 +1234,28 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	PROCEDURE containerFileTypes.Refresh
 		Local llEnabled, loControl
 		
-		llEnabled = Empty(JustExt(Thisform.oSearchOptions.cFileTemplate))
+		llEnabled = Not '.' $ Thisform.oSearchOptions.cFileTemplate
 		
-		For each loControl in this.Controls
+		For Each m.loControl In This.Controls
 			Try
-				loControl.Enabled = llEnabled
+				loControl.Enabled = m.llEnabled
 			Catch
-			EndTry
+			Endtry
 		Endfor
-		 
-		This.Enabled = llEnabled 
+		
+		This.Enabled = m.llEnabled
+	ENDPROC
+
+	PROCEDURE editFileTemplate.Init
+		Text To This.ToolTipText Noshow Textmerge
+		Enter one or more templates with wildcards, separated by commas. 
+		
+		Examples: cust*, *edit.prg, jobs.*, *invoice*.??x
+		
+		If you do not specify an extension, the normal filetypes (below) are used.
+		Endtext
+		
+		
 	ENDPROC
 
 	PROCEDURE editFileTemplate.InteractiveChange
