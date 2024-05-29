@@ -2956,109 +2956,65 @@ Result
 
 *----------------------------------------------------------------------------------
 	Procedure IsFileIncluded(tcFile)
-
-*SF Depricated
-*!*			If This.oSearchOptions.lIncludeAllFileTypes
-*!*				Return .T.
-*!*			Endif
-
-* Two (i.e.three) ways to include all, set cOtherIncludes, this is text below to file types in advanced, to * -> all
-* or set the Templates (the textbox above) to all -> *.* or old style *
-		If Empty(This.oSearchOptions.cFileTemplate)
-*only if no template, because this disables extensions
-
-			If !Empty(This.oSearchOptions.cOtherIncludes) And;
-					"*" == This.oSearchOptions.cOtherIncludes
-*check for all-in-cOtherIncludes
+	
+		Local lcFileType, loMatches
+	
+		* If file template supplied, use it
+		If Not Empty(This.oSearchOptions.cFileTemplate)
+			loMatches = This.oSearchOptions.oRegExpFileTemplate.Execute(Justfname(m.tcFile))
+			* failure if no match
+			If m.loMatches.Count = 0
+				Return .F.
+			Endif
+			* success if match and no extension supplied 
+			* if extension IS supplied, use the normal list of extensions
+			If '.' $ This.oSearchOptions.cFileTemplate
 				Return .T.
 			Endif
-
-			lcFileType = Upper(Justext(m.tcFile))
-
-*!*			If !Empty(Justext(This.oSearchOptions.cFileTemplate))
-*!*				Return This.MatchTemplate(m.lcFileType, Justext(This.oSearchOptions.cFileTemplate))
-*!*			Endif
-
-*SF 20230620, it is with extension turned on or not no need for the group
-*-- Table-based Files --------------------------------------
-*!*			If Inlist(m.lcFileType, 'SCX', 'VCX', 'FRX', 'DBC', 'MNX', 'LBX', 'PJX')
-*!*				Return Icase(m.lcFileType = 'SCX', This.oSearchOptions.lIncludeSCX, ;
-*!*					M.lcFileType = 'VCX', This.oSearchOptions.lIncludeVCX, ;
-*!*					M.lcFileType = 'FRX', This.oSearchOptions.lIncludeFRX, ;
-*!*					M.lcFileType = 'DBC', This.oSearchOptions.lIncludeDBC, ;
-*!*					M.lcFileType = 'MNX', This.oSearchOptions.lIncludeMNX, ;
-*!*					M.lcFileType = 'LBX', This.oSearchOptions.lIncludeLBX, ;
-*!*					M.lcFileType = 'PJX', This.oSearchOptions.lIncludePJX, ;
-*!*					.F.)		&& Last ".F." is a default value, in case one check is missing in this ICASE()
-*!*			Endif
-
-*!*	*-- Code based files ----------------------------------
-*!*			If Inlist(m.lcFileType, 'PRG', 'MPR', 'TXT', 'INI', 'H', 'XML', 'SPR', 'ASP', 'JSP', 'JAVA')
-*!*				Return Icase(m.lcFileType = 'PRG', This.oSearchOptions.lIncludePRG, ;
-*!*					M.lcFileType = 'MPR', This.oSearchOptions.lIncludeMPR, ;
-*!*					M.lcFileType = 'TXT', This.oSearchOptions.lIncludeTXT, ;
-*!*					M.lcFileType = 'INI', This.oSearchOptions.lIncludeINI, ;
-*!*					M.lcFileType = 'H', This.oSearchOptions.lIncludeH, ;
-*!*					M.lcFileType = 'XML', This.oSearchOptions.lIncludeXML, ;
-*!*					M.lcFileType = 'SPR', This.oSearchOptions.lIncludeSPR, ;
-*!*					M.lcFileType = 'ASP', This.oSearchOptions.lIncludeASP, ;
-*!*					M.lcFileType = 'JSP', This.oSearchOptions.lIncludeJSP, ;
-*!*					M.lcFileType = 'JAVA', This.oSearchOptions.lIncludeJAVA, ;
-*!*					.F.)		&& Last ".F." is a default value, in case one check is missing in this ICASE()
-*!*			Endif
-
-*-- Table-based Files --------------------------------------
-			If (This.oSearchOptions.lIncludeSCX And m.lcFileType = 'SCX');
-					Or (This.oSearchOptions.lIncludeVCX  And m.lcFileType = 'VCX' );
-					Or (This.oSearchOptions.lIncludeFRX  And m.lcFileType = 'FRX' );
-					Or (This.oSearchOptions.lIncludeDBC  And m.lcFileType = 'DBC' );
-					Or (This.oSearchOptions.lIncludeMNX  And m.lcFileType = 'MNX' );
-					Or (This.oSearchOptions.lIncludeLBX  And m.lcFileType = 'LBX' );
-					Or (This.oSearchOptions.lIncludePJX  And m.lcFileType = 'PJX' );
-					Or (This.oSearchOptions.lIncludePRG  And m.lcFileType = 'PRG' );
-					Or (This.oSearchOptions.lIncludeMPR  And m.lcFileType = 'MPR' );
-					Or (This.oSearchOptions.lIncludeTXT  And m.lcFileType = 'TXT' );
-					Or (This.oSearchOptions.lIncludeINI  And m.lcFileType = 'INI' );
-					Or (This.oSearchOptions.lIncludeH    And m.lcFileType = 'H'   );
-					Or (This.oSearchOptions.lIncludeXML  And m.lcFileType = 'XML' );
-					Or (This.oSearchOptions.lIncludeSPR  And m.lcFileType = 'SPR' );
-					Or (This.oSearchOptions.lIncludeASP  And m.lcFileType = 'ASP' );
-					Or (This.oSearchOptions.lIncludeJSP  And m.lcFileType = 'JSP' );
-					Or (This.oSearchOptions.lIncludeJAVA And m.lcFileType = 'JAVA')
-				Return .T.
-			Endif
-*/SF 20230620, it is with extension turned on or not no need for the group
-
-*-- Code based files (any HTM* file) ----------------------------------
-			If This.oSearchOptions.lIncludeHTML And 'HTM' $ m.lcFileType
-				Return .T.
-			Endif
-
-*-- Lastly, is it match with other includes??? (but only if no template, because this disables extensions)
-			If !Empty(This.oSearchOptions.cOtherIncludes) And m.lcFileType $ Upper(This.oSearchOptions.cOtherIncludes)
-				Return .T.
-			Endif
-
-		Else  &&Empty(This.oSearchOptions.cFileTemplate)
-*just template
-
-*check for all-in-template (no regexp, faster)
-			If "*.*" == This.oSearchOptions.cFileTemplate Or "*" == This.oSearchOptions.cFileTemplate
-				Return .T.
-			Endif
-*SF 20230619
-** try for full file patterns in cFileTemplate
-			If !Empty(This.oSearchOptions.cFileTemplate)
-*			 SET STEP ON 
-				Return This.oSearchOptions.oRegExpFileTemplate.IsMatch(Justfname(m.tcFile))
-			Endif
-
-		Endif &&Empty(This.oSearchOptions.cFileTemplate)
-
-*** No matching filetype found => so don't include in this search!
+		Endif
+	
+		If '*' == This.oSearchOptions.cOtherIncludes
+			*check for all-in-cOtherIncludes
+			Return .T.
+		Endif
+	
+		lcFileType = Upper(Justext(m.tcFile))
+	
+		*-- Table-based Files --------------------------------------
+		If (This.oSearchOptions.lIncludeSCX And m.lcFileType = 'SCX')					;
+				Or (This.oSearchOptions.lIncludeVCX  And m.lcFileType = 'VCX' )			;
+				Or (This.oSearchOptions.lIncludeFRX  And m.lcFileType = 'FRX' )			;
+				Or (This.oSearchOptions.lIncludeDBC  And m.lcFileType = 'DBC' )			;
+				Or (This.oSearchOptions.lIncludeMNX  And m.lcFileType = 'MNX' )			;
+				Or (This.oSearchOptions.lIncludeLBX  And m.lcFileType = 'LBX' )			;
+				Or (This.oSearchOptions.lIncludePJX  And m.lcFileType = 'PJX' )			;
+				Or (This.oSearchOptions.lIncludePRG  And m.lcFileType = 'PRG' )			;
+				Or (This.oSearchOptions.lIncludeMPR  And m.lcFileType = 'MPR' )			;
+				Or (This.oSearchOptions.lIncludeTXT  And m.lcFileType = 'TXT' )			;
+				Or (This.oSearchOptions.lIncludeINI  And m.lcFileType = 'INI' )			;
+				Or (This.oSearchOptions.lIncludeH    And m.lcFileType = 'H'   )			;
+				Or (This.oSearchOptions.lIncludeXML  And m.lcFileType = 'XML' )			;
+				Or (This.oSearchOptions.lIncludeSPR  And m.lcFileType = 'SPR' )			;
+				Or (This.oSearchOptions.lIncludeASP  And m.lcFileType = 'ASP' )			;
+				Or (This.oSearchOptions.lIncludeJSP  And m.lcFileType = 'JSP' )			;
+				Or (This.oSearchOptions.lIncludeJAVA And m.lcFileType = 'JAVA')
+			Return .T.
+		Endif
+	
+		*-- Code based files (any HTM* file) ----------------------------------
+		If This.oSearchOptions.lIncludeHTML And 'HTM' $ m.lcFileType
+			Return .T.
+		Endif
+	
+		*-- Lastly, is it match with other includes??? (but only if no template, because this disables extensions)
+		If Not Empty(This.oSearchOptions.cOtherIncludes) And m.lcFileType $ Upper(This.oSearchOptions.cOtherIncludes)
+			Return .T.
+		Endif
+	
+		*** No matching filetype found => so don't include in this search!
 		Return .F.
 	Endproc
-
+			
 
 *----------------------------------------------------------------------------------
 	Procedure IsFullLineComment(tcLine)
@@ -5561,82 +5517,70 @@ ii
 *-- Read file patterns to include in the search
 * SF 20230619
 	Procedure SetIncludePattern()
-
+	
+		Local laPattern[1], lcPattern, lnPattern, lnPatterns, loRegExp
+	
 		This.oSearchOptions.cFileTemplate  = Alltrim(This.oSearchOptions.cFileTemplate)
 		This.oSearchOptions.cOtherIncludes = Alltrim(This.oSearchOptions.cOtherIncludes)
-
-		If !Empty(This.oSearchOptions.cFileTemplate) Then
+	
+		If Not Empty(This.oSearchOptions.cFileTemplate) Then
 			If Isnull(This.oSearchOptions.oRegExpFileTemplate) Then
-				loRegExp = GF_GetRegExp()
-				loRegExp.IgnoreCase       = .T.
-				loRegExp.MultiLine        = .T.
-*				loRegExp.ReturnFoxObjects = .T.
-*				loRegExp.AutoExpandGroups  = .T.
-				loRegExp.Singleline       = .T.
-				This.oSearchOptions.oRegExpFileTemplate = loRegExp
-
+				loRegExp			= GF_GetRegExp()
+				loRegExp.IgnoreCase	= .T.
+				loRegExp.MultiLine	= .T.
+				*				loRegExp.ReturnFoxObjects = .T.
+				*				loRegExp.AutoExpandGroups  = .T.
+				*				loRegExp.AutoExpandGroups  = .T.
+				*				loRegExp.Singleline						= .T.
+				This.oSearchOptions.oRegExpFileTemplate	= m.loRegExp
+	
 			Else &&ISNULL(This.oSearchOptions.oRegExpFileTemplate)
 				loRegExp = This.oSearchOptions.oRegExpFileTemplate
-
+	
 			Endif &&ISNULL(This.oSearchOptions.oRegExpFileTemplate)
-
-			lnPatterns = Alines(laPattern, This.oSearchOptions.cFileTemplate, 1, ",", ";")
+	
+			lnPatterns = Alines(laPattern, This.oSearchOptions.cFileTemplate, 1, ',', ';')
 			If m.lnPatterns = 1 Then
-*!*						If Justext(laPattern(1))=="" Then
-*!*							If Juststem(laPattern(1))=="" Then
-*!*								lcPattern = ""
-*!*							Endif &&JUSTSTEM(laPattern(1))==""
-*!*	*filename without extension
-*SET STEP ON 
-*!*							lcPattern = This.EscapePattern(m.loRegExp, Justext(laPattern(1))) + "(?<!\..+)$"
-*!*						Else  &&JUSTEXT(laPattern(1))==""
-						lcPattern = This.EscapePattern(m.loRegExp, laPattern(1))
-*!*						Endif &&JUSTEXT(laPattern(1))==""
-
-*				lcPattern = This.EscapePattern(m.loRegExp, laPattern(1))
-
+				lcPattern = This.EscapePattern(m.loRegExp, m.laPattern(1))
 			Else  &&m.lnPatterns = 1
-				lcPattern = ""
-
+				lcPattern = ''
+	
 				For lnPattern = 1 To m.lnPatterns
-					If Justext(laPattern(m.lnPattern))=="" Then
-						If Juststem(laPattern(m.lnPattern))=="" Then
+					If Justext(m.laPattern(m.lnPattern)) == '' Then
+						If Juststem(m.laPattern(m.lnPattern)) == '' Then
 							Loop
 						Endif &&JUSTSTEM(laPattern(m.lnPattern))==""
-*filename without extension
-						lcPattern = m.lcPattern + "|(" + This.EscapePattern(m.loRegExp, Justext(laPattern(m.lnPattern))) + "(?<!\..+)$)"
+						*filename without extension
+						lcPattern = m.lcPattern + '|(' + This.EscapePattern(m.loRegExp, Justext(m.laPattern(m.lnPattern))) + '(?<!\..+)$)'
 					Else  &&JUSTEXT(laPattern(m.lnPattern))==""
-						lcPattern = m.lcPattern + "|(" + This.EscapePattern(m.loRegExp, laPattern(m.lnPattern)) + ")"
+						lcPattern = m.lcPattern + '|(' + This.EscapePattern(m.loRegExp, m.laPattern(m.lnPattern)) + ')'
 					Endif &&JUSTEXT(laPattern(m.lnPattern))==""
-
-*					IIF("." $ laPattern(m.lnPattern),;
-loRegExp.Escape_Like(JUSTSTEM(laPattern(m.lnPattern))) + "\." + loRegExp.Escape_Like(justext(laPattern(m.lnPattern))),;
-".*\." + loRegExp.Escape_Like(laPattern(m.lnPattern))) +;
-")"
 				Endfor &&lnPattern
 				lcPattern = Substr(m.lcPattern, 2)
 			Endif &&m.lnPatterns
 			loRegExp.Pattern = m.lcPattern
-
+	
 		Endif &&!Empty(This.oSearchOptions.cFileTemplate)
 	Endproc
-
+	
 *----------------------------------------------------------------------------------
 *-- Escape a file pattern
 	Procedure EscapePattern()
-		Lparameters;
-			toRegExp,;
+		Lparameters			;
+			toRegExp,		;
 			tcPattern
-
-		Return Icase(;
-			Left(tcPattern, 1)  = "." , ".*\." + toRegExp.Escape_Like(Justext(m.tcPattern)),;
-			Right(tcPattern, 1) = "." , toRegExp.Escape_Like(Juststem(m.tcPattern)) + "(?<!\..+)$",;
-			"." $ m.tcPattern         , loRegExp.Escape_Like(Juststem(m.tcPattern)) + "\." + loRegExp.Escape_Like(Justext(m.tcPattern)),;
-			EMPTY(tcPattern)          , "",;
-			toRegExp.Escape_Like(m.tcPattern) + "\..*")
-
+	
+		Local lcPattern
+	
+		lcPattern = Iif(Left(m.tcPattern, 1) = '.', '*', '')		;
+			+ m.tcPattern											;
+			+ Iif(Right(m.tcPattern, 1) = '.', '*', '')				;
+			+ Iif('.' $ m.tcPattern, '', '.*')
+		
+		Return '^' + This.EscapeSearchExpression(m.lcPattern, 1) + '$'
+		
 	Endproc
-
+			
 *----------------------------------------------------------------------------------
 *-- Read a user file set the the cFilesToSkip property
 	Procedure SetFilesToSkip

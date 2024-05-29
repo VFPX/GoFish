@@ -4,6 +4,16 @@
 
 [FAQ](FAQ.md)
 
+## Version 7.0.34 - 2024-05-29
+
+- Fixed bug (#231) related to file templates on "Advanced" screen (again).  Related changes:
+    - You can enter multiple file templates, separated by commas.
+    - If you do not enter a file extension, the "normal" list of file extensions (appearing on same screen) is used.
+    - If you use '*' as the extension, GF may be bogged down searching files not of interest (such as text files created from binaries, or bak files).
+- Bugs fixed:
+    - Sorting on full path of file name.
+    - Elapsed time was not including time to save results.
+
 ## Version 7.0.33 - 2024-05-25
 
 - Add new item "Project in CurDir" to scope type dropdown (#232)

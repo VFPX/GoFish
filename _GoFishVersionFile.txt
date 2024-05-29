@@ -7,6 +7,16 @@ Text to lcNote NoShow
 
 [FAQ](FAQ.md)
 
+## Version 7.0.34 - 2024-05-29
+
+- Fixed bug (#231) related to file templates on "Advanced" screen (again).  Related changes:
+    - You can enter multiple file templates, separated by commas.
+    - If you do not enter a file extension, the "normal" list of file extensions (appearing on same screen) is used.
+    - If you use '*' as the extension, GF may be bogged down searching files not of interest (such as text files created from binaries, or bak files).
+- Bugs fixed:
+    - Sorting on full path of file name.
+    - Elapsed time was not including time to save results.
+
 ## Version 7.0.33 - 2024-05-25
 
 - Add new item "Project in CurDir" to scope type dropdown (#232)
@@ -156,23 +166,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 
 ## Version 7.0.11 - 2024-03-09
 
-* Two bug fixes related to the new Search Mode combobox
-
----
-
-## Version 7.0.10 - Major version update - 2024-03-08
-
-# Major Enhancements
-* Wildcard searching now finds matches across continuation lines. (#67)
-* "Whole Word" searching now applies to each word in the search phrase in wildcard searching.
-
-# Code View pane enhancements
-* The Code View pane emphasizes the entire statement (that is, including continuation lines) instead of just the line where the match occurred:
-    * The entire statement is enclosed in a red box.
-    * All matches in the statement are highlig
+* Two bug fixes
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.34 - May 25, 2024 - 20240525')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.0.34 - May 29, 2024 - 20240529')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
