@@ -4,6 +4,16 @@
 
 [FAQ](FAQ.md)
 
+---
+
+## Version 7.1 - Major version update - 2024-05-31
+
+With this version, there are dramatic speed improvements when searching in directories:
+- as much as four times faster for plain or wild card searching
+- and frequently faster than that when using regular expressions
+
+Concept and code suggestions for this courtesy of Mike Yearwood.
+
 ## Version 7.0.34 - 2024-05-29
 
 - Fixed bug (#231) related to file templates on "Advanced" screen (again).  Related changes:
