@@ -2,6 +2,7 @@
 
 #Define ccMatchWordStart	Chr[2] + chr[4]
 #Define ccMatchWordEnd 		Chr[3] + chr[4]
+#Define	ccBinaries			' SCX VCX MNX PJX FRX LBX '
 
 Define Class GoFishSearchEngine As Custom
 
@@ -4450,7 +4451,7 @@ x
 	
 		This.PrepareForSearch()
 		This.StartTimer()
-		This.oProgressBar.Start(100, 'Creating list of files')
+		This.oProgressBar.Start(100, 'Creating list of files (using grep.exe)')
 	
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
 		Create Cursor (m.lcCustomAlias) (FileName C(240))
@@ -4459,7 +4460,7 @@ x
 	
 		This.nADirTime = Seconds() - m.lnSeconds
 	
-		Select Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
+		Select Distinct Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
 		This.StartProgressBar(Reccount())
 	
 		Scan
@@ -4779,10 +4780,19 @@ j
 			Return 0
 		Endif
 
+		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
+		* However, cannot do so if there is a file template (rare)
+		* or " in the search expression (calls to grep use ")
+		If Empty(This.oSearchOptions.cFileTemplate) and not ["] $ This.oSearchOptions.cSearchExpression
+			This.SearchUsingGrep(m.ttTime, m.tcUni)
+			Return 1
+		EndIf 
+
+		*** JRN 2024-05-31 : old (slow) style
 		This.tRunTime             = Evl(m.ttTime, Datetime())
 		This.cUni                 = Evl(m.tcUni, "_" + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 		This.oSearchOptions.cPath = m.tcPath
-
+		
 		This.StoreInitialDefaultDir()
 
 		If !This.ChangeCurrentDir(m.tcPath) && If there was a problem CD-ing into the starting path
@@ -6015,7 +6025,216 @@ ii
 		Endif
 
 	EndProc
-		
+
+* ================================================================================ 
+* ================================================================================ 
+*** JRN 2024-05-31 : Optimized section, using grep to create (shorter) list of files
+
+	Procedure SearchUsingGrep (m.ttTime, m.tcUni)
+	
+		Local lcCustomAlias, lnReturn, lnSeconds, lnSelect
+	
+		lnSeconds = Seconds()
+		lnSelect  = Select()
+	
+		This.tRunTime = Evl(m.ttTime, Datetime())
+		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+		This.oProgressBar.Start(100, 'Creating list of files (using grep.exe)')
+	
+		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
+		Create Cursor (m.lcCustomAlias) (FileName C(240))
+	
+		This.CreateFileListUsingGrep(This.oSearchOptions, m.lcCustomAlias)
+	
+		This.nADirTime = Seconds() - m.lnSeconds
+	
+		Select Distinct Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
+		This.StartProgressBar(Reccount())
+	
+		Scan
+	
+			lnReturn = This.SearchInFile(Alltrim(FileName))
+	
+			This.UpdateProgressBar(This.nFilesProcessed)
+	
+			If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+				Exit
+			Endif
+	
+		Endscan
+	
+		This.SearchFinished(m.lnSelect)
+	
+		Use In (m.lcCustomAlias)
+	
+		If Evl(m.lnReturn, 0) >= 0
+			Return 1
+		Else
+			Return m.lnReturn
+		Endif
+	
+	Endproc
+			
+
+* ================================================================================
+
+	Procedure CreateFileListUsingGrep
+		Lparameters toSettings, tcCursor
+
+		*** JRN 2024-05-22 : Concept and coding suggestions from Mike Yearwood
+		* C:\mygrep\grep.exe -r -l -i -P --include=.{??a,prg} '^(?!\s*).*THERE\s+IS\s+NO\s+SUCH\s+APPRO' c:\mysource
+		*  -r recurse folders, -l list file name only, -i case insensitive, -P use Perl regex
+
+		Local lcBATFile, lcCommand, lcErrFile, lcExtensions, lcFolder, lcOutFile, lcScope
+		Local lcSearchExpression, lcSearchPattern, lcStem, lcSubDirs, lcgrep, lnSearchMode
+
+		* Search Mode: 1 = Plain, 2 = WildCard, 3 = Regex
+		lnSearchMode = m.toSettings.nSearchMode
+
+		* Search Expression (as entered), then strip off leading and trailing ".*"
+		Do Case
+			Case m.lnSearchMode = 1
+				lcSearchExpression = m.toSettings.cSearchExpression
+				lcSearchPattern	   = '-F'
+			Case m.lnSearchMode = 2
+				lcSearchExpression = Substr(m.toSettings.cEscapedSearchExpression, 3, Len(m.toSettings.cEscapedSearchExpression) - 4)
+				lcSearchPattern	   = '-P'
+			Case m.lnSearchMode = 3
+				lcSearchExpression = m.toSettings.cSearchExpression
+				lcSearchPattern	   = '-P'
+		Endcase
+
+		*** JRN 2024-05-22 : for now, this will work only on folders
+		* Scope (project or path) 
+		lcScope	 = m.toSettings.cRecentScope
+		lcFolder = Addbs(m.lcScope)
+
+		* Extensions searched
+		lcExtensions = This.GetExtensions(m.toSettings.cSearchExtensions)
+
+		* ================================================================================  
+
+		lcStem	  = Addbs(Sys(2023)) + 'GF_Files' + Sys(2015)
+		lcBATFile = m.lcStem + '.bat'
+		lcOutFile = m.lcStem + '.txt'
+		lcErrFile = m.lcStem + '.err'
+
+		Strtofile('@echo off' + CRLF, m.lcBATFile, 1)
+		If ':' $ m.lcScope
+			Strtofile(Left(m.lcScope, 2)  + CRLF, m.lcBATFile, 1)
+		Endif
+		Strtofile('cd "' + m.lcScope + '"' + CRLF, m.lcBATFile, 1)
+
+		*** JRN 2024-05-14 : file contents
+		lcgrep	= ["] + Addbs(_Screen._GoFish.cAppPath) + 'grep\grep.exe' + ["]
+
+		lcScope = ["] + m.lcScope + ["]
+
+		If m.toSettings.lIncludeSubDirectories
+			lcCommand = m.lcgrep + [ -r -l -i ] + m.lcSearchPattern
+		Else
+			lcCommand = m.lcgrep + [    -l -i ] + m.lcSearchPattern
+			lcScope	  = m.lcScope + [\*.*]
+		Endif
+		lcScope	= Chrtran(m.lcScope, '\', '/')
+
+		lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} "<<m.lcSearchExpression>>" <<m.lcScope>>])
+
+		lcCommand = m.lcCommand + [ 1> "] + m.lcOutFile + [" 2>> "] + m.lcErrFile + ["]
+		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
+
+		* ================================================================================
+		*** JRN 2024-05-30 : search for file names
+		*   DIR *blank*.* /s /b  gives a simple file listing
+		lcSubDirs = Iif(m.toSettings.lIncludeSubDirectories, '/s', '')
+		If m.lnSearchMode # 3
+			lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+		Else
+			lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+		Endif
+		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
+		* ================================================================================
+
+		This.CallShell(m.lcBATFile)
+
+		* ================================================================================
+
+		This.AppendtoCursor(m.tcCursor, m.lcOutFile, m.lcErrFile)
+
+		This.CleanUpGrepFiles(m.lcStem)
+
+		Return
+
+
+		* ================================================================================
+	Procedure GetExtensions(lcSearchExtensions)
+		Local lcExt, lcExtensions, lnI
+
+		lcExtensions = ''
+		For lnI = 1 To Getwordcount(m.lcSearchExtensions)
+			lcExt = Getwordnum(m.lcSearchExtensions, m.lnI)
+			If ' ' + m.lcExt + ' ' $ ccBinaries
+				lcExt = Left(m.lcExt, 2) + 'T'
+			Endif
+			lcExtensions = m.lcExtensions + Iif(m.lnI = 1, '', ',') + GF_GetMixedCaseCombination(m.lcExt)
+		Endfor
+
+		Return m.lcExtensions
+
+	Endproc
+
+
+	* ================================================================================
+	Procedure CallShell(tcBATFile)
+		* Shell, no command window, wait for result
+		Local oShell As 'wscript.shell'
+
+		oShell = Createobject ('wscript.shell')
+		m.oShell.Run (m.tcBATFile, 7, .T.)
+	Endproc
+
+
+	* ================================================================================
+	Procedure AppendtoCursor(tcCursor, tcOutFile, tcErrFile)
+		Local lcTexts
+
+		Select (m.tcCursor)
+		Append From (m.tcOutFile) Sdf
+		This.AppendErrorFiles(m.tcErrFile)
+
+		Replace All FileName With Chrtran(FileName, '/', '\')
+
+		* All those T extensions that should be 'X' 
+		lcTexts	 = Chrtran(ccBinaries, 'X', 'T')
+		Replace	FileName  With	Strtran(FileName, 't    ', 'x', 1, 1, 1)		;
+			For ' ' + Upper(Justext(FileName)) + ' ' $ m.lcTexts
+
+	Endproc
+
+
+	* ================================================================================
+	Procedure AppendErrorFiles(lcErrFile)
+		Local laErrors[1], lcText, lnCount, lnI
+
+		lnCount = Alines(laErrors, Filetostr(m.lcErrFile))
+		For lnI = 1 To m.lnCount
+			lcText = m.laErrors[m.lnI]
+			lcText = Substr(m.lcText, At(':', m.lcText) + 1)
+			lcText = Left(m.lcText, Rat(':', m.lcText) - 1)
+			Insert Into (Alias()) Values (Trim(m.lcText))
+		Endfor
+	Endproc
+
+
+	* ================================================================================
+	Procedure CleanUpGrepFiles(tcStem)
+		Erase (m.tcStem + '.*')
+	EndProc
+	
+			
 Enddefine
 
 *!*	Changed by: nmpetkov 27.3.2023
