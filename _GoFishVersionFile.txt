@@ -9,7 +9,12 @@ Text to lcNote NoShow
 
 ---
 
-## Version 7.1 - Major version update - 2024-05-31
+## Version 7.1.02 - 2024-06-02
+
+- Bug fix:
+    - Wild card search gave incomplete results when searching in directories.
+
+## Version 7.1 - Minor version update - 2024-05-31
 
 With this version, there are dramatic speed improvements when searching in directories:
 - as much as four times faster for plain or wild card searching
@@ -164,12 +169,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 * Code View pane changes:
     * The "Code Browser zoom factor" spinner has been removed from the Options form, as it wasn't working. (#179)
     * A new spinner, "Code View pane font size (px)" has replaced it. See Options form, "New in Version 7".
-    * If option "Use IDE colors in Code View pane" is **not** selected, users may supply their own css file, named `HOME(7) + '\GoFish_\GoFish_.css'`
-* Bug fixes:
-    * Buttons to select project or search folder (to right of the scope combobox) not wo
+    * If option "Use IDE colors in Code View pane" is **not** selected, users may supply their own css file, named `HOME(7) +
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.01 - May 31, 2024 - 20240531')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.02 - June 02, 2024 - 20240602')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

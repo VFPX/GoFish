@@ -137,6 +137,8 @@ Define Class GoFishSearchEngine As Custom
 	
 	dSearchFromDate 	= {}
 	dSearchToDate	 	= {}
+	
+	cWildCardSearch = ''
 
 *----------------------------------------------------------------------------------
 	Procedure AddColumn(tcTable, tcColumnName, tcColumnDetails)
@@ -3367,6 +3369,7 @@ x
 			Endfor
 		Endif
 		This.PrepareRegExForSearchV2(This.oRegExForSearchInCode, m.lcSearchExpression, .F.)
+		This.cWildCardSearch = lcSearchExpression
 	
 	Endproc
 				
@@ -6099,9 +6102,12 @@ ii
 			Case m.lnSearchMode = 1
 				lcSearchExpression = m.toSettings.cSearchExpression
 				lcSearchPattern	   = '-F'
-			Case m.lnSearchMode = 2
-				lcSearchExpression = Substr(m.toSettings.cEscapedSearchExpression, 3, Len(m.toSettings.cEscapedSearchExpression) - 4)
-				lcSearchPattern	   = '-P'
+			Case m.lnSearchMode = 2 and not This.IsWildCardStatementSearch()
+				lcSearchExpression = m.toSettings.cSearchExpression
+				lcSearchPattern	   = '-F'
+			Case m.lnSearchMode = 2 
+				lcSearchExpression = This.cWildCardSearch 
+				lcSearchPattern	   = '-F'
 			Case m.lnSearchMode = 3
 				lcSearchExpression = m.toSettings.cSearchExpression
 				lcSearchPattern	   = '-P'
@@ -6151,9 +6157,9 @@ ii
 		*   DIR *blank*.* /s /b  gives a simple file listing
 		lcSubDirs = Iif(m.toSettings.lIncludeSubDirectories, '/s', '')
 		If m.lnSearchMode # 3
-			lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+				lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
 		Else
-			lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+				lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
 		Endif
 		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
 		* ================================================================================
@@ -6231,7 +6237,7 @@ ii
 
 	* ================================================================================
 	Procedure CleanUpGrepFiles(tcStem)
-		Erase (m.tcStem + '.*')
+		* Erase (m.tcStem + '.*')
 	EndProc
 	
 			

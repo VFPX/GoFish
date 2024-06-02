@@ -6,7 +6,12 @@
 
 ---
 
-## Version 7.1 - Major version update - 2024-05-31
+## Version 7.1.02 - 2024-06-02
+
+- Bug fix:
+    - Wild card search gave incomplete results when searching in directories.
+
+## Version 7.1 - Minor version update - 2024-05-31
 
 With this version, there are dramatic speed improvements when searching in directories:
 - as much as four times faster for plain or wild card searching
