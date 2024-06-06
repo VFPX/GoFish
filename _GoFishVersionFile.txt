@@ -9,6 +9,12 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.03 - 2024-06-06
+
+- Two new selections in the right-click context menu for nodes in TreeView
+    - Export stem name to clipboard (#240)
+    - GoFish for references to the file or class name
+
 ## Version 7.1.02 - 2024-06-02
 
 - Bug fix:
@@ -168,11 +174,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 
 * Code View pane changes:
     * The "Code Browser zoom factor" spinner has been removed from the Options form, as it wasn't working. (#179)
-    * A new spinner, "Code View pane font size (px)" has replaced it. See Options form, "New in Version 7".
-    * If option "Use IDE colors in Code View pane" is **not** selected, users may supply their own css file, named `HOME(7) +
+    * A new spinner, "Co
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.02 - June 02, 2024 - 20240602')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.03 - June 06, 2024 - 20240606')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

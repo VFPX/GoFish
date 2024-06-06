@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.03 - 2024-06-06
+
+- Two new selections in the right-click context menu for nodes in TreeView
+    - Export stem name to clipboard (#240)
+    - GoFish for references to the file or class name
+
 ## Version 7.1.02 - 2024-06-02
 
 - Bug fix:
