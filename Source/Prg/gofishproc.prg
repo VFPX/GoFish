@@ -1798,16 +1798,20 @@ Endproc
 
 
 * ================================================================================ 
-Procedure GF_FileNameToClipboard(tcFileName, tlFullPath)
+Procedure GF_FileNameToClipboard(tcFileName, tcType)
 	Local lcPrompt
 
-	If m.tlFullPath
-		_Cliptext = Trim(m.tcFileName)
-		lcPrompt  = 'File name (full path) copied to clipboard'
-	Else
-		_Cliptext = Justfname(Trim(m.tcFileName))
-		lcPrompt  = 'File name copied to clipboard'
-	Endif
+	Do Case
+		Case m.tcType = 'Name'
+			_Cliptext = Justfname(Trim(m.tcFileName))
+			lcPrompt  = 'File name copied to clipboard'
+		Case m.tcType = 'Stem'
+			_Cliptext = Juststem(Trim(m.tcFileName))
+			lcPrompt  = 'File stem copied to clipboard'
+		Case m.tcType = 'Path'
+			_Cliptext = Trim(m.tcFileName)
+			lcPrompt  = 'File name (full path) copied to clipboard'
+	Endcase
 	Wait (m.lcPrompt)					;
 		Window At Mrow(), Mcol()		;
 		Nowait Timeout 2

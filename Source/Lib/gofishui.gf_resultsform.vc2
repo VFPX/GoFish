@@ -1065,7 +1065,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAZumaestoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAAjvzwIGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALCvsB0auNoBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFADD26AIGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -1991,7 +1991,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Label1.Name = "Label1", ;
 		Label1.Top = 8, ;
 		Label1.Width = 448, ;
-		Label2.Name = "Label2"
+		lblEscape.Name = "lblEscape"
 		*< END OBJECT: ClassLib="gofishui.vcx" BaseClass="container" />
 
 	ADD OBJECT 'splitter2' AS sfsplitterh WITH ;
@@ -10168,8 +10168,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Lparameters toNode
 		
 		Local loPBT As 'GF_PEME_BaseTools'
-		Local laFilePath[1], lcChoice, lcFullFileNamePath, lcHackCX4, lcMenuName, lcPrompt1, lcPrompt2
-		Local lcPrompt3, lcPrompt3X, lcPrompt4, lcPrompt5, lcPrompt6, lnBar, lnID
+		Local laFilePath[1], lcChoice, lcClass, lcFullFileNamePath, lcHackCX4, lcMenuName, lcPrompt1
+		Local lcPrompt2, lcPrompt2a, lcPrompt3, lcPrompt3X, lcPrompt4, lcPrompt5, lcPrompt6, lcPrompt7
+		Local lcSearchFor, llClass, lnBar, lnID
 		
 		Do Case
 			Case m.toNode.Index = 1 && Master top tonode
@@ -10179,8 +10180,11 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Return
 		
 			Otherwise
-				lnID = Val(Getwordnum(m.toNode.Key, 2, '_'))
-				Select  FilePath											;
+				llClass	= Getwordnum(m.toNode.Key, 1, '_') = 'Class'
+				lnID	= Val(Getwordnum(m.toNode.Key, 2, '_'))
+		
+				Select  FilePath,											;
+						Class												;
 					From (Thisform.oSearchEngine.cSearchResultsAlias)		;
 					Where Id = m.lnID										;
 					Into Array laFilePath
@@ -10189,17 +10193,35 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					Return
 				Endif
 		
-				lcFullFileNamePath = Trim(m.laFilePath)
-				lcChoice		   = ''
-				lnBar			   = 0
-				lcMenuName		   = 'AdvancedContextMenu'
+				lcFullFileNamePath = Trim(m.laFilePath[1])
+				lcClass			   = Trim(m.laFilePath[2])
+		
+				lcChoice   = ''
+				lnBar	   = 0
+				lcMenuName = 'AdvancedContextMenu'
 				GF_CreateContextMenu(m.lcMenuName)
 		
 				* ================================================================================ 
 				lnBar	  = m.lnBar + 1
-				lcPrompt1 = 'Modify this File (Dbl-Click)'
+				lcPrompt1 = 'Modify this ' + Iif(m.llClass, 'class', 'file') + ' (Dbl-Click)'
 				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt1
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
+		
+				lnBar		= m.lnBar + 1
+				lcSearchFor	= Iif(m.llClass, m.lcClass, Juststem(m.lcFullFileNamePath))
+				lcPrompt7	= 'GoFish for "' + m.lcSearchFor + '"'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt7
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt7
+		
+				lnBar	   = m.lnBar + 1
+				lcPrompt3X = '\-'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3X
+		
+				* ================================================================================ 
+				lnBar	   = m.lnBar + 1
+				lcPrompt2a = 'Stem to clipboard'
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2a
+				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2a
 		
 				lnBar	  = m.lnBar + 1
 				lcPrompt2 = 'File name to clipboard'
@@ -10224,11 +10246,11 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					If GF_IsThorThere() And Not Empty(Execscript(_Screen.cThorDispatcher, 'Full Path=Thor_Proc_SuperBrowse'))
 						lnBar	  = m.lnBar + 1
 						lcPrompt5 = 'Super Browse as table'
-						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt5
+						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt5
 						On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt5
 					Endif
 		
-					lcHackCX4 = GF_GetHackCX() 
+					lcHackCX4 = GF_GetHackCX()
 					If Not Empty(m.lcHackCX4)
 						lnBar	  = m.lnBar + 1
 						lcPrompt6 = 'HackCX'
@@ -10237,7 +10259,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					Endif
 		
 				Endif
-		
 		
 				* --------------------------------------------------------------------------------
 				Activate Popup (m.lcMenuName)
@@ -10248,25 +10269,37 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					Case Empty(m.lcChoice)
 		
 					Case m.lcChoice = m.lcPrompt1
-						loPBT = Createobject('GF_PEME_BaseTools')
-						m.loPBT.EditSourceX(m.lcFullFileNamePath, '', 0, 0, '')
+						If m.llClass
+							loPBT = Createobject('GF_PEME_BaseTools')
+							m.loPBT.EditSourceX(m.lcFullFileNamePath, m.lcClass, 0, 0, '')
+						Else
+							loPBT = Createobject('GF_PEME_BaseTools')
+							m.loPBT.EditSourceX(m.lcFullFileNamePath, '', 0, 0, '')
+						Endif
 		
 					Case m.lcChoice = m.lcPrompt2
-						GF_FileNameToClipboard(m.lcFullFileNamePath, .F.)
+						GF_FileNameToClipboard(m.lcFullFileNamePath, 'Name')
+		
+					Case m.lcChoice = m.lcPrompt2a
+						GF_FileNameToClipboard(m.lcFullFileNamePath, 'Stem')
 		
 					Case m.lcChoice = m.lcPrompt3
-						GF_FileNameToClipboard(m.lcFullFileNamePath, .T.)
+						GF_FileNameToClipboard(m.lcFullFileNamePath, 'Path')
 		
-					Case m.lcChoice = m.lcPrompt4
+					Case m.lcChoice = Evl(m.lcPrompt4, '???')
 						loPBT = Createobject('GF_PEME_BaseTools')
 						m.loPBT.BrowseTable(m.lcFullFileNamePath, 0, .T.)
 		
-					Case m.lcChoice = m.lcPrompt5
+					Case m.lcChoice = Evl(m.lcPrompt5, '???')
 						loPBT = Createobject('GF_PEME_BaseTools')
 						m.loPBT.BrowseTable(m.lcFullFileNamePath, 0, .F.)
 		
-					Case m.lcChoice = m.lcPrompt6
+					Case m.lcChoice = Evl(m.lcPrompt6, '???')
 						Do (m.lcHackCX4) With m.lcFullFileNamePath
+		
+					Case m.lcChoice = m.lcPrompt7
+						Thisform.oSearchEngine.oSearchOptions.cSearchExpression = m.lcSearchFor
+						Thisform.Search()
 		
 				Endcase
 		
@@ -10711,55 +10744,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		lnBar	 = 0
 		GF_CreateContextMenu("AdvancedContextMenu")
 		
-		*!* ******** JRN Removed 2024-04-18 ********
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Plain Search"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Plain Search"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 1
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Wildcards (* and ?)"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Wildcards (* and ?)"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 2
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<RegEx Search"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "RegEx Search"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.nSearchMode = 3
-		
-		*!* lnBar = m.lnBar + 1
-		
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
-		
-		*!* If (".PJX" $ Upper(Thisform.comboSearchScopeHistory.Text))
-		*!* 	lnBar = m.lnBar + 1
-		*!* 	Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Limit search to project home directory and sub-folders"
-		*!* 	On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "\<Limit search to project home directory and sub-folders"
-		*!* 	Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lLimitToProjectFolder
-		*!* Else
-		*!* 	lnBar = m.lnBar + 1
-		*!* 	Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Include Subdirectories"
-		*!* 	On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
-		*!* 	Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lIncludeSubdirectories
-		*!* Endif
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Whole Word"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Whole Word"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchWholeWord
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Match \<Case"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Match \<Case"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lMatchCase
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "Search \<Comments"
-		*!* On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = "Search \<Comments"
-		*!* Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lSearchInComments
-		
-		*!* lnBar = m.lnBar + 1
-		*!* Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
 		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt "\<Ignore field RESERVED3 in SCXs / VCXs"
@@ -12725,8 +12709,11 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		DoDefault(m.tnMaxValue)
 		
-		If Not Empty(m.lcCaption)
-			This.Label1.Caption = m.lcCaption
+		If Empty(m.lcCaption)
+			This.lblEscape.Visible = .T.
+		Else
+			This.lblEscape.Visible = .F.
+			This.Label1.Caption	   = m.lcCaption
 		Endif
 		
 	ENDPROC

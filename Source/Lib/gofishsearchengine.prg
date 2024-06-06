@@ -78,6 +78,7 @@ Define Class GoFishSearchEngine As Custom
 
 * Tells how long the last search took. It is only reset by SearchInPath() or SearchInProject() took,
 * and not by the lower level search like SearchInFile, or SearchInTextFile, or SearchInTable.
+	nSearchStartTime                 = 0
 	nSearchTime                      = 0
 	nADirTime		 				 = 0
 
@@ -1719,7 +1720,15 @@ statementstart
 *----------------------------------------------------------------------------------
 	Procedure EndTimer()
 
-		This.nSearchTime = Seconds() - This.nSearchTime
+		This.nSearchTime = This.ElapsedTimeSinceStart()
+
+	Endproc
+
+
+*----------------------------------------------------------------------------------
+	Procedure ElapsedTimeSinceStart()
+
+		Return Seconds() - This.nSearchStartTime
 
 	Endproc
 
@@ -2251,7 +2260,7 @@ Result
 			Endif
 		Endif
 
-		This.nADirTime = Seconds() - lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 
 		Return This.oDirectories
 
@@ -4264,7 +4273,7 @@ x
 			Where Not (Upper(Justext(FileName)) $ This.cGraphicsExtensions)			;
 			Into Array laProjectFiles
 	
-		This.nADirTime = Seconds() - m.lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 	
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
@@ -4454,14 +4463,14 @@ x
 	
 		This.PrepareForSearch()
 		This.StartTimer()
-		This.oProgressBar.Start(100, 'Creating list of files (using grep.exe)')
+		This.oProgressBar.Start(100, 'Creating list of files)')
 	
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
 		Create Cursor (m.lcCustomAlias) (FileName C(240))
 	
 		Do (m.tcCustomScopeUDFFileName) With This.oSearchOptions, m.lcCustomAlias
 	
-		This.nADirTime = Seconds() - m.lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 	
 		Select Distinct Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
 		This.StartProgressBar(Reccount())
@@ -4529,6 +4538,9 @@ x
 		Endif
 
 		If !File(m.tcFile)
+			If This.CanUseGrepForFileList()
+				Return 0
+			EndIf 
 			This.lFileNotFound = .T.
 			This.SetSearchError('File not found: ' + m.tcFile)
 *This.ReduceProgressBarMaxValue(1)
@@ -4709,7 +4721,7 @@ x
 			Where Not (Upper(Justext(FileName)) $ This.cGraphicsExtensions)			;
 			Into Array laProjectFiles
 	
-		This.nADirTime = Seconds() - m.lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 	
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
@@ -4783,10 +4795,10 @@ j
 			Return 0
 		Endif
 
-		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
-		* However, cannot do so if there is a file template (rare)
-		* or " in the search expression (calls to grep use ")
-		If Empty(This.oSearchOptions.cFileTemplate) and not ["] $ This.oSearchOptions.cSearchExpression
+		This.PrepareForSearch()
+		This.StartTimer()
+
+		If This.CanUseGrepForFileList()
 			This.SearchUsingGrep(m.ttTime, m.tcUni)
 			Return 1
 		EndIf 
@@ -4802,9 +4814,6 @@ j
 			This.RestoreDefaultDir()
 			Return - 1
 		Endif
-
-		This.PrepareForSearch()
-		This.StartTimer()
 
 		lnReturn = 1 && Assume success, testing below will set negative if there are errors
 
@@ -4933,7 +4942,7 @@ j
 			Order By Type ;
 			Into Array laProjectFiles
 
-		This.nADirTime = Seconds() - lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 
 		If Type('laProjectFiles') = 'L'
 			This.SearchFinished(m.lnSelect)
@@ -4972,9 +4981,6 @@ j
 
 		Endfor
 
-*** Uncomment this code to show used execution time for the result
-*!*			MESSAGEBOX(ALLTRIM(STR((SECONDS()-nSeconds)*1000)) + " ms")
-
 		This.SearchFinished(m.lnSelect)
 
 		If m.lnReturn >= 0
@@ -4991,16 +4997,15 @@ j
 	
 		Local lcCustomAlias, lcFilter, lnReturn, lnSeconds, lnSelect
 	
-		lnSeconds = Seconds()
+		This.PrepareForSearch()
+		This.StartTimer()
+	
 		lnSelect  = Select()
 	
 		This.tRunTime = Evl(m.ttTime, Datetime())
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
-		This.nADirTime = Seconds() - m.lnSeconds
-	
-		This.PrepareForSearch()
-		This.StartTimer()
+		This.nADirTime = This.ElapsedTimeSinceStart()
 	
 		Select (m.tcResultsCursor)
 		This.StartProgressBar(Reccount())
@@ -5784,7 +5789,7 @@ ii
 *----------------------------------------------------------------------------------
 	Procedure StartTimer
 
-		This.nSearchTime = Seconds()
+		This.nSearchStartTime = Seconds()
 
 	Endproc
 
@@ -6028,6 +6033,13 @@ ii
 		Endif
 
 	EndProc
+	
+	Procedure CanUseGrepForFileList
+		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
+		* However, cannot do so if there is a file template (rare)
+		* or " in the search expression (calls to grep use ")
+		Return Empty(This.oSearchOptions.cFileTemplate) and not ["] $ This.oSearchOptions.cSearchExpression
+	EndProc 
 
 * ================================================================================ 
 * ================================================================================ 
@@ -6037,14 +6049,11 @@ ii
 	
 		Local lcCustomAlias, lnReturn, lnSeconds, lnSelect
 	
-		lnSeconds = Seconds()
 		lnSelect  = Select()
 	
 		This.tRunTime = Evl(m.ttTime, Datetime())
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
-		This.PrepareForSearch()
-		This.StartTimer()
 		This.oProgressBar.Start(100, 'Creating list of files (using grep.exe)')
 	
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
@@ -6052,7 +6061,7 @@ ii
 	
 		This.CreateFileListUsingGrep(This.oSearchOptions, m.lcCustomAlias)
 	
-		This.nADirTime = Seconds() - m.lnSeconds
+		This.nADirTime = This.ElapsedTimeSinceStart()
 	
 		Select Distinct Lower(FileName) As FileName From (m.lcCustomAlias) Into Cursor (m.lcCustomAlias)
 		This.StartProgressBar(Reccount())
@@ -6173,9 +6182,11 @@ ii
 		This.CleanUpGrepFiles(m.lcStem)
 
 		Return
+		
+	EndProc 
 
 
-		* ================================================================================
+	* ===============================================================================
 	Procedure GetExtensions(lcSearchExtensions)
 		Local lcExt, lcExtensions, lnI
 
@@ -6237,7 +6248,7 @@ ii
 
 	* ================================================================================
 	Procedure CleanUpGrepFiles(tcStem)
-		* Erase (m.tcStem + '.*')
+		* 	Erase (m.tcStem + '.*')
 	EndProc
 	
 			
