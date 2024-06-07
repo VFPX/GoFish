@@ -347,7 +347,7 @@ Procedure GF_Shell
 oShell As "wscript.shell"
 
 	oShell = Createobject ("wscript.shell")
-	oShell.Run (m.lcFileURL)
+	oShell.Run (m.lcFileURL, 7, .F.)
 
 Endproc
 
@@ -1891,3 +1891,11 @@ Function GF_GetMixedCaseCombination(m.tcString)
 
 	Return m.lcResult
 Endfunc
+
+
+* ================================================================================ 
+Procedure Sleep
+	Lparameters lnMilliseconds
+	Declare Sleep In kernel32 Integer dwMilliseconds
+	Sleep(m.lnMilliseconds)
+Endproc

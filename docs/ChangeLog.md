@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.04 - 2024-06-07
+
+- Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
+
 ## Version 7.1.03 - 2024-06-06
 
 - Two new selections in the right-click context menu for nodes in TreeView

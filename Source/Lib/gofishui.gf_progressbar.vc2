@@ -169,8 +169,6 @@ DEFINE CLASS gf_progressbar AS container
 			This.Bar.Width = This.Box.Width - 10
 		Endif
 		
-		
-		
 	ENDPROC
 
 	PROCEDURE bar.Init
