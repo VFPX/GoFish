@@ -6136,6 +6136,7 @@ ii
 		lcBATFile = m.lcStem + '.bat'
 		lcOutFile = m.lcStem + '.txt'
 		lcErrFile = m.lcStem + '.err'
+		lcDoneFile = m.lcStem + '.done'
 
 		Strtofile('@echo off' + CRLF, m.lcBATFile, 1)
 		If ':' $ m.lcScope
@@ -6171,9 +6172,10 @@ ii
 				lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
 		Endif
 		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
+		StrToFile('Echo Done >> "' + m.lcDoneFile  + '"' + CRLF, m.lcBATFile, 1)
 		* ================================================================================
 
-		This.CallShell(m.lcBATFile)
+		This.CallShell(m.lcBATFile, m.lcDoneFile)
 
 		* ================================================================================
 
@@ -6205,14 +6207,36 @@ ii
 
 
 	* ================================================================================
-	Procedure CallShell(tcBATFile)
-		* Shell, no command window, wait for result
-		Local oShell As 'wscript.shell'
+	Procedure CallShell(tcBATFile, tcDoneFile)
+		*!* ******** JRN Removed 2024-06-07 ********
+		*!* * Shell, no command window, wait for result
+		*!* Local oShell As 'wscript.shell'
+	
+		*!* oShell = Createobject ('wscript.shell')
+		*!* m.oShell.Run (m.tcBATFile, 7, .T.)
+		Local lnElapsed, lnSeconds
+	
+		GF_Shell(m.tcBATFile)
+		This.oProgressBar.nMaxValue	= 10
+		lnSeconds					= Seconds()
+		Do While Not File(m.tcDoneFile)
+			lnElapsed = Seconds() - m.lnSeconds
+			* recalibrate during really big searches
+			If m.lnElapsed > This.oProgressBar.nMaxValue
+				This.oProgressBar.nMaxValue = 2 * This.oProgressBar.nMaxValue
+			Endif
+			This.UpdateProgressBar(m.lnElapsed)
+			Sleep (250) && quarter second
+			
+			If Inkey() = 27
+				This.lEscPress = .T.
+				Clear Typeahead
+				Return 
+			Endif
 
-		oShell = Createobject ('wscript.shell')
-		m.oShell.Run (m.tcBATFile, 7, .T.)
+		EndDo
 	Endproc
-
+		
 
 	* ================================================================================
 	Procedure AppendtoCursor(tcCursor, tcOutFile, tcErrFile)
@@ -6248,7 +6272,7 @@ ii
 
 	* ================================================================================
 	Procedure CleanUpGrepFiles(tcStem)
-		* 	Erase (m.tcStem + '.*')
+		Erase (m.tcStem + '.*')
 	EndProc
 	
 			

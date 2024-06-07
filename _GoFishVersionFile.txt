@@ -9,6 +9,10 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.04 - 2024-06-07
+
+- Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
+
 ## Version 7.1.03 - 2024-06-06
 
 - Two new selections in the right-click context menu for nodes in TreeView
@@ -173,11 +177,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 ## Version 7.0.14 - 2024-03-15
 
 * Code View pane changes:
-    * The "Code Browser zoom factor" spinner has been removed from the Options form, as it wasn't working. (#179)
-    * A new spinner, "Co
+
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.03 - June 06, 2024 - 20240606')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.04 - June 07, 2024 - 20240607')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
