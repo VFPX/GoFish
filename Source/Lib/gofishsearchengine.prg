@@ -191,7 +191,7 @@ Define Class GoFishSearchEngine As Custom
 
 		If !m.llAlreadyInCollection
 			This.oProjects.Add(Lower(m.tcProject))
-			This.cProjects = This.cProjects + m.tcProject + Chr(13)
+			This.cProjects = This.cProjects + m.tcProject + CR
 		Endif
 
 	Endproc
@@ -716,7 +716,7 @@ Define Class GoFishSearchEngine As Custom
 
 			*!* 			If File('git_x.tmp') Then
 			*!* *the result is either the git base folder or empty for no git repo
-			*!* 				tcRepo = Upper(Fullpath(Chrtran(Filetostr('git_x.tmp'), '/' + Chr(13) + Chr(10), '\')))
+			*!* 				tcRepo = Upper(Fullpath(Chrtran(Filetostr('git_x.tmp'), '/' + CR + LF, '\')))
 			*!* 				Delete File git_x.tmp
 			*!* 				tlWithRepo = .T.
 			*!* 			Else &&file('git_x.tmp')
@@ -814,7 +814,7 @@ Or "GF_SAVED_SEARCH_RESULTS" $ Upper(m.tcDir) THEN
 		For Each m.loProject In _vfp.Projects
 			lcProject = Lower(m.loProject.Name)
 			This.AddProject(m.lcProject)
-			This.cProjects = This.cProjects + m.lcProject + Chr(13)
+			This.cProjects = This.cProjects + m.lcProject + CR
 		Endfor
 
 *-- Add any Projects in the current folder
@@ -823,7 +823,7 @@ Or "GF_SAVED_SEARCH_RESULTS" $ Upper(m.tcDir) THEN
 		For lnX = 1 To Alen(m.laProjects) / 5
 			lcProject = Lower(Fullpath(laProjects(m.lnX, 1)))
 			This.AddProject(m.lcProject)
-			This.cProjects = This.cProjects + m.lcProject + Chr(13)
+			This.cProjects = This.cProjects + m.lcProject + CR
 		Endfor
 
 *-- Add MRU Projects to the Collection...
@@ -834,7 +834,7 @@ Or "GF_SAVED_SEARCH_RESULTS" $ Upper(m.tcDir) THEN
 		For Each m.loMRU_Project In m.loMRU_Projects
 			lcProject = Lower(m.loMRU_Project)
 			This.AddProject(m.lcProject)
-			This.cProjects = This.cProjects + m.lcProject + Chr(13)
+			This.cProjects = This.cProjects + m.lcProject + CR
 		Endfor
 
 	Endproc
@@ -1373,7 +1373,7 @@ statementstart
 			If m.lcExt $ ' SCX VCX '
 				*-- Calculate Line No from procstart and matchstart postitions...
 				lcCodeBlock	= &tcCursor..ProcCode
-				lnStart		= Getwordcount(m.lcCodeBlock, Chr(13)) - 1 && The LINE NUMBER that match in on within the method
+				lnStart		= Getwordcount(m.lcCodeBlock, CR) - 1 && The LINE NUMBER that match in on within the method
 				lnStart		= Iif(m.lnStart > 0, m.lnStart, 1)
 				Do Case
 					Case m.lcExt = 'SCX'
@@ -1818,12 +1818,12 @@ statementstart
 
 		lcFileName = Upper(Justfname(m.tcFile))
 
-		If (Chr(13) + m.lcFileName + Chr(13)) $ This.cFilesToSkip
+		If (CR + m.lcFileName + CR) $ This.cFilesToSkip
 			Return .T.
 		Endif
 
 		For lnI = 1 To This.nWildCardFilesToSkip
-			If Like(This.aWildcardFiles[m.lni], m.tcFile)
+			If Like(This.aWildcardFiles[m.lni], Upper(m.tcFile))
 				Return .T.
 			Endif
 		Endfor
@@ -1920,7 +1920,7 @@ Result
 * previously, assumed trailing CR, but this dropped off last character if not found
 *!* ** { JRN -- 08/05/2016 07:16 AM - Begin
 *!* lcMatchLine	= Substr(m.lcProcCode, m.lnStart, m.lnLength)
-		lcMatchLine	= Trim(Substr(m.lcProcCode, m.lnStart, m.lnLength), 1, Chr[13], Chr[10])
+		lcMatchLine	= Trim(Substr(m.lcProcCode, m.lnStart, m.lnLength), 1, CR, LF)
 *!* ** } JRN -- 08/05/2016 07:16 AM - End
 
 		lcResult	= m.lcMatchLine
@@ -2158,7 +2158,7 @@ Result
 			If Not Empty(m.tnTabsToSpaces)
 				lcHtmlBody = Strtran(m.lcHtmlBody, Chr[9], Space(m.tnTabsToSpaces))
 			Endif
-			lcHtmlBody = Alltrim(m.lcHtmlBody, 1, Chr[13], Chr[10])
+			lcHtmlBody = Alltrim(m.lcHtmlBody, 1, CR, LF)
 		Else
 
 *-- Just a plain blob of VFP code, with no match lines or match words...
@@ -2608,11 +2608,11 @@ Result
 
 			Endcase
 
-			lnLFs = Occurs(Chr(10), m.loMatch.Value)
+			lnLFs = Occurs(LF, m.loMatch.Value)
 			lnX   = 0
 * ignore leading CRLF's, and [spaces and tabs, except on the matched line]
-			Do While Substr(m.tcCode, m.lnStartByte + 1, 1) $ Chr(10) + Chr(13) + Chr(32) + Chr(9) And m.lnX < m.lnLFs
-				If Substr(m.tcCode, m.lnStartByte + 1, 1) = Chr(10)
+			Do While Substr(m.tcCode, m.lnStartByte + 1, 1) $ LF + CR + Chr(32) + Chr(9) And m.lnX < m.lnLFs
+				If Substr(m.tcCode, m.lnStartByte + 1, 1) = LF
 					lnX = m.lnX + 1
 				Endif
 				lnStartByte = m.lnStartByte + 1
@@ -3248,7 +3248,7 @@ x
 				Use (m.tcFileToOpen) Exclusive Alias (m.tcCursor)
 				llReturn = .T.
 			Catch
-				This.SetReplaceError('Cannot open file for exclusive use: ' + Chr(13) + Chr(13), m.tcFileToOpen, m.tnResultId)
+				This.SetReplaceError('Cannot open file for exclusive use: ' + CR + CR, m.tcFileToOpen, m.tnResultId)
 				Select (m.lnSelect)
 				llReturn = .F.
 		Endtry
@@ -3811,7 +3811,7 @@ x
 
 *--Added this in 4.3.014 to handle case of deleting the entire line
 		If Empty(m.lcReplaceLine)
-			lcRight = Ltrim(m.lcRight, 0, Chr(10)) && Need to strip off initial Chr(10) of Right hand code block
+			lcRight = Ltrim(m.lcRight, 0, LF) && Need to strip off initial LF of Right hand code block
 		Endif
 
 		lcNewCode = m.lcLeft + m.lcReplaceLine + m.lcRight
@@ -3820,7 +3820,7 @@ x
 			.nChangeLength = Len(m.lcReplaceLine) - Len(m.lcMatchLine)
 *--Added this in 4.3.014 to handle case of deleting the entire line
 			If Empty(m.lcReplaceLine)
-				.nChangeLength = .nChangeLength - 1 && to account for the Chr(10) we stripped off above
+				.nChangeLength = .nChangeLength - 1 && to account for the LF we stripped off above
 			Endif
 			.cNewCode            = m.lcNewCode
 			.cReplaceLine        = m.lcReplaceLine
@@ -3967,14 +3967,14 @@ x
 		lcReplaceLine = m.tcReplaceLine
 		lnLastChar    = Asc(Right(m.lcReplaceLine, 1))
 
-		If m.lnLastChar = 10 && Editbox will add a Chr(10) so this has to be stripped off
+		If m.lnLastChar = 10 && Editbox will add a LF so this has to be stripped off
 			lcReplaceLine = Left(m.lcReplaceLine, Len(m.lcReplaceLine) - 1)
 		Endif
 
 		lnLastChar = Asc(Right(m.lcReplaceLine, 1))
 
-		If m.lnLastChar <> 13 And !Empty(m.lcReplaceLine) && Make sure user has not stripped of the Chr(13) that came with the MatchLine
-			lcReplaceLine = m.lcReplaceLine + Chr(13)
+		If m.lnLastChar <> 13 And !Empty(m.lcReplaceLine) && Make sure user has not stripped of the CR that came with the MatchLine
+			lcReplaceLine = m.lcReplaceLine + CR
 		Endif
 
 		Select(m.tcCursor)
@@ -4019,7 +4019,7 @@ x
 		lcMatchLine = m.tcMatchLine
 
 *-- If there is a CR at the end, pull it off before calling the UDF. Will add back later...
-		If Right(m.tcMatchLine, 1) = Chr(13)
+		If Right(m.tcMatchLine, 1) = CR
 			llCR        = .T.
 			lcMatchLine = Left(m.tcMatchLine, Len(m.tcMatchLine) - 1)
 		Endif
@@ -4037,7 +4037,7 @@ x
 		Endif
 
 		If m.llCR
-			lcReplaceLine = m.lcReplaceLine + Chr(13)
+			lcReplaceLine = m.lcReplaceLine + CR
 		Endif
 
 		Return m.lcReplaceLine
@@ -4668,7 +4668,7 @@ x
 				lcFileToStr = ''
 			Endtry
 			loSearchResultObject.Code = m.loSearchResultObject.MatchLine						;
-				+ Replicate('=', Max(Len(m.loSearchResultObject.MatchLine), 60)) + Chr[13]		;
+				+ Replicate('=', Max(Len(m.loSearchResultObject.MatchLine), 60)) + CR		;
 				+ Left(m.lcFileToStr, 7000) 
 		Endif
 	
@@ -5624,7 +5624,7 @@ ii
 		This.cFilesToSkip         = CR
 		This.nWildCardFilesToSkip = 0
 
-		For lnI = 1 To Alines(laLines, m.lcFilesToSkip + Chr(13) + '_command.prg', 5)
+		For lnI = 1 To Alines(laLines, m.lcFilesToSkip + CR + '_command.prg', 5)
 			lcLine  = Upper(laLines[m.lni])
 			lcLeft  = Left(m.lcLine, 1)
 			lcRight = Right(m.lcLine, 1)
@@ -5945,7 +5945,7 @@ ii
 		Local;
 			lcTrimmedString As String
 
-		lcTrimmedString = Alltrim(m.tcString, 1, Chr(32), Chr(9), Chr(10), Chr(13), Chr(0))
+		lcTrimmedString = Alltrim(m.tcString, 1, Chr(32), Chr(9), LF, CR, Chr(0))
 		lcTrimmedString = Strtran(m.lcTrimmedString, Chr(9), Chr(32))
 
 		Return m.lcTrimmedString

@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.05 - 2024-06-08
+
+Bug fix:
+- Skip list for folders was being ignored when searching "All Open Projects" (#244)
+
 ## Version 7.1.04 - 2024-06-07
 
 - Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
