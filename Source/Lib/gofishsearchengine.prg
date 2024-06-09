@@ -6095,60 +6095,60 @@ ii
 
 	Procedure CreateFileListUsingGrep
 		Lparameters toSettings, tcCursor
-
+	
 		*** JRN 2024-05-22 : Concept and coding suggestions from Mike Yearwood
 		* C:\mygrep\grep.exe -r -l -i -P --include=.{??a,prg} '^(?!\s*).*THERE\s+IS\s+NO\s+SUCH\s+APPRO' c:\mysource
 		*  -r recurse folders, -l list file name only, -i case insensitive, -P use Perl regex
-
-		Local lcBATFile, lcCommand, lcErrFile, lcExtensions, lcFolder, lcOutFile, lcScope
+	
+		Local lcBATFile, lcCommand, lcDoneFile, lcErrFile, lcExtensions, lcFolder, lcOutFile, lcScope
 		Local lcSearchExpression, lcSearchPattern, lcStem, lcSubDirs, lcgrep, lnSearchMode
-
+	
 		* Search Mode: 1 = Plain, 2 = WildCard, 3 = Regex
 		lnSearchMode = m.toSettings.nSearchMode
-
-		* Search Expression (as entered), then strip off leading and trailing ".*"
+	
+		* Search Expression (as entered)
+		lcSearchExpression = m.toSettings.cSearchExpression
 		Do Case
-			Case m.lnSearchMode = 1
-				lcSearchExpression = m.toSettings.cSearchExpression
-				lcSearchPattern	   = '-F'
-			Case m.lnSearchMode = 2 and not This.IsWildCardStatementSearch()
-				lcSearchExpression = m.toSettings.cSearchExpression
-				lcSearchPattern	   = '-F'
-			Case m.lnSearchMode = 2 
-				lcSearchExpression = This.cWildCardSearch 
-				lcSearchPattern	   = '-F'
 			Case m.lnSearchMode = 3
-				lcSearchExpression = m.toSettings.cSearchExpression
 				lcSearchPattern	   = '-P'
+			Case m.lnSearchMode = 2 And ('*' $ m.lcSearchExpression Or '?' $ m.lcSearchExpression)
+				lcSearchExpression = m.toSettings.cEscapedSearchExpression
+				*** JRN 2024-06-09 : strip off leading and trailing .*
+				lcSearchExpression = Substr(m.lcSearchExpression, 3, Len(m.lcSearchExpression ) - 4)
+				lcSearchPattern	   = '-P'
+			Otherwise
+				*** JRN 2024-06-09 : oddly enough, if a trailing '\', needs another
+				lcSearchExpression = m.lcSearchExpression + Iif(Right(m.lcSearchExpression, 1) = '\', '\', '')
+				lcSearchPattern	   = '-F'
 		Endcase
-
+	
 		*** JRN 2024-05-22 : for now, this will work only on folders
 		* Scope (project or path) 
 		lcScope	 = m.toSettings.cRecentScope
 		lcFolder = Addbs(m.lcScope)
-
+	
 		* Extensions searched
 		lcExtensions = This.GetExtensions(m.toSettings.cSearchExtensions)
-
+	
 		* ================================================================================  
-
-		lcStem	  = Addbs(Sys(2023)) + 'GF_Files' + Sys(2015)
-		lcBATFile = m.lcStem + '.bat'
-		lcOutFile = m.lcStem + '.txt'
-		lcErrFile = m.lcStem + '.err'
+	
+		lcStem	   = Addbs(Sys(2023)) + 'GF_Files' + Sys(2015)
+		lcBATFile  = m.lcStem + '.bat'
+		lcOutFile  = m.lcStem + '.txt'
+		lcErrFile  = m.lcStem + '.err'
 		lcDoneFile = m.lcStem + '.done'
-
+	
 		Strtofile('@echo off' + CRLF, m.lcBATFile, 1)
 		If ':' $ m.lcScope
 			Strtofile(Left(m.lcScope, 2)  + CRLF, m.lcBATFile, 1)
 		Endif
 		Strtofile('cd "' + m.lcScope + '"' + CRLF, m.lcBATFile, 1)
-
+	
 		*** JRN 2024-05-14 : file contents
 		lcgrep	= ["] + Addbs(_Screen._GoFish.cAppPath) + 'grep\grep.exe' + ["]
-
+	
 		lcScope = ["] + m.lcScope + ["]
-
+	
 		If m.toSettings.lIncludeSubDirectories
 			lcCommand = m.lcgrep + [ -r -l -i ] + m.lcSearchPattern
 		Else
@@ -6156,37 +6156,38 @@ ii
 			lcScope	  = m.lcScope + [\*.*]
 		Endif
 		lcScope	= Chrtran(m.lcScope, '\', '/')
-
+	
 		lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} "<<m.lcSearchExpression>>" <<m.lcScope>>])
-
+	
 		lcCommand = m.lcCommand + [ 1> "] + m.lcOutFile + [" 2>> "] + m.lcErrFile + ["]
 		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
-
+	
 		* ================================================================================
 		*** JRN 2024-05-30 : search for file names
 		*   DIR *blank*.* /s /b  gives a simple file listing
 		lcSubDirs = Iif(m.toSettings.lIncludeSubDirectories, '/s', '')
-		If m.lnSearchMode # 3
-				lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
-		Else
-				lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+		If m.lnSearchMode # 3 And Not '\' $ m.toSettings.cSearchExpression
+			lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+			*!* ******** JRN Removed 2024-06-09 ********
+			*!* Else
+			*!* 		lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
 		Endif
 		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
-		StrToFile('Echo Done >> "' + m.lcDoneFile  + '"' + CRLF, m.lcBATFile, 1)
+		Strtofile('Echo Done >> "' + m.lcDoneFile  + '"' + CRLF, m.lcBATFile, 1)
 		* ================================================================================
-
+	
 		This.CallShell(m.lcBATFile, m.lcDoneFile)
-
+	
 		* ================================================================================
-
+	
 		This.AppendtoCursor(m.tcCursor, m.lcOutFile, m.lcErrFile)
-
+	
 		This.CleanUpGrepFiles(m.lcStem)
-
+	
 		Return
-		
-	EndProc 
-
+	
+	Endproc
+	
 
 	* ===============================================================================
 	Procedure GetExtensions(lcSearchExtensions)

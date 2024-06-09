@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.06 - 2024-06-09
+
+Bug fixes:
+- Wild card search did not handle ? correctly.
+- Plain and wild card search did nothing if search expression had trailing backslash.
+
 ## Version 7.1.05 - 2024-06-08
 
 Bug fix:
