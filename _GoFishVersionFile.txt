@@ -9,6 +9,17 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.06 - 2024-06-09
+
+Bug fixes:
+- Wild card search did not handle ? correctly.
+- Plain and wild card search did nothing if search expression had trailing backslash.
+
+## Version 7.1.05 - 2024-06-08
+
+Bug fix:
+- Skip list for folders was being ignored when searching "All Open Projects" (#244)
+
 ## Version 7.1.04 - 2024-06-07
 
 - Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
@@ -171,16 +182,10 @@ Notes on the previous version (7.0.15) were over-confident about being able to e
 
 ## Version 7.0.15 - 2024-03-17
 
-* Remove redundant (and confusing) display in Code View pane for matches in MNXs (#184)
-* Modify use of memo fields in the results grid to eliminate the error when the FPT file exceeds 2G limit. (#49, #158). As this was achieved by removing some no longer needed code, there is an imperceptible speed improvement as well.
-
-## Version 7.0.14 - 2024-03-15
-
-* Code View pane changes:
-
+* Remove redundant (and confusing) display in Code View pane for matches in MNXs
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.05 - June 08, 2024 - 20240608')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.06 - June 09, 2024 - 20240609')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
