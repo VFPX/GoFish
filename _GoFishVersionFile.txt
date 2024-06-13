@@ -9,6 +9,15 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.07 - 2024-06-13
+
+- Changes to column "File Path"
+    - When searching all active projects, relative path  (if selected) is relative to currect directory.
+    - New item in grid's right-click context menus is a toggle of whether to show relative path.
+- Bug fixes when searching in directories using wild cards
+    - Not all matches appearing
+    - File count incorrect.
+
 ## Version 7.1.06 - 2024-06-09
 
 Bug fixes:
@@ -178,14 +187,10 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 
 ## Version 7.0.16 - 2024-03-18
 
-Notes on the previous version (7.0.15) were over-confident about being able to eliminate the problem of files hitting the 2G limit. There has been significant progress in making these problems exceedingly unlikely and this update is one more step in that direction, but it is not possible to promise they will never occur again.
-
-## Version 7.0.15 - 2024-03-17
-
-* Remove redundant (and confusing) display in Code View pane for matches in MNXs
+Notes on the previous version (7.0.15) were over-confide
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.06 - June 09, 2024 - 20240609')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.07 - June 13, 2024 - 20240613')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

@@ -1742,15 +1742,25 @@ Endproc &&Update_to_6_2
 Procedure GF_RelativePath
 	Lparameters tcFileName, toForm, toOptions
 
-	Local lcScope
+	Local lcScope, lcPath
 
 	If m.toForm.lShowRelativePath
 		lcScope = m.toOptions.cRecentScope
-		If File(m.lcScope)
-			Return Lower(Sys(2014, m.tcFileName, m.lcScope))
+		Do Case
+			Case m.toOptions.nSearchScope = 5 && all open projects.
+				lcPath = Lower(Sys(2014, m.tcFileName))
+			Case File(m.lcScope)
+				lcPath = Lower(Sys(2014, m.tcFileName, m.lcScope))
+			Otherwise
+				lcPath = Lower(Sys(2014, m.tcFileName, Addbs(m.lcScope)))
+		Endcase
+
+		If Len(m.lcPath) < Len(m.tcFileName)
+			Return m.lcPath
 		Else
-			Return Lower(Sys(2014, m.tcFileName, Addbs(m.lcScope)))
-		Endif
+			Return m.tcFileName
+		EndIf
+		
 	Else
 		Return m.tcFileName
 	Endif && toOptions.lRelativePath

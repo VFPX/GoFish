@@ -1878,7 +1878,7 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE Init
-		Lparameters toForm, toFilter, tnStartPage
+		Lparameters toForm, toFilter, tnStartPage, tlRemoveCurrentFilter
 		
 		Local lnResponse
 		
@@ -1917,12 +1917,19 @@ DEFINE CLASS gf_filter AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 		Thisform.BuildFilterString() && Call this to handle disabling of checkboxes
 		
-		If Not Empty(This.cFilter)
-			lnResponse = Messagebox('Remove current filters?', 4 + 32)
-			If m.lnResponse = 6
+		Do Case
+			Case Empty(This.cFilter)
+		
+			Case Evl(m.tlRemoveCurrentFilter, '') == 'No'
+		
+			Case Evl(m.tlRemoveCurrentFilter, '') == 'Yes'
 				Thisform.ClearAllFilters()
-			Endif
-		Endif
+			Otherwise
+				lnResponse = Messagebox('Remove current filters?', 4 + 32)
+				If m.lnResponse = 6
+					Thisform.ClearAllFilters()
+				Endif
+		Endcase
 		
 		Thisform.PageFrame.ActivePage = Evl(m.tnStartPage, 1)
 		
