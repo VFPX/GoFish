@@ -3365,17 +3365,20 @@ x
 		This.PrepareRegExForSearchV2(This.oRegExForSearch, m.lcSearchExpression, .T.)
 	
 		If This.IsWildCardStatementSearch()
-			*** JRN 2024-02-14 : for wild card searches, only search for the longest text between *s
+			*** JRN 2024-06-13 : nah, this fails later, must only search for first word
+			*** JRN 2024-02-14 : for wild card searches, only search for the longest text between *s (NOPE!)
 			If This.oSearchOptions.lMatchWholeWord
 				This.oSearchOptions.cWholeWordSearch = This.PrepareForWholeWordSearch(m.lcSearchExpression)
-			Endif
-			lcSearchExpression = ''
-			For lnI = 1 To Getwordcount(This.oSearchOptions.cSearchExpression, '*')
-				lcWord = Getwordnum(This.oSearchOptions.cSearchExpression, m.lnI, '*')
-				If Len(m.lcWord) > Len(m.lcSearchExpression)
-					lcSearchExpression = m.lcWord
-				Endif
-			Endfor
+			EndIf
+			lcSearchExpression = Getwordnum(This.oSearchOptions.cSearchExpression, 1, '*')
+			*!* ******** JRN Removed 2024-06-13 ********
+			*!* lcSearchExpression = ''
+			*!* For lnI = 1 To Getwordcount(This.oSearchOptions.cSearchExpression, '*')
+			*!* 	lcWord = Getwordnum(This.oSearchOptions.cSearchExpression, m.lnI, '*')
+			*!* 	If Len(m.lcWord) > Len(m.lcSearchExpression)
+			*!* 		lcSearchExpression = m.lcWord
+			*!* 	Endif
+			*!* Endfor
 		Endif
 		This.PrepareRegExForSearchV2(This.oRegExForSearchInCode, m.lcSearchExpression, .F.)
 		This.cWildCardSearch = lcSearchExpression
@@ -4357,7 +4360,7 @@ x
 		If m.lnMatchCount > 0
 
 			loProcedureStartPositions = Iif(m.tlHasProcedures, This.GetProcedureStartPositions(m.tcCode), .Null.)
-			lnCount = 0
+			lnMatchCount = 0
 
 			For Each m.loMatch In m.loMatches FoxObject
 
@@ -4428,7 +4431,7 @@ x
 					Endcase
 				Endif
 
-				lnCount = lnCount + 1
+				lnMatchCount = lnMatchCount + 1
 
 				If !This.ProcessSearchResult(m.loObject)
 					Exit
@@ -6115,7 +6118,7 @@ ii
 				lcSearchExpression = m.toSettings.cEscapedSearchExpression
 				*** JRN 2024-06-09 : strip off leading and trailing .*
 				lcSearchExpression = Substr(m.lcSearchExpression, 3, Len(m.lcSearchExpression ) - 4)
-				lcSearchPattern	   = '-P'
+				lcSearchPattern	   = '-G'
 			Otherwise
 				*** JRN 2024-06-09 : oddly enough, if a trailing '\', needs another
 				lcSearchExpression = m.lcSearchExpression + Iif(Right(m.lcSearchExpression, 1) = '\', '\', '')
@@ -6150,9 +6153,9 @@ ii
 		lcScope = ["] + m.lcScope + ["]
 	
 		If m.toSettings.lIncludeSubDirectories
-			lcCommand = m.lcgrep + [ -r -l -i ] + m.lcSearchPattern
+			lcCommand = m.lcgrep + [ -r -l -i -z ] + m.lcSearchPattern
 		Else
-			lcCommand = m.lcgrep + [    -l -i ] + m.lcSearchPattern
+			lcCommand = m.lcgrep + [    -l -i -z ] + m.lcSearchPattern
 			lcScope	  = m.lcScope + [\*.*]
 		Endif
 		lcScope	= Chrtran(m.lcScope, '\', '/')

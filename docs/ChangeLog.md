@@ -6,6 +6,15 @@
 
 ---
 
+## Version 7.1.07 - 2024-06-13
+
+- Changes to column "File Path"
+    - When searching all active projects, relative path  (if selected) is relative to currect directory.
+    - New item in grid's right-click context menus is a toggle of whether to show relative path.
+- Bug fixes when searching in directories using wild cards
+    - Not all matches appearing
+    - File count incorrect.
+
 ## Version 7.1.06 - 2024-06-09
 
 Bug fixes:
