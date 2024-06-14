@@ -9,6 +9,10 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.08 - 2024-06-14
+
+- Bug fixes in previous version (#247)
+
 ## Version 7.1.07 - 2024-06-13
 
 - Changes to column "File Path"
@@ -185,12 +189,10 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 * MRU list for search dropdown was misbehaving under some conditions (#187)
 * The "Advanced" form has been simplified and shows only those options not already appearing on the main form.
 
-## Version 7.0.16 - 2024-03-18
-
-Notes on the previous version (7.0.15) were over-confide
+## Version 7.0
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.07 - June 13, 2024 - 20240613')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.08 - June 14, 2024 - 20240614')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

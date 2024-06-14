@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.08 - 2024-06-14
+
+- Bug fixes in previous version (#247)
+
 ## Version 7.1.07 - 2024-06-13
 
 - Changes to column "File Path"
