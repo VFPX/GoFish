@@ -194,6 +194,10 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 * The "Advanc
 EndText
 
+* For GF, strip off links at top of change log
+lcNote = Substr(lcNote, At('--', lcNote))
+lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
+
 AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.09 - June 15, 2024 - 20240615')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
