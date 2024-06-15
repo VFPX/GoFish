@@ -79,6 +79,10 @@ TEXT to lcCloudVersionFileContents NoShow TextMerge PRETEXT 3
 		###Text to lcNote NoShow
 			<<Left(Strtran(FileToStr('..\docs\Changelog.md'), Chr[10], Chr[13] + chr[10]), 8000)>>
 		###EndText
+		
+		* For GF, strip off links at top of change log
+		lcNote = Substr(lcNote, At('--', lcNote))
+		lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
 		AddProperty(toUpdateInfo, 'AvailableVersion', '<<lcVersionStringForVersionFile>>')
 		AddProperty(toUpdateInfo, 'SourceFileUrl', '<<lcDownloadUrl>>')
