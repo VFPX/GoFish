@@ -194,7 +194,7 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 * The "Advanc
 EndText
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.08 - June 15, 2024 - 20240615')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.09 - June 15, 2024 - 20240615')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
