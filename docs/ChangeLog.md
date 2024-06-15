@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.09 - 2024-06-15
+
+- Display in Code View pane of matches in MNXs now includes the bar number (#250)
+
 ## Version 7.1.08 - 2024-06-14
 
 - Bug fixes in previous version (#247)

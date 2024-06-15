@@ -2381,17 +2381,19 @@ Result
 	Procedure GetFullMenuPrompt
 		*** JRN 2024-02-05 : Get the Full menu prompt (includes prompts for parent sub-menus)
 		* Assumes current record in current table; written this way to avoid modifying record pointer
-		Local laField[1], laParent[1], lcDBF, lcPrompt, lnLevelName, lnRecNo
+		Local laField[1], laParent[1], lcDBF, lcPrompt, lnIndent, lnLevelName, lnRecNo
 	
-		lcPrompt = Alltrim(Prompt)
 		lcDBF	 = Dbf()
 		lnRecNo	 = Recno()
 	
 		Select  LevelName,					;
-				Prompt						;
+				Prompt,						;
+				Int(Val(ItemNum))			;
 			From (m.lcDBF)					;
 			Where Recno() = m.lnRecNo		;
 			Into Array laField
+	
+		lcPrompt = ["] + Alltrim(m.laField[2]) + '" &' + '& Bar ' + Transform(m.laField[3]) + ' '
 	
 		Do While m.laField[1] # '_MSYSMENU'
 			lnLevelName = m.laField[1]
@@ -2405,16 +2407,25 @@ Result
 			Endif
 			lnRecNo = m.laParent[1] - 1
 			Select  LevelName,					;
-					Prompt						;
+					Prompt,						;
+					Int(Val(ItemNum))			;
 				From (m.lcDBF)					;
 				Where Recno() = m.lnRecNo		;
 				Into Array laField
-			lcPrompt = Alltrim(m.laField[2]) + ' => ' + m.lcPrompt
+			lcPrompt = ["] + Alltrim(m.laField[2]) + '" &' + '& Bar ' + Transform(m.laField[3]) + ' => ' + m.lcPrompt
+	
+		Enddo
+	
+		* experimental indentation
+		lnIndent = 10
+		Do While '=>' $ m.lcPrompt
+			lnIndent = m.lnIndent + 4
+			lcPrompt = Strtran(m.lcPrompt, '=>', CRLF + Space(m.lnIndent) + Chr[149], 1, 1, 1)
 		Enddo
 	
 		Return m.lcPrompt
 	Endproc
-	
+			
 	*----------------------------------------------------------------------------------
 	Procedure GetMenuKeystrokes(lcFileToEdit, lnRecNo, lcMatchType)
 	
@@ -5294,12 +5305,12 @@ ii
 							lcCode =																						;
 								Trim(&lcField, 1, CR, LF) + CRLF + CRLF +													;
 								'*' + Replicate('=', 60) + CRLF + '* Related field(s):' + CRLF +							;
-								Iif(Empty(Prompt)    Or lcField = 'PROMPT',    '', 'Prompt    = "' + This.GetFullMenuPrompt() + '"' + CRLF) + ;
-								Iif(Empty(Command)   Or lcField = 'COMMAND',   '', 'Command   = ' + Command + CRLF) +			;
-								Iif(Empty(SkipFor)   Or lcField = 'SKIPFOR',   '', 'SkipFor   = ' + SkipFor + CRLF) +			;
-								Iif(Empty(Message)   Or lcField = 'MESSAGE',   '', 'Message   = "' + Message + '"' + CRLF) +	;
-								Iif(Empty(Comment)   Or lcField = 'COMMENT',   '', 'Comment   = "' + Comment + '"' + CRLF) +	;
-								Iif(Empty(Procedure) Or lcField = 'PROCEDURE', '', 'Procedure = ' + Iif(CR $ Trim(Procedure, 1, CR, LF, Tab, ' '), CRLF, '') + Procedure + CRLF)
+								Iif(Empty(Prompt)    , '', 'Prompt    : ' + This.GetFullMenuPrompt() + CRLF) + ;
+								Iif(Empty(Command)   , '', 'Command   : ' + Command + CRLF) +   ;
+								Iif(Empty(SkipFor)   , '', 'SkipFor   : ' + SkipFor + CRLF) +	;
+								Iif(Empty(Message)   , '', 'Message   : "' + Message + '"' + CRLF) +	;
+								Iif(Empty(Comment)   , '', 'Comment   : "' + Comment + '"' + CRLF) +	;
+								Iif(Empty(Procedure) , '', 'Procedure : ' + Iif(CR $ Trim(Procedure, 1, CR, LF, Tab, ' '), CRLF, '') + Procedure + CRLF)
 														
 						Case m.lcExt = 'DBC'
 							._Name  = Alltrim(ObjectName)
