@@ -5305,12 +5305,12 @@ ii
 							lcCode =																						;
 								Trim(&lcField, 1, CR, LF) + CRLF + CRLF +													;
 								'*' + Replicate('=', 60) + CRLF + '* Related field(s):' + CRLF +							;
-								Iif(Empty(Prompt)    , '', 'Prompt    : ' + This.GetFullMenuPrompt() + CRLF) + ;
-								Iif(Empty(Command)   , '', 'Command   : ' + Command + CRLF) +   ;
-								Iif(Empty(SkipFor)   , '', 'SkipFor   : ' + SkipFor + CRLF) +	;
-								Iif(Empty(Message)   , '', 'Message   : "' + Message + '"' + CRLF) +	;
-								Iif(Empty(Comment)   , '', 'Comment   : "' + Comment + '"' + CRLF) +	;
-								Iif(Empty(Procedure) , '', 'Procedure : ' + Iif(CR $ Trim(Procedure, 1, CR, LF, Tab, ' '), CRLF, '') + Procedure + CRLF)
+								Iif(Empty(Prompt),    						   '', 'Prompt    = ' + This.GetFullMenuPrompt() + CRLF) + ;
+								Iif(Empty(Command)   Or lcField = 'COMMAND',   '', 'Command   = ' + Command + CRLF) +			;
+								Iif(Empty(SkipFor)   Or lcField = 'SKIPFOR',   '', 'SkipFor   = ' + SkipFor + CRLF) +			;
+								Iif(Empty(Message)   Or lcField = 'MESSAGE',   '', 'Message   = "' + Message + '"' + CRLF) +	;
+								Iif(Empty(Comment)   Or lcField = 'COMMENT',   '', 'Comment   = "' + Comment + '"' + CRLF) +	;
+								Iif(Empty(Procedure) Or lcField = 'PROCEDURE', '', 'Procedure = ' + Iif(CR $ Trim(Procedure, 1, CR, LF, Tab, ' '), CRLF, '') + Procedure + CRLF)
 														
 						Case m.lcExt = 'DBC'
 							._Name  = Alltrim(ObjectName)
