@@ -6,7 +6,7 @@
 
 ---
 
-## Version 7.1.09 - 2024-06-15
+## Version 7.1.10 - 2024-06-16
 
 - Display in Code View pane of matches in MNXs now includes the bar number (#250)
 
