@@ -148,6 +148,8 @@ Define Class GoFishSearchOptions As Custom
 
 	*** JRN 2024-05-04 : File extensions searched in current search
 	cSearchExtensions = ''
+	
+	lShowMenuBarNumbers = .F.
 
 	*---------------------------------------------------------------------
 
