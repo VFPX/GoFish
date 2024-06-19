@@ -9,6 +9,11 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.11 - 2024-06-18
+
+- New option to display the bar number in Code View pane for matches in MNXs (#250)
+- "Advanced" button now highlighted if "code template" field is not empty.
+
 ## Version 7.1.10 - 2024-06-16
 
 - Display in Code View pane of matches in MNXs now includes the bar number (#250)
@@ -189,16 +194,13 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 ## Version 7.0.17 - 2024-03-23
 
 * Multiple identical results were occurring for matches in MNXs using regular expressions (#190).
-* Scope setting "Search All Projects" was not working if projects were not all in the same folder (#188)
-* MRU list for search dropdown was misbehaving under some conditions (#187)
-* The "Advanc
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.10 - June 16, 2024 - 20240616')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.11 - June 18, 2024 - 20240618')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.11 - 2024-06-18
+
+- New option to display the bar number in Code View pane for matches in MNXs (#250)
+- "Advanced" button now highlighted if "code template" field is not empty.
+
 ## Version 7.1.10 - 2024-06-16
 
 - Display in Code View pane of matches in MNXs now includes the bar number (#250)

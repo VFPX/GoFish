@@ -2381,10 +2381,11 @@ Result
 	Procedure GetFullMenuPrompt
 		*** JRN 2024-02-05 : Get the Full menu prompt (includes prompts for parent sub-menus)
 		* Assumes current record in current table; written this way to avoid modifying record pointer
-		Local laField[1], laParent[1], lcDBF, lcPrompt, lnIndent, lnLevelName, lnRecNo
+		Local lShowMenuBarNumbers, laField[1], laParent[1], lcDBF, lcPrompt, lnLevelName, lnRecNo
 	
-		lcDBF	 = Dbf()
-		lnRecNo	 = Recno()
+		lShowMenuBarNumbers	= This.oSearchOptions.lShowMenuBarNumbers
+		lcDBF				= Dbf()
+		lnRecNo				= Recno()
 	
 		Select  LevelName,					;
 				Prompt,						;
@@ -2393,7 +2394,7 @@ Result
 			Where Recno() = m.lnRecNo		;
 			Into Array laField
 	
-		lcPrompt = ["] + Alltrim(m.laField[2]) + '" &' + '& Bar ' + Transform(m.laField[3]) + ' '
+		lcPrompt = ["] + Alltrim(m.laField[2]) + '"' + Iif(m.lShowMenuBarNumbers, ' (Bar ' + Transform(m.laField[3]) + ')', '')
 	
 		Do While m.laField[1] # '_MSYSMENU'
 			lnLevelName = m.laField[1]
@@ -2412,20 +2413,15 @@ Result
 				From (m.lcDBF)					;
 				Where Recno() = m.lnRecNo		;
 				Into Array laField
-			lcPrompt = ["] + Alltrim(m.laField[2]) + '" &' + '& Bar ' + Transform(m.laField[3]) + ' => ' + m.lcPrompt
+	
+			lcPrompt = ["] + Alltrim(m.laField[2]) + '"' + Iif(m.lShowMenuBarNumbers, ' (Bar ' + Transform(m.laField[3]) + ')', '') + ' => ' + m.lcPrompt
 	
 		Enddo
 	
-		* experimental indentation
-		lnIndent = 10
-		Do While '=>' $ m.lcPrompt
-			lnIndent = m.lnIndent + 4
-			lcPrompt = Strtran(m.lcPrompt, '=>', CRLF + Space(m.lnIndent) + Chr[149], 1, 1, 1)
-		Enddo
 	
-		Return m.lcPrompt
+		Return Strtran(m.lcPrompt, '\<', '')
 	Endproc
-			
+					
 	*----------------------------------------------------------------------------------
 	Procedure GetMenuKeystrokes(lcFileToEdit, lnRecNo, lcMatchType)
 	
@@ -4335,7 +4331,7 @@ x
 					
 
 *----------------------------------------------------------------------------------
-	Procedure SearchInCode(tcCode, tuUserField, tlHasProcedures, lnMaxMatchStart)
+	Procedure SearchInCode(tcCode, tuUserField, tlHasProcedures, lnMinMatchStart, lnMaxMatchStart)
 
 		Local;
 			lcErrorMessage         As String,;
@@ -4378,7 +4374,7 @@ x
 				If m.tlHasProcedures And !This.oSearchOptions.lSearchInComments And This.IsComment(m.loMatch.Value)
 					Loop
 				Endif
-				If m.loMatch.FirstIndex > Evl(lnMaxMatchStart, 1E9) 
+				If m.loMatch.FirstIndex < Evl(lnMinMatchStart, 0) or m.loMatch.FirstIndex > Evl(lnMaxMatchStart, 1E9) 
 					Loop
 				EndIf
 				
@@ -5251,6 +5247,7 @@ ii
 				llProcessThisMatch = .T.														&& have a cursor created
 				llScxVcx           = Inlist(m.lcExt, 'VCX', 'SCX')
 				lcCode             = Evaluate(m.lcField)
+				lnMinMatchStart	   = 0
 				lnMaxMatchStart	   = 1E9
 
 				With m.loFileResultObject
@@ -5300,18 +5297,49 @@ ii
 							._Name     = Proper(m.lcField)
 
 						*** JRN 2024-02-05 : For some MNX matches, show more info from the same record
-						Case m.lcExt = 'MNX' && and InList(Upper(m.lcField), 'PROMPT', 'COMMAND', 'PROCEDURE', 'SKIPFOR')
-							lnMaxMatchStart	   = Max(Len(&lcField), 1) && somewhat odd, but used because EVL used later to mean MAXIMUM
-							lcCode =																						;
-								Trim(&lcField, 1, CR, LF) + CRLF + CRLF +													;
-								'*' + Replicate('=', 60) + CRLF + '* Related field(s):' + CRLF +							;
-								Iif(Empty(Prompt),    						   '', 'Prompt    = ' + This.GetFullMenuPrompt() + CRLF) + ;
-								Iif(Empty(Command)   Or lcField = 'COMMAND',   '', 'Command   = ' + Command + CRLF) +			;
-								Iif(Empty(SkipFor)   Or lcField = 'SKIPFOR',   '', 'SkipFor   = ' + SkipFor + CRLF) +			;
-								Iif(Empty(Message)   Or lcField = 'MESSAGE',   '', 'Message   = "' + Message + '"' + CRLF) +	;
-								Iif(Empty(Comment)   Or lcField = 'COMMENT',   '', 'Comment   = "' + Comment + '"' + CRLF) +	;
-								Iif(Empty(Procedure) Or lcField = 'PROCEDURE', '', 'Procedure = ' + Iif(CR $ Trim(Procedure, 1, CR, LF, Tab, ' '), CRLF, '') + Procedure + CRLF)
-														
+						Case m.lcExt = 'MNX'
+
+							lnMinMatchStart	= 0
+							lnMaxMatchStart	= 1E9
+							lcCode = ''
+							
+							If Not Empty(Prompt)  
+								lnMinMatchStart	= Iif(lcField = 'PROMPT', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + 'Prompt    = ' + This.GetFullMenuPrompt() + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'PROMPT', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
+							If Not Empty(Command) 
+								lnMinMatchStart	= Iif(lcField = 'COMMAND', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + 'Command   = ' + Command + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'COMMAND', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
+							If Not Empty(Skipfor)
+								lnMinMatchStart	= Iif(lcField = 'SKIPFOR', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + 'Skipfor   = ' + Skipfor + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'SKIPFOR', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
+							If Not Empty(Message)
+								lnMinMatchStart	= Iif(lcField = 'MESSAGE', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + 'Message   = ' + Message + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'MESSAGE', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
+							If Not Empty(Comment)
+								lnMinMatchStart	= Iif(lcField = 'COMMENT', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + 'Comment   = ' + COMMENT + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'COMMENT', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
+							If Not Empty(Procedure)
+								lcCode = lcCode + CRLF + Replicate('*', 60) + CRLF + CRLF
+								lnMinMatchStart	= Iif(lcField = 'PROCEDURE', Len(m.lcCode), m.lnMinMatchStart)
+								lcCode			= m.lcCode + Procedure + CRLF
+								lnMaxMatchStart	= Iif(lcField = 'PROCEDURE', Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+							
 						Case m.lcExt = 'DBC'
 							._Name  = Alltrim(ObjectName)
 							._Class = Alltrim(ObjectType)
@@ -5385,7 +5413,7 @@ ii
 *lcCode = Evaluate(lcField)
 						llHasMethods = Upper(m.lcField) = 'METHODS' Or		;
 							M.lcExt = 'FRX' And Upper(m.lcField) = 'TAG' And Upper(Name) = 'DATAENVIRONMENT'
-						lnMatchCount = This.SearchInCode(m.lcCode, m.loFileResultObject, m.llHasMethods, lnMaxMatchStart)
+						lnMatchCount = This.SearchInCode(m.lcCode, m.loFileResultObject, m.llHasMethods, lnMinMatchStart, lnMaxMatchStart)
 					Else
 * Can't search since there is no cSearchExpression, so we just log the file as a result.
 * This handles TimeStamp searches, where the cSearchExpression is empty
