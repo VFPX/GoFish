@@ -48,6 +48,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check13" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Check4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Label10" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Label11" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.pagePreferences.Spinner7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.List1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageAdvanced.Label2" UniqueID="" Timestamp="" />
@@ -245,6 +247,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*p: nrisk2dynamicbackcolour		&& Grid, dynamic back colour replace risk value 2
 		*p: nrisk3dynamicbackcolour		&& Grid, dynamic back colour replace risk value 3
 		*p: nriskexceededdynamicbackcolour		&& Grid, dynamic back colour replace risk exceeds setting
+		*p: nsearchboxfontsize
 		*p: ntabstospaces
 		*p: ntreesearchcolour		&& Tree colour while searching?
 		*p: ntreeupdatecolour		&& Tree colour while updateing?
@@ -292,6 +295,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		nrisk2dynamicbackcolour = 0
 		nrisk3dynamicbackcolour = 0
 		nriskexceededdynamicbackcolour = 0
+		nsearchboxfontsize = 0
 		ntabstospaces = 0
 		ntreesearchcolour = 0
 		ntreeupdatecolour = 0
@@ -340,6 +344,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			<memberdata name="nbrowserfontsize" display="nBrowserFontSize"/>
 			<memberdata name="njanitorrundays" display="nJanitorRunDays"/>
 			<memberdata name="askifsavechanges" display="AskIfSaveChanges"/>
+			<memberdata name="nsearchboxfontsize" display="nSearchBoxFontSize"/>
 		</VFPData>
 	*</PropValue>
 
@@ -2151,6 +2156,17 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 103
 		*< END OBJECT: BaseClass="label" />
 
+	ADD OBJECT 'pfSettings.pagePreferences.Label11' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "Combobox font size", ;
+		Height = 18, ;
+		Left = 270, ;
+		Name = "Label11", ;
+		TabIndex = 18, ;
+		Top = 326, ;
+		Width = 114
+		*< END OBJECT: BaseClass="label" />
+
 	ADD OBJECT 'pfSettings.pagePreferences.Label2' AS label WITH ;
 		BackStyle = 0, ;
 		Caption = "Grid font size", ;
@@ -2159,7 +2175,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Name = "Label2", ;
 		TabIndex = 18, ;
 		Top = 326, ;
-		Width = 103
+		Width = 79
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.pagePreferences.Label3' AS label WITH ;
@@ -2226,7 +2242,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		BackStyle = 0, ;
 		Caption = "TreeView font size", ;
 		Height = 18, ;
-		Left = 290, ;
+		Left = 476, ;
 		Name = "Label8", ;
 		TabIndex = 19, ;
 		Top = 327, ;
@@ -2237,7 +2253,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		BackStyle = 0, ;
 		Caption = "Tabs to spaces", ;
 		Height = 18, ;
-		Left = 482, ;
+		Left = 423, ;
 		Name = "Label9", ;
 		TabIndex = 24, ;
 		Top = 358, ;
@@ -2317,7 +2333,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Height = 27, ;
 		KeyboardHighValue = 24, ;
 		KeyboardLowValue = 6, ;
-		Left = 225, ;
+		Left = 411, ;
 		Name = "Spinner5", ;
 		SpinnerHighValue =  24.00, ;
 		SpinnerLowValue =   6.00, ;
@@ -2331,12 +2347,26 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Height = 27, ;
 		KeyboardHighValue = 10, ;
 		KeyboardLowValue = 0, ;
-		Left = 417, ;
+		Left = 358, ;
 		Name = "Spinner6", ;
 		SpinnerHighValue =  10.00, ;
 		SpinnerLowValue =   0.00, ;
 		TabIndex = 21, ;
 		Top = 353, ;
+		Width = 59
+		*< END OBJECT: BaseClass="spinner" />
+
+	ADD OBJECT 'pfSettings.pagePreferences.Spinner7' AS spinner WITH ;
+		ControlSource = "Thisform.nSearchBoxFontSize", ;
+		Height = 27, ;
+		KeyboardHighValue = 24, ;
+		KeyboardLowValue = 6, ;
+		Left = 205, ;
+		Name = "Spinner7", ;
+		SpinnerHighValue =  24.00, ;
+		SpinnerLowValue =   6.00, ;
+		TabIndex = 16, ;
+		Top = 321, ;
 		Width = 59
 		*< END OBJECT: BaseClass="spinner" />
 
@@ -3098,6 +3128,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			.Dockable											 = Thisform.nDockable
 			.nGridFontSize										 = Thisform.nGridFontSize
 			.nTreeViewFontSize									 = Thisform.nTreeViewFontSize
+			.nSearchBoxFontSize									 = Thisform.nSearchBoxFontSize
 			.nTabsToSpaces										 = Thisform.nTabsToSpaces
 			.nDropDownDisplayCount								 = Thisform.nDropDownDisplayCount
 			.nDropDownMaxMRU									 = Thisform.nDropDownMaxMRU
