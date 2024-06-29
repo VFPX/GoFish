@@ -4473,12 +4473,16 @@ x
 	
 		This.PrepareForSearch()
 		This.StartTimer()
-		This.oProgressBar.Start(100, 'Creating list of files)')
+		This.oProgressBar.Start(100, 'Creating list of files')
 	
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
 		Create Cursor (m.lcCustomAlias) (FileName C(240))
 	
 		Do (m.tcCustomScopeUDFFileName) With This.oSearchOptions, m.lcCustomAlias
+		
+		*!* ******** JRN Removed 2024-06-24 ******** 
+		*!* * This was not enough of an improvement
+		*!* This.PreprocessFileList(m.lcCustomAlias, m.lcCustomAlias)
 	
 		This.nADirTime = This.ElapsedTimeSinceStart()
 	
@@ -5305,8 +5309,12 @@ ii
 							
 							If Not Empty(Prompt)  
 								lnMinMatchStart	= Iif(lcField = 'PROMPT', Len(m.lcCode), m.lnMinMatchStart)
-								lcCode			= m.lcCode + 'Prompt    = ' + This.GetFullMenuPrompt() + CRLF
+								lcCode			= m.lcCode + 'Prompt    = '			;
+									+ This.GetFullMenuPrompt()						;
+									+ Iif(objCode = 77, ' &' + '& Submenu', '')		;
+									+ CRLF
 								lnMaxMatchStart	= Iif(lcField = 'PROMPT', Len(m.lcCode), m.lnMaxMatchStart)
+								
 							Endif
 							
 							If Not Empty(Command) 
@@ -6317,7 +6325,53 @@ ii
 	Procedure CleanUpGrepFiles(tcStem)
 		Erase (m.tcStem + '.*')
 	EndProc
-	
+
+
+	* ================================================================================
+	Procedure PreprocessFileList(tcFilesCursor, tcDestCursor)
+
+		Local lcExtensions, lcTexts
+
+		lcExtensions = Lower(' ' + This.oSearchOptions.cSearchExtensions + ' ')
+		Select  Distinct Lower(FileName)    As  FileName						;
+			From (m.tcFilesCursor)												;
+			Where ' ' + Lower(Justext(FileName)) + ' ' $ m.lcExtensions			;
+			Into Cursor FilesCursor Readwrite
+
+		Replace	FileName  With	Strtran(FileName, 'x    ', 't', 1, 1, 1)		;
+			For ' ' + Upper(Justext(FileName)) + ' ' $ ccBinaries
+
+		Select  *											;
+			From FilesCursor								;
+			Where This.AnyRegExMatchesInFile(FileName)		;
+			Into Cursor (m.tcDestCursor) readwrite
+
+		lcTexts	 = Chrtran(ccBinaries, 'X', 'T')
+		Replace	FileName  With	Strtran(FileName, 't    ', 'x', 1, 1, 1)		;
+			For ' ' + Upper(Justext(FileName)) + ' ' $ m.lcTexts
+
+	Endproc
+
+
+	* ================================================================================
+	Procedure AnyRegExMatchesInFile(tcFileName)
+		Local llResult, loException
+
+		Do Case
+			Case Not File(m.tcFileName)
+				Return .F.
+			Case This.AnyRegExMatches(m.tcFileName)
+				Return .T.
+			Otherwise
+				Try
+					llResult = This.AnyRegExMatches(Filetostr(m.tcFileName))
+				Catch To m.loException
+					llResult = .T.
+				Endtry
+				Return m.llResult
+		Endcase
+	Endproc
+
 			
 Enddefine
 

@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.12 - 2024-06-29
+
+- New option to select the font size used in comboboxes (search expression, scope, mode, etc) (#259)
+
 ## Version 7.1.11 - 2024-06-18
 
 - New option to display the bar number in Code View pane for matches in MNXs (#250)
