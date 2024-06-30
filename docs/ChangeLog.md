@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.13 - 2024-06-29
+
+- Matches to currency symbol(s) not being found (#261)
+
 ## Version 7.1.12 - 2024-06-29
 
 - New option to select the font size used in comboboxes (search expression, scope, mode, etc) (#259)

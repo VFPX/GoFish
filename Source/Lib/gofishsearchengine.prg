@@ -6088,9 +6088,28 @@ ii
 		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
 		* However, cannot do so if there is a file template (rare)
 		* or " in the search expression (calls to grep use ")
-		Return Empty(This.oSearchOptions.cFileTemplate) and not ["] $ This.oSearchOptions.cSearchExpression
-	EndProc 
-
+		Local lcChar, lcSearchExpression, lnI
+	
+		If Not Empty(This.oSearchOptions.cFileTemplate)
+			Return .F.
+		Endif
+	
+		lcSearchExpression = This.oSearchOptions.cSearchExpression
+		If ["] $ lcSearchExpression
+			Return .F.
+		Endif
+	
+		For lnI = 1 To len(lcSearchExpression)
+			lcChar = Substr(lcSearchExpression, lnI)
+			If Not Between(Asc(lcChar), 32, 122) 
+				Return .F.
+			Endif
+		Endfor
+	
+		Return .T.
+	
+	Endproc
+		
 * ================================================================================ 
 * ================================================================================ 
 *** JRN 2024-05-31 : Optimized section, using grep to create (shorter) list of files

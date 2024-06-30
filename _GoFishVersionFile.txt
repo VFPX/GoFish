@@ -9,6 +9,10 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.13 - 2024-06-29
+
+- Matches to currency symbol(s) not being found (#261)
+
 ## Version 7.1.12 - 2024-06-29
 
 - New option to select the font size used in comboboxes (search expression, scope, mode, etc) (#259)
@@ -191,16 +195,14 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 ## Version 7.0.18 - 2024-03-24
 
 * Date/Time expressions now respect user settings for SET DATE and SET HOURS. (#189)
-* Bug fixes:
-    * Error when closing combobox for scope (#192)
-    * Error opening "Advanced" fo
+* Bug f
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.12 - June 29, 2024 - 20240629')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.13 - June 29, 2024 - 20240629')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
