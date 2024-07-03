@@ -17,6 +17,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		*m: opentable
 		*m: savesearchscope
 		*m: updateimageicon
+		*p: cmostrecent
 		*p: ctable
 		*p: lhasfocus
 		*p: nexpressionstostore
@@ -26,6 +27,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 
 	*<PropValue>
 		Anchor = 10
+		cmostrecent = 
 		ctable = 
 		Height = 24
 		lhasfocus = .F.
@@ -47,6 +49,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 			<memberdata name="lhasfocus" display="lHasFocus"/>
 			<memberdata name="addprojects" display="AddProjects"/>
 			<memberdata name="adddirectories" display="AddDirectories"/>
+			<memberdata name="cmostrecent" display="cMostRecent"/>
 		</VFPData>
 	*</PropValue>
 	
@@ -73,6 +76,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		Endscan
 		
 		If Alen(m.laFolders) > 1
+			This.cMostRecent = laFolders[2]
 			If m.llSortScopeDropdown
 				Asort(m.laFolders, 2, -1, 0, 1)
 			Endif
@@ -102,6 +106,7 @@ DEFINE CLASS gf_combosearchscope AS combobox
 		Endscan
 		
 		If Alen(m.laProjects) > 1
+			This.cMostRecent = laProjects[2]
 			If m.llSortScopeDropdown
 				Asort(m.laProjects, 2, -1, 0, 1)
 			Endif
