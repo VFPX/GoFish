@@ -6360,7 +6360,6 @@ ii
 		Erase (m.tcStem + '.*')
 	EndProc
 
-
 	* ================================================================================
 	*!* ******** JRN Removed 2024-07-08 ********
 	*!* Procedure PreprocessFileList(tcFilesCursor, tcDestCursor)
