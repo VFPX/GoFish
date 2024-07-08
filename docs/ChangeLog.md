@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.14 - 2024-07-08
+
+- Matches for search expressions ending with backslash, such as `C:\`,  not being found (#264)
+- Two additions to grid context menu:
+    - DeleteMark
+    - Set Deleted
+- Selecting "Browse Project" or "Browse Directory" sets scope to last project/directory (instead of blank)
+
 ## Version 7.1.13 - 2024-06-29
 
 - Matches to currency symbol(s) not being found (#261)
