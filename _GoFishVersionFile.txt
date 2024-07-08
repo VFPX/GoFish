@@ -9,6 +9,14 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.14 - 2024-07-08
+
+- Matches for search expressions ending with backslash, such as `C:\`,  not being found (#264)
+- Two additions to grid context menu:
+    - DeleteMark
+    - Set Deleted
+- Selecting "Browse Project" or "Browse Directory" sets scope to last project/directory (instead of blank)
+
 ## Version 7.1.13 - 2024-06-29
 
 - Matches to currency symbol(s) not being found (#261)
@@ -189,20 +197,14 @@ The normal behavior when you double-click on a row in the grid from a SCX or VCX
 
 ## Version 7.0.19 - 2024-03-27
 
-* Double-clicking on a file or class name in the TreeView will open that file or class for editing.  This restores a feature available in GF 5.
-* Ctrl+Clicking on a column header sorts on that column and removes any secondary or tertiary sorts.
-
-## Version 7.0.18 - 2024-03-24
-
-* Date/Time expressions now respect user settings for SET DATE and SET HOURS. (#189)
-* Bug f
+* Double-clicking on a file or class name in the TreeView wi
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.13 - June 29, 2024 - 20240629')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.14 - July 08, 2024 - 20240708')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

@@ -6088,6 +6088,8 @@ ii
 		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
 		* However, cannot do so if there is a file template (rare)
 		* or " in the search expression (calls to grep use ")
+		* or any characters before chr[32] or after chr[122]
+		* or has a trailing backslash
 		Local lcChar, lcSearchExpression, lnI
 	
 		If Not Empty(This.oSearchOptions.cFileTemplate)
@@ -6105,6 +6107,10 @@ ii
 				Return .F.
 			Endif
 		Endfor
+	
+		If Right(lcSearchExpression, 1) = '\'
+			Return .F.
+		Endif
 	
 		Return .T.
 	
@@ -6191,11 +6197,6 @@ ii
 				lcSearchPattern	   = '-F'
 		Endcase
 	
-		*** JRN 2024-05-22 : for now, this will work only on folders
-		* Scope (project or path) 
-		lcScope	 = m.toSettings.cRecentScope
-		lcFolder = Addbs(m.lcScope)
-	
 		* Extensions searched
 		lcExtensions = This.GetExtensions(m.toSettings.cSearchExtensions)
 	
@@ -6208,42 +6209,54 @@ ii
 		lcDoneFile = m.lcStem + '.done'
 	
 		Strtofile('@echo off' + CRLF, m.lcBATFile, 1)
-		If ':' $ m.lcScope
-			Strtofile(Left(m.lcScope, 2)  + CRLF, m.lcBATFile, 1)
-		Endif
-		Strtofile('cd "' + m.lcScope + '"' + CRLF, m.lcBATFile, 1)
 	
-		*** JRN 2024-05-14 : file contents
-		lcgrep	= ["] + Addbs(_Screen._GoFish.cAppPath) + 'grep\grep.exe' + ["]
+		* Scope (project or path) 
+		lcScope	 = m.toSettings.cRecentScope
 	
-		lcScope = ["] + m.lcScope + ["]
+		If Directory(m.lcScope)
+
+			* ================================================================================ 
+			lcFolder = Addbs(m.lcScope)
 	
-		If m.toSettings.lIncludeSubDirectories
-			lcCommand = m.lcgrep + [ -r -l -i -z ] + m.lcSearchPattern
+			If ':' $ m.lcScope
+				Strtofile(Left(m.lcScope, 2)  + CRLF, m.lcBATFile, 1)
+			Endif
+			Strtofile('cd "' + m.lcScope + '"' + CRLF, m.lcBATFile, 1)
+	
+			*** JRN 2024-05-14 : file contents
+			lcgrep	= ["] + Addbs(_Screen._GoFish.cAppPath) + 'grep\grep.exe' + ["]
+	
+			lcScope = ["] + m.lcScope + ["]
+	
+			If m.toSettings.lIncludeSubDirectories
+				lcCommand = m.lcgrep + [ -r -l -i -z ] + m.lcSearchPattern
+			Else
+				lcCommand = m.lcgrep + [    -l -i -z ] + m.lcSearchPattern
+				lcScope	  = m.lcScope + [\*.*]
+			Endif
+			lcScope	= Chrtran(m.lcScope, '\', '/')
+	
+			lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} "<<m.lcSearchExpression>>" <<m.lcScope>>])
+	
+			lcCommand = m.lcCommand + [ 1> "] + m.lcOutFile + [" 2>> "] + m.lcErrFile + ["]
+			Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
+	
+			* ================================================================================
+			*** JRN 2024-05-30 : search for file names
+			*   DIR *blank*.* /s /b  gives a simple file listing
+			lcSubDirs = Iif(m.toSettings.lIncludeSubDirectories, '/s', '')
+			If m.lnSearchMode # 3 And Not '\' $ m.toSettings.cSearchExpression
+				lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
+			Endif
+			Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
+
 		Else
-			lcCommand = m.lcgrep + [    -l -i -z ] + m.lcSearchPattern
-			lcScope	  = m.lcScope + [\*.*]
+	
+			* ================================================================================
+			
 		Endif
-		lcScope	= Chrtran(m.lcScope, '\', '/')
 	
-		lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} "<<m.lcSearchExpression>>" <<m.lcScope>>])
-	
-		lcCommand = m.lcCommand + [ 1> "] + m.lcOutFile + [" 2>> "] + m.lcErrFile + ["]
-		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
-	
-		* ================================================================================
-		*** JRN 2024-05-30 : search for file names
-		*   DIR *blank*.* /s /b  gives a simple file listing
-		lcSubDirs = Iif(m.toSettings.lIncludeSubDirectories, '/s', '')
-		If m.lnSearchMode # 3 And Not '\' $ m.toSettings.cSearchExpression
-			lcCommand = Textmerge([DIR *"<<m.toSettings.cSearchExpression>>"*.* <<lcSubDirs>> /b 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
-			*!* ******** JRN Removed 2024-06-09 ********
-			*!* Else
-			*!* 		lcCommand = Textmerge([DIR <<m.lcScope >>\*.* <<lcSubDirs>> /b | <<m.lcgrep>> -i -P "<<m.lcSearchExpression>>" - 1>> "<<m.lcOutFile>>" 2>> "<<m.lcErrFile>>"])
-		Endif
-		Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)
 		Strtofile('Echo Done >> "' + m.lcDoneFile  + '"' + CRLF, m.lcBATFile, 1)
-		* ================================================================================
 	
 		This.CallShell(m.lcBATFile, m.lcDoneFile)
 	
@@ -6256,7 +6269,7 @@ ii
 		Return
 	
 	Endproc
-	
+		
 
 	* ===============================================================================
 	Procedure GetExtensions(lcSearchExtensions)
@@ -6314,7 +6327,9 @@ ii
 
 		Select (m.tcCursor)
 		Append From (m.tcOutFile) Sdf
-		This.AppendErrorFiles(m.tcErrFile)
+		If not Empty(m.tcErrFile)
+			This.AppendErrorFiles(m.tcErrFile)
+		Endif
 
 		Replace All FileName With Chrtran(FileName, '/', '\')
 
@@ -6347,49 +6362,65 @@ ii
 
 
 	* ================================================================================
-	Procedure PreprocessFileList(tcFilesCursor, tcDestCursor)
+	*!* ******** JRN Removed 2024-07-08 ********
+	*!* Procedure PreprocessFileList(tcFilesCursor, tcDestCursor)
 
-		Local lcExtensions, lcTexts
+	*!* 	Local lcExtensions, lcTexts
 
-		lcExtensions = Lower(' ' + This.oSearchOptions.cSearchExtensions + ' ')
-		Select  Distinct Lower(FileName)    As  FileName						;
-			From (m.tcFilesCursor)												;
-			Where ' ' + Lower(Justext(FileName)) + ' ' $ m.lcExtensions			;
-			Into Cursor FilesCursor Readwrite
+	*!* 	*** JRN 2024-07-03 : list of all files, only needed extensions, and 't' files for binaries
+	*!* 	lcExtensions = Lower(' ' + This.oSearchOptions.cSearchExtensions + ' ')
+	*!* 	Select  Distinct Lower(FileName)    As  FileName						;
+	*!* 		From (m.tcFilesCursor)												;
+	*!* 		Where ' ' + Lower(Justext(FileName)) + ' ' $ m.lcExtensions			;
+	*!* 		Into Cursor FilesCursor Readwrite
 
-		Replace	FileName  With	Strtran(FileName, 'x    ', 't', 1, 1, 1)		;
-			For ' ' + Upper(Justext(FileName)) + ' ' $ ccBinaries
+	*!* 	Replace	FileName  With	Strtran(FileName, 'x    ', 't', 1, 1, 1)		;
+	*!* 		For ' ' + Upper(Justext(FileName)) + ' ' $ ccBinaries
 
-		Select  *											;
-			From FilesCursor								;
-			Where This.AnyRegExMatchesInFile(FileName)		;
-			Into Cursor (m.tcDestCursor) readwrite
+	*!* 	*** JRN 2024-07-03 : create txt file from this cursor
+	*!* 	lcText = FilesToCursor('FileName')
 
-		lcTexts	 = Chrtran(ccBinaries, 'X', 'T')
-		Replace	FileName  With	Strtran(FileName, 't    ', 'x', 1, 1, 1)		;
-			For ' ' + Upper(Justext(FileName)) + ' ' $ m.lcTexts
+	*!* 	Select  *											;
+	*!* 		From FilesCursor								;
+	*!* 		Where This.AnyRegExMatchesInFile(FileName)		;
+	*!* 		Into Cursor (m.tcDestCursor) readwrite
 
-	Endproc
+	*!* 	lcTexts	 = Chrtran(ccBinaries, 'X', 'T')
+	*!* 	Replace	FileName  With	Strtran(FileName, 't    ', 'x', 1, 1, 1)		;
+	*!* 		For ' ' + Upper(Justext(FileName)) + ' ' $ m.lcTexts
+
+	*!* 	*RegExpFileList input.txt THERE\s+IS\s+ output.txt
+
+	*!* Endproc
 
 
-	* ================================================================================
-	Procedure AnyRegExMatchesInFile(tcFileName)
-		Local llResult, loException
+ 	* ================================================================================ 
+ 	Procedure FilesCursorToText
+ 		Lparameters lcAlias
+ 	
+ 		ccFileDelimiter = CRLF
+ 		Local lcClipText, lcFiles, lnI
+ 	
+ 		lcClipText = _Cliptext
+ 		_vfp.DataToClip(m.lcAlias)
+ 		* strip off first line, which contains the field name
+ 		lcFiles	  = Substr(_Cliptext, 1 + At(CR, _Cliptext))
+ 		_Cliptext = m.lcClipText
+ 	
+ 		* fix the delimiter to what xargs needs
+ 		lcFiles = Strtran(m.lcFiles, CR, ccFileDelimiter)
+ 	
+ 		* alltrim on all records
+ 		For lnI = 7 To 0 Step - 1
+ 			lcFiles = Strtran(m.lcFiles, Replicate(' ', 2 ** m.lnI) + ccFileDelimiter, ccFileDelimiter)
+ 		Endfor
+ 	
+ 		* and change .??x to .??t for grep
+ 		lcFiles = Strtran(m.lcFiles, 'x' + ccFileDelimiter, 't' + ccFileDelimiter)
+ 	
+ 		Return lcFiles
+ 	Endproc
 
-		Do Case
-			Case Not File(m.tcFileName)
-				Return .F.
-			Case This.AnyRegExMatches(m.tcFileName)
-				Return .T.
-			Otherwise
-				Try
-					llResult = This.AnyRegExMatches(Filetostr(m.tcFileName))
-				Catch To m.loException
-					llResult = .T.
-				Endtry
-				Return m.llResult
-		Endcase
-	Endproc
 
 			
 Enddefine
