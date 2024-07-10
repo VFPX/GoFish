@@ -6088,10 +6088,10 @@ ii
 		*** JRN 2024-05-31 : With V7.1, use grep to pre-filter files to be searched
 		* However, cannot do so if there is a file template (rare)
 		* or " in the search expression (calls to grep use ")
-		* or any characters before chr[32] or after chr[122]
+		* or any characters before chr[32] or after chr[126]
 		* or has a trailing backslash
 		Local lcChar, lcSearchExpression, lnI
-	
+			
 		If Not Empty(This.oSearchOptions.cFileTemplate)
 			Return .F.
 		Endif
@@ -6103,7 +6103,7 @@ ii
 	
 		For lnI = 1 To len(lcSearchExpression)
 			lcChar = Substr(lcSearchExpression, lnI)
-			If Not Between(Asc(lcChar), 32, 122) 
+			If Not Between(Asc(lcChar), 32, 126) 
 				Return .F.
 			Endif
 		Endfor
