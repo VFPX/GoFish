@@ -6,6 +6,13 @@
 
 ---
 
+## Version 7.1.15 - 2024-07-10
+
+- Bug fixes
+    - In some cases, RegEx searching was not taking advantage of grep to optimize search (#269)
+    - Problems in two items in the grid context menu
+- Added new item to grid context menu to filter to only those matches in the same method.
+
 ## Version 7.1.14 - 2024-07-08
 
 - Matches for search expressions ending with backslash, such as `C:\`,  not being found (#264)
