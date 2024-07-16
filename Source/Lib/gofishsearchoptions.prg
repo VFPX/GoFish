@@ -122,6 +122,7 @@ Define Class GoFishSearchOptions As Custom
 	* Indicates which search mode to use: Plain, LIKE, or RegEx.
 	* See GoFish.h constants file for values.
 	nSearchMode                            = 1
+	lWildCardContinuationLines			   = .T.
 
 	* 1 = Active Project, 2=Browse Project, 3 = Current Dir, 4= Browse Directory, 5 = All Open Projects
 	nSearchScope                           = 3

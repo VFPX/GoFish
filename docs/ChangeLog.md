@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.16 - 2024-07-16
+
+- Added new "Custom UDF" for modifying any of the search options in GF (#268).
+    - The file name is entered on the Options form, "New in V7" page.
+    - The UDF is called by either right-clicking or ctrl-clicking on the "Advanced" button.
+    - See `Lib\gofishsearchoptions.prg`
+- A new option has been added in the right-click context menu on the "Advanced" button to control whether wildcard searching finds matches across continuation lines (Default = Yes).
+
 ## Version 7.1.15 - 2024-07-10
 
 - Bug fixes

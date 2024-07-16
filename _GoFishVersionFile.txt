@@ -9,6 +9,14 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.16 - 2024-07-16
+
+- Added new "Custom UDF" for modifying any of the search options in GF (#268).
+    - The file name is entered on the Options form, "New in V7" page.
+    - The UDF is called by either right-clicking or ctrl-clicking on the "Advanced" button.
+    - See `Lib\gofishsearchoptions.prg`
+- A new option has been added in the right-click context menu on the "Advanced" button to control whether wildcard searching finds matches across continuation lines (Default = Yes).
+
 ## Version 7.1.15 - 2024-07-10
 
 - Bug fixes
@@ -196,17 +204,14 @@ If you double-click on a match in a SCX/VCX and then close the SCX/VCX without c
 * Bug fix:
     * In some cases, Code View shows only matching line and no context at all (#202).
 
-## Version 7.0.20 - 2024-03-28
-
-The normal behavior when you double-click on a row in the grid from a SCX or VCX (that is, opening the method for editing) has been enhanced as follows (#194):
-1.  If the row corresponds to an object in the form or class being edited and the object is at least partially visible, the object will be selected as if you had clicked on the object yourself. Objects that are hidden behind others, are in a page other than the visible page in a pageframe, as well as headers and colum
+## Version
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.15 - July 10, 2024 - 20240710')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.16 - July 16, 2024 - 20240716')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
