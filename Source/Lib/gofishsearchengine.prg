@@ -3075,7 +3075,7 @@ Result
 
 	*----------------------------------------------------------------------------------
 	Procedure IsWildCardStatementSearch
-		Return This.oSearchOptions.nSearchMode = GF_SEARCH_MODE_LIKE and '*' $ This.oSearchOptions.cSearchExpression
+		Return This.oSearchOptions.nSearchMode = GF_SEARCH_MODE_LIKE and '*' $ This.oSearchOptions.cSearchExpression and This.oSearchOptions.lWildCardContinuationLines
 	EndProc 	
 
 
