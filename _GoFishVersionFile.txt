@@ -9,6 +9,13 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.17 - 2024-07-18
+
+- Bug fixes:
+    - When searching in directories, which uses grep for faster searches, search expressions beginning wih `-` (such as `-99`) found no matches (#272)
+    - Hard bug when expanding nodes in treeview
+- A new option has been added in the right-click context menu on the "Advanced" button to indicate whether grep is used for faster searches (Default = Yes).  This should not be necessary but apparently there are some rare conditions not yet provided for where grep fails. (#272, #273)
+
 ## Version 7.1.16 - 2024-07-16
 
 - Added new "Custom UDF" for modifying any of the search options in GF (#268).
@@ -187,31 +194,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 
 ## Version 7.0.23 - 2024-04-06
 
-The right-click context menu in the grid (for both headers and cells) has a new entry:
-
-    Filter values in this column
-
-that opens the Filter form to the page matching the selected column.
-
-## Version 7.0.22 - 2024-04-03
-
-If you double-click on a match in a SCX/VCX and then close the SCX/VCX without changing anything, you no longer get the 'Save changes" dialog.
-
-(Enhancement to feature released in Version 7.0.20, #194)
-
-## Version 7.0.21 - 2024-04-02
-
-* Bug fix:
-    * In some cases, Code View shows only matching line and no context at all (#202).
-
-## Version
+The right-click context menu in the grid (for b
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.16 - July 16, 2024 - 20240716')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.17 - July 18, 2024 - 20240718')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

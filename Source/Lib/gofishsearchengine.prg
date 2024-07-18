@@ -6092,6 +6092,10 @@ ii
 		* or has a trailing backslash
 		Local lcChar, lcSearchExpression, lnI
 			
+		If Not This.oSearchOptions.lOptimizeWithGrep
+			Return .F.
+		Endif
+	
 		If Not Empty(This.oSearchOptions.cFileTemplate)
 			Return .F.
 		Endif
@@ -6109,6 +6113,10 @@ ii
 		Endfor
 	
 		If Right(lcSearchExpression, 1) = '\'
+			Return .F.
+		Endif
+	
+		If Left(lcSearchExpression, 1) = '-'
 			Return .F.
 		Endif
 	
@@ -6357,7 +6365,9 @@ ii
 
 	* ================================================================================
 	Procedure CleanUpGrepFiles(tcStem)
-		Erase (m.tcStem + '.*')
+		If This.oSearchOptions.lCleanUpGrepFiles
+			Erase (m.tcStem + '.*')
+		EndIf 
 	EndProc
 
 	* ================================================================================

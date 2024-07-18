@@ -6,6 +6,13 @@
 
 ---
 
+## Version 7.1.17 - 2024-07-18
+
+- Bug fixes:
+    - When searching in directories, which uses grep for faster searches, search expressions beginning wih `-` (such as `-99`) found no matches (#272)
+    - Hard bug when expanding nodes in treeview
+- A new option has been added in the right-click context menu on the "Advanced" button to indicate whether grep is used for faster searches (Default = Yes).  This should not be necessary but apparently there are some rare conditions not yet provided for where grep fails. (#272, #273)
+
 ## Version 7.1.16 - 2024-07-16
 
 - Added new "Custom UDF" for modifying any of the search options in GF (#268).

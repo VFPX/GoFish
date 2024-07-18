@@ -123,6 +123,7 @@ Define Class GoFishSearchOptions As Custom
 	* See GoFish.h constants file for values.
 	nSearchMode                            = 1
 	lWildCardContinuationLines			   = .T.
+	lOptimizeWithGrep					   = .T.
 
 	* 1 = Active Project, 2=Browse Project, 3 = Current Dir, 4= Browse Directory, 5 = All Open Projects
 	nSearchScope                           = 3
@@ -151,6 +152,8 @@ Define Class GoFishSearchOptions As Custom
 	cSearchExtensions = ''
 	
 	lShowMenuBarNumbers = .F.
+		
+	lCleanUpGrepFiles = .T.
 
 	*---------------------------------------------------------------------
 
