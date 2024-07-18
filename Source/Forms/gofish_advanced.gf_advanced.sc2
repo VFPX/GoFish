@@ -10,9 +10,9 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
 	*< OBJECTDATA: ObjPath="Shape4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Shape1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="txtTimeStampFrom" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkXML" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkTXT" UniqueID="" Timestamp="" />
@@ -38,21 +38,23 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="containerFileTypes.Check2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJava" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJSP" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="txtTimeStampFrom" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Check4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="editFileTemplate" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Command1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label7" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="editFileTemplate" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdHelp" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="CmdGoFish" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Check5" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
 		*m: getcurrentscope
@@ -139,7 +141,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Name = "Check2", ;
 		TabIndex = 6, ;
 		ToolTipText = "Ignoring this field eliminates match types <<Property Def>>, <<Property Desc>>, <<Method Def>>, and <<Method Desc>>.", ;
-		Top = 303, ;
+		Top = 354, ;
 		Value = .T., ;
 		Width = 205, ;
 		ZOrderSet = 10
@@ -158,9 +160,47 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 81, ;
 		Name = "Check3", ;
 		TabIndex = 6, ;
-		Top = 324, ;
+		Top = 375, ;
 		Value = .T., ;
 		Width = 159, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Check4' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Wildcard search across continuation lines", ;
+		ControlSource = "thisform.oSearchOptions.lWildCardContinuationLines", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		FontSize = 8, ;
+		Height = 15, ;
+		Left = 81, ;
+		Name = "Check4", ;
+		TabIndex = 6, ;
+		Top = 312, ;
+		Value = .T., ;
+		Width = 214, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Check5' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Use Grep for fast searching", ;
+		ControlSource = "thisform.oSearchOptions.lOptimizeWithGrep", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		FontSize = 8, ;
+		Height = 15, ;
+		Left = 81, ;
+		Name = "Check5", ;
+		TabIndex = 6, ;
+		Top = 333, ;
+		Value = .T., ;
+		Width = 150, ;
 		ZOrderSet = 10
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -812,7 +852,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Anchor = 10, ;
 		BorderColor = 128,128,128, ;
 		Curvature = 2, ;
-		Height = 123, ;
+		Height = 159, ;
 		Left = 8, ;
 		Name = "Shape4", ;
 		SpecialEffect = 0, ;
@@ -1089,6 +1129,14 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE Check3.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Check4.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Check5.Click
 		Thisform.oSearchEngine.ClearReplaceSettings()
 	ENDPROC
 
