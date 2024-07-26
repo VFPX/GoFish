@@ -315,6 +315,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*p: nfileprgdynamicforecolour		&& Grid, dynamic fore colour file type PRG
 		*p: nfilescxdynamicforecolour		&& Grid, dynamic fore colour file type SCX
 		*p: nfilevcxdynamicforecolour		&& Grid, dynamic fore colour file type VCX
+		*p: nformfontsize
 		*p: ngridfontsize
 		*p: njanitorreplacehistorydays
 		*p: njanitorrundays
@@ -390,6 +391,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Dockable = 0
 		DoCreate = .T.
 		FontName = "Tahoma"
+		FontSize = 8
 		Height = 612
 		KeyPreview = .T.
 		lapplyfilter = .F.
@@ -435,6 +437,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		nfileprgdynamicforecolour = (RGB(255,  0,  0))
 		nfilescxdynamicforecolour = (RGB(  0,  0,128))
 		nfilevcxdynamicforecolour = (RGB(  0,128,  0))
+		nformfontsize = 8
 		ngridfontsize = 8
 		njanitorreplacehistorydays = 10000
 		njanitorrundays = 7
@@ -769,7 +772,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Height = 16, ;
 		Left = 3, ;
 		Name = "chkApplyFilter", ;
-		Picture = ..\images\, ;
 		TabIndex = 7, ;
 		Top = 4, ;
 		Width = 77
@@ -800,7 +802,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Height = 16, ;
 		Left = 3, ;
 		Name = "chkApplyFilter", ;
-		Picture = ..\images\, ;
 		TabIndex = 7, ;
 		Top = 4, ;
 		Width = 75
@@ -831,7 +832,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Height = 16, ;
 		Left = 3, ;
 		Name = "chkApplyFilter", ;
-		Picture = ..\images\, ;
 		TabIndex = 7, ;
 		ToolTipText = 'This checkbox is kept around for backward compatibility.  The current suggested use is to leave this permanently turned on and use the "Code Only" checkbox below to filter matches in comments from the grid.', ;
 		Top = 4, ;
@@ -914,7 +914,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ADD OBJECT 'comboSearchScope' AS combobox WITH ;
 		ControlSource = "Thisform.oSearchOptions.nSearchScope", ;
 		DisplayCount = 10, ;
-		FontSize = 8, ;
+		FontSize = 9, ;
 		Height = 25, ;
 		Left = 47, ;
 		Name = "comboSearchScope", ;
@@ -1082,7 +1082,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBfdCEb2doBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAOCjBAMGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHDey21h39oBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAKi6xwAGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -1241,7 +1241,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Height = 27, ;
 		Left = 304, ;
 		Name = "Container1", ;
-		Picture = ..\images\, ;
 		Top = 1, ;
 		Width = 129
 		*< END OBJECT: BaseClass="container" />
@@ -1255,7 +1254,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Height = 20, ;
 		Left = 74, ;
 		Name = "chkApplyFilter", ;
-		Picture = ..\images\, ;
 		TabIndex = 7, ;
 		Top = 4, ;
 		Width = 48
@@ -1292,35 +1290,35 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 
 	ADD OBJECT 'containerRight.Container1.Container2.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
-		AutoSize = .T., ;
+		AutoSize = .F., ;
 		Caption = "Comments Only", ;
 		ControlSource = "Thisform.lcommentsonly", ;
 		FontBold = .F., ;
 		FontItalic = .F., ;
 		FontName = "Arial", ;
 		FontSize = 8, ;
-		Height = 16, ;
+		Height = 20, ;
 		Left = 87, ;
 		Name = "Check1", ;
 		TabIndex = 7, ;
-		Top = 5, ;
+		Top = 4, ;
 		Width = 93
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerRight.Container1.Container2.chkCodeOnly' AS checkbox WITH ;
 		Alignment = 0, ;
-		AutoSize = .T., ;
+		AutoSize = .F., ;
 		Caption = "Code Only", ;
 		ControlSource = "Thisform.lcodeonly", ;
 		FontBold = .F., ;
 		FontItalic = .F., ;
 		FontName = "Arial", ;
 		FontSize = 8, ;
-		Height = 16, ;
+		Height = 20, ;
 		Left = 7, ;
 		Name = "chkCodeOnly", ;
 		TabIndex = 7, ;
-		Top = 5, ;
+		Top = 4, ;
 		Width = 68
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -2008,7 +2006,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Label1.Name = "Label1", ;
 		Label1.Top = 8, ;
 		Label1.Width = 448, ;
-		lblEscape.Name = "lblEscape"
+		lblEscape.Name = "lblEscape", ;
+		lblWait.Name = "lblWait"
 		*< END OBJECT: ClassLib="gofishui.vcx" BaseClass="container" />
 
 	ADD OBJECT 'splitter2' AS sfsplitterh WITH ;
@@ -5381,8 +5380,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Endwith
 		
 		*-- Load some default setting from form properties, then load stored settings from XML file
-		loGrid.FontSize											 = Thisform.nGridFontSize
-		This.oTree.Font.Size									 = Thisform.nGridFontSize
+		loGrid.FontSize			= Thisform.nGridFontSize
+		This.oTree.Font.Size	= Thisform.nGridFontSize
 		
 		Thisform.FormatGrid()
 		
@@ -5458,8 +5457,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			.LoadProjects(This.oSearchEngine.oProjects)
 			.SaveSearchScope(Lower(Thisform.GetCurrentScope()))
 		Endwith
-		
-		Thisform.CaptureResizingProperties()
 		
 		Thisform.Refresh()
 		
@@ -5817,6 +5814,12 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			loSettings = m.loMy.Settings
 		
 			loSettings.Load(m.lcSettingsFile)
+			
+			Local lnFormFontSize
+		
+			lnFormFontSize = GF_PropNvl(m.loSettings, 'nFormFontSize', 8, .T.)
+			GF_FixFontSize(This, This.FontSize, m.lnFormFontSize)
+			Thisform.CaptureResizingProperties()
 		
 			This.lCR_Local         = GF_PropNvl(m.loSettings, "lCR_Local"        ,This.lCR_Local        ,.T.)
 			This.lCR_Local_Default = GF_PropNvl(m.loSettings, "lCR_Local_Default",This.lCR_Local_Default,.T.)
@@ -6001,6 +6004,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 			.nDropDownDisplayCount = GF_PropNvl(m.loSettingsDefault, "nDropDownDisplayCount", 20, .T.)
 			.nDropDownMaxMRU       = GF_PropNvl(m.loSettingsDefault, "nDropDownMaxMRU", 7, .T.)
+			.nFormFontSize         = GF_PropNvl(m.loSettingsDefault, "nFormFontSize", 8, .T.)
 		
 			.lWarnWholeWord     = GF_PropNvl(m.loSettingsDefault, "lWarnWholeWord", .F., .T.)
 			.lSaveSearchResults = GF_PropNvl(m.loSettingsDefault, "lSaveSearchResults", .T., .T.)
@@ -8107,7 +8111,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		* Captures resizing properties for a few controls on the top of the form
 		* so that they do not skitter all the way to the far right when form is wide
 		
-		lnFormWidth = Min(Thisform.Width, 1500)
+		lnFormWidth = Min(Thisform.Width, 1500 * thisform.nFontSizeMultiplier)
 		
 		For Each m.loControl In This.Controls FoxObject
 			Do Case
@@ -8549,12 +8553,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				.Add("cSortFieldTertiary", Thisform.cSortFieldTertiary)
 				.Add("cSortOrderTertiary", Thisform.cSortOrderTertiary)
 		
-				.Add("nDropDownDisplayCount", Thisform.nDropDownDisplayCount)
-				.Add("nDropDownMaxMRU", Thisform.nDropDownMaxMRU)
-				.Add("lWarnWholeWord", Thisform.lWarnWholeWord)
-				.Add("lSaveSearchResults", Thisform.lSaveSearchResults)
-				.Add("lCodeOnly", Thisform.lCodeOnly)
-				.Add('lCommentsOnly', Thisform.lCommentsOnly)
+				.Add("nDropDownDisplayCount",	Thisform.nDropDownDisplayCount)
+				.Add("nDropDownMaxMRU", 		Thisform.nDropDownMaxMRU)
+				.Add("nFormFontSize", 			Thisform.nFormFontSize)
+				.Add("lWarnWholeWord", 			Thisform.lWarnWholeWord)
+				.Add("lSaveSearchResults", 		Thisform.lSaveSearchResults)
+				.Add("lCodeOnly", 				Thisform.lCodeOnly)
+				.Add('lCommentsOnly', 			Thisform.lCommentsOnly)
 		
 				.Add("nJanitorRunDays", Thisform.nJanitorRunDays)
 				.Add("nJanitorSearchHistoryDays", Thisform.nJanitorSearchHistoryDays)
@@ -11249,7 +11254,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE ButtonContainer.comboViewPosition.Refresh
 		This.Enabled = Not Thisform.lSearching && and !Thisform.lReplaceViewMode
 		
-		This.FontSize = Thisform.nSearchBoxFontSize
+		This.FontSize = Max(This.FontSize, Thisform.nSearchBoxFontSize)
 	ENDPROC
 
 	PROCEDURE ButtonContainer.comboViewPosition.Valid
@@ -11532,7 +11537,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE comboSearchScope.Refresh
 		This.Enabled = Not Thisform.lSearching && and !Thisform.lReplaceViewMode
 		
-		This.FontSize = Thisform.nSearchBoxFontSize
+		This.FontSize = Max(This.FontSize, Thisform.nSearchBoxFontSize)
 	ENDPROC
 
 	PROCEDURE comboSearchScope.Valid
@@ -11678,7 +11683,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		DoDefault()
 		
-		This.FontSize = Thisform.nSearchBoxFontSize
+		This.FontSize = Max(This.FontSize, Thisform.nSearchBoxFontSize)
 	ENDPROC
 
 	PROCEDURE comboSearchScopeHistory.Valid
@@ -12429,7 +12434,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Local lcFile
 		
 		lcFile = Thisform.cReplaceUDFFilename
-		Modify Command (lcFile) Nowait
+		GF_ModifyCommand(m.lcFile)
 	ENDPROC
 
 	PROCEDURE containerRight.Container1.containerReplaceText.Pageframe.Page3.cmdEdit.Refresh
@@ -12887,7 +12892,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE editSearch.Refresh
 		This.Enabled = Not Thisform.lSearching && and !Thisform.lReplaceViewMode
 		
-		This.FontSize = Thisform.nSearchBoxFontSize
+		This.FontSize = Max(This.FontSize, Thisform.nSearchBoxFontSize)
 	ENDPROC
 
 	PROCEDURE imgFolder_Pick.Click

@@ -22,6 +22,7 @@ DEFINE CLASS gf_baseform AS form
 		*p: lcr_allowed
 		*p: lsavesettings		&& This property can be used to prevent the form from saving its settings when closed. It will start out .T. each time GoFish is launched.
 		*p: nfirstload		&& LoadFormSettings is not run once.
+		*p: nfontsizemultiplier
 		*p: oform
 		*p: omy
 		*p: osearchengine
@@ -38,13 +39,16 @@ DEFINE CLASS gf_baseform AS form
 		Desktop = .T.
 		DoCreate = .T.
 		Height = 325
+		Left = 0
 		lsavesettings = .T.
 		Name = "gf_baseform"
 		nfirstload = 0
+		nfontsizemultiplier = 1
 		oform = .NULL.
 		omy = .NULL.
 		osearchengine = .NULL.
 		osearchoptions = .NULL.
+		Top = 0
 		Width = 662
 		_memberdata = <VFPData>
 			<memberdata name="loadformsettings" display="LoadFormSettings"/>
@@ -60,6 +64,7 @@ DEFINE CLASS gf_baseform AS form
 			<memberdata name="lcr_allow" type="property" display="lCR_Allow" favorites="False"/>
 			<memberdata name="csavedbc" type="property" display="cSaveDBC" favorites="False"/>
 			<memberdata name="lsavesettings" type="property" display="lSaveSettings" favorites="False"/>
+			<memberdata name="nfontsizemultiplier" display="nFontSizeMultiplier"/>
 		</VFPData>
 	*</PropValue>
 	
@@ -102,34 +107,36 @@ DEFINE CLASS gf_baseform AS form
 	ENDPROC
 
 	PROCEDURE Init
-		Lparameters;
-			toForm,;
+		Lparameters			;
+			toForm,			;
 			tlSkipLoadSettings
 		
-		If Vartype(toForm) = 'O'
-			This.oForm = toForm
+		If Vartype(m.toForm) = 'O'
+			This.oForm = m.toForm
 		
-			This.oSearchEngine  = toForm.oSearchEngine
-			This.oSearchOptions = toForm.oSearchEngine.oSearchOptions
+			This.oSearchEngine	= m.toForm.oSearchEngine
+			This.oSearchOptions	= m.toForm.oSearchEngine.oSearchOptions
 		
-			If Pemstatus(m.toForm, "cCR_StoreLocal", 5) Then
+			If Pemstatus(m.toForm, 'cCR_StoreLocal', 5) Then
 				This.cCR_StoreLocal = m.toForm.cCR_StoreLocal
 			Endif &&PEMSTATUS(m.toForm, "cCR_StoreLocal", 5)
 		
+			GF_FixFontSize(This, This.FontSize, m.toForm.FontSize)
+		
 		Endif
 		
-		If This.Desktop Or This.Dockable=1 Then
-		*Move forms with this setting into screen, might be odd on multiple monitors
+		If This.Desktop Or This.Dockable = 1 Then
+			*Move forms with this setting into screen, might be odd on multiple monitors
 		
-		*get coords of vfp
+			*get coords of vfp
 			This.Top  = _Screen.Top
 			This.Left = _Screen.Left
-		*twice, first reads odd values
+			*twice, first reads odd values
 			This.Top  = _Screen.Top
 			This.Left = _Screen.Left
 		Endif &&This.Desktop Or This.Dockable=1
 		
-		If !m.tlSkipLoadSettings Then
+		If Not m.tlSkipLoadSettings Then
 			This.LoadFormSettings() && Form size and position, as well as a few custom properties that are store on the form
 		Endif &&!m.tlSkipLoadSettings
 		
