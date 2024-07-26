@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.18 - 2024-07-26
+
+- A new option has been added on the "Options" form to control the default font size used in the GF results form (and other GF forms), allowing for increased readability.
+- The option to display each file name as it is processed now causes the file name to be displayed in the progress form (instead of a Wait Window) and no longer impacts performance.
+- Bug fixes:
+    - Editing "Options UDF" program can cause VFP to crash. (#275)
+    - Grep is no longer disabled for search expressions beginning with `-` (such as `-99`) (#272)
+
 ## Version 7.1.17 - 2024-07-18
 
 - Bug fixes:

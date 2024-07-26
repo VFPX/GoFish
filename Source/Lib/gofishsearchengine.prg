@@ -4561,7 +4561,7 @@ x
 			Return 0
 		Endif
 
-		This.ShowWaitMessage('Processing file: ' + m.tcFile)
+		This.ShowWaitMessage(m.tcFile)
 
 *-- Look for a match on the file name ----------------------
 		lnFileNameMatchCount = This.SearchInFileName(m.tcFile)
@@ -5138,7 +5138,7 @@ ii
 			Return 0
 		Endif
 
-		This.ShowWaitMessage('Searching File: ' + m.tcFile)
+		* This.ShowWaitMessage(m.tcFile)
 
 		lnEndColumn             = 255
 		llIgnorePropertiesField = .F.
@@ -5816,13 +5816,17 @@ ii
 
 *----------------------------------------------------------------------------------
 	Procedure ShowWaitMessage(tcMessage)
-
+	
 		If This.oSearchOptions.lShowWaitMessages
-			Wait Window At 5, Wcols() / 2 Nowait m.tcMessage
+			*	Wait Window At 5, Wcols() / 2 Nowait m.tcMessage
+			If Vartype(This.oProgressBar) = 'O'
+				This.oProgressBar.UpdateWait(m.tcMessage)
+			Endif
+	
 		Endif
-
+	
 	Endproc
-
+		
 
 *----------------------------------------------------------------------------------
 	Procedure StartProgressBar(tnMaxValue)
@@ -6116,10 +6120,11 @@ ii
 			Return .F.
 		Endif
 	
-		If Left(lcSearchExpression, 1) = '-'
-			Return .F.
-		Endif
-	
+		*!* ******** JRN Removed 2024-07-19 ********
+		*!* If Left(lcSearchExpression, 1) = '-'
+		*!* 	Return .F.
+		*!* Endif
+
 		Return .T.
 	
 	Endproc
@@ -6244,7 +6249,7 @@ ii
 			Endif
 			lcScope	= Chrtran(m.lcScope, '\', '/')
 	
-			lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} "<<m.lcSearchExpression>>" <<m.lcScope>>])
+			lcCommand = m.lcCommand + Textmerge([ --include=*.{<<m.lcExtensions>>} -- "<<m.lcSearchExpression>>" <<m.lcScope>>])
 	
 			lcCommand = m.lcCommand + [ 1> "] + m.lcOutFile + [" 2>> "] + m.lcErrFile + ["]
 			Strtofile(m.lcCommand + CRLF, m.lcBATFile, 1)

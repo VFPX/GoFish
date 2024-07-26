@@ -8,11 +8,20 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
  	*< CLASSDATA: Baseclass="form" Timestamp="" Scale="" Uniqueid="" />
 
 	*-- OBJECTDATA items order determines ZOrder / El orden de los items OBJECTDATA determina el ZOrder 
-	*< OBJECTDATA: ObjPath="Shape4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.txtTimeStampTo" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.chkTimeStamp" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Label11" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Label12" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.txtTimeStampFrom" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Text1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Label5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Check3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Check2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Check4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Container1.Check5" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Check1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Shape2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Shape1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="txtTimeStampFrom" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkXML" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkTXT" UniqueID="" Timestamp="" />
@@ -38,23 +47,15 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="containerFileTypes.Check2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJava" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="containerFileTypes.chkJSP" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="txtTimeStampTo" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label3" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check3" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="chkTimeStamp" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label11" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label12" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Command1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="Label4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="editFileTemplate" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdHelp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Label7" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="CmdGoFish" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="Check5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="CmdGoFish" UniqueID="" Timestamp="" />
 
 	*<DefinedPropArrayMethod>
 		*m: getcurrentscope
@@ -120,108 +121,11 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "Skip Files", ;
 		ControlSource = "Thisform.oSearchOptions.lSKipFiles", ;
 		Height = 25, ;
-		Left = 421, ;
+		Left = 429, ;
 		Name = "Check1", ;
 		Top = 54, ;
 		Width = 85, ;
 		ZOrderSet = 2
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'Check2' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Ignore field RESERVED3 in SCXs / VCXs", ;
-		ControlSource = "thisform.oSearchOptions.lIgnorePropertiesField", ;
-		FontBold = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 15, ;
-		Left = 81, ;
-		Name = "Check2", ;
-		TabIndex = 6, ;
-		ToolTipText = "Ignoring this field eliminates match types <<Property Def>>, <<Property Desc>>, <<Method Def>>, and <<Method Desc>>.", ;
-		Top = 354, ;
-		Value = .T., ;
-		Width = 205, ;
-		ZOrderSet = 10
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'Check3' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Ignore values in MemberData", ;
-		ControlSource = "thisform.oSearchOptions.lIgnoreMemberData", ;
-		FontBold = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 15, ;
-		Left = 81, ;
-		Name = "Check3", ;
-		TabIndex = 6, ;
-		Top = 375, ;
-		Value = .T., ;
-		Width = 159, ;
-		ZOrderSet = 10
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'Check4' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Wildcard search across continuation lines", ;
-		ControlSource = "thisform.oSearchOptions.lWildCardContinuationLines", ;
-		FontBold = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 15, ;
-		Left = 81, ;
-		Name = "Check4", ;
-		TabIndex = 6, ;
-		Top = 312, ;
-		Value = .T., ;
-		Width = 214, ;
-		ZOrderSet = 10
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'Check5' AS checkbox WITH ;
-		Alignment = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Use Grep for fast searching", ;
-		ControlSource = "thisform.oSearchOptions.lOptimizeWithGrep", ;
-		FontBold = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 15, ;
-		Left = 81, ;
-		Name = "Check5", ;
-		TabIndex = 6, ;
-		Top = 333, ;
-		Value = .T., ;
-		Width = 150, ;
-		ZOrderSet = 10
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'chkTimeStamp' AS checkbox WITH ;
-		Alignment = 0, ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Date Filter", ;
-		ControlSource = "Thisform.oSearchOptions.lTimeStamp", ;
-		FontBold = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 15, ;
-		Left = 81, ;
-		Name = "chkTimeStamp", ;
-		TabIndex = 10, ;
-		Top = 259, ;
-		Value = .T., ;
-		Width = 68, ;
-		ZOrderSet = 12
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'cmdCancel' AS commandbutton WITH ;
@@ -235,7 +139,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		ToolTipText = "Saves changes but does not search", ;
 		Top = 6, ;
 		Width = 66, ;
-		ZOrderSet = 21
+		ZOrderSet = 13
 		*< END OBJECT: BaseClass="commandbutton" />
 
 	ADD OBJECT 'CmdGoFish' AS commandbutton WITH ;
@@ -252,7 +156,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 13, ;
 		Top = 6, ;
 		Width = 84, ;
-		ZOrderSet = 20
+		ZOrderSet = 12
 		*< END OBJECT: BaseClass="commandbutton" />
 
 	ADD OBJECT 'cmdHelp' AS commandbutton WITH ;
@@ -260,7 +164,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "", ;
 		FontName = "Tahoma", ;
 		Height = 22, ;
-		Left = 343, ;
+		Left = 382, ;
 		Name = "cmdHelp", ;
 		Picture = ('images\refhelp.bmp'), ;
 		PicturePosition = 1, ;
@@ -268,30 +172,242 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 16, ;
 		Top = 69, ;
 		Width = 24, ;
-		ZOrderSet = 29
+		ZOrderSet = 10
 		*< END OBJECT: BaseClass="commandbutton" />
 
 	ADD OBJECT 'Command1' AS commandbutton WITH ;
 		Anchor = 8, ;
 		Caption = "Edit list", ;
 		Height = 20, ;
-		Left = 418, ;
+		Left = 426, ;
 		Name = "Command1", ;
 		Top = 79, ;
 		Width = 79, ;
-		ZOrderSet = 28
+		ZOrderSet = 7
 		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'Container1' AS container WITH ;
+		Anchor = 10, ;
+		BorderWidth = 1, ;
+		Height = 161, ;
+		Left = 16, ;
+		Name = "Container1", ;
+		TabIndex = 5, ;
+		Top = 244, ;
+		Width = 493, ;
+		ZOrderSet = 1
+		*< END OBJECT: BaseClass="container" />
+
+	ADD OBJECT 'Container1.Check2' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Ignore field RESERVED3 in SCXs / VCXs", ;
+		ControlSource = "thisform.oSearchOptions.lIgnorePropertiesField", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 81, ;
+		Name = "Check2", ;
+		TabIndex = 6, ;
+		ToolTipText = "Ignoring this field eliminates match types <<Property Def>>, <<Property Desc>>, <<Method Def>>, and <<Method Desc>>.", ;
+		Top = 82, ;
+		Value = .T., ;
+		Width = 233, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Container1.Check3' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Ignore values in MemberData", ;
+		ControlSource = "thisform.oSearchOptions.lIgnoreMemberData", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 81, ;
+		Name = "Check3", ;
+		TabIndex = 6, ;
+		Top = 103, ;
+		Value = .T., ;
+		Width = 178, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Container1.Check4' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Wildcard search across continuation lines", ;
+		ControlSource = "thisform.oSearchOptions.lWildCardContinuationLines", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 81, ;
+		Name = "Check4", ;
+		TabIndex = 6, ;
+		Top = 40, ;
+		Value = .T., ;
+		Width = 240, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Container1.Check5' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Use Grep for fast searching", ;
+		ControlSource = "thisform.oSearchOptions.lOptimizeWithGrep", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 81, ;
+		Name = "Check5", ;
+		TabIndex = 6, ;
+		Top = 61, ;
+		Value = .T., ;
+		Width = 167, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Container1.chkTimeStamp' AS checkbox WITH ;
+		Alignment = 0, ;
+		Anchor = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Date Filter", ;
+		ControlSource = "Thisform.oSearchOptions.lTimeStamp", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 81, ;
+		Name = "chkTimeStamp", ;
+		TabIndex = 10, ;
+		Top = 14, ;
+		Value = .T., ;
+		Width = 75, ;
+		ZOrderSet = 12
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'Container1.Label11' AS label WITH ;
+		Anchor = 0, ;
+		AutoSize = .T., ;
+		BackColor = 0,128,0, ;
+		BackStyle = 0, ;
+		Caption = "From", ;
+		FontBold = .F., ;
+		FontItalic = .F., ;
+		FontName = "Tahoma", ;
+		ForeColor = 0,0,0, ;
+		Height = 16, ;
+		Left = 166, ;
+		Name = "Label11", ;
+		TabIndex = 22, ;
+		Top = 15, ;
+		Width = 29, ;
+		ZOrderSet = 13
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'Container1.Label12' AS label WITH ;
+		Anchor = 0, ;
+		AutoSize = .T., ;
+		BackColor = 0,128,0, ;
+		BackStyle = 0, ;
+		Caption = "To", ;
+		FontBold = .F., ;
+		FontItalic = .F., ;
+		FontName = "Tahoma", ;
+		ForeColor = 0,0,0, ;
+		Height = 16, ;
+		Left = 301, ;
+		Name = "Label12", ;
+		TabIndex = 21, ;
+		Top = 15, ;
+		Width = 17, ;
+		ZOrderSet = 14
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'Container1.Label5' AS label WITH ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Maximum number of results to find", ;
+		Height = 17, ;
+		Left = 96, ;
+		Name = "Label5", ;
+		TabIndex = 30, ;
+		ToolTipText = "Search will automatically stop once this number of mached lines it reached.", ;
+		Top = 127, ;
+		Width = 191
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'Container1.Text1' AS textbox WITH ;
+		ControlSource = "Thisform.oSearchOptions.nMaxResults", ;
+		Height = 25, ;
+		InputMask = "9999999", ;
+		Left = 33, ;
+		Name = "Text1", ;
+		TabIndex = 29, ;
+		Top = 123, ;
+		Width = 59
+		*< END OBJECT: BaseClass="textbox" />
+
+	ADD OBJECT 'Container1.txtTimeStampFrom' AS textbox WITH ;
+		Alignment = 3, ;
+		Anchor = 0, ;
+		ControlSource = "thisform.oSearchOptions.dTimeStampFrom", ;
+		FontName = "Tahoma", ;
+		FontSize = 9, ;
+		Height = 23, ;
+		Left = 197, ;
+		Name = "txtTimeStampFrom", ;
+		SelectOnEntry = .T., ;
+		TabIndex = 11, ;
+		Top = 10, ;
+		Value = {}, ;
+		Width = 95, ;
+		ZOrderSet = 22
+		*< END OBJECT: BaseClass="textbox" />
+
+	ADD OBJECT 'Container1.txtTimeStampTo' AS textbox WITH ;
+		Alignment = 3, ;
+		Anchor = 0, ;
+		ControlSource = "thisform.oSearchOptions.dTimeStampTo", ;
+		FontName = "Tahoma", ;
+		FontSize = 9, ;
+		Height = 23, ;
+		Left = 322, ;
+		Name = "txtTimeStampTo", ;
+		SelectOnEntry = .T., ;
+		TabIndex = 12, ;
+		Top = 10, ;
+		Value = {}, ;
+		Width = 95, ;
+		ZOrderSet = 23
+		*< END OBJECT: BaseClass="textbox" />
+
+	ADD OBJECT 'Container2' AS container WITH ;
+		Anchor = 10, ;
+		BorderWidth = 1, ;
+		Height = 44, ;
+		Left = 16, ;
+		Name = "Container2", ;
+		TabIndex = 5, ;
+		Top = 55, ;
+		Width = 399, ;
+		ZOrderSet = 0
+		*< END OBJECT: BaseClass="container" />
 
 	ADD OBJECT 'containerFileTypes' AS container WITH ;
 		Anchor = 10, ;
-		BorderWidth = 0, ;
-		Height = 84, ;
+		BorderWidth = 1, ;
+		Height = 90, ;
 		Left = 16, ;
 		Name = "containerFileTypes", ;
 		TabIndex = 5, ;
 		Top = 120, ;
 		Width = 493, ;
-		ZOrderSet = 6
+		ZOrderSet = 4
 		*< END OBJECT: BaseClass="container" />
 
 	ADD OBJECT 'containerFileTypes.Check1' AS checkbox WITH ;
@@ -299,7 +415,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "", ;
 		ControlSource = "", ;
 		Height = 16, ;
-		Left = 152, ;
+		Left = 164, ;
 		Name = "Check1", ;
 		TabIndex = 3, ;
 		Top = 7, ;
@@ -324,266 +440,266 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	ADD OBJECT 'containerFileTypes.chkASP' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "ASP", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeASP", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
+		Height = 16, ;
 		Left = 332, ;
 		Name = "chkASP", ;
 		TabIndex = 20, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 41, ;
 		ZOrderSet = 3
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkDBC' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "DBC", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeDBC", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		Height = 16, ;
-		Left = 80, ;
+		Left = 73, ;
 		Name = "chkDBC", ;
 		TabIndex = 12, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 40, ;
+		Width = 41, ;
 		ZOrderSet = 9
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkFRX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "FRX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeFRX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		Height = 16, ;
-		Left = 122, ;
+		Left = 123, ;
 		Name = "chkFRX", ;
 		TabIndex = 13, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 37, ;
+		Width = 39, ;
 		ZOrderSet = 11
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkH' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = ".h", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeH", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		Height = 16, ;
-		Left = 243, ;
+		Left = 268, ;
 		Name = "chkH", ;
 		TabIndex = 16, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 37, ;
+		Width = 30, ;
 		ZOrderSet = 5
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.ChkHTML' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "HTM?", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeHTML", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
+		Height = 16, ;
 		Left = 332, ;
 		Name = "ChkHTML", ;
 		TabIndex = 17, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 50, ;
 		ZOrderSet = 4
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkini' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "INI", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeINI", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		Height = 16, ;
-		Left = 243, ;
+		Left = 268, ;
 		Name = "chkini", ;
 		TabIndex = 10, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 44, ;
+		Width = 35, ;
 		ZOrderSet = 19
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkJava' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "JAVA", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeJAVA", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 378, ;
+		Height = 16, ;
+		Left = 386, ;
 		Name = "chkJava", ;
 		TabIndex = 18, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 48, ;
 		ZOrderSet = 24
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkJSP' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "JSP", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeJSP", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 378, ;
+		Height = 16, ;
+		Left = 386, ;
 		Name = "chkJSP", ;
 		TabIndex = 21, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 38, ;
 		ZOrderSet = 23
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkLBX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "LBX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeLBX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		Height = 16, ;
-		Left = 122, ;
+		Left = 123, ;
 		Name = "chkLBX", ;
 		TabIndex = 7, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 37, ;
+		Width = 39, ;
 		ZOrderSet = 10
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkMNX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "MNX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeMNX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 80, ;
+		Height = 16, ;
+		Left = 73, ;
 		Name = "chkMNX", ;
 		TabIndex = 6, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 40, ;
+		Width = 43, ;
 		ZOrderSet = 6
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkMPR' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "MPR", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeMPR", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 204, ;
+		Height = 16, ;
+		Left = 221, ;
 		Name = "chkMPR", ;
 		TabIndex = 15, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 40, ;
+		Width = 42, ;
 		ZOrderSet = 15
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkPJX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "PJX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludePJX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 162, ;
+		Height = 16, ;
+		Left = 171, ;
 		Name = "chkPJX", ;
 		TabIndex = 8, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 39, ;
+		Width = 38, ;
 		ZOrderSet = 12
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkPRG' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "PRG", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludePRG", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 162, ;
+		Height = 16, ;
+		Left = 171, ;
 		Name = "chkPRG", ;
 		TabIndex = 14, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 39, ;
+		Width = 41, ;
 		ZOrderSet = 13
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkSCX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "SCX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeSCX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 41, ;
+		Height = 16, ;
+		Left = 26, ;
 		Name = "chkSCX", ;
 		TabIndex = 5, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 37, ;
+		Width = 40, ;
 		ZOrderSet = 7
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkSPR' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "SPR", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeSPR", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 204, ;
+		Height = 16, ;
+		Left = 221, ;
 		Name = "chkSPR", ;
 		TabIndex = 9, ;
 		Top = 22, ;
@@ -594,55 +710,55 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	ADD OBJECT 'containerFileTypes.chkTXT' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "TXT", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeTXT", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 426, ;
+		Height = 16, ;
+		Left = 442, ;
 		Name = "chkTXT", ;
 		TabIndex = 22, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 42, ;
 		ZOrderSet = 2
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkVCX' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "VCX", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeVCX", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 41, ;
+		Height = 16, ;
+		Left = 26, ;
 		Name = "chkVCX", ;
 		TabIndex = 11, ;
 		Top = 36, ;
 		Value = .T., ;
-		Width = 37, ;
+		Width = 41, ;
 		ZOrderSet = 8
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'containerFileTypes.chkXML' AS checkbox WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "XML", ;
 		ControlSource = "Thisform.oSearchOptions.lIncludeXML", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		Height = 17, ;
-		Left = 426, ;
+		Height = 16, ;
+		Left = 442, ;
 		Name = "chkXML", ;
 		TabIndex = 19, ;
 		Top = 22, ;
 		Value = .T., ;
-		Width = 43, ;
+		Width = 41, ;
 		ZOrderSet = 25
 		*< END OBJECT: BaseClass="checkbox" />
 
@@ -652,47 +768,46 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "Additional:", ;
 		FontBold = .F., ;
 		FontItalic = .F., ;
-		FontSize = 8, ;
-		Height = 16, ;
+		Height = 17, ;
 		Left = 17, ;
 		Name = "Label6", ;
 		TabIndex = 39, ;
 		Top = 63, ;
 		Visible = .T., ;
-		Width = 50, ;
+		Width = 57, ;
 		WordWrap = .T., ;
 		ZOrderSet = 21
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'containerFileTypes.Line1' AS line WITH ;
 		Height = 0, ;
-		Left = 43, ;
+		Left = 26, ;
 		Name = "Line1", ;
 		Top = 14, ;
-		Width = 237, ;
+		Width = 275, ;
 		ZOrderSet = 26
 		*< END OBJECT: BaseClass="line" />
 
 	ADD OBJECT 'containerFileTypes.Line2' AS line WITH ;
 		Height = 0, ;
-		Left = 334, ;
+		Left = 332, ;
 		Name = "Line2", ;
 		Top = 14, ;
-		Width = 123, ;
+		Width = 149, ;
 		ZOrderSet = 28
 		*< END OBJECT: BaseClass="line" />
 
 	ADD OBJECT 'containerFileTypes.txtyourchoice' AS textbox WITH ;
-		Anchor = 0, ;
+		Anchor = 10, ;
 		ControlSource = "Thisform.oSearchOptions.cOtherIncludes", ;
 		Format = "!", ;
 		Height = 24, ;
 		Left = 74, ;
 		Name = "txtyourchoice", ;
 		TabIndex = 23, ;
-		ToolTipText = "Enter custom file extensions, separated spaces.", ;
+		ToolTipText = "Enter additional file extensions, separated spaces.", ;
 		Top = 59, ;
-		Width = 386, ;
+		Width = 404, ;
 		ZOrderSet = 20
 		*< END OBJECT: BaseClass="textbox" />
 
@@ -700,71 +815,30 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Anchor = 10, ;
 		ControlSource = "Thisform.oSearchOptions.cFileTemplate", ;
 		Height = 23, ;
-		Left = 47, ;
+		Left = 26, ;
 		Name = "editFileTemplate", ;
 		TabIndex = 4, ;
 		ToolTipText = "Enter one or more templates with wildcards, separated by commas. Example: cust*.*  or  *edit.prg  or  jobs.*.  If you do N", ;
 		Top = 69, ;
-		Width = 290, ;
-		ZOrderSet = 17
+		Width = 346, ;
+		ZOrderSet = 9
 		*< END OBJECT: BaseClass="editbox" />
 
 	ADD OBJECT 'Label1' AS label WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 1, ;
-		Caption = " File template(s) - separated by commas", ;
+		Caption = "   File template(s) - separated by commas   ", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		ForeColor = 0,0,0, ;
-		Height = 15, ;
+		Height = 16, ;
 		Left = 24, ;
 		Name = "Label1", ;
 		TabIndex = 18, ;
-		Top = 50, ;
-		Width = 194, ;
-		ZOrderSet = 26
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'Label11' AS label WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		BackColor = 0,128,0, ;
-		BackStyle = 0, ;
-		Caption = "From", ;
-		FontBold = .F., ;
-		FontItalic = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		ForeColor = 0,0,0, ;
-		Height = 15, ;
-		Left = 101, ;
-		Name = "Label11", ;
-		TabIndex = 22, ;
-		Top = 282, ;
-		Width = 26, ;
-		ZOrderSet = 13
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'Label12' AS label WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		BackColor = 0,128,0, ;
-		BackStyle = 0, ;
-		Caption = "To", ;
-		FontBold = .F., ;
-		FontItalic = .F., ;
-		FontName = "Tahoma", ;
-		FontSize = 8, ;
-		ForeColor = 0,0,0, ;
-		Height = 15, ;
-		Left = 236, ;
-		Name = "Label12", ;
-		TabIndex = 21, ;
-		Top = 282, ;
-		Width = 14, ;
-		ZOrderSet = 14
+		Top = 48, ;
+		Width = 242, ;
+		ZOrderSet = 6
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'Label3' AS label WITH ;
@@ -774,127 +848,49 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		ForeColor = 0,0,0, ;
-		Height = 15, ;
+		Height = 16, ;
 		Left = 301, ;
 		Name = "Label3", ;
 		TabIndex = 17, ;
 		Top = 74, ;
 		Width = 2, ;
-		ZOrderSet = 25
+		ZOrderSet = 5
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'Label4' AS label WITH ;
 		Alignment = 2, ;
 		AutoSize = .T., ;
 		BackStyle = 1, ;
-		Caption = "Other Options", ;
+		Caption = "   Other Options   ", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		ForeColor = 0,0,0, ;
-		Height = 15, ;
+		Height = 16, ;
 		Left = 30, ;
 		Name = "Label4", ;
 		TabIndex = 15, ;
 		Top = 237, ;
-		Width = 70, ;
-		ZOrderSet = 16
+		Width = 104, ;
+		ZOrderSet = 8
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'Label7' AS label WITH ;
 		Alignment = 0, ;
+		AutoSize = .T., ;
 		BackStyle = 1, ;
-		Caption = " Filetypes ", ;
+		Caption = "   File Types   ", ;
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
-		FontSize = 8, ;
 		ForeColor = 0,0,0, ;
 		Height = 16, ;
 		Left = 26, ;
 		Name = "Label7", ;
 		TabIndex = 16, ;
 		Top = 113, ;
-		Width = 51, ;
-		ZOrderSet = 19
+		Width = 80, ;
+		ZOrderSet = 11
 		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'Shape1' AS shape WITH ;
-		Anchor = 10, ;
-		BorderColor = 128,128,128, ;
-		Curvature = 2, ;
-		Height = 89, ;
-		Left = 14, ;
-		Name = "Shape1", ;
-		SpecialEffect = 0, ;
-		Style = 3, ;
-		Top = 118, ;
-		Width = 483, ;
-		ZOrderSet = 5
-		*< END OBJECT: BaseClass="shape" />
-
-	ADD OBJECT 'Shape2' AS shape WITH ;
-		Anchor = 10, ;
-		BorderColor = 128,128,128, ;
-		Curvature = 2, ;
-		Height = 44, ;
-		Left = 12, ;
-		Name = "Shape2", ;
-		SpecialEffect = 0, ;
-		Style = 3, ;
-		Top = 55, ;
-		Width = 363, ;
-		ZOrderSet = 4
-		*< END OBJECT: BaseClass="shape" />
-
-	ADD OBJECT 'Shape4' AS shape WITH ;
-		Anchor = 10, ;
-		BorderColor = 128,128,128, ;
-		Curvature = 2, ;
-		Height = 159, ;
-		Left = 8, ;
-		Name = "Shape4", ;
-		SpecialEffect = 0, ;
-		Style = 3, ;
-		Top = 243, ;
-		Width = 496, ;
-		ZOrderSet = 0
-		*< END OBJECT: BaseClass="shape" />
-
-	ADD OBJECT 'txtTimeStampFrom' AS textbox WITH ;
-		Alignment = 3, ;
-		Anchor = 0, ;
-		ControlSource = "thisform.oSearchOptions.dTimeStampFrom", ;
-		FontName = "Tahoma", ;
-		FontSize = 9, ;
-		Height = 23, ;
-		Left = 132, ;
-		Name = "txtTimeStampFrom", ;
-		SelectOnEntry = .T., ;
-		TabIndex = 11, ;
-		Top = 277, ;
-		Value = {}, ;
-		Width = 95, ;
-		ZOrderSet = 22
-		*< END OBJECT: BaseClass="textbox" />
-
-	ADD OBJECT 'txtTimeStampTo' AS textbox WITH ;
-		Alignment = 3, ;
-		Anchor = 0, ;
-		ControlSource = "thisform.oSearchOptions.dTimeStampTo", ;
-		FontName = "Tahoma", ;
-		FontSize = 9, ;
-		Height = 23, ;
-		Left = 257, ;
-		Name = "txtTimeStampTo", ;
-		SelectOnEntry = .T., ;
-		TabIndex = 12, ;
-		Top = 277, ;
-		Value = {}, ;
-		Width = 95, ;
-		ZOrderSet = 23
-		*< END OBJECT: BaseClass="textbox" />
 	
 	PROCEDURE Activate
 		
@@ -1000,10 +996,11 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 			
 	ENDPROC
 
-	PROCEDURE Load
-		DoDefault()
+	PROCEDURE loadformsettings
+		This.MinHeight = This.Height
+		This.MinWidth = This.Width
 		
-		this.MaxHeight = this.Height
+		DoDefault()
 	ENDPROC
 
 	PROCEDURE loadoptions
@@ -1124,29 +1121,6 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE Check2.Click
-		Thisform.oSearchEngine.ClearReplaceSettings()
-	ENDPROC
-
-	PROCEDURE Check3.Click
-		Thisform.oSearchEngine.ClearReplaceSettings()
-	ENDPROC
-
-	PROCEDURE Check4.Click
-		Thisform.oSearchEngine.ClearReplaceSettings()
-	ENDPROC
-
-	PROCEDURE Check5.Click
-		Thisform.oSearchEngine.ClearReplaceSettings()
-	ENDPROC
-
-	PROCEDURE chkTimeStamp.Click
-		DoDefault()
-		Thisform.Refresh()
-		
-		Thisform.txtTimeStampFrom.SetFocus()
-	ENDPROC
-
 	PROCEDURE cmdCancel.Click
 		Thisform.lReturn = .f.
 		
@@ -1167,7 +1141,7 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 					Thisform.pageframeScope.Page4.editPath.SetFocus()
 		
 				Case lnValidate = -5
-					Thisform.txtTimeStampFrom.SetFocus()
+					Thisform.Container1.txtTimeStampFrom.SetFocus()
 				
 				Otherwise
 					Thisform.editSearch.SetFocus()
@@ -1261,6 +1235,81 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
+	PROCEDURE Container1.Check2.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Container1.Check3.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Container1.Check4.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Container1.Check5.Click
+		Thisform.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE Container1.chkTimeStamp.Click
+		DoDefault()
+		Thisform.Refresh()
+		
+		This.Parent.txtTimeStampFrom.SetFocus()
+	ENDPROC
+
+	PROCEDURE Container1.Refresh
+		Local llEnabled, loControl
+		
+		llEnabled = Not '.' $ Thisform.oSearchOptions.cFileTemplate
+		
+		For Each m.loControl In This.Controls
+			Try
+				loControl.Enabled = m.llEnabled
+			Catch
+			Endtry
+		Endfor
+		
+		This.Enabled = m.llEnabled
+	ENDPROC
+
+	PROCEDURE Container1.Text1.Click
+		This.SelStart = 0
+		This.SelLength = 100
+	ENDPROC
+
+	PROCEDURE Container1.Text1.Valid
+		If this.Value <= 0
+			MessageBox('Please enter a value greater than zero.', 64, 'GoFish')
+			Return .f.
+		Endif
+		
+			
+	ENDPROC
+
+	PROCEDURE Container1.txtTimeStampFrom.Refresh
+		This.Enabled = Thisform.oSearchOptions.lTimeStamp
+	ENDPROC
+
+	PROCEDURE Container1.txtTimeStampTo.Refresh
+		This.Enabled = Thisform.oSearchOptions.lTimeStamp
+	ENDPROC
+
+	PROCEDURE Container2.Refresh
+		Local llEnabled, loControl
+		
+		llEnabled = Not '.' $ Thisform.oSearchOptions.cFileTemplate
+		
+		For Each m.loControl In This.Controls
+			Try
+				loControl.Enabled = m.llEnabled
+			Catch
+			Endtry
+		Endfor
+		
+		This.Enabled = m.llEnabled
+	ENDPROC
+
 	PROCEDURE containerFileTypes.Check1.InteractiveChange
 		 DODEFAULT()
 		
@@ -1323,14 +1372,6 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	PROCEDURE editFileTemplate.InteractiveChange
 		This.Value = This.value
 		Thisform.containerFileTypes.Refresh()
-	ENDPROC
-
-	PROCEDURE txtTimeStampFrom.Refresh
-		This.Enabled = Thisform.oSearchOptions.lTimeStamp
-	ENDPROC
-
-	PROCEDURE txtTimeStampTo.Refresh
-		This.Enabled = Thisform.oSearchOptions.lTimeStamp
 	ENDPROC
 
 ENDDEFINE

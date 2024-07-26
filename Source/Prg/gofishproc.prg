@@ -1909,3 +1909,150 @@ Procedure Sleep
 	Declare Sleep In kernel32 Integer dwMilliseconds
 	Sleep(m.lnMilliseconds)
 Endproc
+
+
+* ================================================================================
+Procedure GF_ModifyCommand(tcFile)
+	Modify Command (m.tcFile) Nowait Save
+EndProc 
+
+* ================================================================================ 
+Procedure GF_FixFontSize
+	Lparameters toObject, tnOldFontSize, tnNewFontSize
+
+	Local loFontsize As 'FixFontSize'
+	
+	If m.tnOldFontSize >= m.tnNewFontSize
+		Return
+	EndIf 
+
+	loFontsize = Createobject('FixFontSize', m.toObject, m.tnOldFontSize, m.tnNewFontSize)
+	
+	toObject.FontSize = m.tnNewFontSize
+	
+	toObject.nFontSizeMultiplier = loFontsize.nFontSizeMultiplier
+
+	Return
+	
+EndProc
+
+
+* ================================================================================
+
+Define Class FixFontSize As Custom
+
+	oForm		= Null
+	nFontSizeMultiplier	= 0
+
+	Dimension aAnchors(1, 2)
+
+
+	Procedure Init(toObject, tnOldFontSize, tnNewFontSize)
+
+		This.oForm		 = m.toObject
+		This.nFontSizeMultiplier = m.tnNewFontSize / m.tnOldFontSize
+
+		This.SaveAnchors(m.toObject)
+
+		This.ResizeObject(m.toObject)
+
+		This.RestoreAnchors()
+
+		Return
+
+	Endproc
+
+
+	Procedure SaveAnchors(toObject)
+
+		Local lnAnchor, lnCount, loChildObject, loException
+
+		If Pemstatus(m.toObject, 'Objects', 5)
+
+			Try
+				For Each m.loChildObject In m.toObject.Objects FoxObject
+					If Pemstatus(m.loChildObject, 'Anchor', 5)
+						lnAnchor = Getpem(m.loChildObject, 'Anchor')
+						If m.lnAnchor > 0
+							lnCount = Alen(This.aAnchors, 1) + 1
+							Dimension This.aAnchors(m.lnCount, 2)
+							This.aAnchors(m.lnCount, 1)	= m.loChildObject
+							This.aAnchors(m.lnCount, 2)	= m.lnAnchor
+							loChildObject.Anchor		= 0
+						Endif
+					Endif
+					This.SaveAnchors(m.loChildObject)
+
+				Endfor
+			Catch To m.loException
+
+			Endtry
+
+		Endif && Pemstatus(m.toObject, 'Objects', 5)
+
+	Endproc
+
+
+	Procedure ResizeObject(toObject)
+
+		Local lcSaveName, loChildObject, loException
+
+		lcSaveName = 'Anchor' + Sys(2015)
+		If Pemstatus(m.toObject, 'Objects', 5)
+
+			Try
+				For Each m.loChildObject In m.toObject.Objects FoxObject
+					This.ResizeObject(m.loChildObject)
+				Endfor
+			Catch To m.loException
+
+			Endtry
+
+		Endif
+
+		This.SetFontSize(m.toObject)
+
+	Endproc
+
+
+	Procedure SetFontSize(toObject)
+		If m.toObject.BaseClass = 'Form'
+			This.SetSize(m.toObject, 'MaxHeight')
+			This.SetSize(m.toObject, 'MaxWidth')
+		Else
+			This.SetSize(m.toObject, 'Top')
+			This.SetSize(m.toObject, 'Left')
+		Endif
+
+		This.SetSize(m.toObject, 'Height')
+		This.SetSize(m.toObject, 'Width')
+		This.SetSize(m.toObject, 'FontSize')
+
+	Endproc
+
+
+	Procedure SetSize(toObject, tcProperty)
+		Local lnOldValue
+
+		If Pemstatus(m.toObject, m.tcProperty, 5)
+			lnOldValue			 = Getpem(m.toObject, m.tcProperty)
+			toObject.&tcProperty = Round(m.lnOldValue * This.nFontSizeMultiplier, 0)
+		Endif
+	Endproc
+
+
+	Procedure RestoreAnchors()
+
+		Local lnAnchor, lnI, loObject
+
+		For lnI = 2 To Alen(This.aAnchors, 1)
+			loObject				= This.aAnchors[m.lnI, 1]
+			lnAnchor				= This.aAnchors[m.lnI, 2]
+			loObject.Anchor			= m.lnAnchor
+			This.aAnchors[m.lnI, 1]	= Null
+		Endfor
+
+	Endproc
+
+
+Enddefine
