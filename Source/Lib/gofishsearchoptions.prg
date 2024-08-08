@@ -154,6 +154,9 @@ Define Class GoFishSearchOptions As Custom
 	lShowMenuBarNumbers = .F.
 		
 	lCleanUpGrepFiles = .T.
+	
+	lPreVFP9		   = .F.
+	lPreVFP9EditSource = 'EditSource'
 
 	*---------------------------------------------------------------------
 

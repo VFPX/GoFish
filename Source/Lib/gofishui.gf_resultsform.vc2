@@ -81,22 +81,23 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	*< OBJECTDATA: ObjPath="ButtonContainer" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.lblSearchTime" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="ButtonContainer.chkSubdirectories" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="ButtonContainer.chkLimitToProjectFolder" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdSearch" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdAdvanced" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdOptions" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdHistory" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="ButtonContainer.comboViewPosition" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="ButtonContainer.lblCodeView" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container1.chkApplyFilter" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="ButtonContainer.comboViewPosition" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="ButtonContainer.lblCodeView" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container2.chkApplyFilter" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.Container3.chkApplyFilter" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdRegexpHelp" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="ButtonContainer.cmdSave" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="ButtonContainer.Container5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="ButtonContainer.Container5.chkLimitToProjectFolder" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="ButtonContainer.Container5.chkSubdirectories" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="tmrEvent" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="imgProj_Pick" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="lblReplaceHistory" UniqueID="" Timestamp="" />
@@ -258,7 +259,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*p: csortorder
 		*p: csortordersecondary
 		*p: csortordertertiary
-		*p: cstatusbarmessage
 		*p: ctreeviewfilter
 		*p: c_hasfocus
 		*p: dlastjanitorrundate
@@ -381,7 +381,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		csortorder = 
 		csortordersecondary = 
 		csortordertertiary = 
-		cstatusbarmessage = 
 		ctreeviewfilter = 
 		cuisettingsfile = GF_Results_Form_Settings.xml
 		c_hasfocus = .F.
@@ -600,42 +599,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		ZOrderSet = 14
 		*< END OBJECT: BaseClass="container" />
 
-	ADD OBJECT 'ButtonContainer.chkLimitToProjectFolder' AS checkbox WITH ;
-		Alignment = 0, ;
-		Anchor = 8, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Limit to home...", ;
-		ControlSource = "thisform.oSearchOptions.lLimitToProjectFolder", ;
-		FontSize = 8, ;
-		Height = 16, ;
-		Left = 8, ;
-		Name = "chkLimitToProjectFolder", ;
-		Picture = ..\images\, ;
-		TabIndex = 12, ;
-		ToolTipText = "Limit search to project home directory and sub-folders", ;
-		Top = 37, ;
-		Width = 89
-		*< END OBJECT: BaseClass="checkbox" />
-
-	ADD OBJECT 'ButtonContainer.chkSubdirectories' AS checkbox WITH ;
-		Alignment = 0, ;
-		Anchor = 8, ;
-		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "Subdirectories", ;
-		ControlSource = "Thisform.oSearchOptions.lIncludeSubDirectories", ;
-		FontSize = 8, ;
-		Height = 16, ;
-		Left = 8, ;
-		Name = "chkSubdirectories", ;
-		Picture = ..\images\, ;
-		TabIndex = 11, ;
-		ToolTipText = "Include subdirectories in search", ;
-		Top = 37, ;
-		Width = 88
-		*< END OBJECT: BaseClass="checkbox" />
-
 	ADD OBJECT 'ButtonContainer.cmdAdvanced' AS commandbutton WITH ;
 		Anchor = 8, ;
 		Caption = "\<Advanced", ;
@@ -645,7 +608,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "cmdAdvanced", ;
 		Picture = ('images\find.bmp'), ;
 		PicturePosition = 1, ;
-		SpecialEffect = 2, ;
 		TabIndex = 5, ;
 		ToolTipText = "See context menu", ;
 		Top = 7, ;
@@ -657,11 +619,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Caption = " \<History", ;
 		FontSize = 8, ;
 		Height = 22, ;
-		Left = 362, ;
+		Left = 364, ;
 		Name = "cmdHistory", ;
 		Picture = ('images\openfold.bmp'), ;
 		PicturePosition = 1, ;
-		SpecialEffect = 2, ;
 		TabIndex = 9, ;
 		ToolTipText = "See context menu", ;
 		Top = 34, ;
@@ -677,7 +638,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "cmdOptions", ;
 		Picture = ('images\properties.bmp'), ;
 		PicturePosition = 1, ;
-		SpecialEffect = 2, ;
 		TabIndex = 9, ;
 		ToolTipText = "", ;
 		Top = 7, ;
@@ -704,14 +664,14 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Caption = " Save", ;
 		FontSize = 8, ;
 		Height = 22, ;
-		Left = 417, ;
+		Left = 493, ;
 		Name = "cmdSave", ;
 		Picture = ('save.bmp'), ;
 		PicturePosition = 1, ;
 		SpecialEffect = 2, ;
 		TabIndex = 9, ;
 		ToolTipText = "See context menu", ;
-		Top = 42, ;
+		Top = 39, ;
 		Visible = .F., ;
 		Width = 65
 		*< END OBJECT: BaseClass="commandbutton" />
@@ -722,11 +682,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Default = .T., ;
 		FontSize = 8, ;
 		Height = 22, ;
-		Left = 8, ;
+		Left = 11, ;
 		Name = "cmdSearch", ;
 		Picture = ('images\GoFish16.bmp'), ;
 		PicturePosition = 1, ;
-		SpecialEffect = 2, ;
 		TabIndex = 4, ;
 		Top = 7, ;
 		Width = 68
@@ -736,14 +695,14 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		ControlSource = "Thisform.oSearchOptions.nSearchMode", ;
 		FontSize = 8, ;
 		Height = 24, ;
-		Left = 118, ;
+		Left = 121, ;
 		Name = "comboViewPosition", ;
 		Style = 2, ;
 		TabIndex = 24, ;
 		TabStop = .F., ;
 		ToolTipText = "", ;
 		Top = 6, ;
-		Width = 168, ;
+		Width = 165, ;
 		ZOrderSet = 8
 		*< END OBJECT: BaseClass="combobox" />
 
@@ -752,7 +711,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		BorderColor = 255,0,0, ;
 		BorderWidth = 2, ;
 		Height = 25, ;
-		Left = 99, ;
+		Left = 107, ;
 		Name = "Container1", ;
 		Picture = ..\images\, ;
 		Top = 33, ;
@@ -782,7 +741,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		BorderColor = 255,0,0, ;
 		BorderWidth = 2, ;
 		Height = 25, ;
-		Left = 190, ;
+		Left = 196, ;
 		Name = "Container2", ;
 		Picture = ..\images\, ;
 		Top = 33, ;
@@ -812,7 +771,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		BorderColor = 255,0,0, ;
 		BorderWidth = 2, ;
 		Height = 25, ;
-		Left = 279, ;
+		Left = 283, ;
 		Name = "Container3", ;
 		Picture = ..\images\, ;
 		Top = 33, ;
@@ -850,6 +809,54 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Width = 82
 		*< END OBJECT: BaseClass="container" />
 
+	ADD OBJECT 'ButtonContainer.Container5' AS container WITH ;
+		BackStyle = 0, ;
+		BorderColor = 255,0,0, ;
+		BorderWidth = 2, ;
+		Height = 25, ;
+		Left = 6, ;
+		Name = "Container5", ;
+		Picture = ..\images\, ;
+		Top = 33, ;
+		Width = 95
+		*< END OBJECT: BaseClass="container" />
+
+	ADD OBJECT 'ButtonContainer.Container5.chkLimitToProjectFolder' AS checkbox WITH ;
+		Alignment = 0, ;
+		Anchor = 8, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Limit to home...", ;
+		ControlSource = "thisform.oSearchOptions.lLimitToProjectFolder", ;
+		FontSize = 8, ;
+		Height = 16, ;
+		Left = 3, ;
+		Name = "chkLimitToProjectFolder", ;
+		Picture = ..\images\, ;
+		TabIndex = 12, ;
+		ToolTipText = "Limit search to project home directory and sub-folders", ;
+		Top = 4, ;
+		Width = 89
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'ButtonContainer.Container5.chkSubdirectories' AS checkbox WITH ;
+		Alignment = 0, ;
+		Anchor = 8, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Subdirectories", ;
+		ControlSource = "Thisform.oSearchOptions.lIncludeSubDirectories", ;
+		FontSize = 8, ;
+		Height = 16, ;
+		Left = 3, ;
+		Name = "chkSubdirectories", ;
+		Picture = ..\images\, ;
+		TabIndex = 11, ;
+		ToolTipText = "Include subdirectories in search", ;
+		Top = 4, ;
+		Width = 88
+		*< END OBJECT: BaseClass="checkbox" />
+
 	ADD OBJECT 'ButtonContainer.lblCodeView' AS label WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
@@ -859,7 +866,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		FontSize = 8, ;
 		ForeColor = 0,0,0, ;
 		Height = 16, ;
-		Left = 84, ;
+		Left = 87, ;
 		Name = "lblCodeView", ;
 		TabIndex = 7, ;
 		Top = 11, ;
@@ -1082,7 +1089,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHDey21h39oBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAKi6xwAGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEASvJuP6doBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAFAntAAGAAAAAAAAAAUAAIDw5RkAAQAAAFwAH97svQEABQA45hkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -8286,7 +8293,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE restorestatusbarmessage
-		Set Message To
+		If Set('Status Bar')  = 'ON'
+			Set Status Bar On
+		Endif
+		
 		
 	ENDPROC
 
@@ -10896,20 +10906,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE ButtonContainer.chkLimitToProjectFolder.Refresh
-		This.Enabled = !Thisform.lSearching &&and !Thisform.lReplaceViewMode
-		
-		This.Visible = InList(Thisform.oSearchOptions.nSearchScope, 1, 2, 5) 
-		
-	ENDPROC
-
-	PROCEDURE ButtonContainer.chkSubdirectories.Refresh
-		This.Enabled = !Thisform.lSearching && and !Thisform.lReplaceViewMode
-		
-		This.Visible = InList(Thisform.oSearchOptions.nSearchScope, 3, 4) 
-		
-	ENDPROC
-
 	PROCEDURE ButtonContainer.cmdAdvanced.Click
 		If Thisform.CtrlKeyPressed() And File(Thisform.cSearchOptionsUDFFileName)
 			Thisform.RunSearchOptionsUDF()
@@ -11329,6 +11325,44 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		This.BorderColor = Thisform.nContainerFrameColour
 		
 		
+	ENDPROC
+
+	PROCEDURE ButtonContainer.Container5.chkLimitToProjectFolder.Refresh
+		This.Enabled = !Thisform.lSearching &&and !Thisform.lReplaceViewMode
+		
+		This.Visible = InList(Thisform.oSearchOptions.nSearchScope, 1, 2) 
+		
+	ENDPROC
+
+	PROCEDURE ButtonContainer.Container5.chkLimitToProjectFolder.Valid
+		This.Parent.Refresh()
+	ENDPROC
+
+	PROCEDURE ButtonContainer.Container5.chkSubdirectories.Refresh
+		This.Enabled = !Thisform.lSearching && and !Thisform.lReplaceViewMode
+		
+		This.Visible = InList(Thisform.oSearchOptions.nSearchScope, 3, 4) 
+		
+	ENDPROC
+
+	PROCEDURE ButtonContainer.Container5.chkSubdirectories.Valid
+		This.Parent.Refresh()
+	ENDPROC
+
+	PROCEDURE ButtonContainer.Container5.Refresh
+		Do Case
+			Case This.Visible = Inlist(Thisform.oSearchOptions.nSearchScope, 1, 2) And Thisform.oSearchOptions.lLimitToProjectFolder
+				This.BorderWidth = 2
+		
+			Case This.Visible = Inlist(Thisform.oSearchOptions.nSearchScope, 3, 4) And Thisform.oSearchOptions.lIncludeSubDirectories = .F.
+				This.BorderWidth = 2
+		
+			Otherwise
+				This.BorderWidth = 0
+		
+		Endcase
+		
+		This.BorderColor = Thisform.nContainerFrameColour
 	ENDPROC
 
 	PROCEDURE ButtonContainer.lblCodeView.Refresh

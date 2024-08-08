@@ -6,6 +6,15 @@
 
 ---
 
+## Version 7.1.19 - 2024-08-08
+
+- Bug fix:
+    - Error when searching active project with "Limit search to project home directory and sub-folders". (#280)
+- Tweaks
+    - to display of command buttons on results form (#275)
+    - to handling of status bar on closing results form
+    - to arrangement of controls on the "New in V7" page on the Options form
+
 ## Version 7.1.18 - 2024-07-26
 
 - A new option has been added on the "Options" form to control the default font size used in the GF results form (and other GF forms), allowing for increased readability.

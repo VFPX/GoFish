@@ -170,42 +170,40 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Check3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Optiongroup1" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.pageReferences.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check10" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check11" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check13" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Check1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Label5" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.Spinner8" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contMiscellaneous.lblChangeFontSize" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Check5" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Check12" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Command1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Container1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Container1.lblExample1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Text1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Label5" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Label7" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.Spinner4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.contCodeView.cmdZoomDefault" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.cmdBrowse" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.cmdEdit" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.txtCustomUDF" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.Label4" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.Label3" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.cmdGotoFAQ" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.cmdSettingsUDF" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.cmdEditSettings" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.txtSettingsUDF" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.Label1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.Label2" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Container1.Command1" UniqueID="" Timestamp="" />
-	*< OBJECTDATA: ObjPath="pfSettings.Page3.Label5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Spinner8" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.lblChangeFontSize" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contMiscellaneous" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check10" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check11" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Check5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Check12" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Command1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Container1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.lblExample1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Text1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Label5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Label7" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label2" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check13" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdBrowse" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdEdit" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.txtCustomUDF" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.Label4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdGotoFAQ" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdSettingsUDF" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdEditSettings" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.txtSettingsUDF" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.Label1" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.Label2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdOK" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="cmdCancel" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="Gf_versionlabel1" UniqueID="" Timestamp="" />
@@ -528,200 +526,52 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 69
 		*< END OBJECT: BaseClass="spinner" />
 
-	ADD OBJECT 'pfSettings.Page3.Container1' AS container WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings' AS pageframe WITH ;
+		ActivePage = 1, ;
+		Anchor = 15, ;
+		ErasePage = .T., ;
+		Height = 512, ;
+		Left = 6, ;
+		Name = "pfSettings", ;
+		PageCount = 2, ;
+		TabIndex = 1, ;
+		TabStretch = 0, ;
+		TabStyle = 1, ;
+		Top = 6, ;
+		Width = 628, ;
+		Page1.Caption = "General", ;
+		Page1.Name = "Page1", ;
+		Page2.Caption = "Custom UDFs", ;
+		Page2.Name = "Page2"
+		*< END OBJECT: BaseClass="pageframe" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Check13' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "When editing, select the control where match is found", ;
+		ControlSource = "Thisform.oForm.lSelectControl", ;
+		Height = 17, ;
+		Left = 65, ;
+		Name = "Check13", ;
+		TabIndex = 14, ;
+		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
+		Top = 57, ;
+		Width = 310, ;
+		WordWrap = .F.
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView' AS container WITH ;
 		Anchor = 10, ;
 		BackStyle = 0, ;
-		Height = 133, ;
-		Left = 10, ;
-		Name = "Container1", ;
-		Top = 318, ;
-		Width = 613
-		*< END OBJECT: BaseClass="container" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.cmdBrowse' AS commandbutton WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		Caption = "Select UDF", ;
-		FontBold = .F., ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 10, ;
-		Name = "cmdBrowse", ;
-		Picture = ..\images\, ;
-		ToolTipText = 'If "Custom UDF" is selected for Scope ...', ;
-		Top = 39, ;
-		Width = 80
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.cmdEdit' AS commandbutton WITH ;
-		AutoSize = .T., ;
-		Caption = "Edit UDF", ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 94, ;
-		Name = "cmdEdit", ;
-		Picture = ..\images\, ;
-		Top = 39, ;
-		Width = 67
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.cmdEditSettings' AS commandbutton WITH ;
-		AutoSize = .T., ;
-		Caption = "Edit UDF", ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 94, ;
-		Name = "cmdEditSettings", ;
-		Picture = ..\images\, ;
-		Top = 96, ;
-		Width = 67
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.cmdGotoFAQ' AS commandbutton WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		Caption = "Go to FAQ", ;
-		FontBold = .F., ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 390, ;
-		Name = "cmdGotoFAQ", ;
-		Picture = ..\images\, ;
-		ToolTipText = "", ;
-		Top = 9, ;
-		Width = 73
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.cmdSettingsUDF' AS commandbutton WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		Caption = "Select UDF", ;
-		FontBold = .F., ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 10, ;
-		Name = "cmdSettingsUDF", ;
-		Picture = ..\images\, ;
-		ToolTipText = 'If "Custom UDF" is selected for Scope ...', ;
-		Top = 96, ;
-		Width = 80
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.Command1' AS commandbutton WITH ;
-		Anchor = 0, ;
-		AutoSize = .T., ;
-		Caption = "Go to FAQ", ;
-		FontBold = .F., ;
-		FontSize = 9, ;
-		Height = 27, ;
-		Left = 532, ;
-		Name = "Command1", ;
-		Picture = ..\images\, ;
-		ToolTipText = "", ;
-		Top = 66, ;
-		Visible = .F., ;
-		Width = 73
-		*< END OBJECT: BaseClass="commandbutton" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.Label1' AS label WITH ;
-		AutoSize = .T., ;
-		BackColor = 255,255,255, ;
-		BackStyle = 1, ;
-		Caption = "For modifying search options (run by right-clicking or ctrl-clicking on 'Advanced'.)", ;
-		FontSize = 9, ;
-		Height = 17, ;
-		Left = 91, ;
-		Name = "Label1", ;
-		TabIndex = 4, ;
-		Top = 72, ;
-		Width = 435
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.Label2' AS label WITH ;
-		AutoSize = .T., ;
-		BackColor = 255,255,255, ;
-		BackStyle = 1, ;
-		Caption = "Options UDF:", ;
-		FontBold = .T., ;
-		FontSize = 9, ;
-		Height = 17, ;
-		Left = 10, ;
-		Name = "Label2", ;
-		TabIndex = 4, ;
-		Top = 72, ;
-		Width = 74
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.Label3' AS label WITH ;
-		AutoSize = .T., ;
-		BackColor = 255,255,255, ;
-		BackStyle = 1, ;
-		Caption = "Scope UDF:", ;
-		FontBold = .T., ;
-		FontSize = 9, ;
-		Height = 17, ;
-		Left = 8, ;
-		Name = "Label3", ;
-		TabIndex = 4, ;
-		Top = 15, ;
-		Width = 66
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.Label4' AS label WITH ;
-		AutoSize = .T., ;
-		BackColor = 255,255,255, ;
-		BackStyle = 1, ;
-		Caption = "For generating scope cursor (of files to be searched):", ;
-		FontSize = 9, ;
-		Height = 17, ;
-		Left = 89, ;
-		Name = "Label4", ;
-		TabIndex = 4, ;
-		Top = 15, ;
-		Width = 292
-		*< END OBJECT: BaseClass="label" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.txtCustomUDF' AS textbox WITH ;
-		Anchor = 10, ;
-		ControlSource = "Thisform.oForm.cCustomScopeUDFFileName", ;
-		Enabled = .F., ;
-		FontBold = .F., ;
-		FontItalic = .F., ;
-		FontName = "Courier New", ;
-		FontSize = 9, ;
-		Height = 23, ;
-		Left = 165, ;
-		Name = "txtCustomUDF", ;
-		Top = 40, ;
-		Width = 442
-		*< END OBJECT: BaseClass="textbox" />
-
-	ADD OBJECT 'pfSettings.Page3.Container1.txtSettingsUDF' AS textbox WITH ;
-		Anchor = 10, ;
-		ControlSource = "Thisform.oForm.cSearchOptionsUDFFileName", ;
-		Enabled = .F., ;
-		FontBold = .F., ;
-		FontItalic = .F., ;
-		FontName = "Courier New", ;
-		FontSize = 9, ;
-		Height = 23, ;
-		Left = 165, ;
-		Name = "txtSettingsUDF", ;
-		Top = 97, ;
-		Width = 442
-		*< END OBJECT: BaseClass="textbox" />
-
-	ADD OBJECT 'pfSettings.Page3.contCodeView' AS container WITH ;
-		Anchor = 10, ;
-		BackStyle = 0, ;
-		Height = 170, ;
-		Left = 9, ;
+		Height = 186, ;
+		Left = 5, ;
 		Name = "contCodeView", ;
-		Top = 15, ;
+		Top = 98, ;
 		Width = 613
 		*< END OBJECT: BaseClass="container" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Check12' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Check12' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
@@ -731,11 +581,11 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 109, ;
 		Name = "Check12", ;
 		TabIndex = 14, ;
-		Top = 14, ;
+		Top = 20, ;
 		Width = 101
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Check5' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Check5' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
@@ -745,11 +595,11 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 109, ;
 		Name = "Check5", ;
 		TabIndex = 14, ;
-		Top = 34, ;
+		Top = 44, ;
 		Width = 329
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.cmdZoomDefault' AS commandbutton WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault' AS commandbutton WITH ;
 		AutoSize = .T., ;
 		Caption = "Default 14", ;
 		FontSize = 9, ;
@@ -757,11 +607,11 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 430, ;
 		Name = "cmdZoomDefault", ;
 		TabIndex = 22, ;
-		Top = 132, ;
+		Top = 146, ;
 		Width = 74
 		*< END OBJECT: BaseClass="commandbutton" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Command1' AS commandbutton WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Command1' AS commandbutton WITH ;
 		Caption = ". . .", ;
 		FontBold = .T., ;
 		Height = 25, ;
@@ -770,22 +620,22 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		SpecialEffect = 0, ;
 		TabIndex = 2, ;
 		ToolTipText = "Pick colour", ;
-		Top = 59, ;
+		Top = 73, ;
 		Width = 25
 		*< END OBJECT: BaseClass="commandbutton" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Container1' AS container WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Container1' AS container WITH ;
 		BorderWidth = 2, ;
 		Height = 27, ;
 		Left = 399, ;
 		Name = "Container1", ;
 		Picture = ..\images\, ;
 		TabIndex = 3, ;
-		Top = 58, ;
+		Top = 72, ;
 		Width = 129
 		*< END OBJECT: BaseClass="container" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Container1.lblExample1' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.lblExample1' AS label WITH ;
 		BackStyle = 0, ;
 		Caption = "Example", ;
 		Height = 17, ;
@@ -797,7 +647,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 120
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Label1' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Label1' AS label WITH ;
 		Alignment = 1, ;
 		BackStyle = 0, ;
 		Caption = "Outline color for highllighted code (in Code View pane) and non-default checkboxes (above the grid)", ;
@@ -805,12 +655,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 49, ;
 		Name = "Label1", ;
 		TabIndex = 1, ;
-		Top = 55, ;
+		Top = 69, ;
 		Width = 298, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Label5' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Label5' AS label WITH ;
 		Alignment = 1, ;
 		BackStyle = 0, ;
 		Caption = "Maximum number of lines to be shown before the match line (normally only needed if auto-alignment fails)", ;
@@ -819,12 +669,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Name = "Label5", ;
 		TabIndex = 30, ;
 		ToolTipText = "Search will automatically stop once this number of mached lines it reached.", ;
-		Top = 94, ;
+		Top = 108, ;
 		Width = 309, ;
 		WordWrap = .T.
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Label7' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Label7' AS label WITH ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Code View pane font size (px)", ;
@@ -832,11 +682,11 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 184, ;
 		Name = "Label7", ;
 		TabIndex = 23, ;
-		Top = 138, ;
+		Top = 152, ;
 		Width = 163
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Spinner4' AS spinner WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4' AS spinner WITH ;
 		ControlSource = "Thisform.nBrowserFontSize", ;
 		Height = 27, ;
 		InputMask = "99", ;
@@ -847,168 +697,296 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		SpinnerHighValue =  24.00, ;
 		SpinnerLowValue =   8.00, ;
 		TabIndex = 20, ;
-		Top = 133, ;
+		Top = 147, ;
 		Value = 14, ;
 		Width = 59
 		*< END OBJECT: BaseClass="spinner" />
 
-	ADD OBJECT 'pfSettings.Page3.contCodeView.Text1' AS textbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Text1' AS textbox WITH ;
 		ControlSource = "Thisform.nCodeViewLinesBefore", ;
 		Height = 25, ;
 		InputMask = "9999999", ;
 		Left = 360, ;
 		Name = "Text1", ;
 		TabIndex = 29, ;
-		Top = 97, ;
+		Top = 111, ;
 		Width = 59
 		*< END OBJECT: BaseClass="textbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous' AS container WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contMiscellaneous' AS container WITH ;
 		Anchor = 10, ;
 		BackStyle = 0, ;
-		Height = 105, ;
-		Left = 10, ;
+		Height = 109, ;
+		Left = 6, ;
 		Name = "contMiscellaneous", ;
-		Top = 199, ;
+		Top = 317, ;
 		Width = 613
 		*< END OBJECT: BaseClass="container" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check1' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Show bar numbers for Prompt field in menus", ;
 		ControlSource = "Thisform.oSearchOptions.lShowMenuBarNumbers", ;
 		Height = 17, ;
-		Left = 337, ;
+		Left = 109, ;
 		Name = "Check1", ;
 		TabIndex = 14, ;
-		Top = 68, ;
+		Top = 69, ;
 		Width = 264
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check10' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check10' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = 'Show relative path in column "File Name with Path"', ;
 		ControlSource = "Thisform.oForm.lShowRelativePath", ;
 		Height = 17, ;
-		Left = 12, ;
+		Left = 109, ;
 		Name = "Check10", ;
 		TabIndex = 14, ;
-		Top = 68, ;
+		Top = 21, ;
 		Width = 296
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check11' AS checkbox WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contMiscellaneous.Check11' AS checkbox WITH ;
 		Alignment = 0, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Sort projects & folders in Scope dropdown", ;
 		ControlSource = "Thisform.oForm.lSortScopeDropdown", ;
 		Height = 17, ;
-		Left = 337, ;
+		Left = 109, ;
 		Name = "Check11", ;
 		TabIndex = 14, ;
-		Top = 48, ;
+		Top = 45, ;
 		Width = 248
 		*< END OBJECT: BaseClass="checkbox" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Check13' AS checkbox WITH ;
-		Alignment = 0, ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label1' AS label WITH ;
+		Anchor = 10, ;
 		AutoSize = .T., ;
-		BackStyle = 0, ;
-		Caption = "When editing, select the control where match is found", ;
-		ControlSource = "Thisform.oForm.lSelectControl", ;
+		Caption = "   Miscellaneous:   ", ;
+		FontBold = .T., ;
 		Height = 17, ;
-		Left = 12, ;
-		Name = "Check13", ;
-		TabIndex = 14, ;
-		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
-		Top = 48, ;
-		Width = 310, ;
-		WordWrap = .F.
-		*< END OBJECT: BaseClass="checkbox" />
+		Left = 43, ;
+		Name = "Label1", ;
+		TabIndex = 7, ;
+		Top = 307, ;
+		Width = 105
+		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Label5' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label2' AS label WITH ;
+		Anchor = 10, ;
+		AutoSize = .T., ;
+		Caption = "   Code View pane:   ", ;
+		FontBold = .T., ;
+		Height = 17, ;
+		Left = 43, ;
+		Name = "Label2", ;
+		TabIndex = 7, ;
+		Top = 91, ;
+		Width = 114
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label5' AS label WITH ;
 		BackStyle = 0, ;
 		Caption = "Default font size", ;
 		Height = 18, ;
-		Left = 76, ;
+		Left = 84, ;
 		Name = "Label5", ;
 		TabIndex = 18, ;
-		Top = 20, ;
+		Top = 23, ;
 		Width = 97
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.lblChangeFontSize' AS label WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.lblChangeFontSize' AS label WITH ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Changing the default font size does not take effect until you restart GoFish", ;
 		FontBold = .T., ;
 		ForeColor = 255,0,0, ;
 		Height = 17, ;
-		Left = 177, ;
+		Left = 185, ;
 		Name = "lblChangeFontSize", ;
 		ToolTipText = "", ;
-		Top = 20, ;
+		Top = 23, ;
 		Width = 418
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.contMiscellaneous.Spinner8' AS spinner WITH ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Spinner8' AS spinner WITH ;
 		ControlSource = "Thisform.nFormFontSize", ;
 		Height = 27, ;
 		KeyboardHighValue = 16, ;
 		KeyboardLowValue = 8, ;
-		Left = 11, ;
+		Left = 19, ;
 		Name = "Spinner8", ;
 		SpinnerHighValue =  16.00, ;
 		SpinnerLowValue =   8.00, ;
 		TabIndex = 16, ;
 		ToolTipText = "The default font size applies to all controls on all GF forms (except for those few below).", ;
-		Top = 15, ;
+		Top = 18, ;
 		Width = 59
 		*< END OBJECT: BaseClass="spinner" />
 
-	ADD OBJECT 'pfSettings.Page3.Label1' AS label WITH ;
-		Anchor = 10, ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.cmdBrowse' AS commandbutton WITH ;
+		Anchor = 0, ;
 		AutoSize = .T., ;
-		Caption = "   Miscellaneous:   ", ;
-		FontBold = .T., ;
+		Caption = "Select UDF", ;
+		FontBold = .F., ;
+		FontSize = 9, ;
+		Height = 27, ;
+		Left = 12, ;
+		Name = "cmdBrowse", ;
+		Picture = ..\images\, ;
+		ToolTipText = 'If "Custom UDF" is selected for Scope ...', ;
+		Top = 47, ;
+		Width = 80
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.cmdEdit' AS commandbutton WITH ;
+		AutoSize = .T., ;
+		Caption = "Edit UDF", ;
+		FontSize = 9, ;
+		Height = 27, ;
+		Left = 96, ;
+		Name = "cmdEdit", ;
+		Picture = ..\images\, ;
+		Top = 47, ;
+		Width = 67
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.cmdEditSettings' AS commandbutton WITH ;
+		AutoSize = .T., ;
+		Caption = "Edit UDF", ;
+		FontSize = 9, ;
+		Height = 27, ;
+		Left = 96, ;
+		Name = "cmdEditSettings", ;
+		Picture = ..\images\, ;
+		Top = 133, ;
+		Width = 67
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.cmdGotoFAQ' AS commandbutton WITH ;
+		Anchor = 0, ;
+		AutoSize = .T., ;
+		Caption = "Go to FAQ", ;
+		FontBold = .F., ;
+		FontSize = 9, ;
+		Height = 27, ;
+		Left = 392, ;
+		Name = "cmdGotoFAQ", ;
+		Picture = ..\images\, ;
+		ToolTipText = "", ;
+		Top = 17, ;
+		Width = 73
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.cmdSettingsUDF' AS commandbutton WITH ;
+		Anchor = 0, ;
+		AutoSize = .T., ;
+		Caption = "Select UDF", ;
+		FontBold = .F., ;
+		FontSize = 9, ;
+		Height = 27, ;
+		Left = 12, ;
+		Name = "cmdSettingsUDF", ;
+		Picture = ..\images\, ;
+		ToolTipText = 'If "Custom UDF" is selected for Scope ...', ;
+		Top = 133, ;
+		Width = 80
+		*< END OBJECT: BaseClass="commandbutton" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.Label1' AS label WITH ;
+		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "For modifying search options (run by right-clicking or ctrl-clicking on 'Advanced'.)", ;
+		FontSize = 9, ;
 		Height = 17, ;
-		Left = 47, ;
+		Left = 93, ;
 		Name = "Label1", ;
-		TabIndex = 7, ;
-		Top = 193, ;
-		Width = 105
+		TabIndex = 4, ;
+		Top = 109, ;
+		Width = 435
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.Label2' AS label WITH ;
-		Anchor = 10, ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.Label2' AS label WITH ;
 		AutoSize = .T., ;
-		Caption = "   Code View pane:   ", ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "Options UDF:", ;
 		FontBold = .T., ;
+		FontSize = 9, ;
 		Height = 17, ;
-		Left = 47, ;
+		Left = 12, ;
 		Name = "Label2", ;
-		TabIndex = 7, ;
-		Top = 8, ;
-		Width = 114
+		TabIndex = 4, ;
+		Top = 109, ;
+		Width = 74
 		*< END OBJECT: BaseClass="label" />
 
-	ADD OBJECT 'pfSettings.Page3.Label5' AS label WITH ;
-		Anchor = 10, ;
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.Label3' AS label WITH ;
 		AutoSize = .T., ;
-		Caption = "   Custom UDFs:   ", ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "Scope UDF:", ;
 		FontBold = .T., ;
+		FontSize = 9, ;
 		Height = 17, ;
-		Left = 47, ;
-		Name = "Label5", ;
-		TabIndex = 7, ;
-		Top = 311, ;
-		Width = 99
+		Left = 10, ;
+		Name = "Label3", ;
+		TabIndex = 4, ;
+		Top = 23, ;
+		Width = 66
 		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.Label4' AS label WITH ;
+		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
+		BackStyle = 1, ;
+		Caption = "For generating scope cursor (of files to be searched):", ;
+		FontSize = 9, ;
+		Height = 17, ;
+		Left = 91, ;
+		Name = "Label4", ;
+		TabIndex = 4, ;
+		Top = 23, ;
+		Width = 292
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.txtCustomUDF' AS textbox WITH ;
+		Anchor = 10, ;
+		ControlSource = "Thisform.oForm.cCustomScopeUDFFileName", ;
+		Enabled = .F., ;
+		FontBold = .F., ;
+		FontItalic = .F., ;
+		FontName = "Courier New", ;
+		FontSize = 9, ;
+		Height = 23, ;
+		Left = 167, ;
+		Name = "txtCustomUDF", ;
+		Top = 48, ;
+		Width = 442
+		*< END OBJECT: BaseClass="textbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page2.txtSettingsUDF' AS textbox WITH ;
+		Anchor = 10, ;
+		ControlSource = "Thisform.oForm.cSearchOptionsUDFFileName", ;
+		Enabled = .F., ;
+		FontBold = .F., ;
+		FontItalic = .F., ;
+		FontName = "Courier New", ;
+		FontSize = 9, ;
+		Height = 23, ;
+		Left = 167, ;
+		Name = "txtSettingsUDF", ;
+		Top = 134, ;
+		Width = 442
+		*< END OBJECT: BaseClass="textbox" />
 
 	ADD OBJECT 'pfSettings.pageAdvanced.Check1' AS checkbox WITH ;
 		Alignment = 0, ;
@@ -3542,7 +3520,94 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdBrowse.Click
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Check12.Refresh
+		If Empty(Thisform.oForm.GetCustomcss())
+			This.Value	 = .F.
+			This.Enabled = .F.
+		Endif
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault.Click
+		Thisform.nBrowserFontSize = 14
+		This.Parent.Refresh()
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Command1.Click
+		Local lnReturn, lnColour
+		
+		lnColour = Thisform.nContainerFrameColour
+		lnReturn = Getcolor(m.lnColour)
+		
+		If m.lnReturn#-1 Then
+			Thisform.nContainerFrameColour     = m.lnReturn
+			This.Parent.Container1.BorderColor = m.lnReturn
+		Endif &&m.lnReturn#-1
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.Click
+		This.Parent.Command1.Click
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.lblExample1.Click
+		This.Parent.Parent.Command1.Click
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.Refresh
+		This.BorderColor = Thisform.nContainerFrameColour
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4.Click
+		Nodefault
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4.DownClick
+		This.Value = This.Value - 0.00
+		
+		Nodefault
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4.UpClick
+		This.Value = This.Value + 0.00
+		
+		nodefault
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4.Valid
+		If This.Value < This.SpinnerLowValue
+			This.Value = This.SpinnerLowValue
+		EndIf
+		
+		If This.Value > This.SpinnerHighValue
+			This.Value = This.SpinnerHighValue
+		Endif
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Text1.Click
+		This.SelStart = 0
+		This.SelLength = 100
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Text1.Valid
+		If this.Value <= 0
+			MessageBox('Please enter a value greater than zero.', 64, 'GoFish')
+			Return .f.
+		Endif
+		
+			
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.lblChangeFontSize.Refresh
+		This.Visible = Thisform.nFormFontSize # Thisform.oForm.nFormFontSize
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.Spinner8.InteractiveChange
+		This.Parent.lblChangeFontSize.Visible = .T.
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdBrowse.Click
 		lcFile = GetFile("PRG", "", "Select", 0, "Choose UDF File for Custom Scope:")
 		
 		If Empty(lcFile)
@@ -3555,7 +3620,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		This.Parent.txtCustomUDF.Refresh()
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdBrowse.Refresh
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdBrowse.Refresh
 		Text To this.ToolTipText Noshow Textmerge
 		If "Custom UDF" is selected for Scope, then this UDF is called 
 		to populate a cursor with the list of all files to be searched.  
@@ -3567,14 +3632,14 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdEdit.Click
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdEdit.Click
 		Local lcFile
 		
 		lcFile = Thisform.oForm.cCustomScopeUDFFileName
 		GF_ModifyCommand(m.lcFile)
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdEdit.Refresh
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdEdit.Refresh
 		This.Enabled = !Empty(Thisform.oForm.cCustomScopeUDFFileName)
 		
 		Text To this.ToolTipText Noshow Textmerge
@@ -3588,14 +3653,14 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdEditSettings.Click
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdEditSettings.Click
 		Local lcFile
 		
 		lcFile = Thisform.oForm.cSearchOptionsUDFFileName
 		GF_ModifyCommand(m.lcFile)
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdEditSettings.Refresh
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdEditSettings.Refresh
 		This.Enabled = !Empty(Thisform.oForm.cSearchOptionsUDFFileName)
 		
 		Text To this.ToolTipText Noshow Textmerge
@@ -3612,11 +3677,11 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdGotoFAQ.Click
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdGotoFAQ.Click
 		GF_Shell('https://github.com/VFPX/GoFish/blob/master/docs/FAQ.md#CustomUDFScope')
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdSettingsUDF.Click
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdSettingsUDF.Click
 		lcFile = GetFile("PRG", "", "Select", 0, "Choose UDF File for search options:")
 		
 		If Empty(lcFile)
@@ -3629,7 +3694,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		This.Parent.txtSettingsUDF.Refresh()
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.cmdSettingsUDF.Refresh
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdSettingsUDF.Refresh
 		Text To this.ToolTipText Noshow Textmerge
 		The "Options" UDF allows you to modify/re-set 
 		any of the search options used by GF.
@@ -3644,109 +3709,18 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.Command1.Click
-		GF_Shell('https://github.com/VFPX/GoFish/blob/master/docs/FAQ.md#SettingsUDFScope')
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.Container1.txtCustomUDF.MouseEnter
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.txtCustomUDF.MouseEnter
 		LPARAMETERS nButton, nShift, nXCoord, nYCoord
 		
 		This.ToolTipText = This.Value
 		
 	ENDPROC
 
-	PROCEDURE pfSettings.Page3.Container1.txtSettingsUDF.MouseEnter
+	PROCEDURE pfSettings.Page3.pfSettings.Page2.txtSettingsUDF.MouseEnter
 		LPARAMETERS nButton, nShift, nXCoord, nYCoord
 		
 		This.ToolTipText = This.Value
 		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Check12.Refresh
-		If Empty(Thisform.oForm.GetCustomcss())
-			This.Value	 = .F.
-			This.Enabled = .F.
-		Endif
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.cmdZoomDefault.Click
-		Thisform.nBrowserFontSize = 14
-		This.Parent.Refresh()
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Command1.Click
-		Local lnReturn, lnColour
-		
-		lnColour = Thisform.nContainerFrameColour
-		lnReturn = Getcolor(m.lnColour)
-		
-		If m.lnReturn#-1 Then
-			Thisform.nContainerFrameColour     = m.lnReturn
-			This.Parent.Container1.BorderColor = m.lnReturn
-		Endif &&m.lnReturn#-1
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Container1.Click
-		This.Parent.Command1.Click
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Container1.lblExample1.Click
-		This.Parent.Parent.Command1.Click
-		
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Container1.Refresh
-		This.BorderColor = Thisform.nContainerFrameColour
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Spinner4.Click
-		Nodefault
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Spinner4.DownClick
-		This.Value = This.Value - 0.00
-		
-		Nodefault
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Spinner4.UpClick
-		This.Value = This.Value + 0.00
-		
-		nodefault
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Spinner4.Valid
-		If This.Value < This.SpinnerLowValue
-			This.Value = This.SpinnerLowValue
-		EndIf
-		
-		If This.Value > This.SpinnerHighValue
-			This.Value = This.SpinnerHighValue
-		Endif
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Text1.Click
-		This.SelStart = 0
-		This.SelLength = 100
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contCodeView.Text1.Valid
-		If this.Value <= 0
-			MessageBox('Please enter a value greater than zero.', 64, 'GoFish')
-			Return .f.
-		Endif
-		
-			
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contMiscellaneous.lblChangeFontSize.Refresh
-		This.Visible = Thisform.nFormFontSize # Thisform.oForm.nFormFontSize
-	ENDPROC
-
-	PROCEDURE pfSettings.Page3.contMiscellaneous.Spinner8.InteractiveChange
-		This.Parent.lblChangeFontSize.Visible = .T.
 	ENDPROC
 
 	PROCEDURE pfSettings.pageAdvanced.cmdDeleteConfigFiles.Click
