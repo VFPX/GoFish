@@ -1343,6 +1343,11 @@ statementstart
 		Select (m.tcCursor)
 		Scatter Name m.loResults Memo
 		Select (m.lnSelect)
+		
+		If This.oSearchOptions.lPreVFP9
+			This.EditPreVFP9(m.loResults)
+			Return
+		EndIf 
 
 		lcExt        = Alltrim(Upper(&tcCursor..FileType))
 		lcFileToEdit = Upper(Alltrim(&tcCursor..FilePath))
@@ -1717,6 +1722,63 @@ statementstart
 	Endproc
 
 
+	Procedure EditPreVFP9(toResults)
+		Local lcClass, lcClipText, lcEditSource, lcExt, lcFileText, lcFileToEdit, lcKeyStrokes, lcMatchType
+		Local lcMethod, lcMethodString, lcName, lcProcCode, lnLineNumber, lnMatchStart, lnProcStart, lnRecNo
+		Local loException
+	
+		lcExt		 = Alltrim(Upper(m.toResults.FileType))
+		lcFileToEdit = Upper(Alltrim(m.toResults.FilePath))
+		lcClass		 = Alltrim(m.toResults.Class)
+		lcName		 = Alltrim(m.toResults.Name)
+		lcMethod	 = Alltrim(m.toResults.MethodName)
+		lcMatchType	 = Alltrim(m.toResults.MatchType)
+		lnRecNo		 = m.toResults.Recno
+		lnProcStart	 = m.toResults.ProcStart
+		lnMatchStart = m.toResults.MatchStart
+		lcProcCode	 = m.toResults.ProcCode
+	
+		lcClipText	 = ["] + m.lcFileToEdit + ["]
+		lnLineNumber = 0
+	
+		Do Case
+			Case m.lcExt $ 'VCX SCX' And Not Empty(m.lcMethod)
+				lnLineNumber   = Occurs(CR, Left(m.lcProcCode, m.lnMatchStart - m.lnProcStart))
+				lcMethodString = Alltrim(m.lcName + '.' + m.lcMethod, 1, '.')
+				lcClipText	   = m.lcClipText + Textmerge([, <<m.lnLineNumber>>, "<<m.lcClass>>", "<<m.lcMethodString>>"])
+	
+			Case m.lcExt $ 'VCX SCX' And Not Empty(m.lcClass)
+				lcClipText = m.lcClipText + Textmerge([, 0, "<<m.lcClass>>"])
+	
+			Case m.lcExt $ 'PRG' And m.lcMatchType  = 'Code'
+				Try
+					lcFileText = Filetostr(m.lcFileToEdit)
+				Catch To m.loException
+	
+				Endtry
+				lnLineNumber = Occurs(CR, Left(m.lcFileText, m.lnMatchStart)) + 1
+				lcClipText	 = m.lcClipText + Textmerge([, <<m.lnLineNumber>>])
+	
+			Case m.lcExt $ 'MNX'
+				lcKeyStrokes = This.GetMenuKeystrokes(m.lcFileToEdit, m.lnRecNo, m.lcMatchType)
+				lcClipText	 = m.lcClipText + Textmerge([, , , , "<<m.lcKeystrokes>>"])
+	
+		Endcase
+	
+		lcEditSource = This.oSearchOptions.lPreVFP9EditSource
+		Do Case
+			Case Empty(m.lcEditSource)
+				_Cliptext = m.lcClipText
+			Case Upper(Getwordnum(m.lcEditSource, Getwordcount(m.lcEditSource))) == 'WITH'
+				_Cliptext = m.lcEditSource + ' ' + m.lcClipText
+			Otherwise
+				_Cliptext = m.lcEditSource + [(] + m.lcClipText + [)]
+		Endcase
+	
+		Wait (Left(_Cliptext, 150)) Window At Mrow(), Mcol() Nowait
+	
+	Endproc
+										
 *----------------------------------------------------------------------------------
 	Procedure EndTimer()
 
@@ -4254,7 +4316,7 @@ x
 		Local lnReturn As Number
 		Local lnSelect As Number
 		Local lnX As Number
-		Local laProjectFiles[1], lnSeconds, loFile, loProject
+		Local laProjectFiles[1], lcProjectPath, lnSeconds, loFile, loProject
 	
 		This.PrepareForSearch()
 		This.StartTimer()
@@ -4267,8 +4329,10 @@ x
 	
 		Create Cursor ProjectFiles (FileName C(200))
 	
-		loProject					 = toProject
+		loProject					 = m.toProject
 		This.oSearchOptions.cProject = m.loProject.Name
+		lcProjectPath				 = Addbs(Justpath(Alltrim(m.loProject.Name)))
+	
 		Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name))
 	
 		For Each m.loFile In m.loProject.Files FoxObject
@@ -4328,7 +4392,7 @@ x
 		Endif
 	
 	Endproc
-					
+						
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInCode(tcCode, tuUserField, tlHasProcedures, lnMinMatchStart, lnMaxMatchStart)
@@ -4752,11 +4816,13 @@ x
 	
 			lcFile = m.laProjectFiles(m.lnX)
 	
-			If This.oSearchOptions.lLimitToProjectFolder
-				If Not (Upper(m.lcProjectPath) $ Upper(Addbs(Justpath(m.lcFile))))
-					Loop
-				Endif
-			Endif
+			*!* ******** JRN Removed 2024-08-07 ********  
+			*!* This option does not apply for all open projects
+			*!* If This.oSearchOptions.lLimitToProjectFolder
+			*!* 	If Not (Upper(m.lcProjectPath) $ Upper(Addbs(Justpath(m.lcFile))))
+			*!* 		Loop
+			*!* 	Endif
+			*!* Endif
 	
 			lnReturn = This.SearchInFile(m.lcFile)
 	

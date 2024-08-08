@@ -98,7 +98,7 @@ DEFINE CLASS gf_progressbar AS container
 		Height = 23, ;
 		Left = 17, ;
 		Name = "Label1", ;
-		Top = 8, ;
+		Top = 11, ;
 		Width = 184
 		*< END OBJECT: BaseClass="label" />
 
@@ -111,13 +111,13 @@ DEFINE CLASS gf_progressbar AS container
 		Height = 22, ;
 		Left = 182, ;
 		Name = "lblEscape", ;
-		Top = 8, ;
+		Top = 11, ;
 		Width = 284
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'lblWait' AS label WITH ;
 		BackStyle = 0, ;
-		Caption = "Searching...", ;
+		Caption = "File names being processed ...", ;
 		FontSize = 10, ;
 		ForeColor = 255,255,255, ;
 		Height = 23, ;

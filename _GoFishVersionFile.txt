@@ -9,12 +9,21 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.19 - 2024-08-08
+
+- Bug fix:
+    - Error when searching active project with "Limit search to project home directory and sub-folders". (#280)
+- Tweaks
+    - to display of command buttons on results form (#275)
+    - to handling of status bar on closing results form
+    - to arrangement of controls on the "New in V7" page on the Options form
+
 ## Version 7.1.18 - 2024-07-26
 
 - A new option has been added on the "Options" form to control the default font size used in the GF results form (and other GF forms), allowing for increased readability.
 - The option to display each file name as it is processed now causes the file name to be displayed in the progress form (instead of a Wait Window) and no longer impacts performance.
 - Bug fixes:
-     - Editing "Options UDF" program can cause VFP to crash. (#275)
+    - Editing "Options UDF" program can cause VFP to crash. (#275)
     - Grep is no longer disabled for search expressions beginning with `-` (such as `-99`) (#272)
 
 ## Version 7.1.17 - 2024-07-18
@@ -173,25 +182,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 ## Version 7.0.25 - 2024-04-14
 
 - New option added in Options screen: "When editing, select the control in which text is found"
-- Right-clicking on a node in the TreeView includes any of these options (as appropriate):
-    - Modify this file
-    - File name to clipboard
-    - Full file name (with Path) to clipboard
-    - --
-    - Browse as table
-    - SuperBrowse as table
-    - HackCX
-- Right-clicking on a row in the grid includes any of these options (as appropriate):
-    - Filter values in this column
-    - Filter by this file
-    - Filter by this
+- Right-clicking on a node in the TreeView includes any of these options (
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.18 - July 26, 2024 - 20240726')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.19 - August 08, 2024 - 20240808')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
