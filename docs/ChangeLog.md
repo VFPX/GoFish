@@ -6,6 +6,18 @@
 
 ---
 
+## Version 7.1.20 - 2024-08-21
+
+- Bug fixes:
+    - Replacements in menus (MNXs) were failing with mis-leading error messages. (#283)
+    - Problem in code view pane after a replacement.
+- Two additions to grid context menu (#282):
+    - Copy highlighted text to clipboard
+    - Gofish for highlighted text
+- Re-assignment of access keys in context menus (#282):
+    - in grid 
+    - in treeview
+
 ## Version 7.1.19 - 2024-08-08
 
 - Bug fix:
