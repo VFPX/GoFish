@@ -575,66 +575,60 @@ Define Class GoFishSearchEngine As Custom
 
 *----------------------------------------------------------------------------------
 	Procedure BackupFile(tcFilePath, tnReplaceHistoryId)
-
-*SF 20221018 -> local storage
-*#Define ccBACKUPFOLDER Addbs(Home(7) + 'GoFishBackups')
-*SF 20230131 -> issue #41
-*Thisform was not a good idea here
-		Local;
-			lcBackupPRG     As String,;
-			lcDestFile      As String,;
-			lcExt           As String,;
-			lcExtensions    As String,;
-			lcSourceFile    As String,;
-			lcThisBackupFolder As String,;
-			llCopyError     As Boolean,;
-			lnI             As Number,;
-			lcBACKUPFOLDER
-
-		Local Array;
-			laExtensions(1)
-			
-
-
-*		ccBACKUPFOLDER = Addbs(This.cCR_StoreLocal + 'GoFishBackups')
-		lcBACKUPFOLDER = Addbs(This.cCR_StoreLocal + 'GF_ReplaceBackups')
-*/SF 20230131 -> issue #41
-*/SF 20221018 -> local storage
-
-
-		If This.oSearchOptions.lPreviewReplace
+	
+		*SF 20221018 -> local storage
+		*#Define ccBACKUPFOLDER Addbs(Home(7) + 'GoFishBackups')
+		*SF 20230131 -> issue #41
+		*Thisform was not a good idea here
+		Local lcBackupPRG As String
+		Local lcDestFile As String
+		Local lcExt As String
+		Local lcExtensions As String
+		Local lcSourceFile As String
+		Local lcThisBackupFolder As String
+		Local llCopyError As Boolean
+		Local lnI As Number
+		Local laExtensions[1], lcBackupFolder, loException
+	
+		*		ccBACKUPFOLDER = Addbs(This.cCR_StoreLocal + 'GoFishBackups')
+		lcBackupFolder = Addbs(This.cCR_StoreLocal + 'GF_ReplaceBackups')
+		*/SF 20230131 -> issue #41
+		*/SF 20221018 -> local storage
+	
+	
+		If This.oSearchOptions.lpreviewreplace
 			Return
 		Endif
-
+	
 		llCopyError = .F.
-
-*-- If the user has created a custom backup PRG, and placed it in their path, then call it instead
+	
+		*-- If the user has created a custom backup PRG, and placed it in their path, then call it instead
 		lcBackupPRG = 'GoFish_Backup.prg'
-
+	
 		If File(m.lcBackupPRG)
 			Do &lcBackupPRG With m.tcFilePath, m.tnReplaceHistoryId
 			Return
 		Endif
-
-		If Not Directory (lcBACKUPFOLDER) && Create main folder for backups, if necessary
-			Mkdir (lcBACKUPFOLDER)
-			GF_Write_Readme_Text(4, Addbs(m.lcBACKUPFOLDER) + 'README.md', .T.)
-
+	
+		If Not Directory (m.lcBackupFolder) && Create main folder for backups, if necessary
+			Mkdir (m.lcBackupFolder)
+			GF_Write_Readme_Text(4, Addbs(m.lcBackupFolder) + 'README.md', .T.)
+	
 		Endif
-
-* Create folder for this ReplaceHistorrID, if necessary
-		lcThisBackupFolder = Addbs (lcBACKUPFOLDER + Transform (m.tnReplaceHistoryId))
-
+	
+		* Create folder for this ReplaceHistorrID, if necessary
+		lcThisBackupFolder = Addbs (m.lcBackupFolder + Transform (m.tnReplaceHistoryId))
+	
 		If Not Directory (m.lcThisBackupFolder)
 			Mkdir (m.lcThisBackupFolder)
-
+	
 			GF_Write_Readme_Text(5, Addbs(m.lcThisBackupFolder) + 'README.md', .T.)
 			Strtofile(Ttoc(Datetime()), Addbs(m.lcThisBackupFolder) + 'README.md', .T.)
 		Endif
-
-* Determine the extensions we need to consider
+	
+		* Determine the extensions we need to consider
 		lcExt = Upper (Justext (m.tcFilePath))
-
+	
 		Do Case
 			Case m.lcExt = 'SCX'
 				lcExtensions = 'SCX,SCT'
@@ -651,29 +645,29 @@ Define Class GoFishSearchEngine As Custom
 			Otherwise
 				lcExtensions = m.lcExt
 		Endcase
-
-*-- Copy each file into the destination folder, if its not already there
+	
+		*-- Copy each file into the destination folder, if its not already there
 		Alines (laExtensions, m.lcExtensions, 0, ',')
-
+	
 		For lnI = 1 To Alen (m.laExtensions)
-			lcSourceFile = Forceext (m.tcFilePath, laExtensions (m.lnI))
-			lcDestFile   = m.lcThisBackupFolder + Justfname (m.lcSourceFile)
+			lcSourceFile = Forceext (m.tcFilePath, m.laExtensions (m.lnI))
+			lcDestFile	 = m.lcThisBackupFolder + Justfname (m.lcSourceFile)
 			If Not File (m.lcDestFile)
 				Try
-						Copy File (m.lcSourceFile) To (m.lcDestFile)
-					Catch
-						If !m.llCopyError
-							This.SetReplaceError('Error creating backup of file.', m.tcFilePath, m.tnReplaceHistoryId)
-						Endif
-						llCopyError = .T.
+					Copy File (m.lcSourceFile) To (m.lcDestFile)
+				Catch To m.loException
+					If Not m.llCopyError
+						This.SetReplaceError('Error creating backup of file - ' + m.loException.Message, m.tcFilePath, m.tnReplaceHistoryId)
+					Endif
+					llCopyError = .T.
 				Endtry
 			Endif
 		Endfor
-
-		Return !m.llCopyError
-
+	
+		Return Not m.llCopyError
+	
 	Endproc
-
+	
 
 *----------------------------------------------------------------------------------
 	Procedure BuildDirectoriesCollection(tcDir, tlWithRepo, tcRepo)
