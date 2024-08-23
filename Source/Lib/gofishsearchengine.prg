@@ -289,17 +289,19 @@ Define Class GoFishSearchEngine As Custom
 
 		Endif
 
-		If Upper(m.lcMatchType) # 'RESERVED3' And This.IsFullLineComment(m.lcTrimmedMatchLine)
-			toObject.MatchType = MATCHTYPE_COMMENT
-			This.CreateResult(m.toObject)
-			Return .Null. && Exit out, we're done with this record!
+		If Not 'Menu' $ toObject.MatchType
+			If Upper(m.lcMatchType) # 'RESERVED3' And This.IsFullLineComment(m.lcTrimmedMatchLine)
+				toObject.MatchType = MatchType_Comment
+				This.CreateResult(m.toObject)
+				Return .Null. && Exit out, we're done with this record!
+			Endif
+		
+			*=============================================================================================
+			* Handle a few tweaks on MatchType assignments
+			*=============================================================================================
+			This.ProcessInlineComments(m.toObject)		
 		Endif
-
-*=============================================================================================
-* Handle a few tweaks on MatchType assignments
-*=============================================================================================
-		This.ProcessInlineComments(m.toObject)
-
+		
 		Do Case
 
 *-- A TimeStamp only search, with no search expression...
@@ -652,15 +654,18 @@ Define Class GoFishSearchEngine As Custom
 		For lnI = 1 To Alen (m.laExtensions)
 			lcSourceFile = Forceext (m.tcFilePath, m.laExtensions (m.lnI))
 			lcDestFile	 = m.lcThisBackupFolder + Justfname (m.lcSourceFile)
-			If Not File (m.lcDestFile)
-				Try
-					Copy File (m.lcSourceFile) To (m.lcDestFile)
-				Catch To m.loException
-					If Not m.llCopyError
-						This.SetReplaceError('Error creating backup of file - ' + m.loException.Message, m.tcFilePath, m.tnReplaceHistoryId)
-					Endif
-					llCopyError = .T.
-				Endtry
+			If Not File (m.lcDestFile) && no need to repeat if already backed up
+				*** JRN 2024-08-22 : MPR and MPX files need not exist
+				If File(m.lcSourceFile) or not Upper(JustExt(m.lcSourceFile)) $ 'MPR,MPX'
+					Try
+						Copy File (m.lcSourceFile) To (m.lcDestFile)
+					Catch To m.loException
+						If Not m.llCopyError
+							This.SetReplaceError('Error creating backup of file - ' + m.loException.Message, m.tcFilePath, m.tnReplaceHistoryId)
+						Endif
+						llCopyError = .T.
+					Endtry
+				EndIf
 			Endif
 		Endfor
 	
@@ -5382,6 +5387,7 @@ j
 							lnMinMatchStart	= 0
 							lnMaxMatchStart	= 1E9
 							lcCode			= ''
+							.MatchType		= 'Menu ' + .MatchType
 	
 							If Not Empty(Prompt)
 								llThisField		= m.lcField = 'PROMPT'
@@ -5403,6 +5409,22 @@ j
 								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
 							Endif
 	
+							If Not Empty(KeyName)
+								llThisField		= m.lcField = 'KEYNAME'
+								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
+								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 13) + ' ' + Transform(Len(KeyName)), m.lcType)
+								lcCode			= m.lcCode + 'Key Label = ' + KeyName + CRLF
+								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+	
+							If Not Empty(KeyLabel)
+								llThisField		= m.lcField = 'KEYLABEL'
+								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
+								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 13) + ' ' + Transform(Len(KeyLabel)), m.lcType)
+								lcCode			= m.lcCode + 'Key Text  = ' + KeyLabel + CRLF
+								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+	
 							If Not Empty(SkipFor)
 								llThisField		= m.lcField = 'SKIPFOR'
 								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
@@ -5416,6 +5438,14 @@ j
 								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
 								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 13) + ' ' + Transform(Len(Message)), m.lcType)
 								lcCode			= m.lcCode + 'Message   = ' + Message + CRLF
+								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+	
+							If Not Empty(ResName)
+								llThisField		= m.lcField = 'RESNAME'
+								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
+								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 13) + ' ' + Transform(Len(ResName)), m.lcType)
+								lcCode			= m.lcCode + 'Resource  = ' + ResName + CRLF
 								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
 							Endif
 	
