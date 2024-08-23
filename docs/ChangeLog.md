@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.21- 2024-08-22
+
+- Bug fixes:
+    - Matches in field `ResName` in MNX files were not being handled correctly. (#283)
+    - Backups of MNXs during replacements were failing if either 'MPR' or 'MPX' files did not exist (#283)
+
 ## Version 7.1.20 - 2024-08-21
 
 - Bug fixes:

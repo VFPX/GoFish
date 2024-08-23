@@ -9,6 +9,12 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.21- 2024-08-22
+
+- Bug fixes:
+    - Matches in field `ResName` in MNX files were not being handled correctly. (#283)
+    - Backups of MNXs during replacements were failing if either 'MPR' or 'MPX' files did not exist (#283)
+
 ## Version 7.1.20 - 2024-08-21
 
 - Bug fixes:
@@ -180,20 +186,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 ## Version 7.0.27 - 2024-04-19
 
 - Created new FAQ page
-- Added link to new FAQ page (at bottom left of main form).
-
-## Version 7.0.26 - 2024-04-15
-
-- Dramatic optimization of RegEx searching -- as much as seven times faster.
-- Bug fixes:
-    - Problem when editing (double-clicking a row) could cause the Default property on a
+- Added link to new FAQ page (at
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.20.1 - August 21, 2024 - 20240821')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.21 - August 22, 2024 - 20240822')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
