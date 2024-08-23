@@ -289,7 +289,7 @@ Define Class GoFishSearchEngine As Custom
 
 		Endif
 
-		If Not 'Menu' $ toObject.MatchType
+		If m.lcFileType # 'EXT'
 			If Upper(m.lcMatchType) # 'RESERVED3' And This.IsFullLineComment(m.lcTrimmedMatchLine)
 				toObject.MatchType = MatchType_Comment
 				This.CreateResult(m.toObject)
@@ -4452,7 +4452,7 @@ x
 				If m.tlHasProcedures And !This.oSearchOptions.lSearchInComments And This.IsComment(m.loMatch.Value)
 					Loop
 				Endif
-				If m.loMatch.FirstIndex < Evl(lnMinMatchStart, 0) or m.loMatch.FirstIndex > Evl(lnMaxMatchStart, 1E9) 
+				If m.loMatch.FirstIndex < Evl(lnMinMatchStart, 0) or m.loMatch.FirstIndex >= Evl(lnMaxMatchStart, 1E9) 
 					Loop
 				EndIf
 				
@@ -5387,7 +5387,6 @@ j
 							lnMinMatchStart	= 0
 							lnMaxMatchStart	= 1E9
 							lcCode			= ''
-							.MatchType		= 'Menu ' + .MatchType
 	
 							If Not Empty(Prompt)
 								llThisField		= m.lcField = 'PROMPT'
