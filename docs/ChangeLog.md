@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.22- 2024-08-31
+
+- Matches in MNX files to fields entered in the secondary "Prompt Options" form now open that form.
+- Assignment of some access keys in the results form and grid header context menu (#288)
+
 ## Version 7.1.21- 2024-08-22
 
 - Bug fixes:

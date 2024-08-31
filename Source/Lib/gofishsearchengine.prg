@@ -2536,6 +2536,8 @@ Result
 					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab
 				Case Upper(m.lcMatchType) = '<PROCEDURE>'
 					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab + ccEnter
+				Case Upper(m.lcMatchType) # '<PROMPT>' 
+					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab + ccTab + ccEnter
 			Endcase
 	
 			Do While m.laField[1] # '_MSYSMENU'
