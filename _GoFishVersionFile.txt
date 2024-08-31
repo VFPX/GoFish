@@ -9,6 +9,11 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.22- 2024-08-31
+
+- Matches in MNX files to fields entered in the secondary "Prompt Options" form now open that form.
+- Assignment of some access keys in the results form and grid header context menu (#288)
+
 ## Version 7.1.21- 2024-08-22
 
 - Bug fixes:
@@ -179,21 +184,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
     - Right-clicking on nodes in treeview sometimes did nothing (#224)
     - Right-clicking on nodes of treeview or rows of  grid failed with bug if Thor was not active (#224).
 
-## Version 7.0.28 - 2024-04-21
-
-- Added new option on "Options" form, "Janitor" page to indicate how often the janitor runs (default = 7 days)
-
-## Version 7.0.27 - 2024-04-19
-
-- Created new FAQ page
-- Added link to new FAQ page (at
+## Version 7.
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.21 - August 23, 2024 - 20240823')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.22 - August 31, 2024 - 20240831')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
