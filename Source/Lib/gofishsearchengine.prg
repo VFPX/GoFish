@@ -1957,107 +1957,132 @@ Result
 
 *----------------------------------------------------------------------------------
 	Procedure FindStatement(loObject)
-
-		Local;
-			lcLastLine As String,;
-			lcMatchLine As String,;
-			lcPreceding As String,;
-			lcProcCode As String,;
-			lcResult As String,;
-			lnCRPos  As Number,;
-			lnLen    As Number,;
-			lnLength As Number,;
-			lnStart  As Number,;
-			lnTextStart As Number
-
+	
+		Local lcLastLine As String
+		Local lcMatchLine As String
+		Local lcPreceding As String
+		Local lcProcCode As String
+		Local lcResult As String
+		Local lnCRPos As Number
+		Local lnLen As Number
+		Local lnLength As Number
+		Local lnStart As Number
+		Local lnTextStart As Number
+		Local lcFirstWord
+	
 		lnStart	 = m.loObject.MatchStart - m.loObject.ProcStart + 1
-
-*!* ** { JRN -- 08/05/2016 07:16 AM - Begin
-*!* lnLength = m.loObject.MatchLen - 1
+	
+		*!* ** { JRN -- 08/05/2016 07:16 AM - Begin
+		*!* lnLength = m.loObject.MatchLen - 1
 		lnLength = m.loObject.MatchLen
-*!* ** } JRN -- 08/05/2016 07:16 AM - End
-
-		lcProcCode = Evl(m.loObject.proccode, m.loObject.Code)
-
-* previously, assumed trailing CR, but this dropped off last character if not found
-*!* ** { JRN -- 08/05/2016 07:16 AM - Begin
-*!* lcMatchLine	= Substr(m.lcProcCode, m.lnStart, m.lnLength)
+		*!* ** } JRN -- 08/05/2016 07:16 AM - End
+	
+		lcProcCode = Evl(m.loObject.ProcCode, m.loObject.Code)
+	
+		* previously, assumed trailing CR, but this dropped off last character if not found
+		*!* ** { JRN -- 08/05/2016 07:16 AM - Begin
+		*!* lcMatchLine	= Substr(m.lcProcCode, m.lnStart, m.lnLength)
 		lcMatchLine	= Trim(Substr(m.lcProcCode, m.lnStart, m.lnLength), 1, CR, LF)
-*!* ** } JRN -- 08/05/2016 07:16 AM - End
-
+		*!* ** } JRN -- 08/05/2016 07:16 AM - End
 		lcResult	= m.lcMatchLine
-*** JRN 12/02/2015 : Add in leading lines, if any
-		Do While .T.
-			lcPreceding = Left(m.lcProcCode, m.lnStart - 1)
-			lnCRPos     = Rat(CR, m.lcPreceding, 2)
-			If m.lnCRPos > 0
-				lcPreceding = Substr(m.lcPreceding, m.lnCRPos + 1)
-			Endif
-			If This.IsContinuation(m.lcPreceding)
-				lcResult = m.lcPreceding + m.lcResult
-				lnStart  = m.lnStart - Len(m.lcPreceding)
+	
+		lcFirstWord = Lower(Getwordnum(m.lcMatchLine, 1, ' ' + Tab + CR + LF))
+		Do Case
+			Case 'text' = m.lcFirstWord
+	
+				&& everything up to and including EndText
 				lnLength = Len(m.lcResult)
-			Else
-				Exit
-			Endif
-		Enddo
-
-*** JRN 12/02/2015 : Add in following lines, if any
-		lcLastLine = m.lcMatchLine
-		Do While This.IsContinuation(m.lcLastLine)
-			lcLastLine = Substr(m.lcProcCode, m.lnStart + m.lnLength)
-			lnLen      = At(CR, m.lcLastLine, 2)
-			If m.lnLen > 0
-				lcLastLine = Left(m.lcLastLine, m.lnLen - 1)
-			Endif
-			lcResult = m.lcResult + m.lcLastLine
-			lnLength = Len(m.lcResult)
-		Enddo
-
-*** JRN 12/05/2015 : within Text / Endtext
-		If Atc('text', Left(m.lcProcCode, m.lnStart)) != 0 And ;
-				Atc('endtext', Substr(m.lcProcCode, m.lnStart + m.lnLength)) != 0
-
-			lnTextStart = m.lnStart
-			Do While m.lnTextStart > 1
-				lcPreceding = Left(m.lcProcCode, m.lnTextStart - 1)
-				lnCRPos     = Rat(CR, m.lcPreceding, 2)
-				If m.lnCRPos > 0
-					lcPreceding = Substr(m.lcPreceding, m.lnCRPos + 1)
-				Endif
-				Do Case
-					Case 'text' = Lower(Getwordnum(m.lcPreceding, 1, ' ' + Tab + CR + lf))
-						lnTextStart = m.lnTextStart - Len(m.lcPreceding)
-						lnLength    = m.lnLength + m.lnStart - m.lnTextStart
-						lnStart     = m.lnTextStart
-						lcResult    = Substr(m.lcProcCode, m.lnStart, m.lnLength)
-						Do While Len(m.lcProcCode) > m.lnStart + m.lnLength
-							lcLastLine = Substr(m.lcProcCode, m.lnStart + m.lnLength)
-							lnLen      = At(CR, m.lcLastLine, 2)
-							If m.lnLen > 0
-								lcLastLine = Left(m.lcLastLine, m.lnLen - 1)
-							Endif
-							lcResult = m.lcResult + m.lcLastLine
-							lnLength = Len(m.lcResult)
-							If 'endtext' = Lower(Getwordnum(m.lcLastLine, 1, ' ' + Tab + CR + lf))
+				Do While Len(m.lcProcCode) > m.lnStart + m.lnLength
+					lcLastLine = Substr(m.lcProcCode, m.lnStart + m.lnLength)
+					lnLen	   = At(CR, m.lcLastLine, 2)
+					If m.lnLen > 0
+						lcLastLine = Left(m.lcLastLine, m.lnLen - 1)
+					Endif
+					lcResult = m.lcResult + m.lcLastLine
+					lnLength = Len(m.lcResult)
+					If 'endtext' = Lower(Getwordnum(m.lcLastLine, 1, ' ' + Tab + CR + LF))
+						Exit
+					Endif
+				Enddo
+	
+			Case 'endtext' = m.lcFirstWord
+				&& Nothing to do here, this is always left as is
+	
+			Otherwise
+	
+				*** JRN 12/02/2015 : Add in leading lines, if any
+				Do While .T.
+					lcPreceding	= Left(m.lcProcCode, m.lnStart - 1)
+					lnCRPos		= Rat(CR, m.lcPreceding, 2)
+					If m.lnCRPos > 0
+						lcPreceding = Substr(m.lcPreceding, m.lnCRPos + 1)
+					Endif
+					If This.IsContinuation(m.lcPreceding)
+						lcResult = m.lcPreceding + m.lcResult
+						lnStart	 = m.lnStart - Len(m.lcPreceding)
+						lnLength = Len(m.lcResult)
+					Else
+						Exit
+					Endif
+				Enddo
+	
+				*** JRN 12/02/2015 : Add in following lines, if any
+				lcLastLine = m.lcMatchLine
+				Do While This.IsContinuation(m.lcLastLine)
+					lcLastLine = Substr(m.lcProcCode, m.lnStart + m.lnLength)
+					lnLen	   = At(CR, m.lcLastLine, 2)
+					If m.lnLen > 0
+						lcLastLine = Left(m.lcLastLine, m.lnLen - 1)
+					Endif
+					lcResult = m.lcResult + m.lcLastLine
+					lnLength = Len(m.lcResult)
+				Enddo
+	
+				*** JRN 12/05/2015 : within Text / Endtext
+				If Atc('text', Left(m.lcProcCode, m.lnStart)) # 0 And		;
+						Atc('endtext', Substr(m.lcProcCode, m.lnStart + m.lnLength)) # 0
+	
+					lnTextStart = m.lnStart
+					Do While m.lnTextStart > 1
+						lcPreceding	= Left(m.lcProcCode, m.lnTextStart - 1)
+						lnCRPos		= Rat(CR, m.lcPreceding, 2)
+						If m.lnCRPos > 0
+							lcPreceding = Substr(m.lcPreceding, m.lnCRPos + 1)
+						Endif
+						Do Case
+							Case 'text' = Lower(Getwordnum(m.lcPreceding, 1, ' ' + Tab + CR + LF))
+								lnTextStart	= m.lnTextStart - Len(m.lcPreceding)
+								lnLength	= m.lnLength + m.lnStart - m.lnTextStart
+								lnStart		= m.lnTextStart
+								lcResult	= Substr(m.lcProcCode, m.lnStart, m.lnLength)
+								Do While Len(m.lcProcCode) > m.lnStart + m.lnLength
+									lcLastLine = Substr(m.lcProcCode, m.lnStart + m.lnLength)
+									lnLen	   = At(CR, m.lcLastLine, 2)
+									If m.lnLen > 0
+										lcLastLine = Left(m.lcLastLine, m.lnLen - 1)
+									Endif
+									lcResult = m.lcResult + m.lcLastLine
+									lnLength = Len(m.lcResult)
+									If 'endtext' = Lower(Getwordnum(m.lcLastLine, 1, ' ' + Tab + CR + LF))
+										Exit
+									Endif
+								Enddo
 								Exit
-							Endif
-						Enddo
-						Exit
-					Case 'endtext' = Lower(Getwordnum(m.lcPreceding, 1, ' ' + Tab + CR + lf))
-						Exit
-					Otherwise
-						lnTextStart = m.lnTextStart - Len(m.lcPreceding)
-				Endcase
-			Enddo
-		Endif
-
-
-		loObject.statement      = m.lcResult
-		loObject.statementstart = m.lnStart
-
+							Case 'endtext' = Lower(Getwordnum(m.lcPreceding, 1, ' ' + Tab + CR + LF))
+								Exit
+							Otherwise
+								lnTextStart = m.lnTextStart - Len(m.lcPreceding)
+						Endcase
+					Enddo
+				Endif
+	
+		Endcase
+	
+		loObject.Statement		= m.lcResult
+		loObject.StatementStart	= m.lnStart
+	
 	Endproc
-
+		
 
 *----------------------------------------------------------------------------------
 	Procedure FixPropertyName(lcProperty)
@@ -4439,7 +4464,14 @@ x
 		If Type('loMatches') = 'O'
 			lnMatchCount = m.loMatches.Count
 		Else
-			lcErrorMessage = 'Error processing regular expression.    ' + This.oRegExForSearch.Pattern
+			lcErrorMessage = 'Error processing regular expression. ' + This.oRegExForSearch.Pattern
+			lcErrorMessage = m.lcErrorMessage + CRLF + Space(5) + 'Search In Code'
+			If Vartype(tuUserField) = 'O'
+				lcErrorMessage = m.lcErrorMessage + CRLF + Space(10) + 'File: ' + m.tuUserField.FilePath
+				lcErrorMessage = m.lcErrorMessage + CRLF + Space(10) + 'Column: ' + m.tuUserField.Column
+				lcErrorMessage = m.lcErrorMessage + CRLF + Space(10) + 'Record: ' + Transform(m.tuUserField.Recno)
+				lcErrorMessage = m.lcErrorMessage + CRLF + Space(10) + 'Code: ' + Left(Transform(tcCode), 50)
+			Endif
 			This.SetSearchError(m.lcErrorMessage)
 			Return - 1
 		Endif
@@ -4714,7 +4746,8 @@ x
 		If Type('loMatches') = 'O'
 			lnMatchCount = m.loMatches.Count
 		Else
-			lcErrorMessage = 'Error processing regular expression.    ' + This.oRegExForSearch.Pattern
+			lcErrorMessage = 'Error processing regular expression.  ' + This.oRegExForSearch.Pattern
+			lcErrorMessage = lcErrorMessage + CRLF + '  Search In File Name - ' + Transform(tcFile)
 			This.SetSearchError(m.lcErrorMessage)
 			Return - 1
 		Endif

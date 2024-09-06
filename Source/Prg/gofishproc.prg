@@ -1882,21 +1882,11 @@ Endproc
 
 * ================================================================================ 
 Function GF_GetMixedCaseCombination(m.tcString)
-	Local lcChar, lcResult, lcVal, lnI
+	Local lcResult, lnI
 
 	lcResult = ''
 	For lnI = 1 To Len(m.tcString)
-		lcResult = m.lcResult + Chr[m.lnI]
-	EndFor
-	
-	For lnI = Len(m.tcString) To 1 Step - 1
-		lcVal  = Chr[m.lnI]
-		lcChar = Substr(m.tcString, m.lnI, 1)
-		If Isalpha(m.lcChar)
-			lcResult = Chrtran(m.lcResult, m.lcVal, Upper(m.lcChar)) + ',' + Chrtran(m.lcResult, m.lcVal, Lower(m.lcChar))
-		Else
-			lcResult = Chrtran(m.lcResult, m.lcVal, m.lcChar)
-		Endif
+		lcResult = m.lcResult + '[' + Upper(Substr(m.tcString, m.lnI, 1)) + Lower(Substr(m.tcString, m.lnI, 1)) + ']'
 	Endfor
 
 	Return m.lcResult

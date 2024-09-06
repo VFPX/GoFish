@@ -9,6 +9,11 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.23- 2024-09-06
+
+- Improved handling of Text/EndText statements in wild card searching and display in Code View pane.
+- Improved error reporting for some search errors (#291)
+
 ## Version 7.1.22- 2024-08-31
 
 - Matches in MNX files to fields entered in the secondary "Prompt Options" form now open that form.
@@ -181,17 +186,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 - Added checkbox on the History form to provide for filtering search history to the current scope.
 - On the Options form, added confirmation prompt if cancelling without changing anything.
 - Bug fixes -
-    - Right-clicking on nodes in treeview sometimes did nothing (#224)
-    - Right-clicking on nodes of treeview or rows of  grid failed with bug if Thor was not active (#224).
 
-## Version 7.
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.22 - August 31, 2024 - 20240831')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.23 - September 06, 2024 - 20240906')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
