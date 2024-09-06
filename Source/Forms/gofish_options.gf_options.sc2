@@ -193,6 +193,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check13" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check4" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check5" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdBrowse" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdEdit" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.txtCustomUDF" UniqueID="" Timestamp="" />
@@ -556,9 +558,45 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Name = "Check13", ;
 		TabIndex = 14, ;
 		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
-		Top = 57, ;
+		Top = 92, ;
 		Width = 310, ;
 		WordWrap = .F.
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Check4' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Wildcard search across continuation lines", ;
+		ControlSource = "thisform.oForm.oSearchOptions.lWildCardContinuationLines", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 65, ;
+		Name = "Check4", ;
+		TabIndex = 6, ;
+		Top = 44, ;
+		Value = .T., ;
+		Width = 240, ;
+		ZOrderSet = 10
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Check5' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Use Grep for faster directory searches", ;
+		ControlSource = "thisform.oForm.oSearchOptions.lOptimizeWithGrep", ;
+		FontBold = .F., ;
+		FontName = "Tahoma", ;
+		Height = 16, ;
+		Left = 65, ;
+		Name = "Check5", ;
+		TabIndex = 6, ;
+		Top = 68, ;
+		Value = .T., ;
+		Width = 226, ;
+		ZOrderSet = 10
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView' AS container WITH ;
@@ -567,7 +605,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Height = 186, ;
 		Left = 5, ;
 		Name = "contCodeView", ;
-		Top = 98, ;
+		Top = 132, ;
 		Width = 613
 		*< END OBJECT: BaseClass="container" />
 
@@ -625,7 +663,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*< END OBJECT: BaseClass="commandbutton" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.Container1' AS container WITH ;
-		BorderWidth = 2, ;
+		BorderWidth = 3, ;
 		Height = 27, ;
 		Left = 399, ;
 		Name = "Container1", ;
@@ -719,7 +757,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Height = 109, ;
 		Left = 6, ;
 		Name = "contMiscellaneous", ;
-		Top = 317, ;
+		Top = 351, ;
 		Width = 613
 		*< END OBJECT: BaseClass="container" />
 
@@ -774,7 +812,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 43, ;
 		Name = "Label1", ;
 		TabIndex = 7, ;
-		Top = 307, ;
+		Top = 341, ;
 		Width = 105
 		*< END OBJECT: BaseClass="label" />
 
@@ -787,7 +825,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 43, ;
 		Name = "Label2", ;
 		TabIndex = 7, ;
-		Top = 91, ;
+		Top = 125, ;
 		Width = 114
 		*< END OBJECT: BaseClass="label" />
 
@@ -798,7 +836,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 84, ;
 		Name = "Label5", ;
 		TabIndex = 18, ;
-		Top = 23, ;
+		Top = 13, ;
 		Width = 97
 		*< END OBJECT: BaseClass="label" />
 
@@ -812,7 +850,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Left = 185, ;
 		Name = "lblChangeFontSize", ;
 		ToolTipText = "", ;
-		Top = 23, ;
+		Top = 13, ;
 		Width = 418
 		*< END OBJECT: BaseClass="label" />
 
@@ -827,7 +865,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		SpinnerLowValue =   8.00, ;
 		TabIndex = 16, ;
 		ToolTipText = "The default font size applies to all controls on all GF forms (except for those few below).", ;
-		Top = 18, ;
+		Top = 8, ;
 		Width = 59
 		*< END OBJECT: BaseClass="spinner" />
 
@@ -3165,6 +3203,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE Destroy
+		Thisform.oForm.nOptionsStartPage = Thisform.pfSettings.ActivePage
+		
 		DoDefault()
 		
 		If this.lReturn
@@ -3202,6 +3242,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		
 		Endif &&thisform.oForm.nFirstLoad=1
 		*/SF 20221018 -> local storage
+		
+		Try 
+			This.pfSettings.ActivePage = toForm.nOptionsStartPage
+		Catch to loException
+			
+		EndTry
 		
 		Thisform.Refresh()
 		
@@ -3397,6 +3443,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*/SF 20221019 5.2.000
 		
 				.lDeleteStorage = Thisform.lDeleteStorage
+				
 		Endwith
 		
 		
@@ -3501,10 +3548,6 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			Thisform.Release()
 		Endif
 		
-		
-		
-		
-		
 	ENDPROC
 
 	PROCEDURE pfSettings.Page2.Spinner1.Valid
@@ -3518,6 +3561,14 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	PROCEDURE pfSettings.Page3.Activate
 		This.Refresh()
 		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.Check4.Click
+		Thisform.oForm.oSearchEngine.ClearReplaceSettings()
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.Check5.Click
+		Thisform.oForm.oSearchEngine.ClearReplaceSettings()
 	ENDPROC
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Check12.Refresh
@@ -3557,6 +3608,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Container1.Refresh
 		This.BorderColor = Thisform.nContainerFrameColour
+		
 	ENDPROC
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4.Click

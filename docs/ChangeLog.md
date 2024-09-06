@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.23- 2024-09-06
+
+- Improved handling of Text/EndText statements in wild card searching and display in Code View pane.
+- Improved error reporting for some search errors (#291)
+
 ## Version 7.1.22- 2024-08-31
 
 - Matches in MNX files to fields entered in the secondary "Prompt Options" form now open that form.

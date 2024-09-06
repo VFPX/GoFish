@@ -355,28 +355,26 @@ DEFINE CLASS gf_combosearchscope AS combobox
 	ENDPROC
 
 	PROCEDURE updateimageicon
-		Local lcScope, loImage
+		Local lnSearchScope, loImage
 		
-		lcScope = Upper(This.Text)
-		loImage = This.parent.imgScopeIcon
-		loImage.Visible = .t.
+		lnSearchScope = Thisform.oSearchOptions.nSearchScope
+		loImage		  = This.Parent.imgScopeIcon
+		
+		loImage.Picture	= ''
+		loImage.Visible	= .F.
 		
 		Do Case
 		
-			Case ".PJX" $ lcScope
-				loImage.Picture     = "..\images\gf_project_icon_16.bmp"
+			Case Inlist(m.lnSearchScope, 1, 5, 8)
+				loImage.Picture	= '..\images\gf_project_icon_16.bmp'
+				loImage.Visible	= .T.
 		
-			Case Empty(lcScope)
-				loImage.Picture     = ""
-				loImage.Visible     = .f.
-				
-			Otherwise
-				loImage.Picture     = "..\images\gf_folder_icon_16.bmp"
+			Case Inlist(m.lnSearchScope, 3)
+				loImage.Picture	= '..\images\gf_folder_icon_16.bmp'
+				loImage.Visible	= .T.
+		
 		Endcase
 		
-		 
-		
-		 
 	ENDPROC
 
 	PROCEDURE Valid
