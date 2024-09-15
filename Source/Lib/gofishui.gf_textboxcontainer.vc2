@@ -85,8 +85,9 @@ DEFINE CLASS gf_textboxcontainer AS gf_filtercheckboxcontainer OF "gofishui.vcx"
 		
 	ENDPROC
 
-	PROCEDURE txt1.InteractiveChange
-		This.parent.Decorate()
+	PROCEDURE txt1.LostFocus
+		This.Parent.Decorate()
+		
 	ENDPROC
 
 ENDDEFINE

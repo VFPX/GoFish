@@ -2559,6 +2559,10 @@ Result
 			Do Case
 				Case Upper(m.lcMatchType) = '<COMMAND>'
 					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab
+				*** JRN 2024-09-10 : The "Comment" field shows up in all caps
+				* to distinguish it from comments in a procedure
+				Case m.lcMatchType = '<Comment>'
+					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab + ccEnter
 				Case Upper(m.lcMatchType) = '<PROCEDURE>'
 					lcKeystrokes = m.lcKeystrokes + ccTab + ccTab + ccEnter
 				Case Upper(m.lcMatchType) # '<PROMPT>' 
@@ -5374,7 +5378,7 @@ j
 					.Process   = .F.
 					.FileName  = Justfname(m.tcFile)
 					.FilePath  = m.tcFile
-					.MatchType = Proper(m.lcField)
+					.MatchType = iif(m.lcField = 'COMMENT', m.lcfield, Proper(m.lcField))
 					.FileType  = Upper(m.lcExt)
 					.Column	   = m.lcField
 					.IsText	   = .F.
@@ -5599,8 +5603,7 @@ j
 				Else
 					lnTotalMatches = m.lnTotalMatches + m.lnMatchCount
 				Endif
-	
-	
+		
 				Try
 					Continue
 				Catch

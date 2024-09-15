@@ -9,6 +9,14 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.24- 2024-09-15
+
+- Context menus now sensitive to default font size
+- New context menu item "View Record" in grid
+- Bug fixes:
+    - In Filter form, problem in the InteractiveChange event.
+    - Handling of entries in the "COMMENT" field in MNXs.
+
 ## Version 7.1.23- 2024-09-06
 
 - Improved handling of Text/EndText statements in wild card searching and display in Code View pane.
@@ -179,21 +187,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 
 ## Version 7.0.30 - 2024-05-04
 
-- Consolidated all the settings introduced in version 6 into a single page ("New in V6") on the Options form.  Many of the captions were edited for clarity and some tooltips were added.
-
-## Version 7.0.29 - 2024-04-23
-
-- Added checkbox on the History form to provide for filtering search history to the current scope.
-- On the Options form, added confirmation prompt if cancelling without changing anything.
-- Bug fixes -
-
+- Consolidated all the settings introduced in version 6 into a single page ("New in V6") on the Options form.  Many of the captions were edited for clarity and
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.23 - September 06, 2024 - 20240906')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.24 - September 15, 2024 - 20240915')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
