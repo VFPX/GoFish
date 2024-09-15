@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.24- 2024-09-15
+
+- Context menus now sensitive to default font size
+- New context menu item "View Record" in grid
+- Bug fixes:
+    - In Filter form, problem in the InteractiveChange event.
+    - Handling of entries in the "COMMENT" field in MNXs.
+
 ## Version 7.1.23- 2024-09-06
 
 - Improved handling of Text/EndText statements in wild card searching and display in Code View pane.
