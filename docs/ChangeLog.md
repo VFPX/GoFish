@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.25- 2024-09-18
+
+- Bug fix:
+    - In right-click context menu of grid (#295)
+
 ## Version 7.1.24- 2024-09-15
 
 - Context menus now sensitive to default font size

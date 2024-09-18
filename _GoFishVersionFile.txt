@@ -9,6 +9,11 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.25- 2024-09-18
+
+- Bug fix:
+    - In right-click context menu of grid (#295)
+
 ## Version 7.1.24- 2024-09-15
 
 - Context menus now sensitive to default font size
@@ -187,14 +192,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 
 ## Version 7.0.30 - 2024-05-04
 
-- Consolidated all the settings introduced in version 6 into a single page ("New in V6") on the Options form.  Many of the captions were edited for clarity and
+- Consolidated all the settings introduced in version 6 into a
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.24 - September 15, 2024 - 20240915')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.25 - September 18, 2024 - 20240918')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
