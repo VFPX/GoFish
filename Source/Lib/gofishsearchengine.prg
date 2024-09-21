@@ -4127,40 +4127,40 @@ x
 
 *----------------------------------------------------------------------------------
 	Procedure ReplaceLineWithUDF(tcMatchLine)
-
-		Local;
-			lcMatchLine As String,;
-			lcReplaceLine As String,;
-			llCR       As Boolean
-
+	
+		Local lcMatchLine As String
+		Local lcReplaceLine As String
+		Local llCR As Boolean
+	
 		lcMatchLine = m.tcMatchLine
-
-*-- If there is a CR at the end, pull it off before calling the UDF. Will add back later...
+	
+		*-- If there is a CR at the end, pull it off before calling the UDF. Will add back later...
 		If Right(m.tcMatchLine, 1) = CR
-			llCR        = .T.
-			lcMatchLine = Left(m.tcMatchLine, Len(m.tcMatchLine) - 1)
+			llCR		= .T.
+			lcMatchLine	= Left(m.tcMatchLine, Len(m.tcMatchLine) - 1)
 		Endif
-
-*-- Call the UDF ---------------
+	
+		*-- Call the UDF ---------------
 		Try
-				lcReplaceLine = Execscript(This.cReplaceUDFCode, m.lcMatchLine)
-			Catch
-				lcReplaceLine = m.lcMatchLine && Keep the line the same if UDF failed
-			Finally
+			lcReplaceLine = Execscript(This.cReplaceUDFCode, m.lcMatchLine)
+		Catch
+			lcReplaceLine = m.lcMatchLine && Keep the line the same if UDF failed
+		Finally
 		Endtry
-
-		If Vartype(m.lcReplaceLine) <> 'C'
-			lcReplaceLine = m.lcMatchLine
-		Endif
-
-		If m.llCR
-			lcReplaceLine = m.lcReplaceLine + CR
-		Endif
-
+	
+		Do Case
+			Case Isnull(m.lcReplaceLine)
+				lcReplaceLine = ''
+			Case Vartype(m.lcReplaceLine) # 'C'
+				lcReplaceLine = m.tcMatchLine
+			Case m.llCR
+				lcReplaceLine = m.lcReplaceLine + CR
+		Endcase
+	
 		Return m.lcReplaceLine
-
+	
 	Endproc
-
+	
 
 *----------------------------------------------------------------------------------
 	Procedure ReplaceMarkedRows(tcCursor, tnReplaceId)
