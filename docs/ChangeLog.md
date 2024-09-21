@@ -6,6 +6,13 @@
 
 ---
 
+## Version 7.1.26- 2024-09-21
+
+- "Advanced Replacement" changes:
+    - Return null from UDF to delete the line.
+    - Minor cleanup of documentation in the form that comes up when it is used.
+    - Sample PRG now provided demonstrating uses.
+
 ## Version 7.1.25- 2024-09-18
 
 - Bug fix:

@@ -9,6 +9,13 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.26- 2024-09-21
+
+- "Advanced Replacement" changes:
+    - Return null from UDF to delete the line.
+    - Minor cleanup of documentation in the form that comes up when it is used.
+    - Sample PRG now provided demonstrating uses.
+
 ## Version 7.1.25- 2024-09-18
 
 - Bug fix:
@@ -187,19 +194,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 ## Version 7.0.31 - 2024-05-12
 
 - Added new Scope option "Results" to search only the files in the current Results set, that is, the files currently shown in the grid and Treeview (same list in both places), instead of those in the scope folder or project.
-- Added new Scope option "Custom UDF" to provide for the use of a custom UDF to generate the list of files to be searched (instead of files in the scope folder or project).  See [this FAQ Item](FAQ.md#CustomUDFScope).
-- Fixed bug in wildcard search when search expressions began with '*'
-
-## Version 7.0.30 - 2024-05-04
-
-- Consolidated all the settings introduced in version 6 into a
+- Added new Scope option "Custom UDF" to provide for the use of a custom UDF to generate the list of files to be searched (instead of file
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.25 - September 18, 2024 - 20240918')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.26 - September 21, 2024 - 20240921')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
