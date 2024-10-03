@@ -3474,14 +3474,15 @@ x
 				This.oSearchOptions.cWholeWordSearch = This.PrepareForWholeWordSearch(m.lcSearchExpression)
 			EndIf
 			lcSearchExpression = Getwordnum(This.oSearchOptions.cSearchExpression, 1, '*')
-			*!* ******** JRN Removed 2024-06-13 ********
-			*!* lcSearchExpression = ''
-			*!* For lnI = 1 To Getwordcount(This.oSearchOptions.cSearchExpression, '*')
-			*!* 	lcWord = Getwordnum(This.oSearchOptions.cSearchExpression, m.lnI, '*')
-			*!* 	If Len(m.lcWord) > Len(m.lcSearchExpression)
-			*!* 		lcSearchExpression = m.lcWord
-			*!* 	Endif
-			*!* Endfor
+			*** JRN 2024-09-23 : If first expression is too short, choose longest
+			If Len(m.lcSearchExpression) < 4
+				For lnI = 2 To Getwordcount(This.oSearchOptions.cSearchExpression, '*')
+					lcWord = Getwordnum(This.oSearchOptions.cSearchExpression, m.lnI, '*')
+					If Len(m.lcWord) > Len(m.lcSearchExpression)
+						lcSearchExpression = m.lcWord
+					Endif
+				EndFor
+			EndIf 
 		Endif
 		This.PrepareRegExForSearchV2(This.oRegExForSearchInCode, m.lcSearchExpression, .F.)
 		This.cWildCardSearch = lcSearchExpression
