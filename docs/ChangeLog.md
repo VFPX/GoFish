@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.27- 2024-10-03
+
+- Added new context menu items to "Advanced" command button
+    - Use "Skip Files" list
+    - Edit "Skip Files" list
+- Modified "View Record" in grid context menu so that the fields are enabled for copying (even though the changes cannot be saved.)
+- Slight change in wild card searching if the first word (before the *) is too short (less than four characters)
+
 ## Version 7.1.26- 2024-09-21
 
 - "Advanced Replacement" changes:

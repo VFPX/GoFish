@@ -42,7 +42,7 @@ Endfor
 Asort(m.laColumns, 1, -1, 0)
 
 lcFieldList	= ''
-lcExtras	= ' .left = 150 .enabled = .f. .DisabledForeColor = 0'
+lcExtras	= ' .left = 150 ' && .enabled = .f. .DisabledForeColor = 0'
 For lnI = 1 To m.lnColumnCount
 	lcControlSource	= m.laColumns[m.lnI, 2]
 	lcCaption		= m.laColumns[m.lnI, 3]
@@ -69,6 +69,8 @@ lcFieldList = m.lcFieldList + '|podata.ProcCode .caption = [Procedure] .class = 
 loForm.cBodyMarkup	= m.lcFieldList
 
 m.loForm.Render()
+
+GF_FixFontSize(loForm, 9, m.toParentForm.nFormFontSize)
 
 loForm.cntMain.cmdSAVE.Visible = .F.
 

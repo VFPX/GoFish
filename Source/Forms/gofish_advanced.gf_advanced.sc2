@@ -1189,36 +1189,9 @@ DEFINE CLASS gf_advanced AS gf_baseform OF "..\lib\gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE Command1.Click
-		Local lcFilename, lcText
+		GF_EditSkipList(Thisform.oSearchEngine)
+		 
 		
-		lcFilename = Thisform.oSearchEngine.cFilesToSkipFile
-		
-		If !File(lcFilename)
-		
-			Text to lcText PRETEXT 3 noshow
-				** Contains names of files and folders to be skipped: one per line, case insensitive, wildcards allowed
-				**  -- File name (no path)
-				**        Main.PRG
-				**        FOO*.TXT
-				**  -- Folders (with leading and trailing backslash)
-				**        \Purchased\WestWind\
-				**        \Temp*\
-				**  -- Or combined
-				**        \Temp*\*.txt
-		
-				** These files and folders will be skipped if the "Skip Files option" is checked on the Advanced form.
-				** The default name and location for this file is: (Home(7) + 'GoFish_\GF_Files_To_Skip.txt')
-				** Might be set to a local directory
-		
-				** Blank lines and lines beginning with ** are not processed.
-				
-			EndText
-		
-			StrToFile(lcText, lcFilename) 
-		Endif
-		
-		Modify File (lcFilename) 
-		  
 	ENDPROC
 
 	PROCEDURE Command1.MouseEnter

@@ -1920,11 +1920,48 @@ Procedure GF_FixFontSize
 	
 	toObject.FontSize = m.tnNewFontSize
 	
-	toObject.nFontSizeMultiplier = loFontsize.nFontSizeMultiplier
+	If PemStatus(toObject, 'nFontSizeMultiplier', 5)
+		toObject.nFontSizeMultiplier = loFontsize.nFontSizeMultiplier
+	endif
 
 	Return
 	
 EndProc
+
+
+Procedure GF_EditSkipList(toSearchEngine)
+
+	Local lcFileName, lcText
+
+	lcFileName = m.toSearchEngine.cFilesToSkipFile
+
+	If Not File(m.lcFileName)
+
+		Text To m.lcText Pretext 3 Noshow
+		** Contains names of files and folders to be skipped: one per line, case insensitive, wildcards allowed
+		**  -- File name (no path)
+		**        Main.PRG
+		**        FOO*.TXT
+		**  -- Folders (with leading and trailing backslash)
+		**        \Purchased\WestWind\
+		**        \Temp*\
+		**  -- Or combined
+		**        \Temp*\*.txt
+
+		** These files and folders will be skipped if the "Skip Files option" is checked on the Advanced form.
+		** The default name and location for this file is: (Home(7) + 'GoFish_\GF_Files_To_Skip.txt')
+		** Might be set to a local directory
+
+		** Blank lines and lines beginning with ** are not processed.
+		
+		Endtext
+
+		Strtofile(m.lcText, m.lcFileName)
+	Endif
+
+	Modify File (m.lcFileName)
+
+Endproc
 
 
 * ================================================================================
@@ -2042,7 +2079,7 @@ Define Class FixFontSize As Custom
 			This.aAnchors[m.lnI, 1]	= Null
 		Endfor
 
-	Endproc
-
-
+	EndProc
+	
+	
 Enddefine
