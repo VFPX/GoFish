@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.28 - 2024-10-04
+
+- Bug fixes:
+    - Replacements in menus (MNXs) were failing with mis-leading error messages. (#283)
+
 ## Version 7.1.27- 2024-10-03
 
 - Added new context menu items to "Advanced" command button
