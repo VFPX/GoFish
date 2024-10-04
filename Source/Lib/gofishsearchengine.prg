@@ -3876,7 +3876,7 @@ x
 				lcLineFromFile = Substr(m.lcCode, m.lnMatchStart + 1, m.lnLineToChangeLength)
 				lcLeft		   = Left(m.lcCode, m.lnMatchStart)
 				lcRight		   = Substr(m.lcCode, m.lnMatchStart + 1 + m.lnLineToChangeLength)
-			Case m.toReplace.MatchType = MATCHTYPE_PROCEDURE
+			Case m.toReplace.MatchType = MATCHTYPE_PROCEDURE or m.toReplace.MatchType = '<Comment>'
 				lnStart		   = Val(Getwordnum(m.toReplace.Type, 1))
 				lnLength	   = Val(Getwordnum(m.toReplace.Type, 2))
 				lnMNXOffset	   = m.lnStart - 1

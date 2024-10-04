@@ -9,6 +9,11 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.28 - 2024-10-04
+
+- Bug fixes:
+    - Replacements in menus (MNXs) were failing with mis-leading error messages. (#283)
+
 ## Version 7.1.27- 2024-10-03
 
 - Added new context menu items to "Advanced" command button
@@ -196,15 +201,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 - Speed improvement when searching open projects.
 - Reordered items in scope type dropdown.
 - Bugs fixed:
-    - Typing a folder or project into the scope that was not already in the dropdown did not work.
-    - Elapsed time for Custom UDF execution was not being captured correctly.
+    - Typing a folder or project into t
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.27 - October 03, 2024 - 20241003')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.28 - October 04, 2024 - 20241004')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
