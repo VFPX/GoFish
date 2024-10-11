@@ -66,6 +66,8 @@ lcFieldList = m.lcFieldList + '|podata.Statement .caption = [Statement] .class =
 
 lcFieldList = m.lcFieldList + '|podata.ProcCode .caption = [Procedure] .class = [DF_MemoFieldEditBox] .anchor = 10 .height = 120' + m.lcExtras
 
+lcFieldList = m.lcFieldList + '|podata.ID      .caption = [Record ID] .width = 40' + m.lcExtras
+
 loForm.cBodyMarkup	= m.lcFieldList
 
 m.loForm.Render()
