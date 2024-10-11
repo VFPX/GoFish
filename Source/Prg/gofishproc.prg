@@ -452,21 +452,19 @@ Endproc
 * --------------------------------------------------------------------------------
 * --------------------------------------------------------------------------------
 *** JRN 10/14/2015 : Added to process context menus
-Procedure GF_CreateContextMenu(lcMenuName)
+Procedure GF_CreateContextMenu(lcMenuName, toResultsForm)
 	Local loPosition As Object
+	Local lcFont
 
 	loPosition = GF_CalculateShortcutMenuPosition()
 
-	*** JRN 2010-11-10 : Following is an attempt to solve the problem
-	* when there is another form already open; apparently, if the
-	* focus is on the screen, the positioning of the popup still works OK
-
-	* _Screen.Show()
+	lcFont = m.toResultsForm.GetContextMenuFont()
 
 	Define Popup (m.lcMenuName)							;
-		shortcut										;
+		ShortCut										;
 		Relative										;
 		From m.loPosition.Row, m.loPosition.Column		;
+		&lcFont											;
 		In Screen
 
 Endproc

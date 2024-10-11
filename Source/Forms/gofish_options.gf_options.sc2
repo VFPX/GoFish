@@ -191,10 +191,16 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Label7" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.Spinner4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.contCodeView.chkDarkMode" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label2" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check13" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check4" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Check5" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.cntContextMenu" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.cntContextMenu.Label3" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.cntContextMenu.spnContextMenu" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.cntContextMenu.Check10" UniqueID="" Timestamp="" />
+	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page1.Label3" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdBrowse" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.cmdEdit" UniqueID="" Timestamp="" />
 	*< OBJECTDATA: ObjPath="pfSettings.Page3.pfSettings.Page2.txtCustomUDF" UniqueID="" Timestamp="" />
@@ -241,10 +247,12 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*p: lsavesearchresults
 		*p: lshowrelativepath
 		*p: lsortscopedropdown
+		*p: lusesystemcontextmenufontsize
 		*p: lwarnwholeword
 		*p: nbrowserfontsize
 		*p: ncodeviewlinesbefore
 		*p: ncontainerframecolour		&& Frame colour for several containers, in case red is something you do not see.
+		*p: ncontextmenufontsize
 		*p: ncss_tr_even_colour		&& CSS für tr:even
 		*p: ncss_tr_odd_colour		&& CSS für tr:odd
 		*p: ndockable
@@ -287,13 +295,15 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		lsavesearchresults = .T.
 		lshowrelativepath = .F.
 		lsortscopedropdown = .F.
+		lusesystemcontextmenufontsize = .F.
 		lwarnwholeword = .F.
 		MinHeight = 600
 		MinWidth = 650
-		Name = "GF_Options"
+		Name = "gf_options"
 		nbrowserfontsize = 14
 		ncodeviewlinesbefore = 0
 		ncontainerframecolour = 0
+		ncontextmenufontsize = 0
 		ncss_tr_even_colour = 0
 		ncss_tr_odd_colour = 0
 		ndockable = 0
@@ -362,6 +372,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			<memberdata name="askifsavechanges" display="AskIfSaveChanges"/>
 			<memberdata name="nsearchboxfontsize" display="nSearchBoxFontSize"/>
 			<memberdata name="nformfontsize" display="nFormFontSize"/>
+			<memberdata name="ncontextmenufontsize" display="nContextMenuFontSize"/>
+			<memberdata name="lusesystemcontextmenufontsize" display="lUseSystemContextMenuFontsize"/>
 		</VFPData>
 	*</PropValue>
 
@@ -554,7 +566,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Caption = "When editing, select the control where match is found", ;
 		ControlSource = "Thisform.oForm.lSelectControl", ;
 		Height = 17, ;
-		Left = 65, ;
+		Left = 28, ;
 		Name = "Check13", ;
 		TabIndex = 14, ;
 		ToolTipText = 'This is not 100% reliable; if the control is not visible, it probably will not work.  Also, in some circumstances, it may cause the "Save Changes" dialog even if nothing has changed.', ;
@@ -572,7 +584,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
 		Height = 16, ;
-		Left = 65, ;
+		Left = 28, ;
 		Name = "Check4", ;
 		TabIndex = 6, ;
 		Top = 44, ;
@@ -590,7 +602,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		FontBold = .F., ;
 		FontName = "Tahoma", ;
 		Height = 16, ;
-		Left = 65, ;
+		Left = 28, ;
 		Name = "Check5", ;
 		TabIndex = 6, ;
 		Top = 68, ;
@@ -598,6 +610,55 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Width = 226, ;
 		ZOrderSet = 10
 		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.cntContextMenu' AS container WITH ;
+		Anchor = 10, ;
+		BackStyle = 0, ;
+		Height = 80, ;
+		Left = 405, ;
+		Name = "cntContextMenu", ;
+		Top = 11, ;
+		Width = 208
+		*< END OBJECT: BaseClass="container" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.cntContextMenu.Check10' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Use system setting", ;
+		ControlSource = "Thisform.lUseSystemContextMenuFontsize", ;
+		Height = 17, ;
+		Left = 24, ;
+		Name = "Check10", ;
+		TabIndex = 14, ;
+		Top = 20, ;
+		Width = 124
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.cntContextMenu.Label3' AS label WITH ;
+		BackStyle = 0, ;
+		Caption = "GF font size", ;
+		Height = 18, ;
+		Left = 95, ;
+		Name = "Label3", ;
+		TabIndex = 18, ;
+		Top = 48, ;
+		Width = 142
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.cntContextMenu.spnContextMenu' AS spinner WITH ;
+		ControlSource = "Thisform.nContextMenuFontSize", ;
+		Height = 27, ;
+		KeyboardHighValue = 18, ;
+		KeyboardLowValue = 8, ;
+		Left = 26, ;
+		Name = "spnContextMenu", ;
+		SpinnerHighValue =  18.00, ;
+		SpinnerLowValue =   8.00, ;
+		TabIndex = 16, ;
+		Top = 44, ;
+		Width = 59
+		*< END OBJECT: BaseClass="spinner" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView' AS container WITH ;
 		Anchor = 10, ;
@@ -635,6 +696,20 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 14, ;
 		Top = 44, ;
 		Width = 329
+		*< END OBJECT: BaseClass="checkbox" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.chkDarkMode' AS checkbox WITH ;
+		Alignment = 0, ;
+		AutoSize = .T., ;
+		BackStyle = 0, ;
+		Caption = "Dark Mode", ;
+		ControlSource = "Thisform.oForm.lDarkModeInCodeView", ;
+		Height = 17, ;
+		Left = 241, ;
+		Name = "chkDarkMode", ;
+		TabIndex = 14, ;
+		Top = 20, ;
+		Width = 77
 		*< END OBJECT: BaseClass="checkbox" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault' AS commandbutton WITH ;
@@ -757,7 +832,7 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Height = 109, ;
 		Left = 6, ;
 		Name = "contMiscellaneous", ;
-		Top = 351, ;
+		Top = 346, ;
 		Width = 613
 		*< END OBJECT: BaseClass="container" />
 
@@ -806,19 +881,21 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label1' AS label WITH ;
 		Anchor = 10, ;
 		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
 		Caption = "   Miscellaneous:   ", ;
 		FontBold = .T., ;
 		Height = 17, ;
 		Left = 43, ;
 		Name = "Label1", ;
 		TabIndex = 7, ;
-		Top = 341, ;
+		Top = 339, ;
 		Width = 105
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label2' AS label WITH ;
 		Anchor = 10, ;
 		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
 		Caption = "   Code View pane:   ", ;
 		FontBold = .T., ;
 		Height = 17, ;
@@ -827,6 +904,20 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		TabIndex = 7, ;
 		Top = 125, ;
 		Width = 114
+		*< END OBJECT: BaseClass="label" />
+
+	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label3' AS label WITH ;
+		Anchor = 10, ;
+		AutoSize = .T., ;
+		BackColor = 255,255,255, ;
+		Caption = "   Context Menu Font Size:   ", ;
+		FontBold = .T., ;
+		Height = 17, ;
+		Left = 427, ;
+		Name = "Label3", ;
+		TabIndex = 7, ;
+		Top = 6, ;
+		Width = 155
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.Label5' AS label WITH ;
@@ -841,16 +932,17 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		*< END OBJECT: BaseClass="label" />
 
 	ADD OBJECT 'pfSettings.Page3.pfSettings.Page1.lblChangeFontSize' AS label WITH ;
+		Anchor = 8, ;
 		AutoSize = .T., ;
 		BackStyle = 0, ;
 		Caption = "Changing the default font size does not take effect until you restart GoFish", ;
 		FontBold = .T., ;
 		ForeColor = 255,0,0, ;
 		Height = 17, ;
-		Left = 185, ;
+		Left = 198, ;
 		Name = "lblChangeFontSize", ;
 		ToolTipText = "", ;
-		Top = 13, ;
+		Top = 462, ;
 		Width = 418
 		*< END OBJECT: BaseClass="label" />
 
@@ -3365,6 +3457,9 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		With Thisform.oForm
 			.Dockable											 = Thisform.nDockable
 			.nFormFontSize										 = Thisform.nFormFontSize
+			.nContextMenuFontSize								 = Thisform.nContextMenuFontSize
+			.lUseSystemContextMenuFontsize						 = Thisform.lUseSystemContextMenuFontsize
+			
 			.nGridFontSize										 = Thisform.nGridFontSize
 			.nTreeViewFontSize									 = Thisform.nTreeViewFontSize
 			.nSearchBoxFontSize									 = Thisform.nSearchBoxFontSize
@@ -3571,12 +3666,34 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 		Thisform.oForm.oSearchEngine.ClearReplaceSettings()
 	ENDPROC
 
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.cntContextMenu.Check10.Valid
+		This.Parent.Label3.Refresh()
+		This.Parent.spnContextmenu.Refresh()
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.cntContextMenu.Label3.Refresh
+		This.Visible = Not Thisform.lUseSystemContextMenuFontsize
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.cntContextMenu.spnContextMenu.Refresh
+		This.Visible = Not Thisform.lUseSystemContextMenuFontsize
+	ENDPROC
+
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Check12.Refresh
 		If Empty(Thisform.oForm.GetCustomcss())
 			This.Value	 = .F.
 			This.Enabled = .F.
 		Endif
 		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.Check12.Valid
+		This.Parent.chkDarkMode.Refresh()
+		
+	ENDPROC
+
+	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.chkDarkMode.Refresh
+		This.Visible = Thisform.oForm.lIDEColorsInCodeView
 	ENDPROC
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.contCodeView.cmdZoomDefault.Click
@@ -3657,6 +3774,9 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page1.Spinner8.InteractiveChange
 		This.Parent.lblChangeFontSize.Visible = .T.
+		Thisform.nContextMenuFontSize		  = This.Value + 2
+		This.Parent.cntContextMenu.Refresh()
+		
 	ENDPROC
 
 	PROCEDURE pfSettings.Page3.pfSettings.Page2.cmdBrowse.Click

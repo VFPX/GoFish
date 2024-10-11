@@ -2095,9 +2095,9 @@ Result
 
 
 *----------------------------------------------------------------------------------
-	Procedure GenerateHTMLCode(tcCode, tcMatchLine, tnMatchStart, tcCss, tcJavaScript, tcReplaceLine, tlAlreadyReplaced, tnTabsToSpaces, ;
-			tcSearch, tcStatementFilter, tcProcFilter)
-
+	Procedure GenerateHTMLCode(tcCode, tcMatchLine, tnMatchStart, tcCss, tcJavaScript, tcReplaceLine, ;
+			tlAlreadyReplaced, tnTabsToSpaces, tlDarkMode)
+	
 		Local;
 			lcBr             As String,;
 			lcColorizedCode  As String,;
@@ -2261,6 +2261,7 @@ Result
 		TEXT To m.lcHTML Noshow Textmerge Pretext 3
 <html>
  <head>
+  <<Iif(m.tlDarkMode, [<body style="background-color:Rgb(30,30,30);">], [])>>
   <title>GoFish code snippet</title>
   <<m.lcCss>>
  </head>

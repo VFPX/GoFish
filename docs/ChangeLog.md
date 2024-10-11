@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.29 - 2024-10-11
+
+New options on "New in V7" page of Options screen:
+- Checkbox for selecting "Dark Mode" when using IDE colors (#262)
+- Spinner for selecting font size for context menus (#301)
+
 ## Version 7.1.28 - 2024-10-04
 
 - Bug fixes:

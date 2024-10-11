@@ -283,6 +283,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*p: lcr_sorttreealpha		&& Sort tree alphanumeric NOT by recent.
 		*p: lcr_sorttreebyext		&& Sort Nodes by extension first. Only for Tree without the class nodes.
 		*p: lcr_store_restart		&& Internal storage if Goish must be restart for several settings
+		*p: ldarkmodeincodeview
 		*p: ldesktop		&& The setting for Desktop
 		*p: lduringforminit
 		*p: lgooglechromeframe		&& Indicates if the HTML view should be generated using the Google Chrome frame plug-ing for Internet Explorer. Slower due to file activity, but allows selecting of text from matched row in html view.
@@ -305,11 +306,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*p: lselectcontrol
 		*p: lshowrelativepath
 		*p: lsortscopedropdown
+		*p: lusesystemcontextmenufontsize
 		*p: lwarnwholeword
 		*p: nbrowserfontsize
 		*p: ncodeviewlinesbefore
 		*p: ncodewindowposition		&& *** nEnum 1=Below; 2= on Right; 3 = on Left
 		*p: ncontainerframecolour		&& Frame colour for several containers, in case red is something you do not see.
+		*p: ncontextmenufontsize
 		*p: ncss_tr_even_colour		&& CSS für tr:even
 		*p: ncss_tr_odd_colour		&& CSS für tr:odd
 		*p: ndropdowndisplaycount		&& Controls the numbner of history items shown in the Search Expression and Scope history dropdown boxes.
@@ -404,6 +407,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		lcodeviewsingleline = .T.
 		lcommentsonly = .F.
 		lcr_local_default = .T.
+		ldarkmodeincodeview = .F.
 		ldesktop = .F.
 		lduringforminit = .F.
 		Left = 0
@@ -423,6 +427,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		lsearching = .F.
 		lshowrelativepath = .F.
 		lsortscopedropdown = .F.
+		lusesystemcontextmenufontsize = .F.
 		lwarnwholeword = .F.
 		MaxWidth = -1
 		MinHeight = 425
@@ -432,6 +437,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		ncodeviewlinesbefore = 1000
 		ncodewindowposition = 1
 		ncontainerframecolour = (RGB(255,  0,  0))
+		ncontextmenufontsize = 10
 		ncss_tr_even_colour = (RGB(0xa8,0xfa,0xf4))
 		ncss_tr_odd_colour = (RGB(0xD1,0xF1,0xEF))
 		ndropdowndisplaycount = 30
@@ -1097,7 +1103,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAxektQFNsBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFADDUqwwGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCcptkgG9sBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAEiz7wIGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -2370,62 +2376,61 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE advancesearchcontextmenu
-		Local lcChoice, lcFileName, lcFont, lcUseSkipFiles, lnBar
+		Local lcChoice, lcFileName, lcUseSkipFiles, lnBar
 		
 		lcChoice = ''
 		lnBar	 = 0
-		GF_CreateContextMenu('AdvancedContextMenu')
-		lcFont = ThisForm.GetContextMenuFont()    
+		GF_CreateContextMenu('AdvancedContextMenu', Thisform)
 		
 		lcFileName = Thisform.cSearchOptionsUDFFileName
 		If File(m.lcFileName)
 			lnBar = m.lnBar + 1
-			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Run Search Options UDF' Key Alt+Z, 'Ctrl+Click'  &lcFont
+			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Run Search Options UDF' Key Alt+Z, 'Ctrl+Click' 
 			On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Run Search Options UDF'
 		Endif
 		
 		If Not Empty(Thisform.oSearchOptions.cFileTemplate)
 			lnBar = m.lnBar + 1
-			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Clear file template' &lcFont
+			Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Clear file template'
 			On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Clear file template'
 		Endif
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Wildcard search across continuation lines'  &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\<Wildcard search across continuation lines' 
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Wildcard search across continuation lines'
 		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lWildCardContinuationLines
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Use \<Grep for faster directory searches' &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Use \<Grep for faster directory searches'
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Use Grep for faster searches'
 		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lOptimizeWithGrep
 		
 		* ================================================================================ 
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\-' &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\-'
 		
 		lnBar = m.lnBar + 1
 		lcUseSkipFiles = '\<Use the "Skip Files" list'
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt lcUseSkipFiles &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt lcUseSkipFiles
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = lcUseSkipFiles
 		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lSKipFiles
 		
 		lnBar = m.lnBar + 1
 		lcEditSkipFiles = '\<Edit the "Skip Files" list'
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt lcEditSkipFiles &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt lcEditSkipFiles
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = lcEditSkipFiles
 		
 		* ================================================================================ 
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\-' &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt '\-'
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Ignore field RESERVED3 in SCXs / VCXs' &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Ignore field RESERVED3 in SCXs / VCXs'
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Ignore Properties field'
 		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lIgnorePropertiesField
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Ignore values in MemberData' &lcFont
+		Define Bar (m.lnBar) Of AdvancedContextMenu Prompt 'Ignore values in MemberData'
 		On Selection Bar (m.lnBar) Of AdvancedContextMenu m.lcChoice = 'Ignore values in MemberData'
 		Set Mark Of Bar (m.lnBar) Of AdvancedContextMenu To Thisform.oSearchOptions.lIgnoreMemberData
 		
@@ -4652,7 +4657,11 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	ENDPROC
 
 	PROCEDURE getcontextmenufont
-		Return ' Font "Calibri", ' + Transform(2 + Thisform.nFormFontSize) 
+		If Thisform.lUseSystemContextMenuFontsize
+			Return ''
+		Else
+			Return ' Font "Segoe UI", ' + Transform(Thisform.nContextMenuFontSize)
+		Endif
 	ENDPROC
 
 	PROCEDURE getcurrentscope		&& Will return the Active Project, Browsed Project, Current Dir, or Browsed Dir depending on current setting of nSearchScope (Values: 1 through 4)
@@ -5064,7 +5073,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 	PROCEDURE gridcolumnrightclick
 		Local loPBT As 'GF_PEME_BaseTools'
 		Local laEvents[1], lcChoice, lcChoice1, lcChoice2, lcChoice3, lcChoice4, lcClass, lcDelete
-		Local lcFileName, lcFilter, lcFont, lcHackCX4, lcMenuName, lcPath, lcPrompt1, lcPrompt10, lcPrompt11
+		Local lcFileName, lcFilter, lcHackCX4, lcMenuName, lcPath, lcPrompt1, lcPrompt10, lcPrompt11
 		Local lcPrompt12, lcPrompt1B, lcPrompt2, lcPrompt2a, lcPrompt3, lcPrompt4, lcPrompt5, lcPrompt6
 		Local lcPrompt7, lcPrompt9a, lcPrompt9b, lcScope, lcSearch, lcSelText, lcSeparator, lcUni, lnBar
 		Local lnI, lnPage, lnSelect, lnStart, loNode, loNodeRoot, loTag, loThis, loTree
@@ -5155,88 +5164,87 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Select(m.lnSelect)
 		
 		lcMenuName = 'GridColumnMenu'
-		GF_CreateContextMenu(m.lcMenuName)
-		lcFont = Thisform.GetContextMenuFont()
+		GF_CreateContextMenu(m.lcMenuName, Thisform)
 		
 		lnPage = This.GetFilterPageForThisColumn()
 		If m.lnPage > 0
 			lnBar	   = m.lnBar + 1
 			lcPrompt1B = 'Filter values in this column (\<Remove previous filter)'
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcPrompt1B) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcPrompt1B)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1B
 		
 			lnBar	  = m.lnBar + 1
 			lcPrompt1 = 'Filter values in this column (\<Update previous filter)'
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcPrompt1) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcPrompt1)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
 		
 		Endif
 		
 		If Not Empty(m.lcChoice1) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice1) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice1)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice1]
 		Endif &&!EMPTY(m.lcChoice1)
 		
 		If Not Empty(m.lcChoice2) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice2) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice2)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice2]
 		Endif &&!EMPTY(m.lcChoice2)
 		
 		If Not Empty(m.lcChoice4) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice4) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice4)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice4]
 		Endif &&!EMPTY(m.lcChoice2)
 		
 		If Not Empty(m.lcChoice3) Then
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice3) &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt (m.lcChoice3)
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = [&lcChoice3]
 		Endif &&!EMPTY(m.lcChoice3)
 		
 		If m.lnBar > 0
 			lnBar	   = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		Endif
 		
 		If This.isfilepathvisible()
 			lnBar	  = m.lnBar + 1
 			lcPrompt7 = 'Show relative path in column "File Name \<With Path"'
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt7 &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt7
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt7
 			Set Mark Of Bar (m.lnBar) Of (m.lcMenuName) To Thisform.lShowRelativePath
 		Endif
 		
 		lnBar	   = m.lnBar + 1
 		lcPrompt2a = 'Stem to clipboard'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2a &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2a
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2a
 		
 		lnBar	  = m.lnBar + 1
 		lcPrompt2 = 'File \<Name to clipboard'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt2 &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt2
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2
 		
 		lnBar	  = m.lnBar + 1
 		lcPrompt3 = 'Full file name (with \<Path) to clipboard'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3 &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt3
 		
 		If Right(Upper(Justext(m.lcFileName)), 1) = 'X'
 			lnBar	   = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		
 			lnBar	  = m.lnBar + 1
 			lcPrompt4 = 'Browse as table'
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4 &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt4
 		
 			If GF_IsThorThere() And Not Empty(Execscript(_Screen.cThorDispatcher, 'Full Path=Thor_Proc_SuperBrowse'))
 				lnBar	  = m.lnBar + 1
 				lcPrompt5 = 'Super Browse \<As table'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt5 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt5
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt5
 			Endif
 		
@@ -5244,7 +5252,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			If Not Empty(m.lcHackCX4)
 				lnBar	  = m.lnBar + 1
 				lcPrompt6 = 'HackCX'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt6
 			Endif
 		
@@ -5252,41 +5260,41 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		If m.lnBar > 0
 			lnBar	   = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		Endif
 		
 		lnBar	   = m.lnBar + 1
 		lcPrompt9a = 'DeleteMar\<k'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt9a &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt9a
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt9a
 		Set Mark Of Bar (m.lnBar) Of (m.lcMenuName) To This.oGrid.DeleteMark
 		
 		lnBar	   = m.lnBar + 1
 		lcPrompt9b = 'Set \<Deleted'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt9b &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt9b
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt9b
 		Set Mark Of Bar (m.lnBar) Of (m.lcMenuName) To Set('Deleted') = 'ON'
 		
 		lnBar	   = m.lnBar + 1
 		lcPrompt12 = '\<View Record'
-		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt12 &lcFont
+		Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt12
 		On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt12
 		
 		* ================================================================================
 		
 		If Not Empty(m.lcSelText)
 			lnBar	   = m.lnBar + 1
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		
 			lnBar	   = m.lnBar + 1
 			lcPrompt10 = [Copy highlighted \<Text to clipboard]
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt10 &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt10
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt10
 		
 			lnBar	   = m.lnBar + 1
 			lcSelText  = Left(lcSelText, 60) && really ain't gonna search for anything this long, are ya?
 			lcPrompt11 = [\<GoFish for highlighted text ('] + m.lcSelText + [')]
-			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt11 &lcFont
+			Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt11
 			On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt11
 		Endif
 		
@@ -5423,41 +5431,39 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		lcChoice = ''
 		lnBar	 = 0
-		GF_CreateContextMenu('GridHeaderMenu')
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+		GF_CreateContextMenu('GridHeaderMenu', Thisform)
 		
 		lnPage	  = This.GetFilterPageForThisColumn()
 		lcPrompt1 = '\<Filter values in this column'
 		
 		If m.lnPage > 0
 			lnBar	  = m.lnBar + 1
-			Define Bar (m.lnBar) Of GridHeaderMenu Prompt (m.lcPrompt1) &lcFont
+			Define Bar (m.lnBar) Of GridHeaderMenu Prompt (m.lcPrompt1)
 			On Selection Bar (m.lnBar) Of GridHeaderMenu m.lcChoice = m.lcPrompt1
 		Endif
 		
 		If This.isfilepathvisible()
 			lnBar	  = m.lnBar + 1
 			lcPrompt7 = 'Show relative \<Path in column "File Name with Path"'
-			Define Bar (m.lnBar) Of GridHeaderMenu Prompt m.lcPrompt7 &lcFont
+			Define Bar (m.lnBar) Of GridHeaderMenu Prompt m.lcPrompt7
 			On Selection Bar (m.lnBar) Of GridHeaderMenu m.lcChoice = m.lcPrompt7
 			Set Mark Of Bar (m.lnBar) Of GridHeaderMenu To Thisform.lShowRelativePath
 		
 			lnBar	   = m.lnBar + 1
 			lcPrompt3X = '\-'
-			Define Bar (m.lnBar) Of GridHeaderMenu Prompt m.lcPrompt3X &lcFont
+			Define Bar (m.lnBar) Of GridHeaderMenu Prompt m.lcPrompt3X
 		Endif
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of GridHeaderMenu Prompt '\<Sort by this column' &lcFont
+		Define Bar (m.lnBar) Of GridHeaderMenu Prompt '\<Sort by this column'
 		On Selection Bar (m.lnBar) Of GridHeaderMenu m.lcChoice = 'Sort by this column'
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of GridHeaderMenu Prompt 'Secondary sort by this \<Column' &lcFont
+		Define Bar (m.lnBar) Of GridHeaderMenu Prompt 'Secondary sort by this \<Column'
 		On Selection Bar (m.lnBar) Of GridHeaderMenu m.lcChoice = 'Secondary sort by this column'
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of GridHeaderMenu Prompt '\<Reset sort order to default' &lcFont
+		Define Bar (m.lnBar) Of GridHeaderMenu Prompt '\<Reset sort order to default'
 		On Selection Bar (m.lnBar) Of GridHeaderMenu m.lcChoice = 'Reset sort order to default'
 		
 		* ================================================================================
@@ -6194,7 +6200,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			.nDropDownDisplayCount = GF_PropNvl(m.loSettingsDefault, "nDropDownDisplayCount", 20, .T.)
 			.nDropDownMaxMRU       = GF_PropNvl(m.loSettingsDefault, "nDropDownMaxMRU", 7, .T.)
 			.nFormFontSize         = GF_PropNvl(m.loSettingsDefault, "nFormFontSize", 8, .T.)
-		
+			.nContextMenuFontSize  = GF_PropNvl(m.loSettingsDefault, "nContextMenuFontSize", .nFormFontSize + 2, .T.)
+			.lUseSystemContextMenuFontsize = GF_PropNvl(m.loSettingsDefault, "lUseSystemContextMenuFontsize", .T., .T.)
+					
 			.lWarnWholeWord     = GF_PropNvl(m.loSettingsDefault, "lWarnWholeWord", .F., .T.)
 			.lSaveSearchResults = GF_PropNvl(m.loSettingsDefault, "lSaveSearchResults", .T., .T.)
 			.lCodeOnly          = GF_PropNvl(m.loSettings, "lCodeOnly", .F., .T.)
@@ -6209,6 +6217,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			.lSelectControl	     	       = GF_PropNvl(m.loSettings,'lSelectControl', .T., .T.)
 			
 			.lIDEColorsInCodeView		   = GF_PropNvl(m.loSettings,'lIDEColorsInCodeView', .T., .T.)
+			.lDarkModeInCodeView		   = GF_PropNvl(m.loSettings,'lDarkModeInCodeView', .F., .T.)
 			.nCodeViewLinesBefore		   = GF_PropNvl(m.loSettings,'nCodeViewLinesBefore', 1000, .T.)
 			.lOldSearchHistoryStructure	   = GF_PropNvl(m.loSettings,'lOldSearchHistoryStructure', .F., .T.)
 		
@@ -8761,6 +8770,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				.Add("nDropDownDisplayCount",	Thisform.nDropDownDisplayCount)
 				.Add("nDropDownMaxMRU", 		Thisform.nDropDownMaxMRU)
 				.Add("nFormFontSize", 			Thisform.nFormFontSize)
+				.Add("nContextMenuFontSize", 	Thisform.nContextMenuFontSize)
+				.Add("lUseSystemContextMenuFontsize", 	Thisform.lUseSystemContextMenuFontsize)
+		
 				.Add("lWarnWholeWord", 			Thisform.lWarnWholeWord)
 				.Add("lSaveSearchResults", 		Thisform.lSaveSearchResults)
 				.Add("lCodeOnly", 				Thisform.lCodeOnly)
@@ -8780,6 +8792,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				.Add("lCodeViewSingleLine", 		Thisform.lCodeViewSingleLine)
 				.Add("lSelectControl", 		        Thisform.lSelectControl)
 				.Add("lIDEColorsInCodeView", 		Thisform.lIDEColorsInCodeView)
+				.Add("lDarkModeInCodeView", 		Thisform.lDarkModeInCodeView)
 				.Add("nCodeViewLinesBefore", 		Thisform.nCodeViewLinesBefore)
 				.Add("lOldSearchHistoryStructure",	Thisform.lOldSearchHistoryStructure)
 				
@@ -9981,10 +9994,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 				*** JRN 2024-02-17 : In replace mode, show old style (match line)
 			Case Thisform.lReplaceViewMode Or Thisform.lCodeViewSingleLine
-				lcHTML = m.loSearchEngine.GenerateHTMLCode(m.lcCode, m.lcMatchLine, m.lnMatchStart, m.lcCss, m.lcJavaScript, m.lcReplaceLine, &lcCursor..Replaced, Thisform.nTabsToSpaces, ;
-					  Thisform.oSearchEngine.oSearchOptions.cSearchExpression,							;
-					  Alltrim(Iif(This.lApplyFilter, This.oFilter.Statement_Filter, '')),				;
-					  Alltrim(Iif(This.lApplyFilter, This.oFilter.ProcCode_Filter, '')))
+				lcHTML = m.loSearchEngine.GenerateHTMLCode(m.lcCode, m.lcMatchLine, m.lnMatchStart, m.lcCss, m.lcJavaScript, m.lcReplaceLine, ;
+					  &lcCursor..Replaced, Thisform.nTabsToSpaces, This.lIDEColorsInCodeView and This.lDarkModeInCodeView)
 		
 				*** JRN 2024-02-17 : All other modes, highlight all matches in current statement
 			Otherwise
@@ -10005,10 +10016,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				*** JRN 2024-03-02 : Apparently lcStatement needs a trailing CR
 				lcStatement = m.lcStatement + CR
 		
-				lcHTML = m.loSearchEngine.GenerateHTMLCode(m.lcCode, m.lcStatement, m.lnStatementStart, m.lcCss, m.lcJavaScript, '', .F., Thisform.nTabsToSpaces, ;
-					  Thisform.oSearchEngine.oSearchOptions.cSearchExpression,							;
-					  Alltrim(Iif(This.lApplyFilter, This.oFilter.Statement_Filter, '')),				;
-					  Alltrim(Iif(This.lApplyFilter, This.oFilter.ProcCode_Filter, '')))
+				lcHTML = m.loSearchEngine.GenerateHTMLCode(m.lcCode, m.lcStatement, m.lnStatementStart, m.lcCss, m.lcJavaScript, '', ;
+					  .F., Thisform.nTabsToSpaces, This.lIDEColorsInCodeView and This.lDarkModeInCodeView)
+		
 		Endcase
 		
 		If This.lGoogleChromeFrame = .T.  && Slower due to file activity, but allows selecting of text from matched row in html view.
@@ -10471,47 +10481,45 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				lcSort   = Iif(Thisform.lCR_SortTreeAlpha," Recent"," Search Expression")
 				lcChoice = ""
 				lnBar    = 0
-				GF_CreateContextMenu("NodeRightClick")
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+				GF_CreateContextMenu("NodeRightClick", Thisform)
 		
 				IF m.llX3 THEN
 				lnBar = m.lnBar + 1
-				Define Bar (m.lnBar) Of NodeRightClick Prompt "Sort By " + m.lcSort &lcFont
+				Define Bar (m.lnBar) Of NodeRightClick Prompt "Sort By " + m.lcSort
 				On Selection Bar (m.lnBar) Of NodeRightClick m.lcChoice = "Sort"
 				ENDIF &&m.llX3 
 		
 				If (m.llX1 Or m.llX2) AND m.llX3
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "\-" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "\-"
 				Endif &&(m.llX1 Or m.llX2) AND m.llX3
 		
 				If m.llX2
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "Clear All Results" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "Clear All Results"
 					On Selection Bar (m.lnBar) Of NodeRightClick m.lcChoice = "ClearAll"
 				Endif &&m.llX2
 		
 				If m.llX1
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "Clear Result" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "Clear Result"
 					On Selection Bar (m.lnBar) Of NodeRightClick m.lcChoice = "Clear"
 				Endif &&m.llX1
 		
 				If (m.llX1 Or m.llX2) AND m.llX3
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "\-" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "\-"
 				Endif &&(m.llX1 Or m.llX2) AND m.llX3
 		
 				If m.llX2 AND m.llX3
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "Refresh All Results" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "Refresh All Results"
 					On Selection Bar (m.lnBar) Of NodeRightClick m.lcChoice = "RefreshAll"
 				Endif &&m.llX2 AND m.llX3
 		
 				If m.llX1 AND m.llX3
 					lnBar = m.lnBar + 1
-					Define Bar (m.lnBar) Of NodeRightClick Prompt "Refresh Result" &lcFont
+					Define Bar (m.lnBar) Of NodeRightClick Prompt "Refresh Result"
 					On Selection Bar (m.lnBar) Of NodeRightClick m.lcChoice = "Refresh"
 				Endif &&m.llX1 AND m.llX3
 		
@@ -10611,54 +10619,52 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				lcChoice   = ''
 				lnBar	   = 0
 				lcMenuName = 'AdvancedContextMenu'
-				GF_CreateContextMenu(m.lcMenuName)
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+				GF_CreateContextMenu(m.lcMenuName, Thisform)
 		
 				* ================================================================================ 
 				lnBar	  = m.lnBar + 1
 				lcPrompt1 = 'Modify this ' + Iif(m.llClass, 'class', 'file') + ' (Dbl-Click)'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt1 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt1
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt1
 		
 				lnBar		= m.lnBar + 1
 				lcSearchFor	= Iif(m.llClass, m.lcClass, Juststem(m.lcFullFileNamePath))
 				lcPrompt7	= 'GoFish for "' + m.lcSearchFor + '"'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt7 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt7
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt7
 		
 				lnBar	   = m.lnBar + 1
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		
 				* ================================================================================ 
 				lnBar	   = m.lnBar + 1
 				lcPrompt2a = 'Stem to clipboard'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2a &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt2a
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2a
 		
 				lnBar	  = m.lnBar + 1
 				lcPrompt2 = 'File \<Name to clipboard'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt2 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt2
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt2
 		
 				lnBar	  = m.lnBar + 1
 				lcPrompt3 = 'Full file name (with \<Path) to clipboard'
-				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3 &lcFont
+				Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt3
 				On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt3
 		
 				If Right(Upper(Justext(m.lcFullFileNamePath)), 1) = 'X'
 					lnBar	   = m.lnBar + 1
-					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator &lcFont
+					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcSeparator
 		
 					lnBar	  = m.lnBar + 1
 					lcPrompt4 = 'Browse as table'
-					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4 &lcFont
+					Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt4
 					On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt4
 		
 					If GF_IsThorThere() And Not Empty(Execscript(_Screen.cThorDispatcher, 'Full Path=Thor_Proc_SuperBrowse'))
 						lnBar	  = m.lnBar + 1
 						lcPrompt5 = 'Super Browse \<As table'
-						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt5 &lcFont
+						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt m.lcPrompt5
 						On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt5
 					Endif
 		
@@ -10666,7 +10672,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					If Not Empty(m.lcHackCX4)
 						lnBar	  = m.lnBar + 1
 						lcPrompt6 = 'HackCX'
-						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6 &lcFont
+						Define Bar (m.lnBar) Of (m.lcMenuName) Prompt '\<' + m.lcPrompt6
 						On Selection Bar (m.lnBar) Of (m.lcMenuName) m.lcChoice = m.lcPrompt6
 					Endif
 		
@@ -11172,35 +11178,33 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		lcChoice = ""
 		lnBar	 = 0
-		GF_CreateContextMenu("AccessContextMenu")
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+		GF_CreateContextMenu("AccessContextMenu", Thisform) 
 		
 		If !Thisform.lSaveSearchResults Then
 			lnBar = m.lnBar + 1
-			Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Save last search" &lcFont
+			Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Save last search"
 			On Selection Bar (m.lnBar) Of AccessContextMenu m.lcChoice = "Save last search"
 		Endif &&!Thisform.lSaveSearchResults
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Restore last saved search" &lcFont
+		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Restore last saved search"
 		On Selection Bar (m.lnBar) Of AccessContextMenu m.lcChoice = "Restore last search"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Browse saved search history" &lcFont
+		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\<Browse saved search history"
 		On Selection Bar (m.lnBar) Of AccessContextMenu m.lcChoice = "Restore from history"
 		
 		lnBar = m.lnBar + 1
 		
-		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\-" &lcFont
+		Define Bar (m.lnBar) Of AccessContextMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AccessContextMenu Prompt "Save \<All search results" &lcFont
+		Define Bar (m.lnBar) Of AccessContextMenu Prompt "Save \<All search results"
 		On Selection Bar (m.lnBar) Of AccessContextMenu m.lcChoice = "Save all search results"
 		Set Mark Of Bar (m.lnBar) Of AccessContextMenu To Thisform.lSaveSearchResults
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of AccessContextMenu Prompt "Restore \<Previous results on startup" &lcFont
+		Define Bar (m.lnBar) Of AccessContextMenu Prompt "Restore \<Previous results on startup"
 		On Selection Bar (m.lnBar) Of AccessContextMenu m.lcChoice = "Restore previous results on startup"
 		Set Mark Of Bar (m.lnBar) Of AccessContextMenu To Thisform.lRestorePreviousSearchResultsOnStartup
 		
@@ -11250,73 +11254,71 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		lcChoice = ""
 		lnBar	 = 0
-		GF_CreateContextMenu("RegExpHelpMenu")
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+		GF_CreateContextMenu("RegExpHelpMenu", Thisform)
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt ". Any single character" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt ". Any single character"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "."
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "* Zero or more" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "* Zero or more"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "*"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "+ One or more" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "+ One or more"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "+"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "^ Beginning of line" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "^ Beginning of line"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "^"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "$ End of line" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "$ End of line"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "$"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "[] Any one character in the set" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "[] Any one character in the set"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "[]"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "[^] Any one character not in the set" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "[^] Any one character not in the set"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "[^]"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "| OR" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "| OR"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "|"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\ Escape Special Character" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\ Escape Special Character"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "\"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\s White space (blank or tab)" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\s White space (blank or tab)"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "\s"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\s* Zero or more blanks or tabs" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\s* Zero or more blanks or tabs"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "\s"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\b Word boundary" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\\b Word boundary"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "\b"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "\-"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "VFP Help for RegExp" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "VFP Help for RegExp"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "VFP Help"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "RegEx Cheat Sheet" &lcFont
+		Define Bar (m.lnBar) Of RegExpHelpMenu Prompt "RegEx Cheat Sheet"
 		On Selection Bar (m.lnBar) Of RegExpHelpMenu m.lcChoice = "RegEx Cheat Sheet"
 		
 		* --------------------------------------------------------------------------------
@@ -12224,20 +12226,18 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Local lcChoice, lnBar
 		lcChoice = ""
 		lnBar	 = 0
-		GF_CreateContextMenu("ExportContextMenu")
-		Local lcFont
-		lcFont = ThisForm.GetContextMenuFont()    
+		GF_CreateContextMenu("ExportContextMenu", Thisform)
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of ExportContextMenu Prompt "To DBF or XLSX" &lcFont
+		Define Bar (m.lnBar) Of ExportContextMenu Prompt "To DBF or XLSX"
 		On Selection Bar (m.lnBar) Of ExportContextMenu m.lcChoice = "To DBF or XLSX"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of ExportContextMenu Prompt "To Cursor" &lcFont
+		Define Bar (m.lnBar) Of ExportContextMenu Prompt "To Cursor"
 		On Selection Bar (m.lnBar) Of ExportContextMenu m.lcChoice = "To Cursor"
 		
 		lnBar = m.lnBar + 1
-		Define Bar (m.lnBar) Of ExportContextMenu Prompt "View in Browser" &lcFont
+		Define Bar (m.lnBar) Of ExportContextMenu Prompt "View in Browser"
 		On Selection Bar (m.lnBar) Of ExportContextMenu m.lcChoice = "View in Browser"
 		
 		Activate Popup ExportContextMenu

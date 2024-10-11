@@ -9,6 +9,12 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.29 - 2024-10-11
+
+New options on "New in V7" page of Options screen:
+- Checkbox for selecting "Dark Mode" when using IDE colors (#262)
+- Spinner for selecting font size for context menus (#301)
+
 ## Version 7.1.28 - 2024-10-04
 
 - Bug fixes:
@@ -193,22 +199,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 
 ## Version 7.0.33 - 2024-05-25
 
-- Add new item "Project in CurDir" to scope type dropdown (#232)
-- Fixed RegEx bug (#231)
-
-## Version 7.0.32 - 2024-05-24
-
-- Speed improvement when searching open projects.
-- Reordered items in scope type dropdown.
-- Bugs fixed:
-    - Typing a folder or project into t
+- Add new item "Project in CurDir" to scope type dropdown (#2
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.28 - October 04, 2024 - 20241004')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.29 - October 11, 2024 - 20241011')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
