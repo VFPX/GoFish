@@ -107,7 +107,7 @@ DEFINE CLASS gf_combosearchexpressionhistory AS combobox
 		
 		Scan For m.llNoFilter Or lcScope==Lower(Trim(scope))
 		
-			lcItem = Alltrim(Lower(Expression))
+			lcItem = Alltrim(Expression)
 			lItemExists = .F. && assume the value isn't in the list.
 		
 			For i = 1 To This.ListCount
