@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.30 - 2024-11-01
+
+- Drop-down for search combo box now shows original case instead of converting to lower case (#306)
+
 ## Version 7.1.29 - 2024-10-11
 
 New options on "New in V7" page of Options screen:
