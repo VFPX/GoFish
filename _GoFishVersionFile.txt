@@ -9,6 +9,10 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.31 - 2024-11-04
+
+- Fixed "illegal value error" bug occurring when shrinking the form width (#308)
+
 ## Version 7.1.30 - 2024-11-01
 
 - Drop-down for search combo box now shows original case instead of converting to lower case (#306)
@@ -196,17 +200,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 - Fixed bug (#231) related to file templates on "Advanced" screen (again).  Related changes:
     - You can enter multiple file templates, separated by commas.
     - If you do not enter a file extension, the "normal" list of file extensions (appearing on same screen) is used.
-    - If you use '*' as the extension, GF may be bogged down searching files not of interest (such as text files created from binaries, or bak files).
-- Bugs fixed:
-    - Sorting on full path of file name.
-    - Elapsed time w
+    - If you use '*' as the extension, GF may be bogged down searching files not of interest (such as text file
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.30 - November 01, 2024 - 20241101')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.31 - November 04, 2024 - 20241104')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
