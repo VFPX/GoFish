@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.31 - 2024-11-04
+
+- Fixed "illegal value error" bug occurring when shrinking the form width (#308)
+
 ## Version 7.1.30 - 2024-11-01
 
 - Drop-down for search combo box now shows original case instead of converting to lower case (#306)
