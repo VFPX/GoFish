@@ -9,6 +9,12 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.32 - 2024-11-09
+
+Bug fixes:
+- "Set scope to Active Project" in Options form was not being saved (#310)
+- For some users, when * was used in a wildcard search along with either a left or right parenthesis, no matches were being found (an apparent problem with grep.exe).
+
 ## Version 7.1.31 - 2024-11-04
 
 - Fixed "illegal value error" bug occurring when shrinking the form width (#308)
@@ -198,16 +204,14 @@ Concept and code suggestions for this courtesy of Mike Yearwood.
 ## Version 7.0.34 - 2024-05-29
 
 - Fixed bug (#231) related to file templates on "Advanced" screen (again).  Related changes:
-    - You can enter multiple file templates, separated by commas.
-    - If you do not enter a file extension, the "normal" list of file extensions (appearing on same screen) is used.
-    - If you use '*' as the extension, GF may be bogged down searching files not of interest (such as text file
+
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.31 - November 04, 2024 - 20241104')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.32 - November 09, 2024 - 20241109')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

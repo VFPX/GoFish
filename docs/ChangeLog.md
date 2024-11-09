@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.32 - 2024-11-09
+
+Bug fixes:
+- "Set scope to Active Project" in Options form was not being saved (#310)
+- For some users, when * was used in a wildcard search along with either a left or right parenthesis, no matches were being found (an apparent problem with grep.exe).
+
 ## Version 7.1.31 - 2024-11-04
 
 - Fixed "illegal value error" bug occurring when shrinking the form width (#308)

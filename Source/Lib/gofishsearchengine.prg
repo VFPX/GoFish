@@ -6251,8 +6251,10 @@ j
 		* or " in the search expression (calls to grep use ")
 		* or any characters before chr[32] or after chr[126]
 		* or has a trailing backslash
-		Local lcChar, lcSearchExpression, lnI
-			
+		* or, for some users, wildcard * along with ( or )
+		
+		Local lcChar, lcEscapedSearchExpression, lcSearchExpression, lnI
+	
 		If Not This.oSearchOptions.lOptimizeWithGrep
 			Return .F.
 		Endif
@@ -6266,9 +6268,9 @@ j
 			Return .F.
 		Endif
 	
-		For lnI = 1 To len(lcSearchExpression)
+		For lnI = 1 To Len(lcSearchExpression)
 			lcChar = Substr(lcSearchExpression, lnI)
-			If Not Between(Asc(lcChar), 32, 126) 
+			If Not Between(Asc(lcChar), 32, 126)
 				Return .F.
 			Endif
 		Endfor
@@ -6277,15 +6279,21 @@ j
 			Return .F.
 		Endif
 	
-		*!* ******** JRN Removed 2024-07-19 ********
-		*!* If Left(lcSearchExpression, 1) = '-'
-		*!* 	Return .F.
-		*!* Endif
-
+		If This.oSearchOptions.lUnmatchedParenError
+			*** JRN 2024-11-07 : A rare case for some users: cannot use grep if wild card * along with either of ( or )
+			lcEscapedSearchExpression = This.oSearchOptions.cEscapedSearchExpression
+			* ignore leading and trailing .*
+			lcEscapedSearchExpression = Substr(m.lcEscapedSearchExpression, 3, Len(m.lcEscapedSearchExpression) - 4)
+		
+			If '.*' $ m.lcEscapedSearchExpression And ('\(' $ m.lcEscapedSearchExpression Or '\)' $ m.lcEscapedSearchExpression)
+				Return .F.
+			Endif
+		Endif
+			
 		Return .T.
 	
 	Endproc
-		
+			
 * ================================================================================ 
 * ================================================================================ 
 *** JRN 2024-05-31 : Optimized section, using grep to create (shorter) list of files
@@ -6431,6 +6439,8 @@ j
 		This.CallShell(m.lcBATFile, m.lcDoneFile)
 	
 		* ================================================================================
+		
+		This.CheckForUnmatchedParenError(m.lcErrFile)
 	
 		This.AppendtoCursor(m.tcCursor, m.lcOutFile, m.lcErrFile)
 	
@@ -6456,8 +6466,8 @@ j
 
 		Return m.lcExtensions
 
-	Endproc
-
+	EndProc
+	
 
 	* ================================================================================
 	Procedure CallShell(tcBATFile, tcDoneFile)
@@ -6511,6 +6521,17 @@ j
 	Endproc
 
 
+	* ================================================================================ 
+	Procedure CheckForUnmatchedParenError(lcErrFile)
+		If This.oSearchOptions.nSearchMode = 2		;
+				And File(m.lcErrFile)				;
+				And Atc('grep: unmatched', Filetostr(m.lcErrFile)) # 0
+			This.StopProgressBar()
+			This.oSearchOptions.lUnmatchedParenError = .T.
+			MessageBox('GoFish: Internal error (grep.exe)' + CR + CR + 'Please try again', 16, 'GoFish - but try again')
+		Endif
+	Endproc
+	
 	* ================================================================================
 	Procedure AppendErrorFiles(lcErrFile)
 		Local laErrors[1], lcText, lnCount, lnI

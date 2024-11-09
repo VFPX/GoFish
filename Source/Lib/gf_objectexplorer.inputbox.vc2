@@ -140,7 +140,7 @@ DEFINE CLASS inputbox AS form
 			Create Cursor MemoCursor(MemoField M)
 			Insert Into MemoCursor Values (Thisform.xValue)
 			This.ControlSource = 'MemoCursor.MemoField'
-			Thisform.Width	   = This.Left + 80 + 7 * Max(20, Len(Thisform.xValue))
+			Thisform.Width	   = Min(This.Left + 80 + 7 * Max(20, Len(Thisform.xValue)), 1000) 
 		Else
 			This.Visible = .F.
 		Endif
