@@ -3514,7 +3514,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 			.nCSS_tr_odd_Colour             = Thisform.nCSS_tr_odd_Colour
 		*/missing from 206
 		
-			If .lCR_Allow  Then
+			*!* ******** JRN Removed 2024-11-07 ********
+			*!* If .lCR_Allow  Then
 				.lCR_Local_Default = Thisform.lCR_Local_Default
 				.lCR_Local         = Thisform.lCR_Local
 		
@@ -3534,7 +3535,8 @@ DEFINE CLASS gf_options AS gf_baseform OF "..\lib\gofishui.vcx"
 				.lCR_SortTreeByExt       = Thisform.lCR_SortTreeByExt
 				.lCR_SortTreeAlpha       = Thisform.lCR_SortTreeAlpha
 		
-			Endif &&.lCR_Allow
+			*!* ******** JRN Removed 2024-11-07 ********
+			*!* Endif &&.lCR_Allow
 		*/SF 20221019 5.2.000
 		
 				.lDeleteStorage = Thisform.lDeleteStorage

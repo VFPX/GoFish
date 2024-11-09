@@ -13,6 +13,10 @@ DEFINE CLASS dora AS frmexplorer OF "gf_objectexplorer.vcx"
 		Name = "Dora"
 		ShowWindow = 1
 		WindowType = 1
+		TREECONTAINER.chklHighlightFavorites.Alignment = 0
+		TREECONTAINER.chklHighlightFavorites.Name = "chklHighlightFavorites"
+		TREECONTAINER.chklSortFavorites.Alignment = 0
+		TREECONTAINER.chklSortFavorites.Name = "chklSortFavorites"
 		TREECONTAINER.cmdBrowse.Name = "cmdBrowse"
 		TREECONTAINER.cntCheckBoxes.chklShowCustom.Alignment = 0
 		TREECONTAINER.cntCheckBoxes.chklShowCustom.Name = "chklShowCustom"
@@ -22,8 +26,6 @@ DEFINE CLASS dora AS frmexplorer OF "gf_objectexplorer.vcx"
 		TREECONTAINER.cntCheckBoxes.chklShowNative.Name = "chklShowNative"
 		TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Alignment = 0
 		TREECONTAINER.cntCheckBoxes.chklShowNonDefault.Name = "chklShowNonDefault"
-		TREECONTAINER.cntCheckBoxes.chklSortFavorites.Alignment = 0
-		TREECONTAINER.cntCheckBoxes.chklSortFavorites.Name = "chklSortFavorites"
 		TREECONTAINER.cntCheckBoxes.lblFilter.Name = "lblFilter"
 		TREECONTAINER.cntCheckBoxes.Name = "cntCheckBoxes"
 		TREECONTAINER.cntCheckBoxes.txtFilter.Name = "txtFilter"
@@ -38,5 +40,16 @@ DEFINE CLASS dora AS frmexplorer OF "gf_objectexplorer.vcx"
 		TREECONTAINER.txtFullPath.Name = "txtFullPath"
 		cmdExit.Name = "cmdExit"
 	*</PropValue>
+	
+	PROCEDURE Init
+		Lparameters toObject, tcObjectName, tcFormCaptionSuffix, tcPublicVariable
+		
+		DoDefault(m.toObject, m.tcObjectName, m.tcFormCaptionSuffix, m.tcPublicVariable)
+		
+		If This.TreeContainer.oleTree.Nodes.Count > 0
+			This.TreeContainer.oleTree.Nodes[1].Expanded = .T.
+		Endif
+		
+	ENDPROC
 
 ENDDEFINE

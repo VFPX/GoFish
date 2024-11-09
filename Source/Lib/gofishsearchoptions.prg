@@ -157,6 +157,7 @@ Define Class GoFishSearchOptions As Custom
 	
 	lPreVFP9		   = .F.
 	lPreVFP9EditSource = 'EditSource'
+	lUnmatchedParenError = .F.
 
 	*---------------------------------------------------------------------
 
