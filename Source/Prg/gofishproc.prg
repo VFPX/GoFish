@@ -1929,6 +1929,7 @@ EndProc
 
 Procedure GF_EditSkipList(toSearchEngine)
 
+	Local loPBT As 'GF_PEME_BaseTools'
 	Local lcFileName, lcText
 
 	lcFileName = m.toSearchEngine.cFilesToSkipFile
@@ -1946,7 +1947,7 @@ Procedure GF_EditSkipList(toSearchEngine)
 		**  -- Or combined
 		**        \Temp*\*.txt
 
-		** These files and folders will be skipped if the "Skip Files option" is checked on the Advanced form.
+		** These files and folders will be excluded if the "Exclude Files option" is checked on the Advanced form.
 		** The default name and location for this file is: (Home(7) + 'GoFish_\GF_Files_To_Skip.txt')
 		** Might be set to a local directory
 
@@ -1958,6 +1959,39 @@ Procedure GF_EditSkipList(toSearchEngine)
 	Endif
 
 	Modify File (m.lcFileName)
+	loPBT = Createobject('GF_PEME_BaseTools')
+	m.loPBT.AddMRUFile(m.lcFileName)
+
+Endproc
+
+
+Procedure GF_EditIncludeList(toSearchEngine)
+
+	Local loPBT As 'GF_PEME_BaseTools'
+	Local lcFileName, lcText
+
+	lcFileName = m.toSearchEngine.cFilesToIncludeFile
+
+	If Not File(m.lcFileName)
+
+		Text To m.lcText Pretext 3 Noshow
+		** Contains names of files or folders to be included (in addition to the selected scope): 
+		**   - one per line, case insensitive, no wildcards
+		**   - for directories, does not search sub-directories
+
+		** These files and folders will be included if the "Include Files option" is checked on the Advanced form.
+		** The default name and location for this file is: (Home(7) + 'GoFish_\GF_Files_To_Include.txt')
+
+		** Blank lines and lines beginning with ** are not processed.
+		
+		Endtext
+
+		Strtofile(m.lcText, m.lcFileName)
+	Endif
+
+	Modify File (m.lcFileName)
+	loPBT = Createobject('GF_PEME_BaseTools')
+	m.loPBT.AddMRUFile(m.lcFileName)
 
 Endproc
 
