@@ -6,6 +6,14 @@
 
 ---
 
+## Version 7.1.33 - 2024-11-19
+
+New feature:
+- "Include Files" option added to Advanced screen, to allow searching additional files not part of the normal scope (project or directory).  See also the right-click context menu on the "Advanced" button. (#314)
+
+Bug fix:
+- Scope option "Projects in CurDir()" did not always include all projects.
+
 ## Version 7.1.32 - 2024-11-09
 
 Bug fixes:

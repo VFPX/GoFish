@@ -103,6 +103,10 @@ Define Class GoFishSearchOptions As Custom
 	* cFilesToSkipFile files to skip over certain files during the search.
 	lSkipFiles                             = .F.
 
+	* A flag to indicate if the user wants to process the files in
+	* cFilesToIncludeFile files to cnclude over certain files during the search.
+	lIncludeFiles                          = .F.
+
 	* Indicates if you want a copy of the code block stored on each search
 	* reesult record (for ResultsCursor) or collection node (for ResultsCollection).
 	lStoreCode                             = .F.

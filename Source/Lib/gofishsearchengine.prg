@@ -13,7 +13,8 @@ Define Class GoFishSearchEngine As Custom
 
 * This string contains a list of files to be skipped during the search.
 * One filname on each line. This list is only skipped if lSkipFiles is .t.
-	cFilesToSkipFile                 = 'GF_Files_To_Skip.txt'
+	cFilesToSkipFile                 = ''  && 'GF_Files_To_Skip.txt'    -- See Init
+	cFilesToIncludeFile              = ''  && 'GF_Files_To_Include.txt' -- See Init
 
 	cGraphicsExtensions = 'PNG ICO JPG JPEG TIF TIFF GIF BMP MSK CUR ANI'
 	cInitialDefaultDir  = ''
@@ -2912,6 +2913,7 @@ Result
 		Endif &&!Empty(m.tcCR_StoreLocal) Then
 
 		This.cFilesToSkipFile     = This.cCR_StoreLocal + 'GF_Files_To_Skip.txt'
+		This.cFilesToIncludeFile     = This.cCR_StoreLocal + 'GF_Files_To_Include.txt'
 */SF 20221018 -> local storage
 
 		This.cVersion        = GOFISH_VERSION  && Comes from include file above
@@ -4439,7 +4441,74 @@ x
 		Endif
 	
 	Endproc
-						
+	
+	
+* ================================================================================ 
+	Procedure SearchIncludedFiles
+		Local laFiles[1], laLines[1], lcFile, lcFolder, lcIncludeFile, lnCount, lnFileCount, lnI, lnJ
+		Local lnReturn, lnSelect
+	
+		If Not This.oSearchOptions.lIncludeFiles
+			Return 1
+		Endif
+	
+		If This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+			Return 1
+		Endif
+	
+		lcIncludeFile = This.cFilesToIncludeFile
+		If Not File(m.lcIncludeFile)
+			Return 1
+		Endif
+	
+		Create Cursor IncludeFiles(FileName M)
+		lnCount = Alines(laLines, Filetostr(m.lcIncludeFile), 5)
+		For lnI = 1 To m.lnCount
+			lcFile = m.laLines[m.lni]
+			If Not '*' $ m.lcFile
+				lcFile = Fullpath(m.lcFile)
+				Do Case
+					Case File(m.lcFile)
+						Insert Into IncludeFiles Values (Lower(m.lcFile))
+					Case Directory(m.lcFile)
+						lcFolder	= Addbs(m.lcFile)
+						lnFileCount	= Adir(laFiles, m.lcFolder + '*.*')
+						For lnJ = 1 To m.lnFileCount
+							Insert Into IncludeFiles Values (Lower(m.lcFolder + m.laFiles[m.lnJ, 1]))
+						Endfor
+				Endcase
+			Endif
+		Endfor
+	
+		If Reccount('IncludeFiles') > 0
+	
+			lnSelect = Select()
+			Select IncludeFiles
+	
+			This.StartProgressBar(Reccount())
+	
+			Scan
+	
+				lcFile = Trim(FileName)
+	
+				lnReturn = This.SearchInFile(m.lcFile)
+	
+				This.UpdateProgressBar(Recno())
+	
+				If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+					Exit
+				Endif
+	
+			Endscan
+	
+			This.SearchFinished(m.lnSelect)
+	
+		EndIf
+		
+		Return 0
+	
+	Endproc
+														
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInCode(tcCode, tuUserField, tlHasProcedures, lnMinMatchStart, lnMaxMatchStart, tcType)
@@ -4509,7 +4578,9 @@ x
 * .ContainingClass =	.oProcedure._ClassName	&& Not used on this object. This line to be deleted after testing. (2012-07-11))
 					.MethodName = .oProcedure._Name
 					.ProcStart  = .oProcedure.StartByte
-					.procend    = Min(Evl(.oProcedure.EndByte, Len(m.tccode)), .oMatch.FirstIndex + MEMOFIELDMINSIZE)
+					*!* ******** JRN Removed 2024-11-18 ********
+					*!* .procend    = Min(Evl(.oProcedure.EndByte, Len(m.tccode)), .oMatch.FirstIndex + MEMOFIELDMINSIZE)
+					.procend    = Evl(.oProcedure.EndByte, Len(m.tccode))
 					.proccode   = Substr(m.tcCode, .ProcStart + 1, Max(0, .procend - .ProcStart))
 					
 					.MatchLine  = .oMatch.Value
@@ -4525,8 +4596,6 @@ x
 
 					.Code = Iif(This.oSearchOptions.lStoreCode, m.tcCode, '')
 				Endwith
-
-*	Assert Upper(JustExt(Trim(loobject.uSERFIELD.FILENAME)))  # 'PRG'
 
 				This.FindStatement(m.loObject)
 
@@ -4817,12 +4886,8 @@ x
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInOpenProjects(tcProject, ttTime, tcUni)
-	
-		Local lcFile As String
-		Local lnReturn As Number
-		Local lnSelect As Number
-		Local lnX As Number
-		Local laProjectFiles[1], lnI, lnSeconds, loFile, loProject
+		
+		Local laProjectFiles[1], lcFile, lnI, lnReturn, lnSeconds, lnSelect, lnX, loFile, loProject
 	
 		This.PrepareForSearch()
 		This.StartTimer()
@@ -4838,7 +4903,7 @@ x
 		For lnI = 1 To _vfp.Projects.Count
 			loProject					 = _vfp.Projects[m.lnI]
 			This.oSearchOptions.cProject = m.loProject.Name
-			Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name)) 
+			Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name))
 	
 			For Each m.loFile In m.loProject.Files FoxObject
 				If m.loFile.Type $ 'EHKMPRVBdTxD'
@@ -4863,22 +4928,10 @@ x
 		Endif
 	
 		This.StartProgressBar(Alen(m.laProjectFiles))
-		
-		*** Uncomment this code to track the execution time for the result
-		*!*			LOCAL nSeconds
-		*!*			nSeconds = SECONDS()
 	
-		For lnX = 1 To Alen(m.laProjectFiles) 
+		For lnX = 1 To Alen(m.laProjectFiles)
 	
 			lcFile = m.laProjectFiles(m.lnX)
-	
-			*!* ******** JRN Removed 2024-08-07 ********  
-			*!* This option does not apply for all open projects
-			*!* If This.oSearchOptions.lLimitToProjectFolder
-			*!* 	If Not (Upper(m.lcProjectPath) $ Upper(Addbs(Justpath(m.lcFile))))
-			*!* 		Loop
-			*!* 	Endif
-			*!* Endif
 	
 			lnReturn = This.SearchInFile(m.lcFile)
 	
@@ -4890,8 +4943,106 @@ x
 	
 		Endfor
 	
-		*** Uncomment this code to show used execution time for the result
-		*!*			MESSAGEBOX(ALLTRIM(STR((SECONDS()-nSeconds)*1000)) + " ms")
+		This.SearchFinished(m.lnSelect)
+	
+		If m.lnReturn >= 0
+			Return 1
+		Else
+			Return m.lnReturn
+		Endif
+	
+	Endproc
+		
+	
+*----------------------------------------------------------------------------------
+	Procedure SearchProjectsInCurDir(tcProject, ttTime, tcUni)
+	
+		Local laProjectFiles[1], laProjects[1], lcCurDir, lcFile, lcFileName, llAlreadyOpen, llOpened, lnI
+		Local lnJ, lnProjects, lnReturn, lnSeconds, lnSelect, lnX, loException, loFile, loProject
+	
+		This.PrepareForSearch()
+		This.StartTimer()
+		This.StartProgressBar(_vfp.Projects.Count)
+	
+		lnSeconds	  = Seconds()
+		lnSelect	  = Select()
+		This.tRunTime = Evl(m.ttTime, Datetime())
+		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
+	
+		Create Cursor ProjectFiles (FileName C(200))
+		lcCurDir   = Addbs(Curdir())
+		lnProjects = Adir(laProjects, m.lcCurDir + '*.pjx')
+	
+		For lnI = 1 To m.lnProjects
+			lcFileName	  = m.lcCurDir + m.laProjects[m.lnI, 1]
+			llAlreadyOpen = .F.
+			For lnJ = 1 To _vfp.Projects.Count
+				If Lower(m.lcFileName) $ Lower(_vfp.Projects[m.lnJ].Name)
+					loProject	  = _vfp.Projects[m.lnJ]
+					llAlreadyOpen = .T.
+				Endif
+			Endfor
+	
+			If Not m.llAlreadyOpen
+				Try
+					Modify Project (m.lcFileName) Nowait Noshow
+					loProject = _vfp.ActiveProject
+					llOpened  = .T.
+				Catch To m.loException
+					llOpened = .F.
+				Endtry
+	
+				If Not m.llOpened
+					Loop
+				Endif
+			Endif
+	
+			This.oSearchOptions.cProject = m.loProject.Name
+			Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name))
+	
+			For Each m.loFile In m.loProject.Files FoxObject
+				If m.loFile.Type $ 'EHKMPRVBdTxD'
+					Insert Into ProjectFiles (FileName) Values (m.loFile.Name)
+				Endif
+			Endfor
+	
+			If Not m.llAlreadyOpen
+				m.loProject.Close()
+			Endif
+	
+			loFile	  = Null
+			loProject = Null
+	
+		Endfor
+	
+	
+		Select  Distinct *															;
+			From ProjectFiles														;
+			Where Not (Upper(Justext(FileName)) $ This.cGraphicsExtensions)			;
+			Into Array laProjectFiles
+	
+		This.nADirTime = This.ElapsedTimeSinceStart()
+	
+		If Type('laProjectFiles') = 'L'
+			This.SearchFinished(m.lnSelect)
+			Return 1
+		Endif
+	
+		This.StartProgressBar(Alen(m.laProjectFiles))
+	
+		For lnX = 1 To Alen(m.laProjectFiles)
+	
+			lcFile = m.laProjectFiles(m.lnX)
+	
+			lnReturn = This.SearchInFile(m.lcFile)
+	
+			This.UpdateProgressBar(This.nFilesProcessed)
+	
+			If (m.lnReturn < 0) Or This.lEscPress Or This.nMatchLines >= This.oSearchOptions.nMaxResults
+				Exit
+			Endif
+	
+		Endfor
 	
 		This.SearchFinished(m.lnSelect)
 	
@@ -4902,11 +5053,11 @@ x
 		Endif
 	
 	Endproc
-				
-
-*----------------------------------------------------------------------------------
+			
+	
+		*----------------------------------------------------------------------------------
 	Procedure SearchInPath(tcPath, ttTime, tcUni)
-
+	
 		Local;
 			lcDirectory   As String,;
 			lcDirectory2  As String,;
