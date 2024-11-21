@@ -9,6 +9,16 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.34 - 2024-11-21
+
+New feature:
+- Menu item "Look Up Reference" in the context menu for a code window can be modified to use GoFish instead of Code References.  To do so, use the Thor configuration screen to mark Thor Tool "Replace code window context menu items" as "Run at startup".
+
+![](../Screenshots/LookUpReference.png)
+
+Bug fix:
+- Scope option "Projects in CurDir()" failed if there were no open projects.
+
 ## Version 7.1.33 - 2024-11-19
 
 New feature:
@@ -190,27 +200,14 @@ Bug fix:
 
 - Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
 
-## Version 7.1.03 - 2024-06-06
-
-- Two new selections in the right-click context menu for nodes in TreeView
-    - Export stem name to clipboard (#240)
-    - GoFish for references to the file or class name
-
-## Version 7.1.02 - 2024-06-02
-
-- Bug fix:
-    - Wild card search gave incomplete results when searching in directories.
-
-## Version 7.1 - Minor version update - 2024-05-31
-
-With this version, there are dramatic speed improvements when searching
+## Version 7.1.03 - 2024-0
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.33 - November 19, 2024 - 20241119')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.34 - November 21, 2024 - 20241121')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

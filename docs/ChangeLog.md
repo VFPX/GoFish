@@ -6,6 +6,16 @@
 
 ---
 
+## Version 7.1.34 - 2024-11-21
+
+New feature:
+- Menu item "Look Up Reference" in the context menu for a code window can be modified to use GoFish instead of Code References.  To do so, use the Thor configuration screen to mark Thor Tool "Replace code window context menu items" as "Run at startup".
+
+![](../Screenshots/LookUpReference.png)
+
+Bug fix:
+- Scope option "Projects in CurDir()" failed if there were no open projects.
+
 ## Version 7.1.33 - 2024-11-19
 
 New feature:
