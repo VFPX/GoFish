@@ -9,6 +9,12 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.35 - 2024-11-30
+
+Bug fixes:
+- Using "Filter by this Method" in grid context menu included erroneous records.
+- When restoring saved searches (new, related to recently added option for "Include Files")
+
 ## Version 7.1.34 - 2024-11-21
 
 New feature:
@@ -194,20 +200,14 @@ Bug fixes:
 ## Version 7.1.05 - 2024-06-08
 
 Bug fix:
-- Skip list for folders was being ignored when searching "All Open Projects" (#244)
-
-## Version 7.1.04 - 2024-06-07
-
-- Progress bar is now updated during first pass (using grep to find files) and ESC is recognized.
-
-## Version 7.1.03 - 2024-0
+- Skip list for folders w
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.34 - November 21, 2024 - 20241121')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.35 - November 30, 2024 - 20241130')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
