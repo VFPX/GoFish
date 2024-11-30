@@ -6,6 +6,12 @@
 
 ---
 
+## Version 7.1.35 - 2024-11-30
+
+Bug fixes:
+- Using "Filter by this Method" in grid context menu included erroneous records.
+- When restoring saved searches (new, related to recently added option for "Include Files")
+
 ## Version 7.1.34 - 2024-11-21
 
 New feature:
