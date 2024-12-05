@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.36 - 2024-12-05
+
+Bug fixes:
+- Field "Cleanup" in MNXs was not being searched (#321)
+
 ## Version 7.1.35 - 2024-11-30
 
 Bug fixes:

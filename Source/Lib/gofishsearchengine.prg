@@ -2849,7 +2849,7 @@ Result
 
 				lnReturn = 2
 
-			Case Inlist(m.lcMatchType, MATCHTYPE_CODE, MATCHTYPE_COMMENT) Or;
+			Case Inlist(m.lcMatchType, MATCHTYPE_CODE, MATCHTYPE_COMMENT, '<Cleanup>') Or;
 					(m.toObject.UserField.IsText And !Inlist(m.lcMatchType, MATCHTYPE_FILENAME, MATCHTYPE_TIMESTAMP))
 
 				lnReturn = 1
@@ -5648,6 +5648,15 @@ j
 								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
 							Endif
 	
+							If Not Empty(Cleanup)
+								lcCode			= m.lcCode + CRLF + Replicate('*', 60) + CRLF + CRLF
+								llThisField		= m.lcField = 'CLEANUP'
+								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
+								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 1) + ' ' + Transform(Len(Cleanup)), m.lcType)
+								lcCode			= m.lcCode + Cleanup + CRLF
+								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+	
 							If Not Empty(Procedure)
 								lcCode			= m.lcCode + CRLF + Replicate('*', 60) + CRLF + CRLF
 								llThisField		= m.lcField = 'PROCEDURE'
@@ -5656,7 +5665,7 @@ j
 								lcCode			= m.lcCode + Procedure + CRLF
 								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
 							Endif
-	
+		
 						Case m.lcExt = 'DBC'
 							._Name	= Alltrim(ObjectName)
 							._Class	= Alltrim(ObjectType)
