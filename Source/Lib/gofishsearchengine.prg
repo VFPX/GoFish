@@ -1023,7 +1023,7 @@ x
 			Id I, ;
 			MatchLine M, ;
 			Replaced L, ;
-			TrimmedReplaceLine c(254), ;
+			TrimmedReplaceLine c(254) Null, ;
 			ReplaceLine c(254), ;
 			ReplaceRisk I, ;
 			Replace_DT T, ;
@@ -3260,9 +3260,42 @@ x
 
 	Endproc
 
+* ================================================================================
+    Procedure MarkUnchangeableRows(tcGridCursor)
+    	Local lcResultsAlias, lcTemp, lnSelect
+    
+    	lnSelect = Select()
+    
+    	lcResultsAlias = This.cSearchResultsAlias
+    	Select  Distinct FilePath,								;
+    			.F.    As  InUse								;
+    		From (m.tcGridCursor )								;
+    		Where Not (This.IsTextFile(Trim(FileName)))			;
+    		Into Cursor crsrFiles Readwrite
+    	lcTemp = Sys(2015)
+    
+    	Scan
+    		If This.OpenTableForReplace(Trim(FilePath), m.lcTemp, 0)
+    			Use
+    		Else
+    			Replace InUse With .T.
+    		Endif
+    	Endscan
+    
+    	Update  Target												;
+    		Set TrimmedReplaceLine = Null							;
+    		From (m.tcGridCursor)    As  Target						;
+    			Join crsrFiles										;
+    				On Target.FilePath = crsrFiles.FilePath			;
+    		Where crsrFiles.InUse
+    
+    	Select(m.lnSelect)
+    
+    Endproc
+                        
 *----------------------------------------------------------------------------------
-	Procedure MatchTemplate(tcString, tcTemplate)
-
+    Procedure MatchTemplate(tcString, tcTemplate)
+    
 *-- Supports normal wildcard matching with * and ?, just like old DOS matching.
 
 		Local;
@@ -3354,7 +3387,7 @@ x
 				Use (m.tcFileToOpen) Exclusive Alias (m.tcCursor)
 				llReturn = .T.
 			Catch
-				This.SetReplaceError('Cannot open file for exclusive use: ' + CR + CR, m.tcFileToOpen, m.tnResultId)
+				This.SetReplaceError('Cannot open file for exclusive use: ', m.tcFileToOpen, m.tnResultId)
 				Select (m.lnSelect)
 				llReturn = .F.
 		Endtry
@@ -3842,6 +3875,7 @@ x
 		Else
 
 			lnReturn = 	m.loResult.nErrorCode
+			Replace TrimmedReplaceLine with Null in (m.tcCursor)
 
 		Endif
 
@@ -4211,6 +4245,12 @@ x
 					M.lnResult = GF_REPLACE_UNABLE_TO_USE_TABLE_FOR_REPLACE Or ;
 					M.lnResult = GF_REPLACE_FILE_NOT_FOUND
 				lcFile = FilePath
+				
+				Local lnRecNo				
+				lnRecNo = Recno(m.tcCursor)
+				Update Target Set TrimmedReplaceLine = Null From (m.tcCursor) As Target Where FilePath = lcFile
+				Goto (m.lnRecNo) In (m.tcCursor)
+								
 				Locate For FilePath <> m.lcFile Rest
 				If !Bof()
 					Skip - 1
@@ -5648,6 +5688,15 @@ j
 								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
 							Endif
 	
+							If Not Empty(Setup)
+								lcCode			= m.lcCode + CRLF + Replicate('*', 60) + CRLF + CRLF
+								llThisField		= m.lcField = 'SETUP'
+								lnMinMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMinMatchStart)
+								lcType			= Iif(m.llThisField, Transform(Len(m.lcCode) + 1) + ' ' + Transform(Len(Setup)), m.lcType)
+								lcCode			= m.lcCode + Setup + CRLF
+								lnMaxMatchStart	= Iif(m.llThisField, Len(m.lcCode), m.lnMaxMatchStart)
+							Endif
+	
 							If Not Empty(Cleanup)
 								lcCode			= m.lcCode + CRLF + Replicate('*', 60) + CRLF + CRLF
 								llThisField		= m.lcField = 'CLEANUP'
@@ -6056,28 +6105,22 @@ j
 
 *----------------------------------------------------------------------------------
 	Procedure SetReplaceError(tcErrorMessage, tcFile, tnResultId, tnDialogBoxType, tcTitle)
-
-		Local;
-			lcErrorMessage As String,;
-			lcFile      As String,;
-			lcResultId  As String,;
-			lnResultId  As Number
-
+	
+		Local lcErrorMessage, lcFile
+	
 		lcFile     = Alltrim(Evl(m.tcFile, 'None'))
-		lnResultId = Evl(m.tnResultId, 0)
-
-		lcResultId = Iif(m.lnResultId = 0, 'None', Alltrim(Str(m.lnResultId)))
-
-		lcErrorMessage = m.tcErrorMessage + Space(4) + ;
-			'[File: ' + m.lcFile + ']' + Space(4) + ;
-			'[Result Id: ' + m.lcResultId + ']'
-
+	
+		lcErrorMessage = m.tcErrorMessage + CR														;
+			+ Space(4) + '[File: ' + m.lcFile + ']'													;
+			+ Iif(Empty(m.tnResultId), '',  Space(4) + '[Record Id: ' + Transform(m.tnResultId) + ']') ;
+			+ CR
+	
 		This.ShowError(m.lcErrorMessage, m.tnDialogBoxType, m.tcTitle)
-
+	
 		This.oReplaceErrors.Add(m.lcErrorMessage)
-
+	
 	Endproc
-
+			
 
 *----------------------------------------------------------------------------------
 	Procedure SetSearchError(tcErrorMessage, tnDialogBoxType, tcTitle)

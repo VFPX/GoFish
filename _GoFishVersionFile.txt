@@ -9,6 +9,16 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.37 - 2024-12-12
+
+- Enhanced notification of errors encountered such that GF is unable to make replacements in a file (most commonly because the file is in use and exclusive access is denied) (#319).
+- Field "Setup" in MNXs was not being searched (#321)
+
+## Version 7.1.36 - 2024-12-05
+
+Bug fixes:
+- Field "Cleanup" in MNXs was not being searched (#321)
+
 ## Version 7.1.35 - 2024-11-30
 
 Bug fixes:
@@ -186,28 +196,14 @@ New options on "New in V7" page of Options screen:
 
 - Changes to column "File Path"
     - When searching all active projects, relative path  (if selected) is relative to currect directory.
-    - New item in grid's right-click context menus is a toggle of whether to show relative path.
-- Bug fixes when searching in directories using wild cards
-    - Not all matches appearing
-    - File count incorrect.
-
-## Version 7.1.06 - 2024-06-09
-
-Bug fixes:
-- Wild card search did not handle ? correctly.
-- Plain and wild card search did nothing if search expression had trailing backslash.
-
-## Version 7.1.05 - 2024-06-08
-
-Bug fix:
-- Skip list for folders w
+    - New item in grid's right-click context menus is a toggle of whether to show relative path
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.36 - December 05, 2024 - 20241205')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.37 - December 12, 2024 - 20241212')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

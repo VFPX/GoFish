@@ -171,6 +171,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*m: populatetreefromhistory		&& Populate Tree with all previeous searches (per scope filter)
 		*m: populatetreeview		&& Fill the Treeview.
 		*m: populatetreeviewsimple
+		*m: refresherrorbutton
 		*m: refreshimages
 		*m: refreshresults		&& Refresh (re-search) a result
 		*m: releaseprocs
@@ -1103,7 +1104,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Name = "oTreeView", ;
 		Top = 0, ;
 		Width = 186
-		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAmT6saQNsBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAOiVphYGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+		*< END OBJECT: BaseClass="olecontrol" OLEObject="c:\windows\syswow64\mscomctl.ocx" Value="0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAAgAAAAEAAAD+////AAAAAAAAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/////v////7///8EAAAA/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////1IAbwBvAHQAIABFAG4AdAByAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWAAUA//////////8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANBPv0tySdsBAwAAAEACAAAAAAAAAwBPAGwAZQBPAGIAagBlAGMAdABEAGEAdABhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAgEDAAAAAgAAAP////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAagAAAAAAAAADAEEAYwBjAGUAcwBzAE8AYgBqAFMAaQB0AGUARABhAHQAYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJgACAP///////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABcAAAAAAAAAAMAQwBoAGEAbgBnAGUAZABQAHIAbwBwAHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAIA////////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAACABAAAAAAAABAAAAAIAAAD+////BQAAAP7///8GAAAABwAAAAgAAAD+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+2kEHHiYXREbFqAMDwKDYoIUM0EggAAAA5EwAABTUAALE8wWoBAAYAIgAAABkAAAARAgAACgAAAAEAAAAB782rXAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5MzY4MjY1RS04NUZFLTExZDEtOEJFMy0wMDAwRjg3NTREQTEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACADgAAAEhpZGVTZWxlY3Rpb24ABQAAAEwAAAAADAAAAEluZGVudGF0aW9uABEAAABODQAAAAcAAAAAAAAAAAAFAMBxoAwGAAAAAAAAAAUAAIBw5xkAAQAAAFwAH97svQEABQC45xkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEAKAAAATGluZVN0eWxlAAkAAABJCgAAAAEAAAANAAAATW91c2VQb2ludGVyAAkAAABJCgAAAAAAAAAOAAAAUGF0aFNlcGFyYXRvcgAKAAAASAAAAAABAAAAXAYAAABTdHlsZQAJAAAASQoAAAAGAAAADAAAAE9MRURyYWdNb2RlAAkAAABJCgAAAAAAAAAMAAAAT0xFRHJvcE1vZGUACQAAAEkKAAAAAAAAAA4AAABGdWxsUm93U2VsZWN0AAUAAABMAQAAAAoAAABTaW5nbGVTZWwABQAAAEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
 
 	ADD OBJECT 'containerRight' AS container WITH ;
 		Anchor = 15, ;
@@ -2757,22 +2758,30 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		 
 		Thisform.DoReplace(.t.)  &&.t. means "Preview" Replace
 		
+		Goto top in (Thisform.cSearchResultsAlias)
+		Thisform.oGrid.SetFocus()
+		
+		
 		
 	ENDPROC
 
 	PROCEDURE clearall
-		Thisform.FilterGFSE()
+		Thisform.filtergfse()
 		
-		Replace process with .f. all in (Thisform.cSearchResultsAlias)
-		Replace replaceline with "" for replaced = .f. in (Thisform.cSearchResultsAlias)
-		Replace trimmedreplaceline with "" for replaced = .f. in (Thisform.cSearchResultsAlias)
+		Replace Process With .F. All In (Thisform.cSearchResultsAlias)
+		Replace ReplaceLine With '' For Replaced = .F. In (Thisform.cSearchResultsAlias)
+		Replace TrimmedReplaceLine With '' For Replaced = .F. In (Thisform.cSearchResultsAlias)
 		
-		Replace process with .f. all in (Thisform.oSearchEngine.cSearchResultsAlias)
-		Replace replaceline with "" for replaced = .f. in (Thisform.oSearchEngine.cSearchResultsAlias)
-		Replace trimmedreplaceline with "" for replaced = .f. in (Thisform.oSearchEngine.cSearchResultsAlias)
+		Replace Process With .F. All In (Thisform.oSearchEngine.cSearchResultsAlias)
+		Replace ReplaceLine With '' For Replaced = .F. In (Thisform.oSearchEngine.cSearchResultsAlias)
+		Replace TrimmedReplaceLine With '' For Replaced = .F. In (Thisform.oSearchEngine.cSearchResultsAlias)
 		
 		Thisform.ClearGFSEFilter()
-		Goto top in (Thisform.cSearchResultsAlias)
+		
+		This.oSearchEngine.MarkUnchangeableRows(This.oGrid.RecordSource)
+		Thisform.RefreshErrorButton()
+		
+		Goto Top In (Thisform.cSearchResultsAlias)
 		Thisform.oGrid.SetFocus()
 		
 		
@@ -3466,7 +3475,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Endif
 		
 		If Thisform.oSearchEngine.oReplaceErrors.Count > 0 And !m.tlPreviewReplace
-			Thisform.containerRight.Container1.containerReplaceText.cmdReplaceErrors.Refresh() && To make sure the icon is visible before we show dialog box
+			Thisform.RefreshErrorButton() && To make sure the icon is visible before we show dialog box
 			Messagebox("Error(s) during replace operation. Click on red Error icon for more details.", "Error:")
 		Endif
 		
@@ -4525,6 +4534,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		loGrid.SetAll("ReadOnly", .T., "Column")
 		loGrid.SetAll("Movable", .T., "Column") 
 		
+		* ================================================================================ 
 		loColumn = loGrid.FindColumn("Process")
 		loColumn.Alignment = 2
 		loColumn.ReadOnly  = .F.
@@ -4541,6 +4551,17 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		loColumn.imageCheck.Picture = "check.bmp"
 		loColumn.imageCheck.Visible = .T.
 		
+		loColumn.AddObject("imageErrors", "Image")
+		loColumn.imageErrors.Picture = "red_circle_x_16.bmp"
+		loColumn.imageErrors.Visible = .T.
+		loColumn.imageErrors.Stretch = 1
+		
+		* ================================================================================ 
+		loColumn = loGrid.FindColumn("TrimmedReplaceLine")
+		loColumn.ControlSource = [NVL(csrsummarysearchresults.TrimmedReplaceLine, '*** Cannot replace. Click red Error icon (above) for details. ***')]
+		loColumn.DynamicFontItalic = [Isnull(csrsummarysearchresults.TrimmedReplaceLine)]
+		
+		* ================================================================================ 
 		lnColumn = Alen(m.laFields, 1)
 		For lnRow = m.lnColumn To 1 Step -1
 			If Isnull(laFields(m.lnRow, 6)) Then
@@ -4589,59 +4610,18 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			loColumn.ColumnOrder = loSourceColumn.ColumnOrder+1
 		ENDIF &&m.llReplaceMode 
 		
-		*!*	Do While m.loColumn.ColumnOrder # m.loSourceColumn.ColumnOrder + 1
-		*!*		If m.loColumn.ColumnOrder < m.loSourceColumn.ColumnOrder
-		*!*			loColumn.ColumnOrder = m.loColumn.ColumnOrder + 1
-		*!*		Else
-		*!*			loColumn.ColumnOrder = m.loColumn.ColumnOrder - 1
-		*!*		Endif
-		*!*	Enddo
-		
 		loColumn		 = This.ogrid.FindColumn("Process")
 		loColumn.Visible = m.llReplaceMode&& and (Thisform.nReplaceMode # 3)
 		loColumn.Width	 = 50
 		
 		IF m.llReplaceMode THEN
 			loColumn.ColumnOrder = 1
+			This.oSearchEngine.MarkUnchangeableRows(This.oGrid.RecordSource)
+			Thisform.RefreshErrorButton()
 		ENDIF &&m.llReplaceMode 
-		*!*	Do While m.loColumn.ColumnOrder + 1 # m.loSourceColumn.ColumnOrder
-		*!*		If m.loColumn.ColumnOrder < m.loSourceColumn.ColumnOrder
-		*!*			loColumn.ColumnOrder = m.loColumn.ColumnOrder + 1
-		*!*		Else
-		*!*			loColumn.ColumnOrder = m.loColumn.ColumnOrder - 1
-		*!*		Endif
-		*!*	Enddo
 		
 		Thisform.oGrid.Refresh() && This is important to get the Grid to hide the above columns be next method call.
 		
-		* ================================================================================
-		* ================================================================================
-		
-		
-		*!* ******************** Removed 10/28/2015 *****************
-		*!* *-- In Replace Mode, we will show the Replace checkboc column to the left of the Match column,
-		*!* *-- and the Replace Line column to the right of it. Hide these 2 columns if we are not in Replace Mode
-		
-		*!* *-- Finf the Match Line Column ---
-		*!* loColumn = This.oGrid.FindColumn("TrimmedMatchline")
-		*!* lnOrder = loColumn.ColumnOrder
-		*!* lnWidth = loColumn.Width
-		
-		
-		*!* *-- Work on the the Replace Line column...
-		*!* loColumn = This.oGrid.FindColumn("TrimmedReplaceline")
-		*!* This.ShowGridColumn(llReplaceMode, loColumn, lnOrder + 1, lnWidth)
-		
-		*!* *-- Work on the Replace Checkbox column...
-		*!* loColumn = This.oGrid.FindColumn("Process")
-		*!* This.ShowGridColumn(llReplaceMode, loColumn, lnOrder, 50)
-		
-		*!* Thisform.oGrid.Refresh() && This is important to get the Grid to hide the above columns be next method call.
-		
-		*!* Thisform.oGrid.ArrangeColumns()
-		
-		
-		     
 	ENDPROC
 
 	PROCEDURE formatprocesscolumn
@@ -4654,7 +4634,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		*Thisform.nReplaceRisk = 99
 		
-		lcReplaceColumnDynamicCurrentControl = [ICase(replaced = .t., "imageCheck", (replacerisk <= Thisform.nReplaceRisk) and (Thisform.nReplaceMode # 3), "check1", "label1")]
+		lcReplaceColumnDynamicCurrentControl = [ICase(replaced = .t., "imageCheck", IsNull(trimmedreplaceline), "imageErrors", (replacerisk <= Thisform.nReplaceRisk) and (Thisform.nReplaceMode # 3), "check1", "label1")]
 		*SF 20221016 added colour options
 		*lcReplaceColumnDynamicBackgroundColor = "ICase(replacerisk = 2, RGB(255,255,128), replacerisk = 3 and Thisform.nReplaceRisk = 3, Rgb(255,192,0), Rgb(255,255,255))"
 		
@@ -5947,71 +5927,54 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		*-- tlForceLoadFromHome7 will force us to load from settings from Home(7) instead of the last search history folder.
 		
-		Local;
-			lcDockWindow          As String,;
-			lcFolder              As String,;
-			lcSettingsFile        As String,;
-			llDocked              As Boolean,;
-			llRestoreSizeAndPosition As Boolean,;
-			lnDockPosition        As Number,;
-			lnHeight              As Integer,;
-			lnLeft                As Integer,;
-			lnRow                 As Integer,;
-			lnScreenBottom        As Integer,;
-			lnScreenLeft          As Integer,;
-			lnScreenRight         As Integer,;
-			lnScreenTop           As Integer,;
-			lnTop                 As Integer,;
-			lnWidth               As Integer,;
-			lnX                   As Number,;
-			loControl             As Object,;
-			loMonitor             As Empty,;
-			loMy                  As "My" Of "My.vcx",;
-			loMyDefault           As "My" Of "My.vcx",;
-			loSettings            As Object,;
-			loSettingsDefault     As Object
 		
 		*** JRN 2024-03-05 : this because it might not be changed later ... see last line of code
+		Local loMy As "My" Of "My.vcx"
+		Local lcDockWindow, lcField, lcFolder, lcSettingsFile, llDocked, llRestoreSizeAndPosition
+		Local lnDockPosition, lnFormFontSize, lnHeight, lnLeft, lnReplaceMode, lnRow, lnScreenBottom
+		Local lnScreenLeft, lnScreenRight, lnScreenTop, lnTop, lnWidth, loControl, loMonitor, loMyDefault
+		Local loSettings, loSettingsDefault
+		
 		lnTop = Null
 		
 		*SF 20221017
 		*new settings
 		*first, check if we have the settings in oSearchOptions, then we must move them
-		If Pemstatus(This.oSearchOptions,"lMoveNewCodeToTopLeft",5) Then
+		If Pemstatus(This.oSearchOptions, "lMoveNewCodeToTopLeft", 5) Then
 			This.lMoveNewCodeToTopLeft          = This.oSearchOptions.lMoveNewCodeToTopLeft
 		
-			Removeproperty(This.oSearchOptions,"lMoveNewCodeToTopLeft")
+			Removeproperty(This.oSearchOptions, "lMoveNewCodeToTopLeft")
 		Endif &&PEMSTATUS(THIS.oSearchOptions,"lMoveNewCodeToTopLeft",5)
-		If Pemstatus(This.oSearchOptions,"nContainerFrameColour",5) Then
-			This.nContainerFrameColour          = This.oSearchOptions.nContainerFrameColour
-			This.nFileSCXDynamicForeColour      = This.oSearchOptions.nFileSCXDynamicForeColour
-			This.nFileVCXDynamicForeColour      = This.oSearchOptions.nFileVCXDynamicForeColour
-			This.nFilePRGDynamicForeColour      = This.oSearchOptions.nFilePRGDynamicForeColour
-			This.nFileDefaultDynamicForeColour  = This.oSearchOptions.nFileDefaultDynamicForeColour
-			This.nReplacedDynamicBackColour     = This.oSearchOptions.nReplacedDynamicBackColour
-			This.nRiskExceededDynamicBackColour = This.oSearchOptions.nRiskExceededDynamicBackColour
-			This.nRisk1DynamicBackColour        = This.oSearchOptions.nRisk1DynamicBackColour
-			This.nRisk2DynamicBackColour        = This.oSearchOptions.nRisk2DynamicBackColour
-			This.nRisk3DynamicBackColour        = This.oSearchOptions.nRisk3DynamicBackColour
-			This.nTreeSearchColour              = This.oSearchOptions.nTreeSearchColour
-			This.nTreeUpdateColour              = This.oSearchOptions.nTreeUpdateColour
-			This.nCSS_tr_even_Colour            = This.oSearchOptions.nCSS_tr_even_Colour
-			This.nCSS_tr_odd_Colour             = This.oSearchOptions.nCSS_tr_odd_Colour
+		If Pemstatus(This.oSearchOptions, "nContainerFrameColour", 5) Then
+			This.nContainerFrameColour			= This.oSearchOptions.nContainerFrameColour
+			This.nFileSCXDynamicForeColour		= This.oSearchOptions.nFileSCXDynamicForeColour
+			This.nFileVCXDynamicForeColour		= This.oSearchOptions.nFileVCXDynamicForeColour
+			This.nFilePRGDynamicForeColour		= This.oSearchOptions.nFilePRGDynamicForeColour
+			This.nFileDefaultDynamicForeColour	= This.oSearchOptions.nFileDefaultDynamicForeColour
+			This.nReplacedDynamicBackColour		= This.oSearchOptions.nReplacedDynamicBackColour
+			This.nRiskExceededDynamicBackColour	= This.oSearchOptions.nRiskExceededDynamicBackColour
+			This.nRisk1DynamicBackColour		= This.oSearchOptions.nRisk1DynamicBackColour
+			This.nRisk2DynamicBackColour		= This.oSearchOptions.nRisk2DynamicBackColour
+			This.nRisk3DynamicBackColour		= This.oSearchOptions.nRisk3DynamicBackColour
+			This.nTreeSearchColour				= This.oSearchOptions.nTreeSearchColour
+			This.nTreeUpdateColour				= This.oSearchOptions.nTreeUpdateColour
+			This.nCSS_Tr_Even_Colour			= This.oSearchOptions.nCSS_Tr_Even_Colour
+			This.nCSS_Tr_Odd_Colour				= This.oSearchOptions.nCSS_Tr_Odd_Colour
 		
-			Removeproperty(This.oSearchOptions,"nContainerFrameColour")
-			Removeproperty(This.oSearchOptions,"nFileSCXDynamicForeColour")
-			Removeproperty(This.oSearchOptions,"nFileVCXDynamicForeColour")
-			Removeproperty(This.oSearchOptions,"nFilePRGDynamicForeColour")
-			Removeproperty(This.oSearchOptions,"nFileDefaultDynamicForeColour")
-			Removeproperty(This.oSearchOptions,"nReplacedDynamicBackColour")
-			Removeproperty(This.oSearchOptions,"nRiskExceededDynamicBackColour")
-			Removeproperty(This.oSearchOptions,"nRisk1DynamicBackColour")
-			Removeproperty(This.oSearchOptions,"nRisk2DynamicBackColour")
-			Removeproperty(This.oSearchOptions,"nRisk3DynamicBackColour")
-			Removeproperty(This.oSearchOptions,"nTreeSearchColour")
-			Removeproperty(This.oSearchOptions,"nTreeUpdateColour")
-			Removeproperty(This.oSearchOptions,"nCSS_tr_even_Colour")
-			Removeproperty(This.oSearchOptions,"nCSS_tr_odd_Colour")
+			Removeproperty(This.oSearchOptions, "nContainerFrameColour")
+			Removeproperty(This.oSearchOptions, "nFileSCXDynamicForeColour")
+			Removeproperty(This.oSearchOptions, "nFileVCXDynamicForeColour")
+			Removeproperty(This.oSearchOptions, "nFilePRGDynamicForeColour")
+			Removeproperty(This.oSearchOptions, "nFileDefaultDynamicForeColour")
+			Removeproperty(This.oSearchOptions, "nReplacedDynamicBackColour")
+			Removeproperty(This.oSearchOptions, "nRiskExceededDynamicBackColour")
+			Removeproperty(This.oSearchOptions, "nRisk1DynamicBackColour")
+			Removeproperty(This.oSearchOptions, "nRisk2DynamicBackColour")
+			Removeproperty(This.oSearchOptions, "nRisk3DynamicBackColour")
+			Removeproperty(This.oSearchOptions, "nTreeSearchColour")
+			Removeproperty(This.oSearchOptions, "nTreeUpdateColour")
+			Removeproperty(This.oSearchOptions, "nCSS_tr_even_Colour")
+			Removeproperty(This.oSearchOptions, "nCSS_tr_odd_Colour")
 		Endif &&PEMSTATUS(THIS.oSearchOptions,"nContainerFrameColour",5)
 		*/ SF 20221017
 		
@@ -6022,13 +5985,13 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 		* SF 20221017
 		* Special local settings. Should only happen in gf_resultsform
-		If This.nFirstLoad=0 Then
+		If This.nFirstLoad = 0 Then
 			This.nFirstLoad = 1
 		
-		*common settings file
-		*we have the right file from LOAD anyway, but we must restore lCR_Allow from global setting
-		*do we load it twice
-		*	This.cUISettingsFile = This.cUISettingsFile
+			*common settings file
+			*we have the right file from LOAD anyway, but we must restore lCR_Allow from global setting
+			*do we load it twice
+			*	This.cUISettingsFile = This.cUISettingsFile
 			lcSettingsFile       = Addbs(Home(7) + "GoFish_") + This.cUISettingsFile
 		
 			If Not File(m.lcSettingsFile)
@@ -6036,30 +5999,28 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Return
 			Endif
 		
-			loMy       = Newobject("My", "My.vcx")
+			loMy	   = Newobject("My", "My.vcx")
 			loSettings = m.loMy.Settings
 		
-			loSettings.Load(m.lcSettingsFile)
-			
-			Local lnFormFontSize
+			m.loSettings.Load(m.lcSettingsFile)
 		
-			lnFormFontSize = GF_PropNvl(m.loSettings, 'nFormFontSize', 8, .T.)
+			lnFormFontSize = GF_PropNvl(m.loSettings, "nFormFontSize", 8, .T.)
 			GF_FixFontSize(This, This.FontSize, m.lnFormFontSize)
 			Thisform.CaptureResizingProperties()
 		
-			This.lCR_Local         = GF_PropNvl(m.loSettings, "lCR_Local"        ,This.lCR_Local        ,.T.)
-			This.lCR_Local_Default = GF_PropNvl(m.loSettings, "lCR_Local_Default",This.lCR_Local_Default,.T.)
+			This.lCR_Local		   = GF_PropNvl(m.loSettings, "lCR_Local", This.lCR_Local,.T.)
+			This.lCR_Local_Default = GF_PropNvl(m.loSettings, "lCR_Local_Default", This.lCR_Local_Default,.T.)
 		
-			If loSettings.Exists("lCR_Allow") And m.loSettings.lCR_Allow Then
-		*Search local settings, procedure because Go1Fish.prg needs this as well.
+			If m.loSettings.Exists("lCR_Allow") And m.loSettings.lCR_Allow Then
+				*Search local settings, procedure because Go1Fish.prg needs this as well.
 				This.lCR_Allow = m.loSettings.lCR_Allow
 		
-				GF_Get_LocalSettings(@loSettings,@lcSettingsFile)
+				GF_Get_LocalSettings(@m.loSettings,@m.lcSettingsFile)
 		
-				This.lCR_Allowed = m.loSettings.lCR_Allowed
-				If m.loSettings.lCR_Allowed Then
+				This.lCR_AllowEd = m.loSettings.lCR_AllowEd
+				If m.loSettings.lCR_AllowEd Then
 					This.nFirstLoad = 2
-		*			This.cUISettingsFile = m.lcSettingsFile
+					*			This.cUISettingsFile = m.lcSettingsFile
 					This.cCR_StoreLocal  = Addbs(Justpath(m.lcSettingsFile))
 				Endif &&loSettings.lCR_Allowed
 		
@@ -6074,15 +6035,15 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Return
 			Endif
 		
-			loMy       = Newobject("My", "My.vcx")
+			loMy	   = Newobject("My", "My.vcx")
 			loSettings = m.loMy.Settings
 		
-			loSettings.Load(m.lcSettingsFile)
+			m.loSettings.Load(m.lcSettingsFile)
 		
 		Endif &&This.nFirstLoad=0
 		
 		*we keep a copy of the real settings, so we restore not all from previous search, if we use that
-		loMyDefault       = m.loMy
+		loMyDefault		  = m.loMy
 		loSettingsDefault = m.loSettings
 		
 		This.lRestorePreviousSearchResultsOnStartup	= GF_PropNvl(m.loSettingsDefault, "lRestorePreviousSearchResultsOnStartup ", This.lRestorePreviousSearchResultsOnStartup, .T.)
@@ -6093,70 +6054,70 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 			lcSettingsFile = m.lcFolder + This.cUISettingsFile
 			If File(m.lcSettingsFile)
-				loMy       = Newobject("My", "My.vcx")
+				loMy	   = Newobject("My", "My.vcx")
 				loSettings = m.loMy.Settings
 		
-				loSettings.Load(m.lcSettingsFile)
+				m.loSettings.Load(m.lcSettingsFile)
 			Endif
 		Endif
 		
 		If m.llRestoreSizeAndPosition
-		*-- Restore Docking settings (Code provided by Jim Nelson) -----------------
-		*-- Important note: Dock settings MUST be restored before Lett and Top are restored in next step
+			*-- Restore Docking settings (Code provided by Jim Nelson) -----------------
+			*-- Important note: Dock settings MUST be restored before Lett and Top are restored in next step
 			Try
-					This.Dockable  = m.loSettingsDefault.nDockable
-					llDocked       = m.loSettings.lDocked
-					lnDockPosition = m.loSettings.nDockPosition
-					If This.Dockable = 1 And m.llDocked
-						lcDockWindow = m.loSettings.cDockWindow
-						Do Case
-							Case Not Empty (m.lcDockWindow)
-								Try
-										Dock Name Thisform Position 4 Window &lcDockWindow
-									Catch
+				This.Dockable  = m.loSettingsDefault.nDockable
+				llDocked	   = m.loSettings.lDocked
+				lnDockPosition = m.loSettings.nDockPosition
+				If This.Dockable = 1 And m.llDocked
+					lcDockWindow = m.loSettings.cDockWindow
+					Do Case
+						Case Not Empty (m.lcDockWindow)
+							Try
+								Dock Name Thisform Position 4 Window &lcDockWindow
+							Catch
 		
-								Endtry
-							Case  Between (m.lnDockPosition, 0, 3)
-								This.Dock (m.lnDockPosition)
-						Endcase
-					Endif
-				Catch
+							Endtry
+						Case  Between (m.lnDockPosition, 0, 3)
+							This.Dock (m.lnDockPosition)
+					Endcase
+				Endif
+			Catch
 			Endtry
 		
-		*-- Resize form size and position--------------------
-			If loSettings.Exists("FormTop")
+			*-- Resize form size and position--------------------
+			If m.loSettings.Exists("FormTop")
 				With m.loSettings
-					lnTop    = 0
+					lnTop	 = 0
 					lnHeight = This.Height
-					lnLeft   = 0
-					lnWidth  = This.Width
+					lnLeft	 = 0
+					lnWidth	 = This.Width
 		
-					lnScreenTop    = 0
+					lnScreenTop	   = 0
 					lnScreenBottom = _Screen.Height
 					lnScreenLeft   = 0
 					lnScreenRight  = _Screen.Width
 		
-					If This.Desktop Or This.Dockable=1 Then
+					If This.Desktop Or This.Dockable = 1 Then
 						loMonitor = GF_GetMonitorStatistics()
 		
 						lnTop  = _Screen.Top
 						lnLeft = _Screen.Left
 		
-						lnScreenTop    = m.loMonitor.gnVirtualTop
+						lnScreenTop	   = m.loMonitor.gnVirtualTop
 						lnScreenBottom = m.loMonitor.gnVirtualBottom
 						lnScreenLeft   = m.loMonitor.gnVirtualLeft
 						lnScreenRight  = m.loMonitor.gnVirtualRight
 		
 					Endif &&This.Desktop Or This.Dockable=1
 		
-					If Between(.FormTop , m.lnScreenTop, m.lnScreenBottom) Then
-						lnTop    = .FormTop
+					If Between(.FormTop, m.lnScreenTop, m.lnScreenBottom) Then
+						lnTop	 = .FormTop
 						lnHeight = .FormHeight
 					Endif &&Between(.FormTop , m.lnScreenTop, m.lnScreenBottom)
 		
 					If Between(.FormLeft, m.lnScreenLeft, m.lnScreenRight) Then
-						lnLeft  = .FormLeft
-						lnWidth = .FormWidth
+						lnLeft	= .FormLeft
+						lnWidth	= .FormWidth
 					Endif &&Between(.FormLeft, m.lnScreenLeft, m.lnScreenRight)
 		
 					*!* ** { JRN -- 03/02/2024 05:54:53 PM - Begin
@@ -6167,16 +6128,16 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 					*!* ** } JRN -- 03/02/2024 05:54:53 PM - End
 		
 					Try
-							This.Containerright.Splitter1.MoveSplitterToPosition(.Splitter1Position)
-						Catch
+						This.Containerright.Splitter1.MoveSplitterToPosition(.Splitter1Position)
+					Catch
 					Endtry
 					Try
-							This.Containerright.Splitter3.MoveSplitterToPosition(.Splitter3Position)
-						Catch
+						This.Containerright.Splitter3.MoveSplitterToPosition(.Splitter3Position)
+					Catch
 					Endtry
 					Try
-							This.splitter2.MoveSplitterToPosition(.Splitter2Position)
-						Catch
+						This.splitter2.MoveSplitterToPosition(.Splitter2Position)
+					Catch
 					Endtry
 					This.Top = m.lnTop && Do this one last to finally bring the form into view.
 				Endwith
@@ -6187,158 +6148,160 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		Endif
 		
 		With Thisform
-			.nBrowserFontSize   = GF_PropNvl(m.loSettingsDefault, "nBrowserFontSize", 14, .T.)
-			.nSearchBoxFontSize = GF_PropNvl(m.loSettings, "nSearchBoxFontSize", Thisform.editSearch.FontSize, .T.)
-			.nGridFontSize      = GF_PropNvl(m.loSettingsDefault, "nGridFontSize", Thisform.oGrid.FontSize, .T.)
-			.nTreeViewFontSize  = GF_PropNvl(m.loSettingsDefault, "nTreeViewFontSize", Thisform.oGrid.FontSize, .T.)
+			.nBrowserFontSize	   = GF_PropNvl(m.loSettingsDefault, "nBrowserFontSize", 14, .T.)
+			.nSearchBoxFontSize	   = GF_PropNvl(m.loSettings, "nSearchBoxFontSize", Thisform.editSearch.FontSize, .T.)
+			.nGridFontSize		   = GF_PropNvl(m.loSettingsDefault, "nGridFontSize", Thisform.oGrid.FontSize, .T.)
+			.nTreeViewFontSize	   = GF_PropNvl(m.loSettingsDefault, "nTreeViewFontSize", Thisform.oGrid.FontSize, .T.)
 			.nSplitter3MaxPosition = GF_PropNvl(m.loSettingsDefault, "Splitter3MaxPosition", 100000, .T.)
 		
-			Local lnReplaceMode
-			lnReplaceMode = GF_PropNvl(m.loSettings, 'nReplaceMode', 1)
+			lnReplaceMode = GF_PropNvl(m.loSettings, "nReplaceMode", 1)
 			If .nReplaceMode # m.lnReplaceMode
 				.nReplaceMode = m.lnReplaceMode
 			Endif
-			
+		
 		Endwith
 		
 		*-- Load other Form properties from My Settings ------------------------------------
 		With Thisform
-		*.lIncludeSubDirectoriesCurrent = GF_PropNvl(loSettings, "lIncludeSubDirectoriesCurrent", .t.)
-		*.lIncludeSubDirectoriesBrowsed = GF_PropNvl(loSettings, "lIncludeSubDirectoriesBrowsed", .t.)
-			.lApplyFilter      = GF_PropNvl(m.loSettings, "lApplyFilter", .F., .T.)		&&controlsource
+			*.lIncludeSubDirectoriesCurrent = GF_PropNvl(loSettings, "lIncludeSubDirectoriesCurrent", .t.)
+			*.lIncludeSubDirectoriesBrowsed = GF_PropNvl(loSettings, "lIncludeSubDirectoriesBrowsed", .t.)
+			.lApplyFilter	   = GF_PropNvl(m.loSettings, "lApplyFilter", .F., .T.)		&&controlsource
 			.lClearApplyFilter = GF_PropNvl(m.loSettingsDefault, "lClearApplyFilter", .T., .T.)
-			.cFilter           = GF_PropNvl(m.loSettings, "cFilter", "", .T.)
+			.cFilter		   = GF_PropNvl(m.loSettings, "cFilter", "", .T.)
 		
-		*.cSortFields = GF_PropNvl(loSettings, "cSortFields", "") && This one has been deprecated. See cSortField.
+			*.cSortFields = GF_PropNvl(loSettings, "cSortFields", "") && This one has been deprecated. See cSortField.
 			If Pemstatus(m.loSettings, "cSortFields", 5)
 				.cSortField = Getwordnum(m.loSettings.cSortFields, 1, ",")
 			Else
 				.cSortField = GF_PropNvl(m.loSettings, "cSortField")
 			Endif
 		
-			.cSortOrder          = GF_PropNvl(m.loSettings, "cSortOrder", "")
+			.cSortOrder			 = GF_PropNvl(m.loSettings, "cSortOrder", "")
 			.cSortFieldSecondary = GF_PropNvl(m.loSettings, "cSortFieldSecondary", "")
 			.cSortOrderSecondary = GF_PropNvl(m.loSettings, "cSortOrderSecondary", "")
-			.cSortFieldTertiary  = GF_PropNvl(m.loSettings, "cSortFieldTertiary", "")
-			.cSortOrderTertiary  = GF_PropNvl(m.loSettings, "cSortOrderSecondary", "")
+			.cSortFieldTertiary	 = GF_PropNvl(m.loSettings, "cSortFieldTertiary", "")
+			.cSortOrderTertiary	 = GF_PropNvl(m.loSettings, "cSortOrderSecondary", "")
 		
-			.cCustomScopeUDFFileName = GF_PropNvl(m.loSettings, "cCustomScopeUDFFileName", "")
+			.cCustomScopeUDFFileName   = GF_PropNvl(m.loSettings, "cCustomScopeUDFFileName", "")
 			.cSearchOptionsUDFFileName = GF_PropNvl(m.loSettings, "cSearchOptionsUDFFileName", "")
 		
-			.nReplaceRisk        = Evl(GF_PropNvl(m.loSettingsDefault, "nReplaceRisk", 1), 1)
+			.nReplaceRisk		 = Evl(GF_PropNvl(m.loSettingsDefault, "nReplaceRisk", 1), 1)
 			.cReplaceUDFFilename = GF_PropNvl(m.loSettings, "cReplaceUdfFilename", "")
 		
-			.nDropDownDisplayCount = GF_PropNvl(m.loSettingsDefault, "nDropDownDisplayCount", 20, .T.)
-			.nDropDownMaxMRU       = GF_PropNvl(m.loSettingsDefault, "nDropDownMaxMRU", 7, .T.)
-			.nFormFontSize         = GF_PropNvl(m.loSettingsDefault, "nFormFontSize", 8, .T.)
-			.nContextMenuFontSize  = GF_PropNvl(m.loSettingsDefault, "nContextMenuFontSize", .nFormFontSize + 2, .T.)
+			.nDropDownDisplayCount		   = GF_PropNvl(m.loSettingsDefault, "nDropDownDisplayCount", 20, .T.)
+			.nDropDownMaxMRU			   = GF_PropNvl(m.loSettingsDefault, "nDropDownMaxMRU", 7, .T.)
+			.nFormFontSize				   = GF_PropNvl(m.loSettingsDefault, "nFormFontSize", 8, .T.)
+			.nContextMenuFontSize		   = GF_PropNvl(m.loSettingsDefault, "nContextMenuFontSize", .nFormFontSize + 2, .T.)
 			.lUseSystemContextMenuFontsize = GF_PropNvl(m.loSettingsDefault, "lUseSystemContextMenuFontsize", .T., .T.)
-					
-			.lWarnWholeWord     = GF_PropNvl(m.loSettingsDefault, "lWarnWholeWord", .F., .T.)
-			.lSaveSearchResults = GF_PropNvl(m.loSettingsDefault, "lSaveSearchResults", .T., .T.)
-			.lCodeOnly          = GF_PropNvl(m.loSettings, "lCodeOnly", .F., .T.)
-			.lCommentsOnly      = GF_PropNvl(m.loSettings, 'lCommentsOnly', .F., .T.)
-			
+		
+			.lWarnWholeWord		= GF_PropNvl(m.loSettingsDefault, "lWarnWholeWord", .F., .T.)
+			.lSaveSearchResults	= GF_PropNvl(m.loSettingsDefault, "lSaveSearchResults", .T., .T.)
+			.lCodeOnly			= GF_PropNvl(m.loSettings, "lCodeOnly", .F., .T.)
+			.lCommentsOnly		= GF_PropNvl(m.loSettings, "lCommentsOnly", .F., .T.)
+		
 			.nPreviousSessionTreeviewindex = GF_PropNvl(m.loSettings, "nSelectedTreeviewNode", 1, .T.)
-			.lOnlyFirstMatchInStatement    = GF_PropNvl(m.loSettings, "lOnlyFirstMatchInStatement", .F., .T.)
-			
-			.lShowRelativePath			   = GF_PropNvl(m.loSettings,'lShowRelativePath', .F., .T.)
-			.lSortScopeDropdown			   = GF_PropNvl(m.loSettings,'lSortScopeDropdown', .F., .T.)
-			.lCodeViewSingleLine	       = GF_PropNvl(m.loSettings,'lCodeViewSingleLine', .F., .T.)
-			.lSelectControl	     	       = GF_PropNvl(m.loSettings,'lSelectControl', .T., .T.)
-			
-			.lIDEColorsInCodeView		   = GF_PropNvl(m.loSettings,'lIDEColorsInCodeView', .T., .T.)
-			.lDarkModeInCodeView		   = GF_PropNvl(m.loSettings,'lDarkModeInCodeView', .F., .T.)
-			.nCodeViewLinesBefore		   = GF_PropNvl(m.loSettings,'nCodeViewLinesBefore', 1000, .T.)
-			.lOldSearchHistoryStructure	   = GF_PropNvl(m.loSettings,'lOldSearchHistoryStructure', .F., .T.)
+			.lOnlyFirstMatchInStatement	   = GF_PropNvl(m.loSettings, "lOnlyFirstMatchInStatement", .F., .T.)
+		
+			.lShowRelativePath	 = GF_PropNvl(m.loSettings, "lShowRelativePath", .F., .T.)
+			.lSortScopeDropdown	 = GF_PropNvl(m.loSettings, "lSortScopeDropdown", .F., .T.)
+			.lCodeViewSingleLine = GF_PropNvl(m.loSettings, "lCodeViewSingleLine", .F., .T.)
+			.lSelectControl		 = GF_PropNvl(m.loSettings, "lSelectControl", .T., .T.)
+		
+			.lIDEColorsInCodeView		= GF_PropNvl(m.loSettings, "lIDEColorsInCodeView", .T., .T.)
+			.lDarkModeInCodeView		= GF_PropNvl(m.loSettings, "lDarkModeInCodeView", .F., .T.)
+			.nCodeViewLinesBefore		= GF_PropNvl(m.loSettings, "nCodeViewLinesBefore", 1000, .T.)
+			.lOldSearchHistoryStructure	= GF_PropNvl(m.loSettings, "lOldSearchHistoryStructure", .F., .T.)
 		
 			.nCodeWindowPosition = 	GF_PropNvl(m.loSettings, "CodeWindowPosition", 1, .T.)
 		
-			.nJanitorRunDays  			= GF_PropNvl(m.loSettingsDefault, "nJanitorRunDays", 7, .T.)
-			.nJanitorSearchHistoryDays  = GF_PropNvl(m.loSettingsDefault, "nJanitorSearchHistoryDays", 10000, .T.)
-			.nJanitorReplaceHistoryDays = GF_PropNvl(m.loSettingsDefault, "nJanitorReplaceHistoryDays", 10000, .T.)
-			.lRunJanitorDaily           = GF_PropNvl(m.loSettingsDefault, "lRunJanitorDaily", .F., .T.)
-			.nTabsToSpaces              = GF_PropNvl(m.loSettingsDefault, "nTabsToSpaces", 0, .T.)
+			.nJanitorRunDays			= GF_PropNvl(m.loSettingsDefault, "nJanitorRunDays", 7, .T.)
+			.nJanitorSearchHistoryDays	= GF_PropNvl(m.loSettingsDefault, "nJanitorSearchHistoryDays", 10000, .T.)
+			.nJanitorReplaceHistoryDays	= GF_PropNvl(m.loSettingsDefault, "nJanitorReplaceHistoryDays", 10000, .T.)
+			.lRunJanitorDaily			= GF_PropNvl(m.loSettingsDefault, "lRunJanitorDaily", .F., .T.)
+			.nTabsToSpaces				= GF_PropNvl(m.loSettingsDefault, "nTabsToSpaces", 0, .T.)
 		
-		* Dates are stored as datetime!
+			* Dates are stored as datetime!
 			.dLastJanitorRunDate		= Ttod(GF_PropNvl(m.loSettingsDefault, "dLastJanitorRunDate", Dtot(Date() - 1), .T.))
 		
-		*SF 20221017
-		*new settings
-		* loSettingsDefault is the same as loSettings, if no previous search is loaded
-			.nContainerFrameColour          = GF_PropNvl(m.loSettingsDefault, "nContainerFrameColour"         ,.nContainerFrameColour         ,.T.)
-			.nFileSCXDynamicForeColour      = GF_PropNvl(m.loSettingsDefault, "nFileSCXDynamicForeColour"     ,.nFileSCXDynamicForeColour     ,.T.)
-			.nFileVCXDynamicForeColour      = GF_PropNvl(m.loSettingsDefault, "nFileVCXDynamicForeColour"     ,.nFileVCXDynamicForeColour     ,.T.)
-			.nFilePRGDynamicForeColour      = GF_PropNvl(m.loSettingsDefault, "nFilePRGDynamicForeColour"     ,.nFilePRGDynamicForeColour     ,.T.)
-			.nFileDefaultDynamicForeColour  = GF_PropNvl(m.loSettingsDefault, "nFileDefaultDynamicForeColour" ,.nFileDefaultDynamicForeColour ,.T.)
-			.nReplacedDynamicBackColour     = GF_PropNvl(m.loSettingsDefault, "nReplacedDynamicBackColour"    ,.nReplacedDynamicBackColour    ,.T.)
-			.nRiskExceededDynamicBackColour = GF_PropNvl(m.loSettingsDefault, "nRiskExceededDynamicBackColour",.nRiskExceededDynamicBackColour,.T.)
-			.nRisk1DynamicBackColour        = GF_PropNvl(m.loSettingsDefault, "nRisk1DynamicBackColour"       ,.nRisk1DynamicBackColour       ,.T.)
-			.nRisk2DynamicBackColour        = GF_PropNvl(m.loSettingsDefault, "nRisk2DynamicBackColour"       ,.nRisk2DynamicBackColour       ,.T.)
-			.nRisk3DynamicBackColour        = GF_PropNvl(m.loSettingsDefault, "nRisk3DynamicBackColour"       ,.nRisk3DynamicBackColour       ,.T.)
-			.nTreeSearchColour              = GF_PropNvl(m.loSettingsDefault, "nTreeSearchColour"             ,.nTreeSearchColour             ,.T.)
-			.nTreeUpdateColour              = GF_PropNvl(m.loSettingsDefault, "nTreeUpdateColour"             ,.nTreeUpdateColour             ,.T.)
-			.nCSS_tr_even_Colour            = GF_PropNvl(m.loSettingsDefault, "nCSS_tr_even_Colour"           ,.nCSS_tr_even_Colour           ,.T.)
-			.nCSS_tr_odd_Colour             = GF_PropNvl(m.loSettingsDefault, "nCSS_tr_odd_Colour"            ,.nCSS_tr_odd_Colour            ,.T.)
-			.lMoveNewCodeToTopLeft          = GF_PropNvl(m.loSettingsDefault, "lMoveNewCodeToTopLeft"         ,.lMoveNewCodeToTopLeft         ,.T.)
-		*/SF 20221017
+			*SF 20221017
+			*new settings
+			* loSettingsDefault is the same as loSettings, if no previous search is loaded
+			.nContainerFrameColour			= GF_PropNvl(m.loSettingsDefault, "nContainerFrameColour",.nContainerFrameColour,.T.)
+			.nFileSCXDynamicForeColour		= GF_PropNvl(m.loSettingsDefault, "nFileSCXDynamicForeColour",.nFileSCXDynamicForeColour,.T.)
+			.nFileVCXDynamicForeColour		= GF_PropNvl(m.loSettingsDefault, "nFileVCXDynamicForeColour",.nFileVCXDynamicForeColour,.T.)
+			.nFilePRGDynamicForeColour		= GF_PropNvl(m.loSettingsDefault, "nFilePRGDynamicForeColour",.nFilePRGDynamicForeColour,.T.)
+			.nFileDefaultDynamicForeColour	= GF_PropNvl(m.loSettingsDefault, "nFileDefaultDynamicForeColour",.nFileDefaultDynamicForeColour,.T.)
+			.nReplacedDynamicBackColour		= GF_PropNvl(m.loSettingsDefault, "nReplacedDynamicBackColour",.nReplacedDynamicBackColour,.T.)
+			.nRiskExceededDynamicBackColour	= GF_PropNvl(m.loSettingsDefault, "nRiskExceededDynamicBackColour",.nRiskExceededDynamicBackColour,.T.)
+			.nRisk1DynamicBackColour		= GF_PropNvl(m.loSettingsDefault, "nRisk1DynamicBackColour",.nRisk1DynamicBackColour,.T.)
+			.nRisk2DynamicBackColour		= GF_PropNvl(m.loSettingsDefault, "nRisk2DynamicBackColour",.nRisk2DynamicBackColour,.T.)
+			.nRisk3DynamicBackColour		= GF_PropNvl(m.loSettingsDefault, "nRisk3DynamicBackColour",.nRisk3DynamicBackColour,.T.)
+			.nTreeSearchColour				= GF_PropNvl(m.loSettingsDefault, "nTreeSearchColour",.nTreeSearchColour,.T.)
+			.nTreeUpdateColour				= GF_PropNvl(m.loSettingsDefault, "nTreeUpdateColour",.nTreeUpdateColour,.T.)
+			.nCSS_Tr_Even_Colour			= GF_PropNvl(m.loSettingsDefault, "nCSS_tr_even_Colour",.nCSS_Tr_Even_Colour,.T.)
+			.nCSS_Tr_Odd_Colour				= GF_PropNvl(m.loSettingsDefault, "nCSS_tr_odd_Colour",.nCSS_Tr_Odd_Colour,.T.)
+			.lMoveNewCodeToTopLeft			= GF_PropNvl(m.loSettingsDefault, "lMoveNewCodeToTopLeft",.lMoveNewCodeToTopLeft,.T.)
+			*/SF 20221017
 		
-		*SF 20221019 5.2.000
-			.lCR_OpenMode            = GF_PropNvl(m.loSettingsDefault, "lCR_OpenMode"           ,.lCR_OpenMode           ,.T.)
-			.lCR_HistoryPerScope     = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryPerScope"    ,.lCR_HistoryPerScope    ,.T.)
+			*SF 20221019 5.2.000
+			.lCR_OpenMode			 = GF_PropNvl(m.loSettingsDefault, "lCR_OpenMode",.lCR_OpenMode,.T.)
+			.lCR_HistoryPerScope	 = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryPerScope",.lCR_HistoryPerScope,.T.)
 			.lCR_SearchComboPerScope = GF_PropNvl(m.loSettingsDefault, "lCR_SearchComboPerScope",.lCR_SearchComboPerScope,.T.)
-			.lCR_HistoryTree         = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryTree"        ,.lCR_HistoryTree        ,.T.)
-			.lCR_HistoryTreeAuto     = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryTreeAuto"    ,.lCR_HistoryTreeAuto    ,.T.)
-			.lCR_SimpleTree          = GF_PropNvl(m.loSettingsDefault, "lCR_SimpleTree"         ,.lCR_SimpleTree         ,.T.)
-			.lCR_SortTreeByExt       = GF_PropNvl(m.loSettingsDefault, "lCR_SortTreeByExt"      ,.lCR_SortTreeByExt      ,.T.)
-			.lCR_SortTreeAlpha       = GF_PropNvl(m.loSettingsDefault, "lCR_SortTreeAlpha"      ,.lCR_SortTreeAlpha      ,.T.)
+			.lCR_HistoryTree		 = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryTree",.lCR_HistoryTree,.T.)
+			.lCR_HistoryTreeAuto	 = GF_PropNvl(m.loSettingsDefault, "lCR_HistoryTreeAuto",.lCR_HistoryTreeAuto,.T.)
+			.lCR_SimpleTree			 = GF_PropNvl(m.loSettingsDefault, "lCR_SimpleTree",.lCR_SimpleTree,.T.)
+			.lCR_SortTreeByExt		 = GF_PropNvl(m.loSettingsDefault, "lCR_SortTreeByExt",.lCR_SortTreeByExt,.T.)
+			.lCR_SortTreeAlpha		 = GF_PropNvl(m.loSettingsDefault, "lCR_SortTreeAlpha",.lCR_SortTreeAlpha,.T.)
 		
-		*/SF 20221019 5.2.000
+			*/SF 20221019 5.2.000
 		
-		*SF 20221020 5.2.000
-			.lOtherHistory           = GF_PropNvl(m.loSettingsDefault, "lOtherHistory"          ,.lOtherHistory          ,.T.)
+			*SF 20221020 5.2.000
+			.lOtherHistory           = GF_PropNvl(m.loSettingsDefault, "lOtherHistory",.lOtherHistory,.T.)
 		
-		*/SF 20221020 5.2.000
+			*/SF 20221020 5.2.000
 		
-		*SF 20230211 6.0.000
-			.lReplacePreview         = GF_PropNvl(m.loSettingsDefault, "lReplacePreview"        ,.lReplacePreview        ,.T.)
+			*SF 20230211 6.0.000
+			.lReplacePreview         = GF_PropNvl(m.loSettingsDefault, "lReplacePreview",.lReplacePreview,.T.)
 		
-		*/SF 20230211 6.0.000
-			.nOptionsStartPage       = GF_PropNvl(m.loSettingsDefault, "nOptionsStartPage"        ,.nOptionsStartPage      ,.T.)
+			*/SF 20230211 6.0.000
+			.nOptionsStartPage       = GF_PropNvl(m.loSettingsDefault, "nOptionsStartPage",.nOptionsStartPage,.T.)
 		
 		Endwith
 		
 		*-- These fields were removed in version 4.3.015 and 4.3.041, so if they are used in the SortOrder, we have to reset it
 		If Inlist(Lower(Thisform.cSortFields), "objectclass", "objectbaseclass", "objectname", "containingclassbaseclass")
 			Thisform.cSortFields = ""
-			Thisform.cSortOrder  = ""
+			Thisform.cSortOrder	 = ""
 		Endif
 		
-		This.oGrid.FontSize  = Thisform.nGridFontSize
+		This.oGrid.FontSize	 = Thisform.nGridFontSize
 		This.oTree.Font.Size = Thisform.nTreeViewFontSize
 		
 		This.comboSearchExpressionHistory.DisplayCount = Thisform.nDropDownDisplayCount
-		This.comboSearchExpressionHistory.nMaxMRU      = This.nDropDownMaxMRU
+		This.comboSearchExpressionHistory.nMaxMRU	   = This.nDropDownMaxMRU
 		This.comboSearchExpressionHistory.LoadRows()
 		
 		This.comboSearchScopeHistory.DisplayCount = Thisform.nDropDownDisplayCount
-		This.comboSearchScopeHistory.nMaxMRU      = This.nDropDownMaxMRU
+		This.comboSearchScopeHistory.nMaxMRU	  = This.nDropDownMaxMRU
 		This.comboSearchScopeHistory.LoadRows()
 		
 		*--- Restore Width, ColumnOrder, and Visible state to Grid columns ----------------
 		*lnX = 1
 		
 		For Each m.loControl In Thisform.oGrid.Columns
-			loControl.Width       = GF_PropNvl(m.loSettings, Evl(m.loControl.Header1.Tag,m.loControl.Name) + "_width",   m.loControl.gnWidth, .T.)
-			loControl.ColumnOrder = GF_PropNvl(m.loSettings, Evl(m.loControl.Header1.Tag,m.loControl.Name) + "_order",   m.loControl.ColumnOrder, .T.)
-			loControl.Visible     = GF_PropNvl(m.loSettings, Evl(m.loControl.Header1.Tag,m.loControl.Name) + "_visible", m.loControl.Visible, .T.)
-			lnRow                 = Ascan(This.gaFields, Proper(Getwordnum(m.loControl.ControlSource, 2, ".")), -1, -1, 1, 15)
-			If !Empty(m.lnRow) Then
-				This.gaFields(m.lnRow,6) = m.loControl.Visible
+			lcField				  = m.loControl.Header1.Tag
+			loControl.Width		  = GF_PropNvl(m.loSettings, Evl(m.lcField, m.loControl.Name) + "_width",   m.loControl.gnWidth, .T.)
+			loControl.ColumnOrder = GF_PropNvl(m.loSettings, Evl(m.lcField, m.loControl.Name) + "_order",   m.loControl.ColumnOrder, .T.)
+			loControl.Visible	  = GF_PropNvl(m.loSettings, Evl(m.lcField, m.loControl.Name) + "_visible", m.loControl.Visible, .T.)
+			lnRow				  = Ascan(This.gaFields, Proper(Getwordnum(m.loControl.ControlSource, 2, ".")), -1, -1, 1, 15)
+			If Not Empty(m.lnRow) Then
+				This.gaFields(m.lnRow, 6) = m.loControl.Visible
 			Endif &&!Empty(m.lnRow)
 		
-		*loControl.Header1.FontBold = GF_PropNvl(loSettings, loControl.name + "_BoldHeader", .f., .t.)
-		*	lnX = m.lnX + 1
+			loControl.Name = "Col" + Right("0" + Transform(m.loControl.ColumnOrder), 2) + "_" + m.lcField
+		
+			*loControl.Header1.FontBold = GF_PropNvl(loSettings, loControl.name + "_BoldHeader", .f., .t.)
+			*	lnX = m.lnX + 1
 		Endfor
 		
 		
@@ -6349,9 +6312,9 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*SF 20221015
 		* --- colours used for showing informations ---
 		* should be set in settings dialog
-		This.ButtonContainer.Container1.BorderColor = Thisform.nContainerFrameColour
-		This.ButtonContainer.Container2.BorderColor = Thisform.nContainerFrameColour
-		This.ButtonContainer.Container3.BorderColor = Thisform.nContainerFrameColour
+		This.ButtonContainer.Container1.BorderColor	= Thisform.nContainerFrameColour
+		This.ButtonContainer.Container2.BorderColor	= Thisform.nContainerFrameColour
+		This.ButtonContainer.Container3.BorderColor	= Thisform.nContainerFrameColour
 		
 		This.Containerright.Container1.Container1.BorderColor = Thisform.nContainerFrameColour
 		This.Containerright.Container1.Container2.BorderColor = Thisform.nContainerFrameColour
@@ -6368,7 +6331,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		*!* This.ButtonContainer.cmdSave.Visible = !This.ButtonContainer.cmdHistory.Visible And !Thisform.lSaveSearchResults
 		
 		If m.tcForceRebuild Then
-		*all stuff stored cleared, fresh interface
+			*all stuff stored cleared, fresh interface
 			If Thisform.lRestorePreviousSearchResultsOnStartup
 				If Thisform.lCR_Allow And Thisform.lCR_HistoryTree Then
 					Thisform.PopulateTreeFromHistory()
@@ -6379,7 +6342,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Endif &&Thisform.lCR_Allow And Thisform.lCR_HistoryTree
 			Else &&Thisform.lRestorePreviousSearchResultsOnStartup
 				If Thisform.lCR_Allow And Thisform.lCR_HistoryTree Then
-					Thisform.PopulateTreeview(,"Results")
+					Thisform.PopulateTreeview(, "Results")
 		
 				Else  &&Thisform.lCR_Allow And Thisform.lCR_HistoryTree
 					Thisform.PopulateTreeview()
@@ -6387,7 +6350,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 				Endif &&Thisform.lCR_Allow And Thisform.lCR_HistoryTree
 			Endif &&Thisform.lRestorePreviousSearchResultsOnStartup
 		Else  &&m.tcForceRebuild
-			If This.lCR_RefreshTree And Used(Thisform.cSearchResultsAlias) And !Eof(Thisform.cSearchResultsAlias) Then
+			If This.lCR_RefreshTree And Used(Thisform.cSearchResultsAlias) And Not Eof(Thisform.cSearchResultsAlias) Then
 				If Thisform.lCR_HistoryTree Then
 					Thisform.PopulateTreeFromHistory()
 		
@@ -8173,6 +8136,10 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		This.RefreshImages()
 	ENDPROC
 
+	PROCEDURE refresherrorbutton
+		Thisform.containerRight.Container1.containerReplaceText.cmdReplaceErrors.Refresh()
+	ENDPROC
+
 	PROCEDURE refreshimages
 		This.imgFolder_Pick.Visible	= Thisform.oSearchOptions.nSearchScope = 4
 		This.imgProj_Pick.Visible	= Thisform.oSearchOptions.nSearchScope = 2
@@ -8332,7 +8299,7 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 		
 			llReturn = .t. 
 		Else	
-			Thisform.containerRight.Container1.containerReplaceText.cmdReplaceErrors.Refresh() && To make sure the icon is visible before we show dialog box
+			Thisform.RefreshErrorButton() && To make sure the icon is visible before we show dialog box
 			MessageBox("Error performing Replace. View Error list for more details.", 0, "Error:")
 			llReturn = .f.
 		Endif
@@ -9677,6 +9644,8 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			lcFormatGridPrg = Addbs(_Screen._GoFish.cAppPath) + m.lcFormatGridPrg && Look for it in the GoFish folder.
 		Endif
 		
+		loColumn = Thisform.oGrid.FindColumn('TrimmedReplaceLine')
+		
 		If File (m.lcFormatGridPrg) && Call user file to assign colors, if present, otherwise use default
 			Do (m.lcFormatGridPrg) With Thisform.oGrid, m.lcResultsCursor
 		Else
@@ -9708,7 +9677,6 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			*/ SF 20221016 added colour options
 		
 			*SF 20221029 fix column restore
-			loColumn = Thisform.oGrid.FindColumn('TrimmedReplaceLine')
 			*lcDynamicBackColor = "ICase(replaced, RGB(149,249,147), replacerisk > Thisform.nReplaceRisk, Rgb(210,210,210), Rgb(255,255,255))"
 			If Vartype(m.loColumn) = 'O' Then
 				lcDynamicBackColor = 'ICase(' +															;
@@ -9720,6 +9688,11 @@ DEFINE CLASS gf_resultsform AS gf_baseform OF "gofishui.vcx"
 			Endif &&Vartype(m.loColumn) = "O"
 			*SF 20221029 fix column restore
 		Endif
+		
+		lcDynamicForeColor =loColumn.DynamicForeColor 
+		loColumn.DynamicForeColor = 'IIF(Isnull(csrsummarysearchresults.TrimmedReplaceLine), ' + Transform(Thisform.nContainerFrameColour) + ', 0)'
+		
+		
 		
 	ENDPROC
 
