@@ -6,6 +6,11 @@
 
 ---
 
+## Version 7.1.37 - 2024-12-12
+
+- Enhanced notification of errors encountered such that GF is unable to make replacements in a file (most commonly because the file is in use and exclusive access is denied) (#319).
+- Field "Setup" in MNXs was not being searched (#321)
+
 ## Version 7.1.36 - 2024-12-05
 
 Bug fixes:
