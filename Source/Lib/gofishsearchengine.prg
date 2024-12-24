@@ -5012,6 +5012,12 @@ x
 		Create Cursor ProjectFiles (FileName C(200))
 		lcCurDir   = Addbs(Curdir())
 		lnProjects = Adir(laProjects, m.lcCurDir + '*.pjx')
+		
+		If lnProjects = 0
+			lcScope	 = Alltrim(Lower(This.GetCurrentDirectory()), '\')
+			lnReturn = This.SearchInPath(m.lcScope, m.ttTime, m.tcUni)
+			Return lnReturn
+		EndIf 	
 	
 		For lnI = 1 To m.lnProjects
 			lcFileName	  = m.lcCurDir + m.laProjects[m.lnI, 1]
@@ -5116,7 +5122,7 @@ x
 j
 
 		lnSelect = Select()
-
+		
 		If Empty(m.tcPath)
 			This.SetSearchError('Path parameter [' + m.tcPath + '] is empty in call to SearchInPath()')
 			Return 0
@@ -5126,7 +5132,7 @@ j
 		This.StartTimer()
 
 		If This.CanUseGrepForFileList()
-			This.SearchUsingGrep(m.ttTime, m.tcUni)
+			This.SearchUsingGrep(m.tcPath, m.ttTime, m.tcUni)
 			Return 1
 		EndIf 
 
@@ -6501,7 +6507,7 @@ j
 * ================================================================================ 
 *** JRN 2024-05-31 : Optimized section, using grep to create (shorter) list of files
 
-	Procedure SearchUsingGrep (m.ttTime, m.tcUni)
+	Procedure SearchUsingGrep (tcPath, ttTime, tcUni)
 	
 		Local lcCustomAlias, lnReturn, lnSeconds, lnSelect
 	
@@ -6515,7 +6521,7 @@ j
 		lcCustomAlias = 'GF_CustomScope' + Sys(2015)
 		Create Cursor (m.lcCustomAlias) (FileName C(240))
 	
-		This.CreateFileListUsingGrep(This.oSearchOptions, m.lcCustomAlias)
+		This.CreateFileListUsingGrep(This.oSearchOptions, m.lcCustomAlias, m.tcPath)
 	
 		This.nADirTime = This.ElapsedTimeSinceStart()
 	
@@ -6550,7 +6556,7 @@ j
 * ================================================================================
 
 	Procedure CreateFileListUsingGrep
-		Lparameters toSettings, tcCursor
+		Lparameters toSettings, tcCursor, tcPath
 	
 		*** JRN 2024-05-22 : Concept and coding suggestions from Mike Yearwood
 		* C:\mygrep\grep.exe -r -l -i -P --include=.{??a,prg} '^(?!\s*).*THERE\s+IS\s+NO\s+SUCH\s+APPRO' c:\mysource
@@ -6592,7 +6598,7 @@ j
 		Strtofile('@echo off' + CRLF, m.lcBATFile, 1)
 	
 		* Scope (project or path) 
-		lcScope	 = m.toSettings.cRecentScope
+		lcScope	 = m.tcPath && m.toSettings.cRecentScope
 	
 		If Directory(m.lcScope)
 
@@ -6801,7 +6807,7 @@ j
  		* strip off first line, which contains the field name
  		lcFiles	  = Substr(_Cliptext, 1 + At(CR, _Cliptext))
  		_Cliptext = m.lcClipText
- 	
+
  		* fix the delimiter to what xargs needs
  		lcFiles = Strtran(m.lcFiles, CR, ccFileDelimiter)
  	

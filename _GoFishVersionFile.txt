@@ -9,6 +9,21 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.38 - 2024-12-24
+
+Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
+- "All Open Projects"
+    - Searches all open projects, if any
+    - Else projects in the current directory, if any
+    - Else files in the current directory.
+- "Active Project"
+    - Searches the active project, if any
+    - Else projects in the current directory, if any
+    - Else files in the current directory.
+- "Projects in current directory"
+    - Searches projects in the current directory, if any
+    - Else files in the current directory.
+
 ## Version 7.1.37 - 2024-12-12
 
 - Enhanced notification of errors encountered such that GF is unable to make replacements in a file (most commonly because the file is in use and exclusive access is denied) (#319).
@@ -181,29 +196,14 @@ New options on "New in V7" page of Options screen:
 
 ## Version 7.1.11 - 2024-06-18
 
-- New option to display the bar number in Code View pane for matches in MNXs (#250)
-- "Advanced" button now highlighted if "code template" field is not empty.
-
-## Version 7.1.10 - 2024-06-16
-
-- Display in Code View pane of matches in MNXs now includes the bar number (#250)
-
-## Version 7.1.08 - 2024-06-14
-
-- Bug fixes in previous version (#247)
-
-## Version 7.1.07 - 2024-06-13
-
-- Changes to column "File Path"
-    - When searching all active projects, relative path  (if selected) is relative to currect directory.
-    - New item in grid's right-click context menus is a toggle of whether to show relative path
+- New option to display th
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.37 - December 12, 2024 - 20241212')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.38 - December 24, 2024 - 20241224')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

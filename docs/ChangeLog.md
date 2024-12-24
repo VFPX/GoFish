@@ -6,6 +6,21 @@
 
 ---
 
+## Version 7.1.38 - 2024-12-24
+
+Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
+- "All Open Projects"
+    - Searches all open projects, if any
+    - Else projects in the current directory, if any
+    - Else files in the current directory.
+- "Active Project"
+    - Searches the active project, if any
+    - Else projects in the current directory, if any
+    - Else files in the current directory.
+- "Projects in current directory"
+    - Searches projects in the current directory, if any
+    - Else files in the current directory.
+
 ## Version 7.1.37 - 2024-12-12
 
 - Enhanced notification of errors encountered such that GF is unable to make replacements in a file (most commonly because the file is in use and exclusive access is denied) (#319).
