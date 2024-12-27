@@ -6,7 +6,7 @@
 
 ---
 
-## Version 7.1.38 - 2024-12-24
+## Version 7.1.39 - 2024-12-27
 
 Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
 - "All Open Projects"
