@@ -4926,12 +4926,11 @@ x
 
 *----------------------------------------------------------------------------------
 	Procedure SearchInOpenProjects(tcProject, ttTime, tcUni)
-		
-		Local laProjectFiles[1], lcFile, lnI, lnReturn, lnSeconds, lnSelect, lnX, loFile, loProject
+	
+		Local laProjectFiles[1], lcFile, lnCount, lnI, lnReturn, lnSeconds, lnSelect, lnX, loFile, loProject
 	
 		This.PrepareForSearch()
 		This.StartTimer()
-		This.StartProgressBar(_vfp.Projects.Count)
 	
 		lnSeconds	  = Seconds()
 		lnSelect	  = Select()
@@ -4939,8 +4938,10 @@ x
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
 		Create Cursor ProjectFiles (FileName C(200))
-	
-		For lnI = 1 To _vfp.Projects.Count
+		lnCount =  _vfp.Projects.Count
+		This.oProgressBar.Start(m.lnCount, 'Creating list of files from ' + Transform(m.lnCount) + ' project(s).')
+
+		For lnI = 1 To m.lnCount
 			loProject					 = _vfp.Projects[m.lnI]
 			This.oSearchOptions.cProject = m.loProject.Name
 			Insert Into ProjectFiles (FileName) Values (Lower(m.loProject.Name))
@@ -4950,9 +4951,9 @@ x
 					Insert Into ProjectFiles (FileName) Values (m.loFile.Name)
 				Endif
 			Endfor
-			loFile	  = Null
-			loProject = Null
-	
+			loFile					 = Null
+			loProject				 = Null
+			This.oProgressBar.nValue = This.oProgressBar.nValue + 1
 		Endfor
 	
 		Select  Distinct *															;
@@ -4992,32 +4993,34 @@ x
 		Endif
 	
 	Endproc
-		
+			
 	
 *----------------------------------------------------------------------------------
 	Procedure SearchProjectsInCurDir(tcProject, ttTime, tcUni)
 	
-		Local laProjectFiles[1], laProjects[1], lcCurDir, lcFile, lcFileName, llAlreadyOpen, llOpened, lnI
-		Local lnJ, lnProjects, lnReturn, lnSeconds, lnSelect, lnX, loException, loFile, loProject
+		Local laProjectFiles[1], laProjects[1], lcCurDir, lcFile, lcFileName, lcScope, llAlreadyOpen
+		Local llOpened, lnI, lnJ, lnProjects, lnReturn, lnSeconds, lnSelect, lnX, loException, loFile
+		Local loProject
 	
 		This.PrepareForSearch()
 		This.StartTimer()
-		This.StartProgressBar(_vfp.Projects.Count)
 	
 		lnSeconds	  = Seconds()
 		lnSelect	  = Select()
 		This.tRunTime = Evl(m.ttTime, Datetime())
 		This.cUni	  = Evl(m.tcUni, '_' + Sys(2007, Ttoc(This.tRunTime), 0, 1))
 	
-		Create Cursor ProjectFiles (FileName C(200))
 		lcCurDir   = Addbs(Curdir())
 		lnProjects = Adir(laProjects, m.lcCurDir + '*.pjx')
-		
-		If lnProjects = 0
+	
+		If m.lnProjects = 0
 			lcScope	 = Alltrim(Lower(This.GetCurrentDirectory()), '\')
 			lnReturn = This.SearchInPath(m.lcScope, m.ttTime, m.tcUni)
-			Return lnReturn
-		EndIf 	
+			Return m.lnReturn
+		Endif
+	
+		Create Cursor ProjectFiles (FileName C(200))
+		This.oProgressBar.Start(m.lnProjects, 'Creating list of files from ' + Transform(m.lnProjects) + ' project(s).')
 	
 		For lnI = 1 To m.lnProjects
 			lcFileName	  = m.lcCurDir + m.laProjects[m.lnI, 1]
@@ -5059,6 +5062,8 @@ x
 			loFile	  = Null
 			loProject = Null
 	
+			This.oProgressBar.nValue = This.oProgressBar.nValue + 1
+	
 		Endfor
 	
 	
@@ -5099,7 +5104,7 @@ x
 		Endif
 	
 	Endproc
-			
+				
 	
 		*----------------------------------------------------------------------------------
 	Procedure SearchInPath(tcPath, ttTime, tcUni)

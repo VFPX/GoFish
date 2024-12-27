@@ -9,7 +9,7 @@ Text to lcNote NoShow
 
 ---
 
-## Version 7.1.38 - 2024-12-24
+## Version 7.1.39 - 2024-12-27
 
 Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
 - "All Open Projects"
@@ -203,7 +203,7 @@ EndText
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.38 - December 24, 2024 - 20241224')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.39 - December 27, 2024 - 20241227')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')
