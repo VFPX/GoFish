@@ -6,6 +6,13 @@
 
 ---
 
+## Version 7.1.40 - 2025-01-04
+
+Minor UI changes:
+- Restores Scope setting 'Files in current Results' when loading history
+- Restores count of matches (upper right corner) and files with matches when loading history
+- Updates count of matches and files with matches when filtering the grid.
+
 ## Version 7.1.39 - 2024-12-27
 
 Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
