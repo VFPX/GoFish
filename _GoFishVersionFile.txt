@@ -9,6 +9,17 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.40 - 2025-01-07
+
+Bug fix:
+- Problem with "class not found" error, caused by problems with "Set Procedure" adventures (#324)
+
+Minor UI changes:
+- When loading history
+    - Restores Scope setting 'Files in current Results'
+    - Restores count of matches (upper right corner) and files with matches
+- Correctly updates count of matches and files with matches when filtering the grid.
+
 ## Version 7.1.39 - 2024-12-27
 
 Extended definitions for project-related Scope settings when no projects satisfy the Scope criterion:
@@ -183,27 +194,14 @@ New options on "New in V7" page of Options screen:
 - Matches for search expressions ending with backslash, such as `C:\`,  not being found (#264)
 - Two additions to grid context menu:
     - DeleteMark
-    - Set Deleted
-- Selecting "Browse Project" or "Browse Directory" sets scope to last project/directory (instead of blank)
-
-## Version 7.1.13 - 2024-06-29
-
-- Matches to currency symbol(s) not being found (#261)
-
-## Version 7.1.12 - 2024-06-29
-
-- New option to select the font size used in comboboxes (search expression, scope, mode, etc) (#259)
-
-## Version 7.1.11 - 2024-06-18
-
-- New option to display th
+    - Se
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.40 - January 05, 2025 - 20250105')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.40 - January 07, 2025 - 20250107')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

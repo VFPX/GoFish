@@ -6,12 +6,16 @@
 
 ---
 
-## Version 7.1.40 - 2025-01-04
+## Version 7.1.40 - 2025-01-07
+
+Bug fix:
+- Problem with "class not found" error, caused by problems with "Set Procedure" adventures (#324)
 
 Minor UI changes:
-- Restores Scope setting 'Files in current Results' when loading history
-- Restores count of matches (upper right corner) and files with matches when loading history
-- Updates count of matches and files with matches when filtering the grid.
+- When loading history
+    - Restores Scope setting 'Files in current Results'
+    - Restores count of matches (upper right corner) and files with matches 
+- Correctly updates count of matches and files with matches when filtering the grid.
 
 ## Version 7.1.39 - 2024-12-27
 
