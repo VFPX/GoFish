@@ -3179,60 +3179,54 @@ Result
 
 
 *----------------------------------------------------------------------------------
-	Procedure LoadOptions(tcFile)
-
-		Local;
-			lcProperty As String,;
-			loMy    As 'My' Of 'My.vcx'
-
-		Local Array;
-			laProperties(1)
-
-*:Global;
-x
-
-		If !File(m.tcFile)
+	Procedure LoadOptions(tcFile, tlInit)
+	
+		Local lcProperty As String
+		Local loMy As 'My' Of 'My.vcx'
+		Local laProperties[1], lnI
+	
+		If Not File(m.tcFile)
 			Return .F.
 		Endif
-
-*-- Get an array of properties that are on the SearchOptions object
+	
+		*-- Get an array of properties that are on the SearchOptions object
 		Amembers(laProperties, This.oSearchOptions, 0, 'U')
-
-*-- Load settings from file...
+	
+		*-- Load settings from file...
 		loMy = Newobject('My', 'My.vcx')
-		loMy.Settings.Load(m.tcFile)
-
-*--- Scan over Object properties, and look for a corresponding props on the My Settings object (if present)
+		m.loMy.Settings.Load(m.tcFile)
+	
+		*--- Scan over Object properties, and look for a corresponding props on the My Settings object (if present)
 		With m.loMy.Settings
-			For x = 1 To Alen(m.laProperties)
-				lcProperty = laProperties[x]
-				If Type('.' + m.lcProperty) <> 'U'
+			For lnI = 1 To Alen(m.laProperties)
+				lcProperty = m.laProperties[m.lnI]
+				If Type('.' + m.lcProperty) # 'U'
 					Store Evaluate('.' + m.lcProperty) To ('This.oSearchOptions.' + m.lcProperty)
 				Endif
 			Endfor
 		Endwith
-
-*-- My.Settings stores Dates as DateTimes, so I need to convert them to just Date datatypes
+	
+		*-- My.Settings stores Dates as DateTimes, so I need to convert them to just Date datatypes
 		Try
-				This.oSearchOptions.dTimeStampFrom = Ttod(This.oSearchOptions.dTimeStampFrom)
-			Catch
-				This.oSearchOptions.dTimeStampFrom = {}
+			This.oSearchOptions.dTimeStampFrom = Ttod(This.oSearchOptions.dTimeStampFrom)
+		Catch
+			This.oSearchOptions.dTimeStampFrom = {}
 		Endtry
-
+	
 		Try
-				This.oSearchOptions.dTimeStampTo = Ttod(This.oSearchOptions.dTimeStampTo)
-			Catch
-				This.oSearchOptions.dTimeStampTo = {}
-		EndTry
-		
-		If This.oSearchOptions.nSearchScope = 6 && Results
+			This.oSearchOptions.dTimeStampTo = Ttod(This.oSearchOptions.dTimeStampTo)
+		Catch
+			This.oSearchOptions.dTimeStampTo = {}
+		Endtry
+	
+		If m.tlInit and This.oSearchOptions.nSearchScope = 6 && Results
 			This.oSearchOptions.nSearchScope = This.oSearchOptions.nPreviousSearchScope
-		EndIf 
-
+		Endif
+	
 		Return .T.
-
+	
 	Endproc
-
+	
 
 *----------------------------------------------------------------------------------
 	Procedure lReadyToReplace_Access
