@@ -9,6 +9,10 @@ Text to lcNote NoShow
 
 ---
 
+## Version 7.1.41 - 2025-01-12
+
+Bug fix in 7.1.40 when using filter form (and possibly other forms)
+
 ## Version 7.1.40 - 2025-01-07
 
 Bug fix:
@@ -191,17 +195,14 @@ New options on "New in V7" page of Options screen:
 
 ## Version 7.1.14 - 2024-07-08
 
-- Matches for search expressions ending with backslash, such as `C:\`,  not being found (#264)
-- Two additions to grid context menu:
-    - DeleteMark
-    - Se
+- Matches for search expressions ending with backslash,
 EndText
 
 * For GF, strip off links at top of change log
 lcNote = Substr(lcNote, At('--', lcNote))
 lcNote = Alltrim(lcNote, 1, ' ', '-', Chr(13), Chr(10)) 
 
-AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.40 - January 07, 2025 - 20250107')
+AddProperty(toUpdateInfo, 'AvailableVersion', 'GoFish - 7.1.41 - January 12, 2025 - 20250112')
 AddProperty(toUpdateInfo, 'SourceFileUrl', 'https://raw.githubusercontent.com/VFPX/GoFish/master/Source/Source.zip')
 AddProperty(toUpdateInfo, 'LinkPrompt', 'GoFish Home Page')
 AddProperty(toUpdateInfo, 'Link', 'https://github.com/VFPX/GoFish')

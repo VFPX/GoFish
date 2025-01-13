@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.41 - 2025-01-12
+
+Bug fix in 7.1.40 when using filter form (and possibly other forms)
+
 ## Version 7.1.40 - 2025-01-07
 
 Bug fix:
