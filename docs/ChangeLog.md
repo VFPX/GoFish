@@ -6,6 +6,10 @@
 
 ---
 
+## Version 7.1.42 - 2026-01-10
+
+Bug fix when selecting "Code Only"; two fields ('SETUP' and 'CLEANUP') in menus were erroneously not identified as containing code.
+
 ## Version 7.1.41 - 2025-01-12
 
 Bug fix in 7.1.40 when using filter form (and possibly other forms)
