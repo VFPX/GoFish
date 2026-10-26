@@ -989,15 +989,15 @@ However, they are still available in GoFish 5 and GoFish Classic.
 					Select GF_SearchHistory
 
 					If File(m.lcFilePath + "GF_Saved_Search_Results.txt") Then
-						Rename (m.lcFilePath + "GF_Saved_Search_Results.txt") To (m.lcDir + Trim(cUni)+"_Saved_Search_Results.txt"))
+						Rename (m.lcFilePath + "GF_Saved_Search_Results.txt") To (m.lcDir + Trim(cUni)+"_Saved_Search_Results.txt")
 					Endif &&File(m.lcFilePath + "GF_Saved_Search_Results.txt")
 
 					If File(m.lcFilePath + "GF_Search_Settings.xml") Then
-						Rename (m.lcFilePath + "GF_Search_Settings.xml") To (m.lcDir + Trim(cUni)+"_Search_Settings.xml"))
+						Rename (m.lcFilePath + "GF_Search_Settings.xml") To (m.lcDir + Trim(cUni)+"_Search_Settings.xml")
 					Endif &&File(m.lcFilePath + "GF_Search_Settings.xml")
 
 					If File(m.lcFilePath + "GF_Results_Form_Settings.xml") Then
-						Rename (m.lcFilePath + "GF_Results_Form_Settings.xml") To (m.lcDir + Trim(cUni)+"_Results_Form_Settings.xml"))
+						Rename (m.lcFilePath + "GF_Results_Form_Settings.xml") To (m.lcDir + Trim(cUni)+"_Results_Form_Settings.xml")
 					Endif &&File(m.lcFilePath + "GF_Results_Form_Settings.xml")
 
 					Delete File (m.lcFilePath + "\*.*")

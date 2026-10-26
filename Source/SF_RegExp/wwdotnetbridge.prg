@@ -574,7 +574,7 @@ ENDFUNC
 ***      Pass:
 ***    Return:
 ************************************************************************
-FUNCTION InvokeTaskMethodAsync(loCallbackEvents,loInstance,lcMethod, lvParm1, lvParm2, lvParm3, lvParm4, lvParm5, lvParm6, lvParm7, lvParm8, lvParm9, lvParm10))
+FUNCTION InvokeTaskMethodAsync(loCallbackEvents,loInstance,lcMethod, lvParm1, lvParm2, lvParm3, lvParm4, lvParm5, lvParm6, lvParm7, lvParm8, lvParm9, lvParm10)
 
 lnParms = PCOUNT()
 LOCAL loBridge as wwDotNetBridge

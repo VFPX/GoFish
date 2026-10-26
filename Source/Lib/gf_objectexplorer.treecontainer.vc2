@@ -1615,7 +1615,7 @@ DEFINE CLASS treecontainer AS container
 	ENDPROC
 
 	PROCEDURE saveproperty
-		Lparameters lcProperty)
+		Lparameters lcProperty
 				= Seek(Upper(m.lcProperty))
 				Replace Value With Evl(Getpem(This, m.lcProperty),0)
 				

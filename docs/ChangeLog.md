@@ -6,6 +6,10 @@
 
 ---
 
+## Unreleased
+
+Cleanup: remove five redundant closing parentheses. Visual FoxPro ignores these parentheses; the code works with or without them.
+
 ## Version 7.1.42 - 2026-01-10
 
 Bug fix when selecting "Code Only"; two fields ('SETUP' and 'CLEANUP') in menus were erroneously not identified as containing code.
